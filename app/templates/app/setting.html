@@ -1,0 +1,302 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock title %}
+{% load static %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-sm-10">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3 col-sm-4 text-center">
+                            <p class="text-sm">Empresa</p>
+                            <h6>Gestiona-Facil</h6>
+                        </div>
+                        <div class="col-3 col-sm-4 text-center">
+                            <p class="text-sm">RFC</p>
+                            <h6>FDSFDH7f8FDS</h6>
+                        </div>
+                        <div class="col-3 col-sm-4 text-center">
+                            <p class="text-sm">Plan Actual</p>
+                            <button class="btn btn-sm btn-info">Consultar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-10">
+            <div class="row mt-4">
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Empresa</p>
+                            <p class="text-xs">
+                                Configura la información de tu empresa y adapta Gestiona-Facil a tu negocio.
+                            </p>
+                            <div>
+                                <a href="#" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Empresa
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Usuarios
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Mi perfil
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Centros de costos
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Monedas
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3 ">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Facturacion</p>
+                            <p class="text-xs">
+                                Configura la información que se mostrará en tus facturas.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Empresa
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Usuarios
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Mi perfil
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Centros de costos
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Plantillas de impresión</p>
+                            <p class="text-xs">
+                                Administra las plantillas de impresión de tus documentos.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Plantillas
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Impuestos</p>
+                            <p class="text-xs">
+                                Define aquí los tipos de impuestos y retenciones que aplicas a tus facturas.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Impuestos
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Retenciones
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Configuración avanzada
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Contabilidad</p>
+                            <p class="text-xs">
+                                Define opciones avanzadas para el manejo de tu contabilidad.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Datos generales
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Parametrización contable
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Control de períodos contables
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Tipos de Pólizas Contables
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Numeraciones contables
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Notificaciones y correos</p>
+                            <p class="text-xs">
+                                Configura las plantillas, las notificaciones del sistema y las notificaciones de facturas.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Notificaciones
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Plantillas de correos
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Preferencias de correo
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Inventario</p>
+                            <p class="text-xs">
+                                Define opciones avanzadas para la creación, venta y gestión de tus productos.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Campos adicionales
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Variantes
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Historial</p>
+                            <p class="text-xs">
+                                Consulta el historial de correos de facturas enviadas a clientes y operaciones realizadas en la cuenta.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Historial de correos
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Historial de operaciones
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-3 col-sm-3">
+                    <div class="card" style="height: 17rem;">
+                        <div class="card-body">
+                            <p class="text-sm text-info">Suscripcion - Planes</p>
+                            <p class="text-xs">
+                                Elige el plan que quieres tener en Gestiona-Facil y configura cómo quieres pagarlo.
+                            </p>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Suscripción
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:;" class="text-dark font-weight-semibold icon-move-right mt-auto w-100 mb-5 text-xs">
+                                    Métodos de pago
+                                    <i class="fas fa-arrow-right-long text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'includes/scripts.html' %}
+{% endblock content %}
+  
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% endblock javascripts %}

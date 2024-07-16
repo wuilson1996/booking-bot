@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Praga",
+        "link": "https://www.booking.com/hotel/es/pragamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-06&checkout=2024-05-07&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=6dfb8f760fcb0056&srepoch=1714422262&all_sr_blocks=9103007_88190431_0_2_0&highlighted_blocks=9103007_88190431_0_2_0&matching_block_id=9103007_88190431_0_2_0&sr_pri_blocks=9103007_88190431_0_2_0__12150&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Carabanchel, Madrid",
+        "distance": "a 2,5 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/190679750.webp?k=e2285ec25d664dcf8e59c60d9319f03d1279d3986783336ecb5911495c57bc7f&o=",
+        "price": "\u20ac\u00a0121",
+        "date_from": "2024-05-06",
+        "date_to": "2024-05-07"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Villamadrid",
+        "link": "https://www.booking.com/hotel/es/villamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-06&checkout=2024-05-07&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=6dfb8f760fcb0056&srepoch=1714422262&all_sr_blocks=9426106_88195701_0_2_0&highlighted_blocks=9426106_88195701_0_2_0&matching_block_id=9426106_88195701_0_2_0&sr_pri_blocks=9426106_88195701_0_2_0__14850&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Fuencarral - El Pardo, Madrid",
+        "distance": "a 8,2 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/63808733.webp?k=c146daaac7dd699f6be735eaf8a14dfea1a0c1038610e0faa5ccf48df7fedcfc&o=",
+        "price": "\u20ac\u00a0149",
+        "date_from": "2024-05-06",
+        "date_to": "2024-05-07"
+    },
+    {
+        "start": 4,
+        "title": "Zenit Conde de Orgaz",
+        "link": "https://www.booking.com/hotel/es/zenitconde.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-06&checkout=2024-05-07&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=6dfb8f760fcb0056&srepoch=1714422262&all_sr_blocks=9013805_343252603_0_2_0&highlighted_blocks=9013805_343252603_0_2_0&matching_block_id=9013805_343252603_0_2_0&sr_pri_blocks=9013805_343252603_0_2_0__17600&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 6,5 km del centro",
+        "description": "2 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/274192729.webp?k=90b8389df652eacb9da801489ace03a3978ad78984cf1d6bf652ef13fb04196f&o=",
+        "price": "\u20ac\u00a0176",
+        "date_from": "2024-05-06",
+        "date_to": "2024-05-07"
+    },
+    {
+        "start": 4,
+        "title": "Exe Madrid Norte",
+        "link": "https://www.booking.com/hotel/es/exe-madrid-norte.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-06&checkout=2024-05-07&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=6dfb8f760fcb0056&srepoch=1714422262&all_sr_blocks=9354710_391812864_3_34_0&highlighted_blocks=9354710_391812864_3_34_0&matching_block_id=9354710_391812864_3_34_0&sr_pri_blocks=9354710_391812864_3_34_0__18900&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 8,9 km del centro",
+        "description": "2 camas (1 sof\u00e1 cama, 1 doble grande)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/137074528.webp?k=3544a744543a9c9618cef5e8a3f626ff2f4361e2f329c989af5cd2d319443fd5&o=",
+        "price": "\u20ac\u00a0189",
+        "date_from": "2024-05-06",
+        "date_to": "2024-05-07"
+    },
+    {
+        "start": 4,
+        "title": "Silken Puerta Madrid",
+        "link": "https://www.booking.com/hotel/es/silkenpuertamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-06&checkout=2024-05-07&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=6dfb8f760fcb0056&srepoch=1714422262&all_sr_blocks=9160110_260439863_0_2_0&highlighted_blocks=9160110_260439863_0_2_0&matching_block_id=9160110_260439863_0_2_0&sr_pri_blocks=9160110_260439863_0_2_0__20425&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 6,7 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/5409079.webp?k=a4af0e2f155844ddedb303ca92cc8d08c42cf9852216539a3131881446c65da0&o=",
+        "price": "\u20ac\u00a0204",
+        "date_from": "2024-05-06",
+        "date_to": "2024-05-07"
+    },
+    {
+        "start": 4,
+        "title": "Sercotel Gran Hotel Conde Duque",
+        "link": "https://www.booking.com/hotel/es/condeduque.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-06&checkout=2024-05-07&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=6dfb8f760fcb0056&srepoch=1714422262&all_sr_blocks=9003222_339046268_3_2_0&highlighted_blocks=9003222_339046268_3_2_0&matching_block_id=9003222_339046268_3_2_0&sr_pri_blocks=9003222_339046268_3_2_0__21500&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Chamber\u00ed, Madrid",
+        "distance": "a 1,6 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/133060108.webp?k=ef8d79be93ae7acb5c333a8a78040298e56bea3bf1b61c30190165341e365447&o=",
+        "price": "\u20ac\u00a0215",
+        "date_from": "2024-05-06",
+        "date_to": "2024-05-07"
+    }
+]

@@ -1,0 +1,134 @@
+
+<div class="col-lg-3 col-sm-6 col-12">
+  <input class="mb-0 btn btn-success w-100 toast-btn" type="hidden" data-target="successToast" id="successToastButton">
+</div>
+<div class="mt-2 col-lg-3 col-sm-6 col-12 mt-sm-0">
+  <input class="mb-0 btn btn-info w-100 toast-btn" type="hidden" data-target="infoToast" id="infoToastButton">
+</div>
+<div class="mt-2 col-lg-3 col-sm-6 col-12 mt-lg-0">
+  <input class="mb-0 btn btn-danger w-100 toast-btn" type="hidden" data-target="dangerToast" id="dangerToastButton">
+</div>
+<div class="mt-2 col-lg-3 col-sm-6 col-12 mt-lg-0">
+  <input class="mb-0 btn btn-warning w-100 toast-btn" type="hidden" data-target="warningToast" id="warningToastButton">
+</div>
+
+<div class="position-fixed bottom-1 end-1 z-index-2">
+  <div class="p-2 bg-white toast fade hide" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
+    <div class="border-0 toast-header">
+      <i class="ni ni-check-bold text-success me-2"></i>
+      <span class="me-auto font-weight-bold" id="successToastTitle">Corporate UI Dashboard</span>
+      <small class="text-body" id="successToastDate">11 mins ago</small>
+      <i class="cursor-pointer fas fa-times text-md ms-3" data-bs-dismiss="toast" aria-label="Close"></i>
+    </div>
+    <hr class="m-0 horizontal dark">
+    <div class="toast-body" id="successToastDescription">
+      Hello, world! This is a notification message.
+    </div>
+  </div>
+  <div class="p-2 mt-2 toast fade hide bg-gradient-info" role="alert" aria-live="assertive" id="infoToast" aria-atomic="true">
+    <div class="bg-transparent border-0 toast-header">
+      <i class="text-white ni ni-bell-55 me-2"></i>
+      <span class="text-white me-auto font-weight-bold" id="infoToastTitle">Corporate UI Dashboard</span>
+      <small class="text-white" id="infoToastDate">11 mins ago</small>
+      <i class="text-white cursor-pointer fas fa-times text-md ms-3" data-bs-dismiss="toast" aria-label="Close"></i>
+    </div>
+    <hr class="m-0 horizontal light">
+    <div class="text-white toast-body" id="infoToastDescription">
+      Hello, world! This is a notification message.
+    </div>
+  </div>
+  <div class="p-2 mt-2 bg-white toast fade hide" role="alert" aria-live="assertive" id="dangerToast" aria-atomic="true">
+    <div class="border-0 toast-header">
+      <i class="ni ni-notification-70 text-danger me-2"></i>
+      <span class="me-auto  text-danger font-weight-bold" id="dangerToastTitle">Corporate UI Dashboard</span>
+      <small class="text-body" id="dangerToastDate">11 mins ago</small>
+      <i class="cursor-pointer fas fa-times text-md ms-3" data-bs-dismiss="toast" aria-label="Close"></i>
+    </div>
+    <hr class="m-0 horizontal dark">
+    <div class="toast-body" id="dangerToastDescription">
+      Hello, world! This is a notification message.
+    </div>
+  </div>
+  <div class="p-2 mt-2 bg-white toast fade hide" role="alert" aria-live="assertive" id="warningToast" aria-atomic="true">
+    <div class="border-0 toast-header">
+      <i class="ni ni-spaceship text-warning me-2"></i>
+      <span class="me-auto font-weight-bold" id="warningToastTitle">Corporate UI Dashboard</span>
+      <small class="text-body" id="warningToastDate">11 mins ago</small>
+      <i class="cursor-pointer fas fa-times text-md ms-3" data-bs-dismiss="toast" aria-label="Close"></i>
+    </div>
+    <hr class="m-0 horizontal dark">
+    <div class="toast-body" id="warningToastDescription">
+      Hello, world! This is a notification message.
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-main navbar-expand-lg  px-0 mx-4 shadow-none border-radius-xl z-index-sticky " id="navbarBlur" data-scroll="false">
+  <div class="container-fluid py-1 px-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <li class="breadcrumb-item text-sm">
+          <a class="text-white" href="javascript:;">
+            <i class="ni ni-box-2"></i>
+          </a>
+        </li>
+        <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white" href="javascript:;"></a>Fixco</li>
+        
+      </ol>
+      <h6 class="font-weight-bolder mb-0 text-white"></h6>
+    </nav>
+    <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+      <a href="javascript:;" class="nav-link p-0">
+        <div class="sidenav-toggler-inner">
+          <i class="sidenav-toggler-line bg-white"></i>
+          <i class="sidenav-toggler-line bg-white"></i>
+          <i class="sidenav-toggler-line bg-white"></i>
+        </div>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+      <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+        <!--<div class="input-group">
+          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" placeholder="Type here...">
+        </div>-->
+      </div>
+      <ul class="navbar-nav  justify-content-end">
+        <li class="nav-item d-flex align-items-center text-white font-weight-bold px-3">
+          <i class="fa fa-user me-sm-1"></i><span class="d-sm-inline d-none">{{user.name}}</span>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a href="{% url 'log-out' %}" class="nav-link text-white font-weight-bold px-0">
+            <span class="d-sm-inline d-none">Salir</span>
+          </a>
+        </li>
+        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+            <div class="sidenav-toggler-inner">
+              <i class="sidenav-toggler-line bg-white"></i>
+              <i class="sidenav-toggler-line bg-white"></i>
+              <i class="sidenav-toggler-line bg-white"></i>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item px-3 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link text-white p-0">
+            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+          </a>
+        </li>
+        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-bell cursor-pointer"></i>
+            <span id="cart_menu_num" class="badge bg-gradient-danger">0</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4 scrollDrop3" aria-labelledby="dropdownMenuButton" id="addNotify">
+            
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
+

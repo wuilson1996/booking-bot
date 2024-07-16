@@ -1,0 +1,137 @@
+{% extends 'layouts/base-full-screen.html' %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container py-3 my-3">
+    <div class="mt-4 row">
+      <h2 class="font-weight-bold text-dark">Gestiona-Facil</h2>
+    </div>
+    <div class="mt-4 row">
+      <div class="col-6">
+        <h4 class="text-lg text-dark font-weight-semibold">¡Hola 😊, te damos la bienvenida!</h4>
+        <p class="text-sm"></p>
+      </div>
+    </div>
+    <hr class="my-3 horizontal dark">
+    <div class="mt-4 row">
+      <div class="col-12">
+        <div class="mb-5 multisteps-form">
+          <!--progress bar-->
+          <div class="row">
+            <div class="mx-auto my-4 pe-6 col-2 col-lg-4">
+              <div>
+                <h6 class="font-weight-semibold">Completa estos sencillos pasos</h6>
+                <p class="text-sm">Ayudanos hacerte la vida mas facil</p>
+              </div>
+              <div class="multisteps-form__progress">
+                <div class="mb-3">
+                  <button id="form-btn-1" class="p-2 me-2 multisteps-form__progress-btn btn btn-outline-secondary rounded-circle js-active" type="button" title="User Info">1</button>
+                  <label for="form-btn-1">Selecciona tu actividad</label>
+                </div>
+                <div class="mb-3">
+                  <button id="form-btn-2" class="p-2 me-2 multisteps-form__progress-btn btn btn-outline-secondary rounded-circle" type="button" title="Address">2</button>
+                  <label for="form-btn-2">Completa la informacion de tu empresa</label>
+                </div>
+                <div class="mb-3">
+                  <button id="form-btn-3" class="p-2 me-2 multisteps-form__progress-btn btn btn-outline-secondary rounded-circle" type="button" title="Socials">3</button>
+                  <label for="form-btn-3">Explora nuestras funciones</label>
+                </div>
+              </div>
+            </div>
+            <!--form panels-->
+            <div class="m-auto col-10 col-lg-8">
+              <form class="mb-8 multisteps-form__form" action="" method="post">{% csrf_token %}
+                <!--single form panel-->
+                <div class="card card-body multisteps-form__panel js-active" data-animation="FadeIn">
+                  <div class="multisteps-form__content">
+                    <div class="mt-3 row">
+                      <div class="col-12">
+                        <h5 class="font-weight-bolder">Actividades</h5>
+                        <p class="text-sm">Selecciona una actividad</p>
+                        <div class="row">
+                          <input type="hidden" id="activity1" name="activity1" value="{{type_worker.0.pk}}">
+                          {% for tw in type_worker %}
+                            <div class="col-md-12 mt-2">
+                              <input class="btn-check active col-md-12" type="radio" name="actividad" id="actividad{{tw.pk}}" autocomplete="off" role="tab" aria-selected="true" checked>
+                              <label class="px-4 mb-0 btn btn-white col-md-12 text-start" for="actividad{{tw.pk}}" onclick="checkRadio('{{tw.pk}}', 1)"><i class="fas fa-pencil"></i> {{tw.name}}</label>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      <div class="mt-2 button-row d-flex">
+                        <button class="mb-0 text-white btn bg-dark ms-auto js-btn-next" type="button" title="Next">Next</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--single form panel-->
+                <div class="p-4 bg-white card multisteps-form__panel" data-animation="FadeIn">
+                  <h5 class="font-weight-bolder">Sector</h5>
+                  <p class="text-sm">Elige el sector de tu empresa.</p>
+                  <div class="multisteps-form__content">
+                    <div class="row">
+                      <input type="hidden" id="activity2" name="activity2" value="{{sub_type_worker.0.pk}}">
+                      {% for stw in sub_type_worker %}
+                        <div class="col-md-12 mt-2">
+                          <input class="btn-check active col-md-12" type="radio" name="sector" id="sector{{stw.pk}}" autocomplete="off" role="tab" aria-selected="true" checked>
+                          <label class="px-4 mb-0 btn btn-white col-md-12 text-start" for="sector{{stw.pk}}" onclick="checkRadio('{{stw.pk}}', 2)"><i class="fas fa-pencil"></i> {{stw.name}}</label>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <div class="mt-4 button-row d-flex">
+                      <button class="mb-0 btn btn-white js-btn-prev" type="button" title="Prev">Prev</button>
+                      <button class="mb-0 text-white btn bg-dark ms-auto js-btn-next" type="button" title="Next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <!--single form panel-->
+                <div class="p-4 bg-white card multisteps-form__panel" data-animation="FadeIn">
+                  <h5 class="font-weight-bolder">Informacion de tu empresa</h5>
+                  <p class="text-sm">Puedes cambiar esta configuracion en cualquier momento desde configuracion.</p>
+                  <div class="multisteps-form__content">
+                    <div class="mt-3 row">
+                      <div class="mt-3 col-12 col-md-12 ms-auto">
+                        <label>Nombre de tu empresa</label>
+                        <input class="form-control form-control-xl" type="text" placeholder="e.g. Corporate" name="name" id="name"/>
+                      </div>
+                      <div class="mt-3 col-12 col-md-12 ms-auto">
+                        <label>Actividad economica</label>
+                        <select class="form-control form-control-xl" name="type_regimen" id="type_regimen">
+                          {% for tr in type_regimen %}
+                            <option value="{{tr.pk}}">{{tr.name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mt-4 button-row d-flex col-12">
+                        <button class="mb-0 btn btn-white js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button class="mb-0 btn btn-dark ms-auto" type="submit" title="Send">Send</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  function checkRadio(pk, i){
+    document.getElementById("activity"+i).value = pk;
+  }
+</script>
+  {% include 'includes/scripts.html' %}
+{% endblock content %}
+  
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% endblock javascripts %}

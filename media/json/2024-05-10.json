@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Occidental Castellana Norte",
+        "link": "https://www.booking.com/hotel/es/barcelo-castellana-norte.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-10&checkout=2024-05-11&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=39738f99814e016e&srepoch=1714422332&all_sr_blocks=9747310_91463347_3_2_0&highlighted_blocks=9747310_91463347_3_2_0&matching_block_id=9747310_91463347_3_2_0&sr_pri_blocks=9747310_91463347_3_2_0__16380&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 8,5 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/14539617.webp?k=e3528c3eeac0966c2c5cf530a13b292a19c82d36f3ae869a5b6c33c01d7dfa79&o=",
+        "price": "\u20ac\u00a0164",
+        "date_from": "2024-05-10",
+        "date_to": "2024-05-11"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Suites Feria de Madrid",
+        "link": "https://www.booking.com/hotel/es/suites-madrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-10&checkout=2024-05-11&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=39738f99814e016e&srepoch=1714422332&all_sr_blocks=1731502_325484733_0_2_0&highlighted_blocks=1731502_325484733_0_2_0&matching_block_id=1731502_325484733_0_2_0&sr_pri_blocks=1731502_325484733_0_2_0__19899&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 6,6 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/336975649.webp?k=fda4f64dab472fbd6669f32de2e8be8c1757914c561e67948482089f3b494884&o=",
+        "price": "\u20ac\u00a0199",
+        "date_from": "2024-05-10",
+        "date_to": "2024-05-11"
+    },
+    {
+        "start": 4,
+        "title": "Axor Barajas",
+        "link": "https://www.booking.com/hotel/es/axor-barajas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-10&checkout=2024-05-11&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=39738f99814e016e&srepoch=1714422332&all_sr_blocks=18912407_151823440_0_2_0&highlighted_blocks=18912407_151823440_0_2_0&matching_block_id=18912407_151823440_0_2_0&sr_pri_blocks=18912407_151823440_0_2_0__21500&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 10,8 km del centro",
+        "description": "Camas: 1 doble o 2 individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/423647585.webp?k=c89142babc13c84d804d0eb34bb752e7a7d3e87d0de680cb9d7fca5dcd870fa1&o=",
+        "price": "\u20ac\u00a0215",
+        "date_from": "2024-05-10",
+        "date_to": "2024-05-11"
+    },
+    {
+        "start": 4,
+        "title": "Madrid Marriott Auditorium Hotel & Conference Center",
+        "link": "https://www.booking.com/hotel/es/auditoriummadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-10&checkout=2024-05-11&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=39738f99814e016e&srepoch=1714422332&all_sr_blocks=9073842_310965232_0_1_0&highlighted_blocks=9073842_310965232_0_1_0&matching_block_id=9073842_310965232_0_1_0&sr_pri_blocks=9073842_310965232_0_1_0__23301&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 12,8 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/475186120.webp?k=b91cdd82df86a2e4a313e679eead1c5492f13cff680ec1f06577dc3250df4998&o=",
+        "price": "\u20ac\u00a0233",
+        "date_from": "2024-05-10",
+        "date_to": "2024-05-11"
+    },
+    {
+        "start": 4,
+        "title": "Crisol V\u00eda Castellana",
+        "link": "https://www.booking.com/hotel/es/castillaplaza.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-10&checkout=2024-05-11&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=39738f99814e016e&srepoch=1714422332&all_sr_blocks=9001317_391555323_3_2_0&highlighted_blocks=9001317_391555323_3_2_0&matching_block_id=9001317_391555323_3_2_0&sr_pri_blocks=9001317_391555323_3_2_0__27000&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Chamart\u00edn, Madrid",
+        "distance": "a 5,9 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/77884092.webp?k=004406dc7f3d9c34747215ede818faf3c9442c8d726280b8bef68b50755edb55&o=",
+        "price": "\u20ac\u00a0270",
+        "date_from": "2024-05-10",
+        "date_to": "2024-05-11"
+    },
+    {
+        "start": 4,
+        "title": "Senator Barajas",
+        "link": "https://www.booking.com/hotel/es/senator-barajas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-10&checkout=2024-05-11&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=39738f99814e016e&srepoch=1714422332&all_sr_blocks=9171912_88191652_0_2_0%2C9171913_88191652_0_2_0&highlighted_blocks=9171912_88191652_0_2_0%2C9171913_88191652_0_2_0&matching_block_id=9171912_88191652_0_2_0&sr_pri_blocks=9171912_88191652_0_2_0__14310%2C9171913_88191652_0_2_0__13410&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Barajas, Madrid",
+        "distance": "a 11,3 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/110812706.webp?k=5148b7e2ce9782d0e65c90d51f8f43c17ef8c5e007c00e285da25a8969a520e1&o=",
+        "price": "\u20ac\u00a0277",
+        "date_from": "2024-05-10",
+        "date_to": "2024-05-11"
+    }
+]

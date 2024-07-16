@@ -1,0 +1,192 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock title %}
+{% load static %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-sm-10">
+            <form action="/company-create" method="post" id="formId">{% csrf_token %}
+                <div class="">
+                    <div class="card-header">
+                        <h5 class="card-title"><i class="fas fa-cog"></i> Configurar empresa</h5>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="card card-body p-3 mt-4">
+                            <div class="row">
+                                <h6>DATOS GENERALES</h6>
+                                <p class="text-xs">Información básica de tu empresa en Gestiona-Facil</p>
+                                <div class="col-3">
+                                    <div class="col-12 col-sm-12">
+                                        <label for="productImg">Logo</label>
+                                        <div action="/file-upload" class="form-control dropzone" id="productImg" name="productImg" title="Logo"></div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 mt-2">
+                                        <h6>Facturacion electronica</h6>
+                                        <span class="text-sm text-xs pe-4">En proceso</span><a class="btn btn-sm btn-success" href="#">Continuar</a>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="row">
+                                        
+                                        <div class="mt-1 row">
+                                            <div class="col-6 col-sm-12">
+                                                <label>Nombre *</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.name}}" id="name" name="name" type="text" required placeholder="Gestiona Facil" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-6">
+                                                <label>RFC *</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.documentI}}" id="identification_number" type="text" name="identification_number" placeholder="" />
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label>Nombre comercial</label>
+                                                <input class="form-control form-control-xl" value="" id="name_commercial" type="text" name="name_commercial" placeholder="" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-3">
+                                                <label>Codigo postal</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.address.0}}" id="postal_code" name="postal_code" type="text"  placeholder="000000" />
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label>Colonia</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.address.1}}" id="colonia" name="colonia" type="text"  placeholder="" />
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label>Calle</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.address.2}}" id="calle" name="calle" type="text"  placeholder="000000" />
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label>Exterior</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.address.3}}" id="exterior" name="exterior" type="text"  placeholder="" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-3">
+                                                <label>Interior</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.address.4}}" id="interior" name="interior" type="text"  placeholder="" />
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label>Localidad</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.address.5}}" id="localidad" name="localidad" type="text"  placeholder="" />
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label>Estado</label>
+                                                <select class="form-control form-control-xl" value="{{company.fields.pk_state}}" name="estate"  id="estate">
+                                                    {% for e in state %}
+                                                    <option value="{{e.pk}}" {% if client.pk_state == e.pk %}selected{% endif %}>{{e.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label>Municipio</label>
+                                                <select class="form-control form-control-xl" value="{{company.fields.municipality}}" name="municipality"  id="municipality">
+                                                    {% for m in municipality %}
+                                                    <option value="{{m.pk}}" {% if client.municipality == m.pk %}selected{% endif %}>{{m.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-6">
+                                                <label>Correo electronico</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.email}}" id="email" name="email" type="text"  placeholder="" />
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label>Telefono</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.phone}}" id="phone" name="phone" type="text"  placeholder="" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-6">
+                                                <label>Sitio web</label>
+                                                <input class="form-control form-control-xl" value="{{company.fields.site}}" id="site" name="site" type="text"  placeholder="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="card card-body p-3 mt-4">
+                            <div class="row">
+                                <h6>CONFIGURACION BASICA</h6>
+                                <p class="text-xs">Configuración del funcionamiento general de tu cuenta</p>
+                                <div class="mt-1 row">
+                                    <div class="col-12 col-sm-6">
+                                        <label>Sector</label>
+                                        <select class="form-control form-control-xl" value="{{company.fields.sector}}" name="sector" id="sector">
+                                            {% for w in sector %}
+                                                <option value="{{w.pk}}" {% if company.fields.sector == w.pk %}selected{% endif %}>{{w.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label>Numero de empleados</label>
+                                        <select class="form-control form-control-xl" value="{{company.fields.cant_employee}}" name="cant_employee" id="cant_employee">
+                                            <option value="1 a 10" {% if company.fields.cant_employee == '1 a 10' %}selected{% endif %}>1 a 10</option>
+                                            <option value="11 a 50"  {% if company.fields.cant_employee == '11 a 50' %}selected{% endif %}>11 a 50</option>
+                                            <option value="51 a 100"  {% if company.fields.cant_employee == '51 a 100' %}selected{% endif %}>51 a 100</option>
+                                            <option value="101 a 200"  {% if company.fields.cant_employee == '101 a 200' %}selected{% endif %}>101 a 200</option>
+                                            <option value="Mas de 200"  {% if company.fields.cant_employee == 'Mas de 200' %}selected{% endif %}>Mas de 200</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-1 row">
+                                    <div class="col-12 col-sm-6">
+                                        <label>Moneda *</label>
+                                        <select class="form-control" value="{{company.fields.money}}" name="money" required id="money">
+                                            <option value="MXN - Mexico Peso">MXN - Mexico Peso</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-sm-3">
+                                        <label>Precision decimal *</label>
+                                        <select class="form-control" value="{{company.fields.decimal}}" name="decimal" required id="decimal">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-sm-3">
+                                        <label>Separador decimal</label>
+                                        <select class="form-control" value="{{company.fields.point}}" name="point" id="point">
+                                            <option value=".">.</option>
+                                            <option value=",">,</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <input type="hidden" value="{{company.pk}}" id="pk_company" name="pk_company">
+                        <a href="{% url 'setting' %}" class="btn btn-dark btn-sm">Cancelar</a>
+                        {% if not request.GET.pk or request.GET.edit == 'true' %}
+                            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'assets/js/plugins/dropzone.min.js' %}"></script>
+{% include 'includes/scripts.html' %}
+
+<script>
+
+    
+</script>
+
+{% endblock content %}  
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+{% endblock javascripts %}

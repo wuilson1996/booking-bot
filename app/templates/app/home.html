@@ -1,0 +1,137 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock title %}
+{% load static %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-xl-3 col-sm-6 mb-xl-0">
+    <div class="card border shadow-xs mb-4">
+      <div class="card-body text-start p-3 w-100">
+        <div class="row">
+          <div class="col-12">
+            <div class="w-100">
+              <p class="text-sm text-secondary mb-1">Accesos directos</p>
+              <h4 class="mb-2 font-weight-bold"></h4>
+              <div class="d-flex align-items-center">
+                <span class="text-sm text-success font-weight-semibold px-2">
+                  <!--<i class="fa fa-chevron-up text-xs me-1"></i>-->
+                </span>
+                <span class="text-sm ms-3"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row m-1">
+          <button type="button" class="btn btn-white btn-lg">Agregar acceso directo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row mt-4">
+    <div class="col-xl-3 col-sm-6 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-body text-start p-3 w-100">
+          <div class="row m-1">
+            <a href="{% url 'invoice-view' %}" class="btn btn-white btn-lg">Crear Factura</a>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+                <p class="text-sm text-secondary mb-1">Facturas</p>
+                <h4 class="mb-2 font-weight-bold">{{invoice_len}}</h4>
+                <div class="d-flex align-items-center">
+                  <span class="text-sm text-success font-weight-semibold px-2">
+                    <i class="fa fa-chevron-up text-xs me-1"></i>10.5%
+                  </span>
+                  <span class="text-sm ms-3">from $89,740.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-body text-start p-3 w-100">
+          <div class="row m-1">
+            <a href="{% url 'remission-view' %}" class="btn btn-white btn-lg">Crear Remision</a>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+                <p class="text-sm text-secondary mb-1">Remisiones</p>
+                <h4 class="mb-2 font-weight-bold">{{remission_len}}</h4>
+                <div class="d-flex align-items-center">
+                  <span class="text-sm text-success font-weight-semibold px-2">
+                    <i class="fa fa-chevron-up text-xs me-1"></i>55%
+                  </span>
+                  <span class="text-sm ms-3">from 243</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-body text-start p-3 w-100">
+          <div class="row m-1">
+            <a href="{% url 'service-view' %}" class="btn btn-white btn-lg">Crear Servicio</a>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+                <p class="text-sm text-secondary mb-1">Servicios</p>
+                <h4 class="mb-2 font-weight-bold">{{service_len}}</h4>
+                <div class="d-flex align-items-center">
+                  <span class="text-sm text-success font-weight-semibold px-2">
+                    <i class="fa fa-chevron-up text-xs me-1"></i>22%
+                  </span>
+                  <span class="text-sm ms-3">from $369.30</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-body text-start p-3 w-100">
+          <div class="row m-1">
+            <a href="{% url 'cotization-view' %}" class="btn btn-white btn-lg">Crear Cotizacion</a>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+                <p class="text-sm text-secondary mb-1">Cotizaciones</p>
+                <h4 class="mb-2 font-weight-bold">{{cotization_len}}</h4>
+                <div class="d-flex align-items-center">
+                  <span class="text-sm text-success font-weight-semibold px-2">
+                    <i class="fa fa-chevron-up text-xs me-1"></i>18%
+                  </span>
+                  <span class="text-sm ms-3">from $19,800.40</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% include 'includes/scripts.html' %}
+{% endblock content %}
+  
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% endblock javascripts %}

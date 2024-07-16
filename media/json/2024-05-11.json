@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Senator Barajas",
+        "link": "https://www.booking.com/hotel/es/senator-barajas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-11&checkout=2024-05-12&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=c6dc8fa225bf0138&srepoch=1714422350&all_sr_blocks=0_0_3_0_0&highlighted_blocks=0_0_3_0_0&matching_block_id=0_0_3_0_0&sr_pri_blocks=0_0_3_0_0__15010&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Barajas, Madrid",
+        "distance": "a 11,3 km del centro",
+        "description": "2 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/110812706.webp?k=5148b7e2ce9782d0e65c90d51f8f43c17ef8c5e007c00e285da25a8969a520e1&o=",
+        "price": "\u20ac\u00a0150",
+        "date_from": "2024-05-11",
+        "date_to": "2024-05-12"
+    },
+    {
+        "start": 4,
+        "title": "Axor Feria",
+        "link": "https://www.booking.com/hotel/es/axor-feria.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-11&checkout=2024-05-12&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=c6dc8fa225bf0138&srepoch=1714422350&all_sr_blocks=18912507_231638378_0_2_0&highlighted_blocks=18912507_231638378_0_2_0&matching_block_id=18912507_231638378_0_2_0&sr_pri_blocks=18912507_231638378_0_2_0__20500&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 10,8 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/521310976.webp?k=cacd59d7d1b7643b796cc6ba69630e9cef3cd545e1b71f91d801e4e774566179&o=",
+        "price": "\u20ac\u00a0205",
+        "date_from": "2024-05-11",
+        "date_to": "2024-05-12"
+    },
+    {
+        "start": 4,
+        "title": "Axor Barajas",
+        "link": "https://www.booking.com/hotel/es/axor-barajas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-11&checkout=2024-05-12&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=c6dc8fa225bf0138&srepoch=1714422350&all_sr_blocks=18912407_151823440_0_2_0&highlighted_blocks=18912407_151823440_0_2_0&matching_block_id=18912407_151823440_0_2_0&sr_pri_blocks=18912407_151823440_0_2_0__22500&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 10,8 km del centro",
+        "description": "Camas: 1 doble o 2 individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/423647585.webp?k=c89142babc13c84d804d0eb34bb752e7a7d3e87d0de680cb9d7fca5dcd870fa1&o=",
+        "price": "\u20ac\u00a0225",
+        "date_from": "2024-05-11",
+        "date_to": "2024-05-12"
+    },
+    {
+        "start": 4,
+        "title": "Novotel Madrid City Las Ventas",
+        "link": "https://www.booking.com/hotel/es/novotel-madrid-city-las-ventas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-11&checkout=2024-05-12&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=c6dc8fa225bf0138&srepoch=1714422350&all_sr_blocks=9370423_93709726_3_34_0&highlighted_blocks=9370423_93709726_3_34_0&matching_block_id=9370423_93709726_3_34_0&sr_pri_blocks=9370423_93709726_3_34_0__27761&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Ciudad Lineal, Madrid",
+        "distance": "a 4,7 km del centro",
+        "description": "2 camas (1 doble, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/492906206.webp?k=861a1a39d18cc63a9987787dae81d8b69ee34e92e58719e37dc4dfa30416b845&o=",
+        "price": "\u20ac\u00a0278",
+        "date_from": "2024-05-11",
+        "date_to": "2024-05-12"
+    },
+    {
+        "start": 4,
+        "title": "Ibis Styles Madrid City Las Ventas",
+        "link": "https://www.booking.com/hotel/es/ibis-styles-madrid-city-las-ventas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-11&checkout=2024-05-12&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=c6dc8fa225bf0138&srepoch=1714422350&all_sr_blocks=490472005_163711723_3_42_0&highlighted_blocks=490472005_163711723_3_42_0&matching_block_id=490472005_163711723_3_42_0&sr_pri_blocks=490472005_163711723_3_42_0__29040&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Ciudad Lineal, Madrid",
+        "distance": "a 4,8 km del centro",
+        "description": "1 cama doble grande",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/321344213.webp?k=783b16036d2b191efbfad17a9d47f5f98b9a346da7c62c24807da12adf451bf4&o=",
+        "price": "\u20ac\u00a0290",
+        "date_from": "2024-05-11",
+        "date_to": "2024-05-12"
+    },
+    {
+        "start": 4,
+        "title": "Pullman Madrid Airport & Feria",
+        "link": "https://www.booking.com/hotel/es/pullman-madrid-airport-feria.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-11&checkout=2024-05-12&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=c6dc8fa225bf0138&srepoch=1714422350&all_sr_blocks=9362715_93709717_2_34_0%2C9362715_93709717_2_34_0&highlighted_blocks=9362715_93709717_2_34_0%2C9362715_93709717_2_34_0&matching_block_id=9362715_93709717_2_34_0&sr_pri_blocks=9362715_93709717_2_34_0__15700%2C9362715_93709717_2_34_0__15700&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Barajas, Madrid",
+        "distance": "a 9 km del centro",
+        "description": "2 camas dobles grandes",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/197282892.webp?k=4fb2ca2088fc501982ee3db1f81b5d2d4a205fc26c8151bbaa9223dd78ce3b52&o=",
+        "price": "\u20ac\u00a0314",
+        "date_from": "2024-05-11",
+        "date_to": "2024-05-12"
+    }
+]

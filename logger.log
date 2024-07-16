@@ -1,0 +1,690 @@
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in start button
+ERROR:root:Error General data: invalid literal for int() with base 10: '1.056'
+ERROR:root:{'start': 0, 'title': 'Hostal Casa Sofia', 'link': 'https://www.booking.com/hotel/es/casa-sofia-madrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AsKk-7EGwAIB0gIkYzg0MWE3YTctZWIwYy00ZTNjLWIzYmMtMDUxY2M4NjM5MTZh2AIG4AIB&sid=07638f39e8740da240577dbcc80180f7&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-16&checkout=2024-05-17&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&srpvid=4b960f0377ca01e5&srepoch=1715393299&all_sr_blocks=476645701_149788256_1_0_0%2C476645701_149788256_1_0_0%2C476645701_149788256_1_0_0&highlighted_blocks=476645701_149788256_1_0_0%2C476645701_149788256_1_0_0%2C476645701_149788256_1_0_0&matching_block_id=476645701_149788256_1_0_0&sr_pri_blocks=476645701_149788256_1_0_0__1200%2C476645701_149788256_1_0_0__1200%2C476645701_149788256_1_0_0__1200&from=searchresults#hotelTmpl', 'address': 'Tetuán, Madrid', 'distance': 'a 6,1 km del centro', 'description': '3 camas individuales', 'img': 'https://cf.bstatic.com/xdata/images/hotel/square240/186521290.webp?k=58d7abd697bd248c7f913eaa161d69d13424cfb08b697257af49d118e5c9f311&o=', 'price': '€\xa036', 'date_from': '2024-05-16', 'date_to': '2024-05-17'}
+ERROR:root:Error General data: invalid literal for int() with base 10: '1.056'
+ERROR:root:{'start': 0, 'title': 'Hostel Sun Set', 'link': 'https://www.booking.com/hotel/es/sun-set-madrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AsKk-7EGwAIB0gIkYzg0MWE3YTctZWIwYy00ZTNjLWIzYmMtMDUxY2M4NjM5MTZh2AIG4AIB&sid=07638f39e8740da240577dbcc80180f7&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-16&checkout=2024-05-17&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&srpvid=4b960f0377ca01e5&srepoch=1715393299&all_sr_blocks=1033068001_375941307_1_0_0%2C1033068001_375941307_1_0_0%2C1033068001_375941307_1_0_0&highlighted_blocks=1033068001_375941307_1_0_0%2C1033068001_375941307_1_0_0%2C1033068001_375941307_1_0_0&matching_block_id=1033068001_375941307_1_0_0&sr_pri_blocks=1033068001_375941307_1_0_0__1500%2C1033068001_375941307_1_0_0__1500%2C1033068001_375941307_1_0_0__1500&from=searchresults#hotelTmpl', 'address': 'Ciudad Lineal, Madrid', 'distance': 'a 5,3 km del centro', 'description': '18 camas individuales', 'img': 'https://cf.bstatic.com/xdata/images/hotel/square240/472413816.webp?k=3a3f4481f5bae984d63e251a4fcaa0a85c56c34c111a18b9b989bbd34677d80b&o=', 'price': '€\xa045', 'date_from': '2024-05-16', 'date_to': '2024-05-17'}
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 133, in booking_view
+    bookings["bookings"]["3"]["list"] = [
+KeyError: '3'
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 75, in booking_view
+    available_booking = AvailableBooking.objects.filter(date_from=request.GET["date"], occupancy=request.GET["occupancy"]).order_by("id")
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1396, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1415, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1289, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1115, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1542, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'occupancy' into field. Choices are: active, booking, booking_id, created, date_from, date_to, id, position, price, total_search, updated
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 142, in booking_view
+    print(b.booking.title, "Occupancy: "+b.booking.occupancy, "Stars: "+b.booking.start)
+TypeError: can only concatenate str (not "int") to str
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: invalid literal for int() with base 10: 'Adultos\n2'
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: invalid literal for int() with base 10: 'Adultos\n2'
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='occupancy-popup']"}
+  (Session info: chrome=126.0.6478.62)
+Stacktrace:
+	GetHandleVerifier [0x010A0E73+27667]
+	(No symbol) [0x01036B74]
+	(No symbol) [0x00F31AFF]
+	(No symbol) [0x00F72BFE]
+	(No symbol) [0x00F72CDB]
+	(No symbol) [0x00FAEC22]
+	(No symbol) [0x00F93974]
+	(No symbol) [0x00FACAC7]
+	(No symbol) [0x00F936C6]
+	(No symbol) [0x00F674D1]
+	(No symbol) [0x00F6804D]
+	GetHandleVerifier [0x01353D03+2857635]
+	GetHandleVerifier [0x013A7E6D+3202061]
+	GetHandleVerifier [0x01124674+566292]
+	GetHandleVerifier [0x0112B86C+595468]
+	(No symbol) [0x0103F964]
+	(No symbol) [0x0103C678]
+	(No symbol) [0x0103C817]
+	(No symbol) [0x0102E70E]
+	BaseThreadInitThunk [0x764DFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x774A80CE+286]
+	RtlGetAppContainerNamedObjectPath [0x774A809E+238]
+
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+ERROR:root:Error in button occupancy: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='occupancy-popup']"}
+  (Session info: chrome=126.0.6478.62)
+Stacktrace:
+	GetHandleVerifier [0x01120E73+27667]
+	(No symbol) [0x010B6B74]
+	(No symbol) [0x00FB1AFF]
+	(No symbol) [0x00FF2BFE]
+	(No symbol) [0x00FF2CDB]
+	(No symbol) [0x0102EC22]
+	(No symbol) [0x01013974]
+	(No symbol) [0x0102CAC7]
+	(No symbol) [0x010136C6]
+	(No symbol) [0x00FE74D1]
+	(No symbol) [0x00FE804D]
+	GetHandleVerifier [0x013D3D03+2857635]
+	GetHandleVerifier [0x01427E6D+3202061]
+	GetHandleVerifier [0x011A4674+566292]
+	GetHandleVerifier [0x011AB86C+595468]
+	(No symbol) [0x010BF964]
+	(No symbol) [0x010BC678]
+	(No symbol) [0x010BC817]
+	(No symbol) [0x010AE70E]
+	BaseThreadInitThunk [0x764DFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x774A80CE+286]
+	RtlGetAppContainerNamedObjectPath [0x774A809E+238]
+
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: list index out of range
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: invalid literal for int() with base 10: 'Adultos\n2'
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: 'list' object has no attribute 'get_attribute'
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: 'WebElement' object is not subscriptable
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: 'WebElement' object is not subscriptable
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: invalid literal for int() with base 10: ''
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: invalid literal for int() with base 10: ''
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button occupancy: 'list' object has no attribute 'text'
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error 218: local variable 'error' referenced before assignment
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button Modal
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\booking.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button category order
+ERROR:root:Error in get total_search
+ERROR:root:Error 170: list index out of range
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+ERROR:root:Error in start button
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:root:Error in button Modal
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error 218: Message: element not interactable
+  (Session info: chrome=126.0.6478.62)
+Stacktrace:
+	GetHandleVerifier [0x00560E73+27667]
+	(No symbol) [0x004F6B74]
+	(No symbol) [0x003F197D]
+	(No symbol) [0x00433BE4]
+	(No symbol) [0x0042911F]
+	(No symbol) [0x0045392C]
+	(No symbol) [0x00428BA5]
+	(No symbol) [0x00453BC4]
+	(No symbol) [0x0046CAC7]
+	(No symbol) [0x004536C6]
+	(No symbol) [0x004274D1]
+	(No symbol) [0x0042804D]
+	GetHandleVerifier [0x00813D03+2857635]
+	GetHandleVerifier [0x00867E6D+3202061]
+	GetHandleVerifier [0x005E4674+566292]
+	GetHandleVerifier [0x005EB86C+595468]
+	(No symbol) [0x004FF964]
+	(No symbol) [0x004FC678]
+	(No symbol) [0x004FC817]
+	(No symbol) [0x004EE70E]
+	BaseThreadInitThunk [0x764DFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x774A80CE+286]
+	RtlGetAppContainerNamedObjectPath [0x774A809E+238]
+
+ERROR:root:Error in start button
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in start button
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in button Modal
+ERROR:root:Error in start button
+ERROR:root:Error 218: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=126.0.6478.62)
+Stacktrace:
+	GetHandleVerifier [0x00560E73+27667]
+	(No symbol) [0x004F6B74]
+	(No symbol) [0x003F1AFF]
+	(No symbol) [0x003F6BEF]
+	(No symbol) [0x003F8878]
+	(No symbol) [0x003F88F0]
+	(No symbol) [0x004345F2]
+	(No symbol) [0x00429012]
+	(No symbol) [0x0045392C]
+	(No symbol) [0x00428BA5]
+	(No symbol) [0x00453BC4]
+	(No symbol) [0x0046CAC7]
+	(No symbol) [0x004536C6]
+	(No symbol) [0x004274D1]
+	(No symbol) [0x0042804D]
+	GetHandleVerifier [0x00813D03+2857635]
+	GetHandleVerifier [0x00867E6D+3202061]
+	GetHandleVerifier [0x005E4674+566292]
+	GetHandleVerifier [0x005EB86C+595468]
+	(No symbol) [0x004FF964]
+	(No symbol) [0x004FC678]
+	(No symbol) [0x004FC817]
+	(No symbol) [0x004EE70E]
+	BaseThreadInitThunk [0x764DFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x774A80CE+286]
+	RtlGetAppContainerNamedObjectPath [0x774A809E+238]
+
+ERROR:root:Error in start button
+ERROR:root:Error 218: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=126.0.6478.62)
+Stacktrace:
+	GetHandleVerifier [0x00560E73+27667]
+	(No symbol) [0x004F6B74]
+	(No symbol) [0x003F1AFF]
+	(No symbol) [0x003F6BEF]
+	(No symbol) [0x003F8878]
+	(No symbol) [0x003F88F0]
+	(No symbol) [0x004345F2]
+	(No symbol) [0x00429012]
+	(No symbol) [0x0045392C]
+	(No symbol) [0x00428BA5]
+	(No symbol) [0x00453BC4]
+	(No symbol) [0x0046CAC7]
+	(No symbol) [0x004536C6]
+	(No symbol) [0x004274D1]
+	(No symbol) [0x0042804D]
+	GetHandleVerifier [0x00813D03+2857635]
+	GetHandleVerifier [0x00867E6D+3202061]
+	GetHandleVerifier [0x005E4674+566292]
+	GetHandleVerifier [0x005EB86C+595468]
+	(No symbol) [0x004FF964]
+	(No symbol) [0x004FC678]
+	(No symbol) [0x004FC817]
+	(No symbol) [0x004EE70E]
+	BaseThreadInitThunk [0x764DFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x774A80CE+286]
+	RtlGetAppContainerNamedObjectPath [0x774A809E+238]
+
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 168, in booking_view
+    bookings["bookings"]["4"]["list"] = [
+KeyError: '4'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 183, in booking_view
+    if bookings["bookings"][str(b.booking.start)]["min"] < _price:
+TypeError: '<' not supported between instances of 'int' and 'str'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 183, in booking_view
+    if bookings["bookings"][str(b.booking.start)]["min"] < _price:
+TypeError: '<' not supported between instances of 'int' and 'str'
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 183, in booking_view
+    if bookings["bookings"][str(b.booking.start)]["min"] < _price:
+TypeError: '<' not supported between instances of 'int' and 'str'
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 183, in booking_view
+    if bookings["bookings"][str(b.booking.start)]["min"] < _price:
+TypeError: '<' not supported between instances of 'int' and 'str'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 180, in booking_view
+    bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title)
+KeyError: '1'
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 180, in booking_view
+    bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title)
+KeyError: '1'
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 180, in booking_view
+    bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title)
+KeyError: '1'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 168, in booking_view
+    bookings["bookings"]["4"]["list"] = [
+KeyError: '4'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 99, in index
+    bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position]["name"] = b.booking.title
+TypeError: 'str' object does not support item assignment
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.

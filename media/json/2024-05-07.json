@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Praga",
+        "link": "https://www.booking.com/hotel/es/pragamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-07&checkout=2024-05-08&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=bc458f7e41cd015e&srepoch=1714422279&all_sr_blocks=9103007_88190431_0_2_0&highlighted_blocks=9103007_88190431_0_2_0&matching_block_id=9103007_88190431_0_2_0&sr_pri_blocks=9103007_88190431_0_2_0__16650&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Carabanchel, Madrid",
+        "distance": "a 2,5 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/190679750.webp?k=e2285ec25d664dcf8e59c60d9319f03d1279d3986783336ecb5911495c57bc7f&o=",
+        "price": "\u20ac\u00a0166",
+        "date_from": "2024-05-07",
+        "date_to": "2024-05-08"
+    },
+    {
+        "start": 4,
+        "title": "Ekilibrio Hotel & Apart-Suites",
+        "link": "https://www.booking.com/hotel/es/e-kilibrio-amp-apart-suites.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-07&checkout=2024-05-08&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=bc458f7e41cd015e&srepoch=1714422279&all_sr_blocks=917120805_367263545_3_2_0&highlighted_blocks=917120805_367263545_3_2_0&matching_block_id=917120805_367263545_3_2_0&sr_pri_blocks=917120805_367263545_3_2_0__21000&from=searchresults#hotelTmpl",
+        "address": "Usera, Madrid",
+        "distance": "a 4,4 km del centro",
+        "description": "2 camas (1 doble, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/403545711.webp?k=bc358951f6cc6f3d4c7294d1abc644c34fd95f26e30c7ceda193f41444b0d265&o=",
+        "price": "\u20ac\u00a0210",
+        "date_from": "2024-05-07",
+        "date_to": "2024-05-08"
+    },
+    {
+        "start": 4,
+        "title": "Agumar",
+        "link": "https://www.booking.com/hotel/es/agumarmadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-07&checkout=2024-05-08&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=bc458f7e41cd015e&srepoch=1714422279&all_sr_blocks=9102782_88190422_0_2_0&highlighted_blocks=9102782_88190422_0_2_0&matching_block_id=9102782_88190422_0_2_0&sr_pri_blocks=9102782_88190422_0_2_0__26125&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Retiro, Madrid",
+        "distance": "a 2 km del centro",
+        "description": "4 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/196842414.webp?k=fb965dd73a6424b1f9f525de4cdf59c1b35a7fb47345c05f87ee44b067de3895&o=",
+        "price": "\u20ac\u00a0261",
+        "date_from": "2024-05-07",
+        "date_to": "2024-05-08"
+    },
+    {
+        "start": 4,
+        "title": "New Point Opera",
+        "link": "https://www.booking.com/hotel/es/new-point-opera.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-07&checkout=2024-05-08&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=bc458f7e41cd015e&srepoch=1714422279&all_sr_blocks=540899305_193550651_0_0_0&highlighted_blocks=540899305_193550651_0_0_0&matching_block_id=540899305_193550651_0_0_0&sr_pri_blocks=540899305_193550651_0_0_0__27000&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Centro de Madrid, Madrid",
+        "distance": "a 400 m del centro",
+        "description": "3 camas (2 individuales, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/217122406.webp?k=ae489b30dc0ba9749098cdcdd025899203a376cee9a3e80cf62af95f1ca2f355&o=",
+        "price": "\u20ac\u00a0270",
+        "date_from": "2024-05-07",
+        "date_to": "2024-05-08"
+    },
+    {
+        "start": 4,
+        "title": "Clement Barajas",
+        "link": "https://www.booking.com/hotel/es/clement-barajas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-07&checkout=2024-05-08&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=bc458f7e41cd015e&srepoch=1714422279&all_sr_blocks=9259021_363353605_0_34_0&highlighted_blocks=9259021_363353605_0_34_0&matching_block_id=9259021_363353605_0_34_0&sr_pri_blocks=9259021_363353605_0_34_0__29000&from=searchresults#hotelTmpl",
+        "address": "Barajas, Madrid",
+        "distance": "a 12,1 km del centro",
+        "description": "4 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/158504952.webp?k=5ed0630bc592b2b62ba7c9503f99350bae8647faab2ef43316daf3f501a91b67&o=",
+        "price": "\u20ac\u00a0290",
+        "date_from": "2024-05-07",
+        "date_to": "2024-05-08"
+    },
+    {
+        "start": 4,
+        "title": "limehome Madrid Calle de Don Ram\u00f3n de la Cruz",
+        "link": "https://www.booking.com/hotel/es/limehome-madrid-calle-de-don-ramon-de-la-cruz.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-07&checkout=2024-05-08&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=bc458f7e41cd015e&srepoch=1714422279&all_sr_blocks=768251103_334434387_3_0_0&highlighted_blocks=768251103_334434387_3_0_0&matching_block_id=768251103_334434387_3_0_0&sr_pri_blocks=768251103_334434387_3_0_0__30100&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Salamanca, Madrid",
+        "distance": "a 2,4 km del centro",
+        "description": "2 camas (1 doble, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/331820936.webp?k=c89ae343f758a88a2711e8034e19f56cd3241e2551bf7b8c9ba88764b655a485&o=",
+        "price": "\u20ac\u00a0301",
+        "date_from": "2024-05-07",
+        "date_to": "2024-05-08"
+    }
+]

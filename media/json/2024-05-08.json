@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Best Osuna",
+        "link": "https://www.booking.com/hotel/es/osuna.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-08&checkout=2024-05-09&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=d3a38f87f74200e7&srepoch=1714422296&all_sr_blocks=9258817_0_3_0_0&highlighted_blocks=9258817_0_3_0_0&matching_block_id=9258817_0_3_0_0&sr_pri_blocks=9258817_0_3_0_0__17354&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 8,6 km del centro",
+        "description": "2 camas dobles",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/499965813.webp?k=c5b93d236b2d234bc965107930775a0c431953691757a6922602fa3b2cc719ac&o=",
+        "price": "\u20ac\u00a0174",
+        "date_from": "2024-05-08",
+        "date_to": "2024-05-09"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Nuevo Boston",
+        "link": "https://www.booking.com/hotel/es/nuevo-boston.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-08&checkout=2024-05-09&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=d3a38f87f74200e7&srepoch=1714422296&all_sr_blocks=4476005_381609374_0_2_0&highlighted_blocks=4476005_381609374_0_2_0&matching_block_id=4476005_381609374_0_2_0&sr_pri_blocks=4476005_381609374_0_2_0__25075&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 11,3 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/544317033.webp?k=1f5ab969eff2f6bbd1a48592d4b5b7452d83069ac23a79d3aa28d356af91746b&o=",
+        "price": "\u20ac\u00a0251",
+        "date_from": "2024-05-08",
+        "date_to": "2024-05-09"
+    },
+    {
+        "start": 4,
+        "title": "TaCH Madrid Airport",
+        "link": "https://www.booking.com/hotel/es/tach-by-clementhoteles.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-08&checkout=2024-05-09&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=d3a38f87f74200e7&srepoch=1714422296&all_sr_blocks=1846903_335077459_0_2_0&highlighted_blocks=1846903_335077459_0_2_0&matching_block_id=1846903_335077459_0_2_0&sr_pri_blocks=1846903_335077459_0_2_0__28000&from=searchresults#hotelTmpl",
+        "address": "Barajas, Madrid",
+        "distance": "a 11,8 km del centro",
+        "description": "2 camas (1 individual, 1 doble)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/93516555.webp?k=f637c421be52bf48a4afb0e11fcc45ecb0724cb4ba9b095aae58dae4049d0c8c&o=",
+        "price": "\u20ac\u00a0280",
+        "date_from": "2024-05-08",
+        "date_to": "2024-05-09"
+    },
+    {
+        "start": 4,
+        "title": "limehome Madrid Calle de Don Ram\u00f3n de la Cruz",
+        "link": "https://www.booking.com/hotel/es/limehome-madrid-calle-de-don-ramon-de-la-cruz.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-08&checkout=2024-05-09&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=d3a38f87f74200e7&srepoch=1714422296&all_sr_blocks=768251103_334434387_3_0_0&highlighted_blocks=768251103_334434387_3_0_0&matching_block_id=768251103_334434387_3_0_0&sr_pri_blocks=768251103_334434387_3_0_0__35500&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Salamanca, Madrid",
+        "distance": "a 2,4 km del centro",
+        "description": "2 camas (1 doble, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/331820936.webp?k=c89ae343f758a88a2711e8034e19f56cd3241e2551bf7b8c9ba88764b655a485&o=",
+        "price": "\u20ac\u00a0355",
+        "date_from": "2024-05-08",
+        "date_to": "2024-05-09"
+    },
+    {
+        "start": 4,
+        "title": "Ibis Styles Madrid City Las Ventas",
+        "link": "https://www.booking.com/hotel/es/ibis-styles-madrid-city-las-ventas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-08&checkout=2024-05-09&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=d3a38f87f74200e7&srepoch=1714422296&all_sr_blocks=490472005_163711723_3_42_0&highlighted_blocks=490472005_163711723_3_42_0&matching_block_id=490472005_163711723_3_42_0&sr_pri_blocks=490472005_163711723_3_42_0__39735&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Ciudad Lineal, Madrid",
+        "distance": "a 4,8 km del centro",
+        "description": "1 cama doble grande",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/321344213.webp?k=783b16036d2b191efbfad17a9d47f5f98b9a346da7c62c24807da12adf451bf4&o=",
+        "price": "\u20ac\u00a0397",
+        "date_from": "2024-05-08",
+        "date_to": "2024-05-09"
+    },
+    {
+        "start": 4,
+        "title": "Quatro Puerta del Sol",
+        "link": "https://www.booking.com/hotel/es/quopuertadelsol.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-08&checkout=2024-05-09&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=d3a38f87f74200e7&srepoch=1714422296&all_sr_blocks=9054803_88154368_0_2_0&highlighted_blocks=9054803_88154368_0_2_0&matching_block_id=9054803_88154368_0_2_0&sr_pri_blocks=9054803_88154368_0_2_0__43920&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Centro de Madrid, Madrid",
+        "distance": "a 300 m del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/428997650.webp?k=5b7aaa20e440a1583a6a5ae182b5054940a909e4418f944bf690828807cfeb98&o=",
+        "price": "\u20ac\u00a0439",
+        "date_from": "2024-05-08",
+        "date_to": "2024-05-09"
+    }
+]

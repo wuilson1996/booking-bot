@@ -1,0 +1,14 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Praga",
+        "link": "https://www.booking.com/hotel/es/pragamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-13&checkout=2024-05-14&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=ht_id%3D204&srpvid=d5718fba30ea0202&srepoch=1714422399&all_sr_blocks=9103007_88190431_0_2_0&highlighted_blocks=9103007_88190431_0_2_0&matching_block_id=9103007_88190431_0_2_0&sr_pri_blocks=9103007_88190431_0_2_0__13950&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Carabanchel, Madrid",
+        "distance": "a 2,5 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/190679750.webp?k=e2285ec25d664dcf8e59c60d9319f03d1279d3986783336ecb5911495c57bc7f&o=",
+        "price": "\u20ac\u00a0140",
+        "date_from": "2024-05-13",
+        "date_to": "2024-05-14"
+    }
+]

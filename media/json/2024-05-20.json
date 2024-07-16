@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Praga",
+        "link": "https://www.booking.com/hotel/es/pragamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-20&checkout=2024-05-21&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=f6968ff795010143&srepoch=1714422520&all_sr_blocks=9103007_88190431_0_2_0&highlighted_blocks=9103007_88190431_0_2_0&matching_block_id=9103007_88190431_0_2_0&sr_pri_blocks=9103007_88190431_0_2_0__12150&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Carabanchel, Madrid",
+        "distance": "a 2,5 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/190679750.webp?k=e2285ec25d664dcf8e59c60d9319f03d1279d3986783336ecb5911495c57bc7f&o=",
+        "price": "\u20ac\u00a0121",
+        "date_from": "2024-05-20",
+        "date_to": "2024-05-21"
+    },
+    {
+        "start": 4,
+        "title": "Petit Palace Arturo Soria Alcal\u00e1",
+        "link": "https://www.booking.com/hotel/es/arturosoria.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-20&checkout=2024-05-21&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=f6968ff795010143&srepoch=1714422520&all_sr_blocks=9030812_88181545_0_1_0&highlighted_blocks=9030812_88181545_0_1_0&matching_block_id=9030812_88181545_0_1_0&sr_pri_blocks=9030812_88181545_0_1_0__15810&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Ciudad Lineal, Madrid",
+        "distance": "a 6 km del centro",
+        "description": "2 camas (1 individual, 1 doble)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/449597477.webp?k=c7f0fd82a6440eff246e263a99873241acf777c9396d561cee9536d2c2d88984&o=",
+        "price": "\u20ac\u00a0158",
+        "date_from": "2024-05-20",
+        "date_to": "2024-05-21"
+    },
+    {
+        "start": 4,
+        "title": "Ekilibrio Hotel & Apart-Suites",
+        "link": "https://www.booking.com/hotel/es/e-kilibrio-amp-apart-suites.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-20&checkout=2024-05-21&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=f6968ff795010143&srepoch=1714422520&all_sr_blocks=917120805_367263545_3_2_0&highlighted_blocks=917120805_367263545_3_2_0&matching_block_id=917120805_367263545_3_2_0&sr_pri_blocks=917120805_367263545_3_2_0__17500&from=searchresults#hotelTmpl",
+        "address": "Usera, Madrid",
+        "distance": "a 4,4 km del centro",
+        "description": "2 camas (1 doble, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/403545711.webp?k=bc358951f6cc6f3d4c7294d1abc644c34fd95f26e30c7ceda193f41444b0d265&o=",
+        "price": "\u20ac\u00a0175",
+        "date_from": "2024-05-20",
+        "date_to": "2024-05-21"
+    },
+    {
+        "start": 4,
+        "title": "H10 Tribeca",
+        "link": "https://www.booking.com/hotel/es/h10-tribeca.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-20&checkout=2024-05-21&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=f6968ff795010143&srepoch=1714422520&all_sr_blocks=9073720_83428412_3_2_0&highlighted_blocks=9073720_83428412_3_2_0&matching_block_id=9073720_83428412_3_2_0&sr_pri_blocks=9073720_83428412_3_2_0__18500&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Tetu\u00e1n, Madrid",
+        "distance": "a 4,3 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/58781925.webp?k=d21d1c74a4d1da2ba8bf2b06c120b41f903bdf6747a24c37201f35767770385d&o=",
+        "price": "\u20ac\u00a0185",
+        "date_from": "2024-05-20",
+        "date_to": "2024-05-21"
+    },
+    {
+        "start": 4,
+        "title": "VP Jard\u00edn Metropolitano",
+        "link": "https://www.booking.com/hotel/es/jardin-metropolitano.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-20&checkout=2024-05-21&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=f6968ff795010143&srepoch=1714422520&all_sr_blocks=9260707_88192756_0_0_0&highlighted_blocks=9260707_88192756_0_0_0&matching_block_id=9260707_88192756_0_0_0&sr_pri_blocks=9260707_88192756_0_0_0__19688&from=searchresults#hotelTmpl",
+        "address": "Tetu\u00e1n, Madrid",
+        "distance": "a 3,4 km del centro",
+        "description": "2 camas (1 individual, 1 doble extragrande)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/41734938.webp?k=06157df1123c1033aeabb3642d339959c311062cb9742cd4471fffd16577c61f&o=",
+        "price": "\u20ac\u00a0197",
+        "date_from": "2024-05-20",
+        "date_to": "2024-05-21"
+    },
+    {
+        "start": 4,
+        "title": "Melia Avenida de America",
+        "link": "https://www.booking.com/hotel/es/meliaavenidaamerica.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-20&checkout=2024-05-21&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=f6968ff795010143&srepoch=1714422520&all_sr_blocks=9002465_91989000_3_2_0&highlighted_blocks=9002465_91989000_3_2_0&matching_block_id=9002465_91989000_3_2_0&sr_pri_blocks=9002465_91989000_3_2_0__20400&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 7,2 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/454281387.webp?k=92dd78461b3a8256ca18134debafabd7ab57f8e9ea17addb88300bc0c06e757b&o=",
+        "price": "\u20ac\u00a0204",
+        "date_from": "2024-05-20",
+        "date_to": "2024-05-21"
+    }
+]

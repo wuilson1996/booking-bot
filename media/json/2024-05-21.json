@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Best Osuna",
+        "link": "https://www.booking.com/hotel/es/osuna.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-21&checkout=2024-05-22&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=a60e8fff79e900f8&srepoch=1714422537&all_sr_blocks=9258817_0_3_0_0&highlighted_blocks=9258817_0_3_0_0&matching_block_id=9258817_0_3_0_0&sr_pri_blocks=9258817_0_3_0_0__13520&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 8,6 km del centro",
+        "description": "2 camas dobles",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/499965813.webp?k=c5b93d236b2d234bc965107930775a0c431953691757a6922602fa3b2cc719ac&o=",
+        "price": "\u20ac\u00a0135",
+        "date_from": "2024-05-21",
+        "date_to": "2024-05-22"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Suites Feria de Madrid",
+        "link": "https://www.booking.com/hotel/es/suites-madrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-21&checkout=2024-05-22&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=a60e8fff79e900f8&srepoch=1714422537&all_sr_blocks=1731502_325484733_0_2_0&highlighted_blocks=1731502_325484733_0_2_0&matching_block_id=1731502_325484733_0_2_0&sr_pri_blocks=1731502_325484733_0_2_0__17899&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 6,6 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/336975649.webp?k=fda4f64dab472fbd6669f32de2e8be8c1757914c561e67948482089f3b494884&o=",
+        "price": "\u20ac\u00a0179",
+        "date_from": "2024-05-21",
+        "date_to": "2024-05-22"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Mercader",
+        "link": "https://www.booking.com/hotel/es/nhmercader.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-21&checkout=2024-05-22&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=a60e8fff79e900f8&srepoch=1714422537&all_sr_blocks=9190205_348804176_0_2_0%2C9190209_348804176_1_2_0&highlighted_blocks=9190205_348804176_0_2_0%2C9190209_348804176_1_2_0&matching_block_id=9190205_348804176_0_2_0&sr_pri_blocks=9190205_348804176_0_2_0__10000%2C9190209_348804176_1_2_0__9000&from=searchresults#hotelTmpl",
+        "address": "Villa de Vallecas, Madrid",
+        "distance": "a 7,1 km del centro",
+        "description": "1 cama individual",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/67034913.webp?k=056001070e87275cf805733cb133ae79c8e8ebe6b0ea677ff6c9266e58781f62&o=",
+        "price": "\u20ac\u00a0190",
+        "date_from": "2024-05-21",
+        "date_to": "2024-05-22"
+    },
+    {
+        "start": 4,
+        "title": "Axor Feria",
+        "link": "https://www.booking.com/hotel/es/axor-feria.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-21&checkout=2024-05-22&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=a60e8fff79e900f8&srepoch=1714422537&all_sr_blocks=18912507_231638378_0_2_0&highlighted_blocks=18912507_231638378_0_2_0&matching_block_id=18912507_231638378_0_2_0&sr_pri_blocks=18912507_231638378_0_2_0__21000&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 10,8 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/521310976.webp?k=cacd59d7d1b7643b796cc6ba69630e9cef3cd545e1b71f91d801e4e774566179&o=",
+        "price": "\u20ac\u00a0210",
+        "date_from": "2024-05-21",
+        "date_to": "2024-05-22"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Crowne Plaza Madrid Airport",
+        "link": "https://www.booking.com/hotel/es/crowne-plaza-madrid-airport.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-21&checkout=2024-05-22&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=a60e8fff79e900f8&srepoch=1714422537&all_sr_blocks=27698521_94387809_3_34_0&highlighted_blocks=27698521_94387809_3_34_0&matching_block_id=27698521_94387809_3_34_0&sr_pri_blocks=27698521_94387809_3_34_0__22710&from=searchresults#hotelTmpl",
+        "address": "San Blas, Madrid",
+        "distance": "a 14 km del centro",
+        "description": "2 camas dobles",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/257802598.webp?k=9c4defc445245747cd0a331794ab0e695cc53ecef32f733d4a617fb1fb58ec1c&o=",
+        "price": "\u20ac\u00a0227",
+        "date_from": "2024-05-21",
+        "date_to": "2024-05-22"
+    },
+    {
+        "start": 4,
+        "title": "Exe Moncloa",
+        "link": "https://www.booking.com/hotel/es/exe-moncloa.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-21&checkout=2024-05-22&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=a60e8fff79e900f8&srepoch=1714422537&all_sr_blocks=46793303_391767519_3_2_0&highlighted_blocks=46793303_391767519_3_2_0&matching_block_id=46793303_391767519_3_2_0&sr_pri_blocks=46793303_391767519_3_2_0__23400&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Chamber\u00ed, Madrid",
+        "distance": "a 2,2 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/267159646.webp?k=5ae4245a0096b582517f26fc3bb09ff36968699b81338d0af1a07f2814e18e51&o=",
+        "price": "\u20ac\u00a0234",
+        "date_from": "2024-05-21",
+        "date_to": "2024-05-22"
+    }
+]

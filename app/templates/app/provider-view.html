@@ -1,0 +1,350 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Nuevo proveedor {% endblock title %}
+{% load static %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-sm-8">
+            <form action="/create-provider" method="post" id="formId">{% csrf_token %}
+                <div class="card">
+                    <div class="card-header">
+                    <h5 class="card-title">Nuevo proveedor <i class="fas fa-upload ms-3"></i></h5>
+                    </div>
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="card-body p-3">
+                            <div class="row">
+                                <div>
+                                <h6>DATOS GENERALES
+                                    <button class="btn btn-link btn-nav-accordion" style="cursor: pointer; color: #495057;float: right;" type="button" data-bs-toggle="collapse" data-bs-target="#colapseInfG" aria-expanded="true" aria-controls="colapseInfG">
+                                    <i class="fas fa-chevron-up"></i>
+                                    </button>
+                                </h6>
+                                </div>
+                                <div class="accordion-item mb-0">
+                                <div id="colapseInfG" class="accordion-collapse collapse show" aria-labelledby="infG" data-bs-parent="#accordionRental">
+                                    <div class="accordion-body text-sm opacity-8">
+                                    <div class="mt-1 row">
+                                        <div class="col-12 col-sm-12">
+                                        <label>Nombre / Razón social *</label>
+                                        <input class="form-control form-control-xl" value="{{provider.name}}" id="name" name="name" type="text" required placeholder="Gestiona Facil" />
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 row">
+                                        <div class="col-12 col-sm-4">
+                                        <label>RFC *</label>
+                                        <input class="form-control form-control-xl" value="{{provider.documentI}}" id="identification_number" type="text" name="identification_number" required placeholder="GOVM860812QA2" />
+                                        </div>
+                                        <div class="col-12 col-sm-8">
+                                        <label>Regimen fiscal</label>
+                                        <select class="form-control form-control-xl" value="{{provider.type_regime_id}}" name="type_regime_id" required id="type_regime_id">
+                                            {% for tr in type_regimen %}
+                                            <option value="{{tr.pk}}" {% if provider.type_regime == tr.pk %}selected{% endif %}>{{tr.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 row">
+                                        <div class="col-12 col-sm-6">
+                                        <label>Codigo postal</label>
+                                        <input class="form-control form-control-xl" value="{{provider.address.0}}" id="postal_code" name="postal_code" type="text" required placeholder="000000" />
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                        <label>Colonia</label>
+                                        <input class="form-control form-control-xl" value="{{provider.address.1}}" id="colonia" name="colonia" type="text" required placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 row">
+                                        <div class="col-12 col-sm-6">
+                                        <label>Calle</label>
+                                        <input class="form-control form-control-xl" value="{{provider.address.2}}" id="calle" name="calle" type="text" required placeholder="000000" />
+                                        </div>
+                                        <div class="col-12 col-sm-3">
+                                        <label>Exterior</label>
+                                        <input class="form-control form-control-xl" value="{{provider.address.3}}" id="exterior" name="exterior" type="text" required placeholder="" />
+                                        </div>
+                                        <div class="col-12 col-sm-3">
+                                        <label>Interior</label>
+                                        <input class="form-control form-control-xl" value="{{provider.address.4}}" id="interior" name="interior" type="text" required placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 row">
+                                        <div class="col-12 col-sm-4">
+                                        <label>Estado</label>
+                                        <select class="form-control form-control-xl" value="{{provider.pk_state}}" name="estate" required id="estate">
+                                            {% for e in state %}
+                                            <option value="{{e.pk}}" {% if provider.pk_state == e.pk %}selected{% endif %}>{{e.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
+                                        <div class="col-12 col-sm-4">
+                                        <label>Municipio/Delegacion</label>
+                                        <select class="form-control form-control-xl" value="{{provider.municipality_id}}" name="municipality" required id="municipality">
+                                            {% for m in municipality %}
+                                            <option value="{{m.pk}}" {% if provider.municipality == m.pk %}selected{% endif %}>{{m.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
+                                        <div class="col-12 col-sm-4">
+                                        <label>Localidad</label>
+                                        <input class="form-control form-control-xl" value="{{provider.address.5}}" id="localidad" name="localidad" type="text" required placeholder="" />
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="card-body p-3">
+                            <div class="row">
+                                <div>
+                                <h6>INFORMACION DE CONTACTO
+                                    <button class="btn btn-link btn-nav-accordion collapsed" style="cursor: pointer; color: #495057;float: right;" type="button" data-bs-toggle="collapse" data-bs-target="#colapseInfC2" aria-expanded="false" aria-controls="colapseInfC2">
+                                    <i class="fas fa-chevron-up"></i>
+                                    </button>
+                                </h6>
+                                </div>
+                                <div id="colapseInfC2" class="collapse" aria-labelledby="infC2" data-bs-parent="#accordionRental">
+                                    <div class="accordion-body text-sm opacity-8">
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-6">
+                                                <label>Correo electronico</label>
+                                                <input class="form-control form-control-xl" value="{{provider.email}}" id="email" name="email" type="email" required placeholder="gestionafacil@test.com" />
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label>Celular</label>
+                                                <input class="form-control form-control-xl" value="{{provider.phone}}" id="phone" name="phone" type="text" required placeholder="57848938438" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 row">
+                                            <div class="col-12 col-sm-6">
+                                                <label>Telefono 1</label>
+                                                <input class="form-control form-control-xl" value="{{provider.phone1}}" id="phone1" name="phone1" type="text" placeholder="000000" />
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label>Telefono 2</label>
+                                                <input class="form-control form-control-xl" value="{{provider.phone2}}" id="phone2" name="phone2" type="text" placeholder="0000000" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="pt-0 ps-0 ms-0" id="containerPerson">
+                                                
+                                            </div>
+                                            <input type="hidden" name="associate_person" id="associate_person" value="{% if request.GET.pk %}{{provider.associate_person}}{% else %}[]{% endif %}">
+                                            <button type="button" onclick="clearModal()" class="btn btn-xl btn-success" data-bs-toggle="modal" data-bs-target="#personAdd">Asociar persona</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="card-body p-3">
+                            <div class="row">
+                                <div>
+                                <h6>INFORMACION COMERCIALES
+                                    <button class="btn btn-link btn-nav-accordion collapsed" style="cursor: pointer; color: #495057;float: right;" type="button" data-bs-toggle="collapse" data-bs-target="#colapseInfC" aria-expanded="false" aria-controls="colapseInfC">
+                                    <i class="fas fa-chevron-up"></i>
+                                    </button>
+                                </h6>
+                                </div>
+                                <div id="colapseInfC" class="collapse" aria-labelledby="infC" data-bs-parent="#accordionRental">
+                                <div class="accordion-body text-sm opacity-8">
+                                    <div class="mt-1 row">
+                                    <input type="hidden" value="{{provider.commercial_information.pk}}" id="ci_pk" name="ci_pk">
+                                    <div class="col-12 col-sm-6">
+                                        <label>Plazo de pagos</label>
+                                        <select class="form-control form-control-xl" value="{{provider.commercial_information.days}}" name="days" required id="days">
+                                        
+                                            <option value="5 Dias" {% if provider.commercial_information.days == '5 Dias' %}selected{% endif %}>5 Dias</option>
+                                        
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label>Lista de precio</label>
+                                        <select class="form-control form-control-xl" value="{{provider.commercial_information.price_list}}" name="price_list" id="price_list">
+                                        
+                                            <option value="test" {% if provider.commercial_information.price_list == 'test' %}selected{% endif %}>test</option>
+                                        
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div class="mt-1 row">
+                                    <div class="col-12 col-sm-6">
+                                        <label>Vendedor</label>
+                                        <select class="form-control form-control-xl" value="{{provider.commercial_information.vendedor}}" name="vendedor" id="vendedor">
+                                            {% for v in vendedor %}
+                                            <option value="{{v.pk}}" {% if provider.commercial_information.vendedor == v.pk %}selected{% endif %}>{{v.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label>Uso CFDI</label>
+                                        <select class="form-control form-control-xl" value="{{provider.commercial_information.cfdi}}" name="cfdi" required id="cfdi">
+                                            {% for cf in cfdi %}
+                                                <option value="{{cf.pk}}" {% if provider.commercial_information.cfdi == cf.pk %}selected{% endif %}>{{cf.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-1 row">
+                                    <div class="col-12 col-sm-6">
+                                        <label>Metodo de pago</label>
+                                        <select class="form-control form-control-xl" value="{{provider.commercial_information.payment_method}}" name="payment_method" required id="payment_method">
+                                        {% for pm in payment_method %}
+                                            <option value="{{pm.pk}}" {% if provider.commercial_information.payment_method == pm.pk %}selected{% endif %}>{{pm.name}}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label>Forma de pago</label>
+                                        <select class="form-control form-control-xl" value="" name="payment_form" required id="payment_form">
+                                        {% for pf in payment_form %}
+                                            <option value="{{pf.pk}}" {% if provider.commercial_information.payment_form == pf.pk %}selected{% endif %}>{{pf.name}}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="m-4">
+                        <input type="hidden" value="{{provider.pk}}" id="pk" name="pk">
+                        {% if not request.GET.pk or request.GET.edit == 'true' %}
+                            <button type="submit" class="btn btn-dark btn-sm">Guardar</button>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+                </form>
+        </div>
+        <div class="col-6 col-sm-4">
+            <div class="card">
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+    {% include 'app/contact/modal-client.html' %}
+      
+      {% include 'includes/scripts.html' %}
+
+        <script>
+            var cont = 1
+            var arrayPerson = [];
+            function addPerson(){
+                generatePerson(
+                    0,
+                    document.getElementById("namePerson").value,
+                    document.getElementById("lastNamePerson").value,
+                    document.getElementById("emailPerson").value,
+                    document.getElementById("phonePerson").value,
+                    document.getElementById("phonePerson2").value
+                )
+            }
+            function generatePerson(itemId, namePerson, lastNamePerson, emailPerson, phonePerson, phonePerson2){ 
+                if (document.getElementById("personId").value == "0"){
+                    arrayPerson.push({
+                        itemId: "person"+cont,
+                        id : itemId,
+                        name : namePerson,
+                        last_name : lastNamePerson,
+                        email : emailPerson,
+                        phone_1 : phonePerson,
+                        phone_2 : phonePerson2
+                    });
+                }else{
+                    for (var i = 0; i < arrayPerson.length; i++) {
+                        if (arrayPerson[i].itemId == "person"+document.getElementById("personId").value){
+                            arrayPerson.push({
+                                itemId: "person"+cont,
+                                id : arrayPerson[i].id,
+                                name : namePerson,
+                                last_name : lastNamePerson,
+                                email : emailPerson,
+                                phone_1 : phonePerson,
+                                phone_2 : phonePerson2
+                            });
+                            removePerson(document.getElementById("personId").value);
+                            break;
+                        }
+                    }
+                }
+                console.log(arrayPerson);
+                addPersonByText(cont, namePerson, lastNamePerson, emailPerson, phonePerson, phonePerson2);
+                cont += 1;
+                
+                document.getElementById("associate_person").value = JSON.stringify(arrayPerson);
+            }
+            function addPersonByText(cont, namePerson, lastNamePerson, emailPerson, phonePerson, phone2Person){
+                $("#containerPerson").append(
+                    '<div class="p-2 my-2 bg-gray-100 d-sm-flex border-radius-lg" id="person'+cont+'">'+
+                        '<p class="my-auto text-sm font-weight-bold ps-sm-2">'+namePerson+' '+lastNamePerson+'</p>'+
+                        '<button class="btn btn-sm bg-info text-white my-auto ms-auto me-3" type="button" name="button" onclick="viewModal(\''+cont+'\',\''+namePerson+'\',\''+lastNamePerson+'\', \''+emailPerson+'\', \''+phonePerson+'\', \''+phone2Person+'\')" data-bs-toggle="modal" data-bs-target="#personAdd">Editar</button>'+
+                        '<button class="mt-2 mb-0 btn btn-sm text-white bg-danger my-sm-auto" onclick="removePerson('+cont+')" type="button" name="button">Eliminar</button>'+
+                    '</div>'
+                )
+            }
+            function removePerson(elem){
+                arrayPerson.map(function (value, index){
+                    if (value.itemId == "person"+elem){
+                        arrayPerson.splice(index, 1);
+                    }
+                })
+                $("#person"+elem).remove();
+                document.getElementById("associate_person").value = JSON.stringify(arrayPerson);
+            }
+            textToJson('{% if request.GET.pk %}{{provider.associate_person}}{% else %}[]{% endif %}').map(function (value, index){
+                console.log(value);
+                generatePerson(
+                    value.pk,
+                    value.name,
+                    value.last_name,
+                    value.email,
+                    value.phone1,
+                    value.phone2
+                )
+            })
+            /*if (document.getElementById('type_regime_id')) {
+               var gender = document.getElementById('type_regime_id');
+               const example = new Choices(gender);
+            }*/
+            function showItemSelect(elem){
+                if (elem) {
+                    setTimeout(function() {
+                        const elemChoice = new Choices(elem);
+                    }, 1);
+
+                    for (y = 1; y <= 31; y++) {
+                        var optn = document.createElement("OPTION");
+                        optn.text = y;
+                        optn.value = y;
+
+                        if (y == 1) {
+                        optn.selected = true;
+                        }
+
+                        day.options.add(optn);
+                    }
+                }
+            }
+
+        </script>
+
+      {% endblock content %}
+  
+      <!-- Specific JS goes HERE --> 
+      {% block javascripts %}
+      
+      {% endblock javascripts %}

@@ -1,0 +1,230 @@
+<div class="modal fade" id="clientAdd" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog mt-lg-10 modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Crear/Modificar cliente</h5>
+                <i class="fas fa-upload ms-3"></i>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="mt-1 row">
+                                <div class="col-12 col-sm-12">
+                                    <label>Nombre / Razón social *</label>
+                                    <input class="form-control form-control-xl" value="" id="nameClientModal" name="nameClientModal" type="text" required placeholder="Gestiona Facil" />
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-12 col-sm-4">
+                                    <label>RFC *</label>
+                                    <input class="form-control form-control-xl" value="" id="identification_numberClientModal" type="text" name="identification_numberClientModal" required placeholder="GOVM860812QA2" />
+                                </div>
+                                <div class="col-12 col-sm-8">
+                                    <label>Regimen fiscal</label>
+                                    <select class="form-control form-control-xl" value="" name="type_regime_idClientModal" required id="type_regime_idClientModal">
+                                        {% for tr in type_regimen %}
+                                        <option value="{{tr.pk}}" selected>{{tr.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-12 col-sm-6">
+                                    <label>Codigo postal</label>
+                                    <input class="form-control form-control-xl" value="" id="postal_codeClientModal" name="postal_codeClientModal" type="text" required placeholder="000000" />
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label>Colonia</label>
+                                    <input class="form-control form-control-xl" value="" id="coloniaClientModal" name="coloniaClientModal" type="text" required placeholder="" />
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-12 col-sm-6">
+                                    <label>Calle</label>
+                                    <input class="form-control form-control-xl" value="" id="calleClientModal" name="calleClientModal" type="text" required placeholder="000000" />
+                                </div>
+                                <div class="col-12 col-sm-3">
+                                    <label>Exterior</label>
+                                    <input class="form-control form-control-xl" value="" id="exteriorClientModal" name="exteriorClientModal" type="text" required placeholder="" />
+                                </div>
+                                <div class="col-12 col-sm-3">
+                                    <label>Interior</label>
+                                    <input class="form-control form-control-xl" value="" id="interiorClientModal" name="interiorClientModal" type="text" required placeholder="" />
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-12 col-sm-4">
+                                    <label>Estado</label>
+                                    <select class="form-control form-control-xl" value="" name="estateClientModal" required id="estateClientModal">
+                                        {% for e in state %}
+                                        <option value="{{e.pk}}" selected>{{e.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <label>Municipio/Delegacion</label>
+                                    <select class="form-control form-control-xl" value="" name="municipalityClientModal" required id="municipalityClientModal">
+                                        {% for m in municipality %}
+                                        <option value="{{m.pk}}" selected>{{m.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <label>Localidad</label>
+                                    <input class="form-control form-control-xl" value="" id="localidadClientModal" name="localidadClientModal" type="text" required placeholder="" />
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-12 col-sm-6">
+                                    <label>Correo electronico *</label>
+                                    <input class="form-control form-control-xl" value="" id="emailClientModal" type="email" name="emailClientModal" required placeholder="test@gmail.com" />
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label>Telefono *</label>
+                                    <input class="form-control form-control-xl" value="" id="phoneClientModal" type="text" name="phoneClientModal" required placeholder="0000000000" />
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <input type="hidden" name="associate_personClientModal" id="associate_personClientModal" value="[]">
+
+                                <input type="hidden" id="ci_pkClientModal" name="ci_pkClientModal" value="">
+                                <input type="hidden" name="daysClientModal" id="daysClientModal" value="">
+                                <input type="hidden" name="price_listClientModal" id="price_listClientModal" value="">
+                                <input type="hidden" name="vendedorClientModal" id="vendedorClientModal" value="">
+                                <input type="hidden" name="cfdiClientModal" id="cfdiClientModal" value="">
+                                <input type="hidden" name="payment_methodClientModal" id="payment_methodClientModal" value="">
+                                <input type="hidden" name="payment_formClientModal" id="payment_formClientModal" value="">
+
+                                <input type="hidden" value="" id="pkClientModal" name="pkClientModal">
+                                <input type="hidden" data-bs-dismiss="modal" id="buttonCloseModalClientAdd">
+                                <button type="button" id="" onclick="sendClientAdd()" class="btn btn-success btn-sm">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function viewModal(){
+        clients.map(function (value, index){
+            if (parseInt(document.getElementById("pk_customer").value) == value.pk_customer){
+                console.log(value);
+                document.getElementById("identification_numberClientModal").value = value.identification_number;
+                document.getElementById("nameClientModal").value = value.name;
+                document.getElementById("phoneClientModal").value = value.phone;
+                document.getElementById("emailClientModal").value = value.email;
+                document.getElementById("postal_codeClientModal").value = value.address[0];
+                document.getElementById("coloniaClientModal").value = value.address[1];
+                document.getElementById("calleClientModal").value = value.address[2];
+                document.getElementById("exteriorClientModal").value = value.address[3];
+                document.getElementById("interiorClientModal").value = value.address[4];
+                document.getElementById("localidadClientModal").value = value.address[5];
+                document.getElementById("municipalityClientModal").value = value.municipality;
+                document.getElementById("type_regime_idClientModal").value = value.type_regime;
+                document.getElementById("pkClientModal").value = value.pk_customer;
+                document.getElementById("associate_personClientModal").value = JSON.stringify(value.associate_person);
+
+                document.getElementById("ci_pkClientModal").value = value.commercial_information.pk;
+                document.getElementById("daysClientModal").value = value.commercial_information.payment_deadline;
+                document.getElementById("price_listClientModal").value = value.commercial_information.list_price;
+                document.getElementById("vendedorClientModal").value = "";
+                document.getElementById("cfdiClientModal").value = value.commercial_information.cfdi;
+                document.getElementById("payment_methodClientModal").value = value.commercial_information.payment_method;
+                document.getElementById("payment_formClientModal").value = value.commercial_information.payment_form;
+            }
+        });
+    }
+    function clearModal(){
+        document.getElementById("identification_numberClientModal").value = "";
+        document.getElementById("nameClientModal").value = "";
+        document.getElementById("phoneClientModal").value = "";
+        document.getElementById("emailClientModal").value = "";
+        document.getElementById("postal_codeClientModal").value = "";
+        document.getElementById("coloniaClientModal").value = "";
+        document.getElementById("calleClientModal").value = "";
+        document.getElementById("exteriorClientModal").value = "";
+        document.getElementById("interiorClientModal").value = "";
+        document.getElementById("localidadClientModal").value = "";
+        document.getElementById("municipalityClientModal").value = "";
+        document.getElementById("type_regime_idClientModal").value = "";
+        document.getElementById("associate_personClientModal").value = "[]";
+        document.getElementById("pkClientModal").value = "";
+
+        document.getElementById("ci_pkClientModal").value = "";
+        document.getElementById("daysClientModal").value = "";
+        document.getElementById("price_listClientModal").value = "";
+        document.getElementById("vendedorClientModal").value = "";
+        document.getElementById("cfdiClientModal").value = "";
+        document.getElementById("payment_methodClientModal").value = "";
+        document.getElementById("payment_formClientModal").value = "";
+    }
+    function sendClientAdd(){
+        if (
+            document.getElementById("identification_numberClientModal").value != "" && 
+            document.getElementById("nameClientModal").value != "" && 
+            document.getElementById("phoneClientModal").value != "" && 
+            document.getElementById("emailClientModal").value != "" && 
+            document.getElementById("postal_codeClientModal").value != "" && 
+            document.getElementById("coloniaClientModal").value != "" && 
+            document.getElementById("calleClientModal").value != "" && 
+            document.getElementById("exteriorClientModal").value != "" && 
+            document.getElementById("interiorClientModal").value != "" && 
+            document.getElementById("localidadClientModal").value != "" && 
+            document.getElementById("municipalityClientModal").value != "" && 
+            document.getElementById("type_regime_idClientModal").value != ""
+        ){
+            $.ajax({
+                url: '/create-client',
+                type: 'POST',
+                data:{
+                    pk: document.getElementById("pkClientModal").value,
+                    identification_number: document.getElementById("identification_numberClientModal").value,
+                    name: document.getElementById("nameClientModal").value,
+                    phone: document.getElementById("phoneClientModal").value,
+                    postal_code: document.getElementById("postal_codeClientModal").value,
+                    colonia: document.getElementById("coloniaClientModal").value,
+                    calle: document.getElementById("calleClientModal").value,
+                    exterior: document.getElementById("exteriorClientModal").value,
+                    interior: document.getElementById("interiorClientModal").value,
+                    localidad: document.getElementById("localidadClientModal").value,
+                    email: document.getElementById("emailClientModal").value,
+                    municipality: document.getElementById("municipalityClientModal").value,
+                    type_regime_id: document.getElementById("type_regime_idClientModal").value,
+                    associate_person: document.getElementById("associate_personClientModal").value,
+                    ci_pk: document.getElementById("ci_pkClientModal").value,
+                    days: document.getElementById("daysClientModal").value,
+                    price_list: document.getElementById("price_listClientModal").value,
+                    cfdi: document.getElementById("cfdiClientModal").value,
+                    payment_form: document.getElementById("payment_formClientModal").value,
+                    payment_method: document.getElementById("payment_methodClientModal").value
+                },
+                headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+                success: function(json) {
+                    clientsData = JSON.parse(json);
+                    console.log(clientsData.clients);
+                    if (clientsData.code == 200){
+                        clients = clientsData.clients.data;
+                        viewClientSelect(document.getElementById("identification_numberClientModal").value);
+                        $("#buttonCloseModalClientAdd").trigger("click");
+                    }
+                    showToastDanger(
+                        "Crear cliente",
+                        clientsData.message
+                    );
+                },
+                error: function(error) {
+                    console.log("Ocurrio un error");
+                }
+            });
+        }else{
+            showToastDanger(
+                "Crear cliente",
+                "Debe llenar todo el formulario."
+            );
+        }
+    }
+</script>

@@ -1,0 +1,207 @@
+<!--
+=========================================================
+* Argon Dashboard 2 PRO - v2.0.2
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="static/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="static/assets/img/favicon.png">
+  <title>
+    Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="static/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- CSS Files -->
+  <link id="pagestyle" href="static/assets/css/argon-dashboard.css?v=2.0.2" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<style>
+  .scrollDrop {
+    margin: 2px, 2px;
+    padding: 2px;
+    background-color: white;
+    width: 100%;
+    height: 150px;
+    overflow-y: auto;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    border-radius: 5px;
+  }
+  .scrollDrop2 {
+    margin: 2px, 2px;
+    padding: 2px;
+    background-color: white;
+    width: 100%;
+    height: 150px;
+    overflow-y: auto;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    border-radius: 5px;
+  }
+  .scrollDrop3 {
+    margin: 2px, 2px;
+    padding: 2px;
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    border-radius: 5px;
+  }
+  .loader-position {
+      display:block;
+      width:70px;
+      height:70px;
+      color:#fff;
+      position: fixed;
+      right:41%;
+      bottom:70%;
+      border-radius:50%;
+      line-height:80px;
+      text-align:center;
+      z-index:999;
+  }
+  .fa-chevron-up {
+    transition: all 0.3s ease;
+  }
+  .btn-nav-accordion.collapsed .fa-chevron-up {
+    transform: rotate(180deg);
+  }
+  .tr:hover{
+      background-color: rgba(128, 128, 128, 0.192);
+      cursor: pointer;
+  }   
+</style>
+</head>
+<!-- Specific CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
+  <body class="g-sidenav-show   bg-gray-100" id="addClickMouse">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  {% include "includes/sidenav.html" %}
+
+  <main class="main-content position-relative border-radius-lg ">  
+
+    {% include "includes/navigation.html" %}
+
+    <div class="text-center loader-position" id="loaderShow"></div>
+    {% block content %}{% endblock content %}
+
+  </main>{% csrf_token %}
+
+  {% include "includes/scripts.html" %}
+  <!-- Specific JS goes HERE --> 
+  <script>
+    function closeLoader(elm="loaderShow"){
+      $("#"+elm).text("");
+    }
+    function clearLoader(elm="loaderShow"){
+      $("#"+elm).text("");
+    }
+    function openLoader(elm="loaderShow"){
+      $("#"+elm).append(
+        '<div class="spinner-grow bg-danger" style="width: 4rem; height: 4rem; z-index: 2000;" role="status">'+
+          '<span class="visually-hidden">Loading...</span>'+
+        '</div>'
+      );
+    }
+  </script>
+{% block javascripts %}
+{% endblock javascripts %}
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="static/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script>
+    $(document).ready(function(){
+      $("#btnSuccessToast").click(function(){
+          $("#successToast").toast("show");
+      });
+      $("#btnInfoToast").click(function(){
+          $("#infoToast").toast("show");
+      });
+      $("#btnWarningToast").click(function(){
+          $("#warningToast").toast("show");
+      });
+      $("#btnDangerToast").click(function(){
+          $("#dangerToast").toast("show");
+      });
+    });
+  </script>
+  <script>
+    //var auxText = '{{messageText.text}}'
+    //var auxType = '{{messageText.type}}'
+    //console.log("Notify ",auxText)
+    function showNotify(auxText, auxType){
+      if (auxText != ""){
+        if(auxType == "success"){
+          $("#addTextSuccessToast").text("");
+          $("#addTextSuccessToast").append(auxText)
+          $("#btnSuccessToast").trigger("click");
+          //console.log("Notify ",auxText)
+        }else if (auxType == "info"){
+          $("#addTextInfoToast").text("");
+          $("#addTextInfoToast").append(auxText)
+          $("#btnInfoToast").trigger("click");
+        }else if (auxType == "warning"){
+          $("#addTextWarningToast").text("");
+          $("#addTextWarningToast").append(auxText)
+          $("#btnWarningToast").trigger("click");
+        }
+      }
+    }
+
+    $(window).resize(function(){
+      setTimeout(function(){
+        $("#sidenav-main").removeClass("bg-white");
+        $("#sidenav-main").addClass("bg-default");
+      },200);
+    });
+    $(".sidenav-toggler-inner").click(function(){
+      setTimeout(function(){
+        $("#sidenav-main").removeClass("bg-white");
+        $("#sidenav-main").addClass("bg-default");
+      },0);
+    });
+    function notification(){
+      $.ajax({
+        url: '/notification',
+        type: 'POST',
+        data:{},
+        headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+        success: function(json) {
+          //console.log(json);
+          nData = JSON.parse(json);
+          nData.data.map(function(value, index){
+            setTimeout(function(){
+            showToastDanger(
+              value.name,
+              value.description
+            );
+          },500);
+          });
+        },
+        error: function(error) {
+          console.log("Ocurrio un error");
+        }
+      });
+    }
+    //notification();
+    </script>
+</body>
+</html>

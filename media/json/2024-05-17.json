@@ -1,0 +1,74 @@
+[
+    {
+        "start": 4,
+        "title": "Hotel Villamadrid",
+        "link": "https://www.booking.com/hotel/es/villamadrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-17&checkout=2024-05-18&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=65e58fdcf6c50497&srepoch=1714422466&all_sr_blocks=9426106_88195701_0_2_0&highlighted_blocks=9426106_88195701_0_2_0&matching_block_id=9426106_88195701_0_2_0&sr_pri_blocks=9426106_88195701_0_2_0__16390&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Fuencarral - El Pardo, Madrid",
+        "distance": "a 8,2 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/63808733.webp?k=c146daaac7dd699f6be735eaf8a14dfea1a0c1038610e0faa5ccf48df7fedcfc&o=",
+        "price": "\u20ac\u00a0164",
+        "date_from": "2024-05-17",
+        "date_to": "2024-05-18"
+    },
+    {
+        "start": 4,
+        "title": "Senator Barajas",
+        "link": "https://www.booking.com/hotel/es/senator-barajas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-17&checkout=2024-05-18&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=65e58fdcf6c50497&srepoch=1714422466&all_sr_blocks=0_0_3_0_0&highlighted_blocks=0_0_3_0_0&matching_block_id=0_0_3_0_0&sr_pri_blocks=0_0_3_0_0__18548&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Barajas, Madrid",
+        "distance": "a 11,3 km del centro",
+        "description": "2 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/110812706.webp?k=5148b7e2ce9782d0e65c90d51f8f43c17ef8c5e007c00e285da25a8969a520e1&o=",
+        "price": "\u20ac\u00a0185",
+        "date_from": "2024-05-17",
+        "date_to": "2024-05-18"
+    },
+    {
+        "start": 4,
+        "title": "Hotel Suites Feria de Madrid",
+        "link": "https://www.booking.com/hotel/es/suites-madrid.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-17&checkout=2024-05-18&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=10&hapos=10&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=65e58fdcf6c50497&srepoch=1714422466&all_sr_blocks=1731502_325484733_0_2_0&highlighted_blocks=1731502_325484733_0_2_0&matching_block_id=1731502_325484733_0_2_0&sr_pri_blocks=1731502_325484733_0_2_0__20397&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Hortaleza, Madrid",
+        "distance": "a 6,6 km del centro",
+        "description": "3 camas individuales",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/336975649.webp?k=fda4f64dab472fbd6669f32de2e8be8c1757914c561e67948482089f3b494884&o=",
+        "price": "\u20ac\u00a0204",
+        "date_from": "2024-05-17",
+        "date_to": "2024-05-18"
+    },
+    {
+        "start": 4,
+        "title": "NYX Hotel Madrid by Leonardo Hotels",
+        "link": "https://www.booking.com/hotel/es/gran-atlanta.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-17&checkout=2024-05-18&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=15&hapos=15&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=65e58fdcf6c50497&srepoch=1714422466&all_sr_blocks=9289509_88193152_0_2_0&highlighted_blocks=9289509_88193152_0_2_0&matching_block_id=9289509_88193152_0_2_0&sr_pri_blocks=9289509_88193152_0_2_0__22950&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Tetu\u00e1n, Madrid",
+        "distance": "a 3,8 km del centro",
+        "description": "3 camas (2 individuales, 1 sof\u00e1 cama)",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/385586081.webp?k=dfa2df574d8f771f53813d307919705fc5975c818fdbf9c64f031cc0404ccf68&o=",
+        "price": "\u20ac\u00a0230",
+        "date_from": "2024-05-17",
+        "date_to": "2024-05-18"
+    },
+    {
+        "start": 4,
+        "title": "Catalonia El Retiro",
+        "link": "https://www.booking.com/hotel/es/catalonia-el-retiro.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-17&checkout=2024-05-18&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=20&hapos=20&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=65e58fdcf6c50497&srepoch=1714422466&all_sr_blocks=9143823_366556236_3_2_0&highlighted_blocks=9143823_366556236_3_2_0&matching_block_id=9143823_366556236_3_2_0&sr_pri_blocks=9143823_366556236_3_2_0__24000&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Retiro, Madrid",
+        "distance": "a 3,4 km del centro",
+        "description": "Varios tipos de camas",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/421955647.webp?k=880e25782d000b191b0d007b72744ddd45199e9265c1214b98a3d29ce0287527&o=",
+        "price": "\u20ac\u00a0240",
+        "date_from": "2024-05-17",
+        "date_to": "2024-05-18"
+    },
+    {
+        "start": 4,
+        "title": "NH Madrid Las Tablas",
+        "link": "https://www.booking.com/hotel/es/tablas.es.html?label=gen173nr-1FCAEoggI46AdIM1gEaEaIAQGYAQq4ARjIAQzYAQHoAQH4AQuIAgGoAgS4AuCCwLEGwAIB0gIkMjg4MTAzYWItM2I0Zi00YzU5LTkyMDItYjA0ZTE4NTQyMDkz2AIG4AIB&sid=392f4e54c42615928f721295463544c1&aid=304142&ucfs=1&arphpl=1&checkin=2024-05-17&checkout=2024-05-18&dest_id=-390625&dest_type=city&group_adults=3&req_adults=3&no_rooms=1&group_children=0&req_children=0&hpos=25&hapos=25&sr_order=price&nflt=class%3D4%3Bht_id%3D204&srpvid=65e58fdcf6c50497&srepoch=1714422466&all_sr_blocks=1877601_95143616_0_2_0%2C1877601_95143616_0_2_0&highlighted_blocks=1877601_95143616_0_2_0%2C1877601_95143616_0_2_0&matching_block_id=1877601_95143616_0_2_0&sr_pri_blocks=1877601_95143616_0_2_0__13200%2C1877601_95143616_0_2_0__13200&from_sustainable_property_sr=1&from=searchresults#hotelTmpl",
+        "address": "Fuencarral - El Pardo, Madrid",
+        "distance": "a 9,6 km del centro",
+        "description": "Camas: individual o doble",
+        "img": "https://cf.bstatic.com/xdata/images/hotel/square240/367868199.webp?k=cd2a4b274dfec5c4d9a4396d9987fe3fd8d5bb4830f7dc22abdd6f4a1f25a11f&o=",
+        "price": "\u20ac\u00a0264",
+        "date_from": "2024-05-17",
+        "date_to": "2024-05-18"
+    }
+]
