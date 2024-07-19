@@ -18,9 +18,8 @@ def search_date(text):
     return re.findall(pattern, text)
 
 class BookingSearch:
-
     @classmethod
-    def _driver(cls) -> None:
+    def _driver2(cls) -> None:
         cls._url = "https://www.booking.com"
         options = webdriver.ChromeOptions()
         #options.add_argument("headless")
@@ -28,6 +27,16 @@ class BookingSearch:
         #options.add_argument("no-sandbox")
 
         return webdriver.Chrome(executable_path="chromedriver.exe", options=options)
+
+    @classmethod
+    def _driver(cls) -> None:
+        cls._url = "https://www.booking.com"
+        options = webdriver.FirefoxOptions()
+        #options.add_argument("headless")
+        #options.add_argument("disable-gpu")
+        #options.add_argument("no-sandbox")
+
+        return webdriver.Firefox(executable_path="geckodriver", options=options)
     
     @classmethod
     def controller(cls, driver:webdriver.Chrome, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
