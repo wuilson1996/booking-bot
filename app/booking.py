@@ -66,19 +66,21 @@ class BookingSearch:
         try:
             while True:
                 try:
-                    
                     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
                     b2.click()
                     sleep(1)
                     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
                     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
-                    #print(divs2.get_attribute("innerHTML"))
-                    #print(divs2.text, occupancy)
+                    logging.info(divs2.get_attribute("innerHTML"))
+                    logging.info(divs2.text, occupancy)
                     for i in range(occupancy - int(divs2.text)):
                         buttons2 = divs2.find_elements_by_tag_name("button")
                         buttons2[1].click()
-                except Exception as err01:
-                    logging.info("[-] Error in button occupancy: "+str(err01))
+                except NoSuchElementException as e:
+                    logging.info("[-] Error in button occupancy, element not fount")
+                except ElementClickInterceptedException as e:
+                    logging.info("[-] Error in button occupancy, element not clicked")
+
                 try:
                     _error = None
                     _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
