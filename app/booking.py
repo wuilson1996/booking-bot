@@ -20,7 +20,7 @@ def search_date(text):
 
 class BookingSearch:
     @classmethod
-    def _driver(cls) -> None:
+    def _driver2(cls) -> None:
         cls._url = "https://www.booking.com"
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
@@ -30,7 +30,7 @@ class BookingSearch:
         return webdriver.Chrome(executable_path=os.path.abspath("chromedriver"), options=options)
 
     @classmethod
-    def _driver2(cls) -> None:
+    def _driver(cls) -> None:
         cls._url = "https://www.booking.com"
         options = webdriver.FirefoxOptions()
         options.add_argument("--headless")
@@ -41,12 +41,10 @@ class BookingSearch:
     
     @classmethod
     def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
-        logging.info("[+] controller Web init ...")
         driver.get(cls._url)
         driver.implicitly_wait(15)
-        logging.info("[+] Web init ...")
-
         sleep(5)
+        logging.info(driver.current_url)
         try:
             _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
             _button.click()
@@ -117,15 +115,18 @@ class BookingSearch:
                     _error = "Error in get date error1: "+str(error)
                 
                 if _error is None:
+                    logging.info(driver.current_url)
                     buttons = driver.find_elements_by_xpath("//button[@type='submit']")
                     sleep(2)
 
                     buttons = driver.find_elements_by_xpath("//button[@type='submit']")
                     sleep(2)
                     for b in buttons:
-                        if "Buscar" in b.text:
+                        if "Buscar" or "Search" in b.text:
                             b.click()
                             break
+                    
+                    logging.info(driver.current_url)
                     
                     try:
                         if cont <= 1:

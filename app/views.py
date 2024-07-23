@@ -26,6 +26,7 @@ def active_process(request):
 
     logging.info(f"[+] {dt.now()} Activando process...")
     while True:
+        threads = []
         for p in ProcessActive.objects.all():
             if not p.active:
                 booking = BookingSearch()
@@ -38,7 +39,10 @@ def active_process(request):
                 process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p))
                 process.daemon = True
                 process.start()
-        
+                threads.append(process)
+        for t in threads:
+            logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
+            t.join()
         logging.info(f"[+] {dt.now()} Sleep 10 minutes...")
         sleep(60 * 10)
         logging.info(f"[+] {dt.now()} Sleep 10 minutes finish...")
