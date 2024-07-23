@@ -79,6 +79,8 @@ class BookingSearch:
                     logging.info(f"[-] {dt.now()} Error in button occupancy, element not fount")
                 except ElementClickInterceptedException as e:
                     logging.info(f"[-] {dt.now()} Error in button occupancy, element not clicked")
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in button occupancy general")
 
                 try:
                     _error = None
