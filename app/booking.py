@@ -12,7 +12,7 @@ import re
 from .models import *
 import os
 
-_logging = logging.basicConfig(filename="logger.log", level=logging.ERROR)
+_logging = logging.basicConfig(filename="logger.log", level=logging.INFO)
 
 pattern = r"\b(19\d\d|20\d\d)[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])\b"
 def search_date(text):
@@ -49,9 +49,9 @@ class BookingSearch:
             _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
             _button.click()
         except NoSuchElementException as e:
-            logging.error("Error in button cookies, element not fount")
+            logging.info("[-] Error in button cookies, element not fount")
         except ElementClickInterceptedException as e:
-            logging.error("Error in button cookies, element not clicked")
+            logging.info("[-] Error in button cookies, element not clicked")
             
         # Search
         search = driver.find_element_by_xpath("//input[@name='ss']")
@@ -76,7 +76,7 @@ class BookingSearch:
                         buttons2 = divs2.find_elements_by_tag_name("button")
                         buttons2[1].click()
                 except Exception as err01:
-                    logging.error("Error in button occupancy: "+str(err01))
+                    logging.info("[-] Error in button occupancy: "+str(err01))
                 try:
                     error = None
                     _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
@@ -128,7 +128,7 @@ class BookingSearch:
                             _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
                             _button.click()
                     except NoSuchElementException as e:
-                        logging.error("Error in button Modal")
+                        logging.info("[-] Error in button Modal")
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -139,7 +139,7 @@ class BookingSearch:
                                 break
                                 
                     except NoSuchElementException as e:
-                        logging.error("Error in start button")
+                        logging.info("[-] Error in start button")
                         try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input")
@@ -149,7 +149,7 @@ class BookingSearch:
                                     break
                                     
                         except NoSuchElementException as e:
-                            logging.error("Error in start button - reintento 2")
+                            logging.info("[-] Error in start button - reintento 2")
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -159,7 +159,7 @@ class BookingSearch:
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
                                 break
                     except NoSuchElementException as e:
-                        logging.error("Error in Hoteles button")
+                        logging.info("[-] Error in Hoteles button")
 
                     sleep(1)
                     try:
@@ -168,7 +168,7 @@ class BookingSearch:
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
                         driver.find_element_by_xpath("//button[@data-id='price']").click()
                     except NoSuchElementException as e:
-                        logging.error("Error in button category order")
+                        logging.info("[-] Error in button category order")
 
                     sleep(2)
                     # Items booking search
@@ -179,7 +179,7 @@ class BookingSearch:
                         total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
                         #print(total_search)
                     except NoSuchElementException as e:
-                        logging.error("Error in get total_search")
+                        logging.info("[-] Error in get total_search")
 
                     try:
                         for position in p.position:
@@ -188,14 +188,14 @@ class BookingSearch:
                                 item_list[aux_d["title"]] = []
                             item_list[aux_d["title"]].append(aux_d)
                     except Exception as e:
-                        logging.error("Error 170: "+str(e))
+                        logging.info("[-] Error 170: "+str(e))
                     sleep(1)
                         
                     if _date_elem.date() >= _date_end.date():
                         break
                     cont += 1
         except Exception as e2:
-            logging.error("Error 218: "+str(e2))
+            logging.info("[-] Error 218: "+str(e2))
 
         driver.close()
 
@@ -332,27 +332,27 @@ class BookingSearch:
             try:
                 item_dict["start"] = cls.search_start(html)
             except Exception as e0:
-                logging.error("[-] Error in Get start")
+                logging.info("[-] Error in Get start")
             try:
                 item_dict["title"], item_dict["link"] = cls.search_title(html)
             except Exception as e3:
-                logging.error("[-] Error in Get title and link")
+                logging.info("[-] Error in Get title and link")
             try:
                 item_dict["address"], item_dict["distance"] = cls.search_address(html)
             except Exception as e4:
-                logging.error("[-] Error in Get address")
+                logging.info("[-] Error in Get address")
             try:
                 item_dict["description"] = cls.search_description(html)
             except Exception as _e2:
-                logging.error("[-] Error in Get description")
+                logging.info("[-] Error in Get description")
             try:
                 item_dict["img"] = cls.search_img(html)
             except Exception as e5:
-                logging.error("[-] Error in Get img")
+                logging.info("[-] Error in Get img")
             try:
                 item_dict["price"] = cls.search_price(html)
             except Exception as e6:
-                logging.error("[-] Error in Get price")
+                logging.info("[-] Error in Get price")
 
             bg = Booking.objects.filter(title=item_dict["title"], start=item_dict["start"], occupancy=occupancy).first()
             if not bg:
@@ -402,8 +402,8 @@ class BookingSearch:
                 _available.price = item_dict["price"]
                 _available.save()
         except Exception as e:
-            logging.error("Error General data: "+str(e))
-            logging.error(item_dict)
+            logging.info("[-] Error General data: "+str(e))
+            logging.info(item_dict)
         
         return item_dict
 
