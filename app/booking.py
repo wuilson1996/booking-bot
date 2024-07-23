@@ -101,7 +101,7 @@ class BookingSearch:
                                         if _date_elem.date() == _now.date():
                                             _td.click()
                                             _now += datetime.timedelta(days=1)
-                                            #print(_date_elem.date(), _now.date())
+                                            logging.info(str(_date_elem.date())+" - "+str(_now.date()))
                                             break
                                 except Exception as error2:
                                     #print("Error 74: "+str(error2))
@@ -132,6 +132,7 @@ class BookingSearch:
                         if cont <= 1:
                             _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
                             _button.click()
+                            logging.info("[+] Click button modal success")
                     except NoSuchElementException as e:
                         logging.info("[-] Error in button Modal")
                     sleep(1)
@@ -141,6 +142,7 @@ class BookingSearch:
                         for s in elements:
                             if str(start)+" estrellas" in str(s):
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
+                                logging.info("[+] Click button start success")
                                 break
                                 
                     except NoSuchElementException as e:
@@ -151,6 +153,7 @@ class BookingSearch:
                             for s in elements:
                                 if str(start)+" estrellas" in str(s):
                                     driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
+                                    logging.info("[+] Click button start success")
                                     break
                                     
                         except NoSuchElementException as e:
@@ -162,6 +165,7 @@ class BookingSearch:
                         for s in elements:
                             if "Hoteles" in str(s):
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
+                                logging.info("[+] Click button hoteles success")
                                 break
                     except NoSuchElementException as e:
                         logging.info("[-] Error in Hoteles button")
@@ -172,17 +176,18 @@ class BookingSearch:
                         sleep(1)
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
                         driver.find_element_by_xpath("//button[@data-id='price']").click()
+                        logging.info("[+] Click button price success")
                     except NoSuchElementException as e:
                         logging.info("[-] Error in button price order")
 
                     sleep(2)
                     # Items booking search
                     items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
-                    
+                    logging.info(f"[+] Elementos encontrados: {len(items)}")
                     total_search = 0
                     try:
                         total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
-                        #print(total_search)
+                        logging.info(f"[+] Total search success: {total_search}")
                     except NoSuchElementException as e:
                         logging.info("[-] Error in get total_search")
 

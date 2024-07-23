@@ -43,9 +43,9 @@ def active_process(request):
         for t in threads:
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
             t.join()
-        logging.info(f"[+] {dt.now()} Sleep 10 minutes...")
-        sleep(60 * 10)
-        logging.info(f"[+] {dt.now()} Sleep 10 minutes finish...")
+        logging.info(f"[+] {dt.now()} Sleep 60 seconds...")
+        sleep(60)
+        logging.info(f"[+] {dt.now()} Sleep 60 seconds finish...")
         state = False
         for p in ProcessActive.objects.all():
             if p.currenct:
