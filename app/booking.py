@@ -126,8 +126,8 @@ class BookingSearch:
                             b.click()
                             break
                     
-                    #logging.info(driver.current_url)
-                    
+                    logging.info(driver.current_url)
+
                     try:
                         if cont <= 1:
                             _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
@@ -173,7 +173,7 @@ class BookingSearch:
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
                         driver.find_element_by_xpath("//button[@data-id='price']").click()
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in button category order")
+                        logging.info("[-] Error in button price order")
 
                     sleep(2)
                     # Items booking search
