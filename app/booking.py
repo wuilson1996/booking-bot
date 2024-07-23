@@ -122,6 +122,7 @@ class BookingSearch:
                     buttons = driver.find_elements_by_xpath("//button[@type='submit']")
                     sleep(2)
                     for b in buttons:
+                        logging.info(f"Button Submit: {b.text}")
                         if "Buscar" or "Search" in b.text:
                             b.click()
                             break
