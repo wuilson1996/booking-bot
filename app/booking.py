@@ -80,7 +80,7 @@ class BookingSearch:
                 except Exception as err01:
                     logging.info("[-] Error in button occupancy: "+str(err01))
                 try:
-                    error = None
+                    _error = None
                     _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
                     _date.click()
                     divs = driver.find_element_by_xpath("//div[@data-testid='searchbox-datepicker-calendar']").find_element_by_tag_name("div").find_element_by_tag_name("div")
@@ -105,16 +105,16 @@ class BookingSearch:
                                             break
                                 except Exception as error2:
                                     #print("Error 74: "+str(error2))
-                                    error = error2
+                                    _error = "Error get date error2: "+str(error2)
                             except Exception as error3:
                                 #print("Error 64: "+str(error3))
-                                error = error3
+                                _error = "Error in get date error3: "+str(error3)
                             
                 except Exception as error:
                     #print("Error 77: "+str(error))
-                    error = error
+                    _error = "Error in get date error1: "+str(error)
                 
-                if error is None:
+                if _error is None:
                     buttons = driver.find_elements_by_xpath("//button[@type='submit']")
                     sleep(2)
 
