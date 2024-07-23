@@ -153,8 +153,8 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
-                            logging.info(f"[+] {dt.now()} - {str(start)+' stars' in s} - Start: {s.get('aria-label')}")
-                            if str(start)+" estrellas" in str(s):# or str(start)+" stars" 
+                            logging.info(f"[+] {dt.now()} - {str(start)+' stars' in s.get('aria-label')} - Start: {s.get('aria-label')}")
+                            if str(start)+" stars" in str(s.get('aria-label')):# or str(start)+" stars" 
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
                                 logging.info(f"[+] {dt.now()} Click button start success")
                                 break
@@ -165,8 +165,8 @@ class BookingSearch:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input")
                             for s in elements:
-                                logging.info(f"[+] {dt.now()} - {str(start)+' stars' in s} - Start: {s.get('aria-label')}")
-                                if str(start)+" estrellas" in str(s):#or str(start)+" stars"
+                                logging.info(f"[+] {dt.now()} - {str(start)+' stars' in s.get('aria-label')} - Start: {s.get('aria-label')}")
+                                if str(start)+" stars" in str(s.get('aria-label')):#or str(start)+" stars"
                                     driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
                                     logging.info(f"[+] {dt.now()} Click button start success")
                                     break
