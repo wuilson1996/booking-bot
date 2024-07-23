@@ -29,6 +29,7 @@ def active_process(request):
         for p in ProcessActive.objects.all():
             if not p.active:
                 booking = BookingSearch()
+                logging.info(f"[+] {dt.now()} Search driver...")
                 _driver = booking._driver()
                 p.active = True
                 p.save()
