@@ -23,9 +23,9 @@ class BookingSearch:
     def _driver(cls) -> None:
         cls._url = "https://www.booking.com"
         options = webdriver.ChromeOptions()
-        #options.add_argument("headless")
-        #options.add_argument("disable-gpu")
-        #options.add_argument("no-sandbox")
+        options.add_argument("headless")
+        options.add_argument("disable-gpu")
+        options.add_argument("no-sandbox")
 
         return webdriver.Chrome(executable_path=os.path.abspath("chromedriver"), options=options)
 
@@ -40,7 +40,7 @@ class BookingSearch:
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
     @classmethod
-    def controller(cls, driver:webdriver.Chrome, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
+    def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
         logging.info("[+] controller Web init ...")
         driver.get(cls._url)
         driver.implicitly_wait(15)
