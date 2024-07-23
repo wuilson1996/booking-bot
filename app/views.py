@@ -33,11 +33,14 @@ def active_process(request):
                 p.active = True
                 p.save()
                 #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))
+                logging.info(f"[+] {dt.now()} Process active in while...")
                 process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p))
                 process.daemon = True
                 process.start()
         
+        logging.info(f"[+] {dt.now()} Sleep 10 minutes...")
         sleep(60 * 10)
+        logging.info(f"[+] {dt.now()} Sleep 10 minutes finish...")
         state = False
         for p in ProcessActive.objects.all():
             if p.currenct:
