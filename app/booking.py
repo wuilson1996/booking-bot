@@ -124,7 +124,12 @@ class BookingSearch:
                     for b in buttons:
                         logging.info(f"Button Submit: {b.text}")
                         if "Buscar" or "Search" in b.text:
-                            b.click()
+                            try:
+                                b.click()
+                            except Exception as e:
+                                logging.info("[-] Error in button submit general, element not clicked")
+                                driver.execute_script("arguments[0].click();", b)
+                                sleep(2)
                             break
                     
                     logging.info(driver.current_url)
@@ -136,6 +141,10 @@ class BookingSearch:
                             logging.info("[+] Click button modal success")
                     except NoSuchElementException as e:
                         logging.info("[-] Error in button Modal")
+                    except ElementClickInterceptedException as e:
+                        logging.info("[-] Error in button Modal, element not clicked")
+                    except Exception as e:
+                        logging.info("[-] Error in button Modal general")
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -159,6 +168,14 @@ class BookingSearch:
                                     
                         except NoSuchElementException as e:
                             logging.info("[-] Error in start button - reintento 2")
+                        except ElementClickInterceptedException as e:
+                            logging.info("[-] Error in start button, element not clicked2")
+                        except Exception as e:
+                            logging.info("[-] Error in start button general, element not clicked")
+                    except ElementClickInterceptedException as e:
+                        logging.info("[-] Error in start button, element not clicked1")
+                    except Exception as e:
+                        logging.info("[-] Error in start button general")
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -170,6 +187,10 @@ class BookingSearch:
                                 break
                     except NoSuchElementException as e:
                         logging.info("[-] Error in Hoteles button")
+                    except ElementClickInterceptedException as e:
+                        logging.info("[-] Error in Hoteles button, element not clicked1")
+                    except Exception as e:
+                        logging.info("[-] Error in Hoteles button general")
 
                     sleep(1)
                     try:
@@ -179,7 +200,11 @@ class BookingSearch:
                         driver.find_element_by_xpath("//button[@data-id='price']").click()
                         logging.info("[+] Click button price success")
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in button price order")
+                        logging.info("[-] Error in button price")
+                    except ElementClickInterceptedException as e:
+                        logging.info("[-] Error in price button, element not clicked1")
+                    except Exception as e:
+                        logging.info("[-] Error in price button general")
 
                     sleep(2)
                     # Items booking search
@@ -191,6 +216,10 @@ class BookingSearch:
                         logging.info(f"[+] Total search success: {total_search}")
                     except NoSuchElementException as e:
                         logging.info("[-] Error in get total_search")
+                    except ElementClickInterceptedException as e:
+                        logging.info("[-] Error in total_search, element not clicked1")
+                    except Exception as e:
+                        logging.info("[-] Error in total_search general")
 
                     try:
                         for position in p.position:
