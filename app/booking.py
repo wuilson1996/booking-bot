@@ -153,8 +153,10 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
-                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                            #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                             if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
+                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
                                     check_start.click()
@@ -163,8 +165,13 @@ class BookingSearch:
                                     sleep(2)
                                 logging.info(f"[+] {dt.now()} Click button start success")
                                 try:
-                                    check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
-                                    logging.info(f"[+] {dt.now()} {check_start.get_attribute('innerHTML')}")
+                                    _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                                    elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                                    for s in elements:
+                                        if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
+                                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
+                                            break
                                 except Exception as e0:
                                     logging.info(f"[-] {dt.now()} Error in start get input check state")
                                 break
