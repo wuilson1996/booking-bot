@@ -154,7 +154,7 @@ class BookingSearch:
                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
-                            if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
+                            if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
@@ -171,7 +171,7 @@ class BookingSearch:
                                         if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
                                             logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                             logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
-                                            break
+                                            #break
                                 except Exception as e0:
                                     logging.info(f"[-] {dt.now()} Error in start get input check state")
                                 break
@@ -183,7 +183,7 @@ class BookingSearch:
                             elements = _soup_elements.find_all("input")
                             for s in elements:
                                 #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
-                                if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):#or str(start)+" stars"
+                                if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():#or str(start)+" stars"
                                     logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                     logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                     check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
@@ -221,7 +221,7 @@ class BookingSearch:
                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
-                            if "Hoteles" in str(s.get('aria-label')) or "Hotels" in str(s.get('aria-label')):
+                            if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                 check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
@@ -235,7 +235,7 @@ class BookingSearch:
                                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                     for s in elements:
-                                        if "Hoteles" in str(s) or "Hotels" in str(s):
+                                        if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                             #break
