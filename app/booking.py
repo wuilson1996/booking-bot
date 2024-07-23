@@ -10,6 +10,7 @@ from datetime import datetime as dt
 import datetime
 import re
 from .models import *
+import os
 
 _logging = logging.basicConfig(filename="logger.log", level=logging.ERROR)
 
@@ -36,7 +37,7 @@ class BookingSearch:
         #options.add_argument("disable-gpu")
         #options.add_argument("no-sandbox")
 
-        return webdriver.Firefox(executable_path="geckodriver", options=options)
+        return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
     @classmethod
     def controller(cls, driver:webdriver.Chrome, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
