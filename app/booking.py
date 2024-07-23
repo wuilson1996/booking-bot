@@ -215,6 +215,7 @@ class BookingSearch:
                     try:
                         total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
                         logging.info(f"[+] {dt.now()} Total search success: {total_search}")
+                        total_search = total_search.replace(",", "").replace(".", "")
                     except NoSuchElementException as e:
                         logging.info(f"[-] {dt.now()} Error in get total_search")
                     except ElementClickInterceptedException as e:
