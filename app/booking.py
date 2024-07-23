@@ -183,13 +183,18 @@ class BookingSearch:
                         elements = _soup_elements.find_all("input")
                         for s in elements:
                             if "Hoteles" in str(s):
-                                driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
+                                check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                                try:
+                                    check_hotel.click()
+                                except ElementClickInterceptedException as e2:
+                                    driver.execute_script("arguments[0].click();", check_hotel)
+                                    sleep(2)
                                 logging.info(f"[+] {dt.now()} Click button hoteles success")
                                 break
                     except NoSuchElementException as e:
                         logging.info(f"[-] {dt.now()} Error in Hoteles button")
                     except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error in Hoteles button general")
 
@@ -198,12 +203,17 @@ class BookingSearch:
                         driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']").click()
                         sleep(1)
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
-                        driver.find_element_by_xpath("//button[@data-id='price']").click()
+                        check_price = driver.find_element_by_xpath("//button[@data-id='price']")
+                        try:
+                            check_price.click()
+                        except ElementClickInterceptedException as e2:
+                            driver.execute_script("arguments[0].click();", check_price)
+                            sleep(2)
                         logging.info(f"[+] {dt.now()} Click button price success")
                     except NoSuchElementException as e:
                         logging.info(f"[-] {dt.now()} Error in button price")
                     except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in price button, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error in price button general")
 
@@ -443,6 +453,7 @@ class BookingSearch:
                 _available.updated = dt.now()
                 _available.price = item_dict["price"]
                 _available.save()
+            logging.info(item_dict)
         except Exception as e:
             logging.info(f"[-] {dt.now()} Error General data: "+str(e))
             logging.info(item_dict)
