@@ -41,4 +41,4 @@ class ProcessActive(models.Model):
     currenct = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return str(self.date_end)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | "+str(self.active)+" | "+str(self.date_end)
+        return str(self.date_end)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | "+str(self.active)

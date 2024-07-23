@@ -24,6 +24,7 @@ def active_process(request):
         p.currenct = True
         p.save()
 
+    logging.info(f"[+] {dt.now()} Activando process...")
     while True:
         for p in ProcessActive.objects.all():
             if not p.active:
@@ -44,6 +45,7 @@ def active_process(request):
                 break
         if not state:
             break
+    logging.info(f"[+] {dt.now()} Finalizando process...")
 
 @api_view(["POST"])
 def get_booking(request):
