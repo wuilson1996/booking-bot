@@ -200,7 +200,7 @@ class BookingSearch:
                                             if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
                                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
-                                                break
+                                                #break
                                     except Exception as e0:
                                         logging.info(f"[-] {dt.now()} Error in start get input check state")
                                         break
@@ -220,7 +220,7 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
-                            logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
+                            #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                             if "Hoteles" in str(s.get('aria-label')) or "Hotels" in str(s.get('aria-label')):
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
@@ -238,7 +238,7 @@ class BookingSearch:
                                         if "Hoteles" in str(s) or "Hotels" in str(s):
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
-                                            break
+                                            #break
                                 except Exception as e3:
                                     logging.info(f"[-] {dt.now()} Error in Hoteles get input check")
                                 break
