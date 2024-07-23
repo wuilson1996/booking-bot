@@ -182,11 +182,28 @@ class BookingSearch:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input")
                             for s in elements:
-                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                                #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                 if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):#or str(start)+" stars"
-                                    driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
+                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
+                                    check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                                    try:
+                                        check_start.click()
+                                    except ElementClickInterceptedException:
+                                        driver.execute_script("arguments[0].click();", check_start)
+                                        sleep(2)
                                     logging.info(f"[+] {dt.now()} Click button start success")
-                                    break
+                                    try:
+                                        _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                                        for s in elements:
+                                            if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
+                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
+                                                break
+                                    except Exception as e0:
+                                        logging.info(f"[-] {dt.now()} Error in start get input check state")
+                                        break
                                     
                         except NoSuchElementException as e:
                             logging.info(f"[-] {dt.now()} Error in start button - reintento 2")
@@ -203,7 +220,10 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
-                            if "Hoteles" or "Hotels" in str(s):
+                            logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
+                            if "Hoteles" in str(s.get('aria-label')) or "Hotels" in str(s.get('aria-label')):
+                                logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
+                                logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                 check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
                                     check_hotel.click()
@@ -212,8 +232,13 @@ class BookingSearch:
                                     sleep(2)
                                 logging.info(f"[+] {dt.now()} Click button hoteles success")
                                 try:
-                                    check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
-                                    logging.info(f"[+] {dt.now()} {check_hotel}")
+                                    _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                                    elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                                    for s in elements:
+                                        if "Hoteles" in str(s) or "Hotels" in str(s):
+                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
+                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
+                                            break
                                 except Exception as e3:
                                     logging.info(f"[-] {dt.now()} Error in Hoteles get input check")
                                 break
