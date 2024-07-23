@@ -41,8 +41,10 @@ class BookingSearch:
     
     @classmethod
     def controller(cls, driver:webdriver.Chrome, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
+        logging.info("[+] controller Web init ...")
         driver.get(cls._url)
         driver.implicitly_wait(15)
+        logging.info("[+] Web init ...")
 
         sleep(5)
         try:
