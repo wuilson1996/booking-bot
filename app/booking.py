@@ -44,7 +44,7 @@ class BookingSearch:
         driver.get(cls._url)
         driver.implicitly_wait(15)
         sleep(5)
-        logging.info(driver.current_url)
+        #logging.info(driver.current_url)
         try:
             _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
             _button.click()
@@ -69,7 +69,7 @@ class BookingSearch:
                     sleep(1)
                     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
                     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
-                    logging.info(divs2.get_attribute("innerHTML"))
+                    #logging.info(divs2.get_attribute("innerHTML"))
                     logging.info(divs2.text, occupancy)
                     for i in range(occupancy - int(divs2.text)):
                         buttons2 = divs2.find_elements_by_tag_name("button")
@@ -115,7 +115,7 @@ class BookingSearch:
                     _error = "Error in get date error1: "+str(error)
                 
                 if _error is None:
-                    logging.info(driver.current_url)
+                    #logging.info(driver.current_url)
                     buttons = driver.find_elements_by_xpath("//button[@type='submit']")
                     sleep(2)
 
@@ -126,7 +126,7 @@ class BookingSearch:
                             b.click()
                             break
                     
-                    logging.info(driver.current_url)
+                    #logging.info(driver.current_url)
                     
                     try:
                         if cont <= 1:
