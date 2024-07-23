@@ -192,8 +192,8 @@ class BookingSearch:
                                 except ElementClickInterceptedException as e2:
                                     driver.execute_script("arguments[0].click();", check_hotel)
                                     sleep(2)
-                                check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").get_attribute("innerHTML")
-                                #logging.info(f"[+] {dt.now()} {check_hotel.get_attribute('innerHTML')}")
+                                check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                                logging.info(f"[+] {dt.now()} {check_hotel.get_attribute('innerHTML')}")
                                 logging.info(f"[+] {dt.now()} Click button hoteles success")
                                 break
                     except NoSuchElementException as e:
