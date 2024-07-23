@@ -49,9 +49,9 @@ class BookingSearch:
             _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
             _button.click()
         except NoSuchElementException as e:
-            logging.info("[-] Error in button cookies, element not fount")
+            logging.info(f"[-] {dt.now()} Error in button cookies, element not fount")
         except ElementClickInterceptedException as e:
-            logging.info("[-] Error in button cookies, element not clicked")
+            logging.info(f"[-] {dt.now()} Error in button cookies, element not clicked")
             
         # Search
         search = driver.find_element_by_xpath("//input[@name='ss']")
@@ -65,19 +65,20 @@ class BookingSearch:
             while True:
                 try:
                     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
-                    b2.click()
-                    sleep(1)
+                    driver.execute_script("arguments[0].click();", b2)
+                    #b2.click()
+                    sleep(2)
                     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
                     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
                     #logging.info(divs2.get_attribute("innerHTML"))
-                    logging.info(divs2.text, occupancy)
+                    logging.info(f"{dt.now()} - {divs2.text} - {occupancy}")
                     for i in range(occupancy - int(divs2.text)):
                         buttons2 = divs2.find_elements_by_tag_name("button")
                         buttons2[1].click()
                 except NoSuchElementException as e:
-                    logging.info("[-] Error in button occupancy, element not fount")
+                    logging.info(f"[-] {dt.now()} Error in button occupancy, element not fount")
                 except ElementClickInterceptedException as e:
-                    logging.info("[-] Error in button occupancy, element not clicked")
+                    logging.info(f"[-] {dt.now()} Error in button occupancy, element not clicked")
 
                 try:
                     _error = None
@@ -101,7 +102,7 @@ class BookingSearch:
                                         if _date_elem.date() == _now.date():
                                             _td.click()
                                             _now += datetime.timedelta(days=1)
-                                            logging.info(str(_date_elem.date())+" - "+str(_now.date()))
+                                            logging.info(f"{dt.now()} - {str(_date_elem.date())+" - "+str(_now.date())}")
                                             break
                                 except Exception as error2:
                                     #print("Error 74: "+str(error2))
@@ -122,12 +123,12 @@ class BookingSearch:
                     buttons = driver.find_elements_by_xpath("//button[@type='submit']")
                     sleep(2)
                     for b in buttons:
-                        logging.info(f"Button Submit: {b.text}")
+                        logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
                         if "Buscar" or "Search" in b.text:
                             try:
                                 b.click()
                             except Exception as e:
-                                logging.info("[-] Error in button submit general, element not clicked")
+                                logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
                                 driver.execute_script("arguments[0].click();", b)
                                 sleep(2)
                             break
@@ -138,13 +139,13 @@ class BookingSearch:
                         if cont <= 1:
                             _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
                             _button.click()
-                            logging.info("[+] Click button modal success")
+                            logging.info(f"[+] {dt.now()} Click button modal success")
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in button Modal")
+                        logging.info(f"[-] {dt.now()} Error in button Modal")
                     except ElementClickInterceptedException as e:
-                        logging.info("[-] Error in button Modal, element not clicked")
+                        logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
                     except Exception as e:
-                        logging.info("[-] Error in button Modal general")
+                        logging.info(f"[-] {dt.now()} Error in button Modal general")
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -152,30 +153,30 @@ class BookingSearch:
                         for s in elements:
                             if str(start)+" estrellas" in str(s):
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
-                                logging.info("[+] Click button start success")
+                                logging.info(f"[+] {dt.now()} Click button start success")
                                 break
                                 
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in start button")
+                        logging.info(f"[-] {dt.now()} Error in start button")
                         try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input")
                             for s in elements:
                                 if str(start)+" estrellas" in str(s):
                                     driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
-                                    logging.info("[+] Click button start success")
+                                    logging.info(f"[+] {dt.now()} Click button start success")
                                     break
                                     
                         except NoSuchElementException as e:
-                            logging.info("[-] Error in start button - reintento 2")
+                            logging.info(f"[-] {dt.now()} Error in start button - reintento 2")
                         except ElementClickInterceptedException as e:
-                            logging.info("[-] Error in start button, element not clicked2")
+                            logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
                         except Exception as e:
-                            logging.info("[-] Error in start button general, element not clicked")
+                            logging.info(f"[-] {dt.now()} Error in start button general, element not clicked")
                     except ElementClickInterceptedException as e:
-                        logging.info("[-] Error in start button, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
                     except Exception as e:
-                        logging.info("[-] Error in start button general")
+                        logging.info(f"[-] {dt.now()} Error in start button general")
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -183,14 +184,14 @@ class BookingSearch:
                         for s in elements:
                             if "Hoteles" in str(s):
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
-                                logging.info("[+] Click button hoteles success")
+                                logging.info(f"[+] {dt.now()} Click button hoteles success")
                                 break
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in Hoteles button")
+                        logging.info(f"[-] {dt.now()} Error in Hoteles button")
                     except ElementClickInterceptedException as e:
-                        logging.info("[-] Error in Hoteles button, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked1")
                     except Exception as e:
-                        logging.info("[-] Error in Hoteles button general")
+                        logging.info(f"[-] {dt.now()} Error in Hoteles button general")
 
                     sleep(1)
                     try:
@@ -198,28 +199,28 @@ class BookingSearch:
                         sleep(1)
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
                         driver.find_element_by_xpath("//button[@data-id='price']").click()
-                        logging.info("[+] Click button price success")
+                        logging.info(f"[+] {dt.now()} Click button price success")
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in button price")
+                        logging.info(f"[-] {dt.now()} Error in button price")
                     except ElementClickInterceptedException as e:
-                        logging.info("[-] Error in price button, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in price button, element not clicked1")
                     except Exception as e:
-                        logging.info("[-] Error in price button general")
+                        logging.info(f"[-] {dt.now()} Error in price button general")
 
                     sleep(2)
                     # Items booking search
                     items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
-                    logging.info(f"[+] Elementos encontrados: {len(items)}")
+                    logging.info(f"[+] {dt.now()} Elementos encontrados: {len(items)}")
                     total_search = 0
                     try:
                         total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
-                        logging.info(f"[+] Total search success: {total_search}")
+                        logging.info(f"[+] {dt.now()} Total search success: {total_search}")
                     except NoSuchElementException as e:
-                        logging.info("[-] Error in get total_search")
+                        logging.info(f"[-] {dt.now()} Error in get total_search")
                     except ElementClickInterceptedException as e:
-                        logging.info("[-] Error in total_search, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in total_search, element not clicked1")
                     except Exception as e:
-                        logging.info("[-] Error in total_search general")
+                        logging.info(f"[-] {dt.now()} Error in total_search general")
 
                     try:
                         for position in p.position:
@@ -228,14 +229,14 @@ class BookingSearch:
                                 item_list[aux_d["title"]] = []
                             item_list[aux_d["title"]].append(aux_d)
                     except Exception as e:
-                        logging.info("[-] Error 170: "+str(e))
+                        logging.info(f"[-] {dt.now()} Error 170: "+str(e))
                     sleep(1)
                         
                     if _date_elem.date() >= _date_end.date():
                         break
                     cont += 1
         except Exception as e2:
-            logging.info("[-] Error 218: "+str(e2))
+            logging.info(f"[-] {dt.now()} Error 218: "+str(e2))
 
         driver.close()
 
@@ -372,27 +373,27 @@ class BookingSearch:
             try:
                 item_dict["start"] = cls.search_start(html)
             except Exception as e0:
-                logging.info("[-] Error in Get start")
+                logging.info(f"[-] {dt.now()} Error in Get start")
             try:
                 item_dict["title"], item_dict["link"] = cls.search_title(html)
             except Exception as e3:
-                logging.info("[-] Error in Get title and link")
+                logging.info(f"[-] {dt.now()} Error in Get title and link")
             try:
                 item_dict["address"], item_dict["distance"] = cls.search_address(html)
             except Exception as e4:
-                logging.info("[-] Error in Get address")
+                logging.info(f"[-] {dt.now()} Error in Get address")
             try:
                 item_dict["description"] = cls.search_description(html)
             except Exception as _e2:
-                logging.info("[-] Error in Get description")
+                logging.info(f"[-] {dt.now()} Error in Get description")
             try:
                 item_dict["img"] = cls.search_img(html)
             except Exception as e5:
-                logging.info("[-] Error in Get img")
+                logging.info(f"[-] {dt.now()} Error in Get img")
             try:
                 item_dict["price"] = cls.search_price(html)
             except Exception as e6:
-                logging.info("[-] Error in Get price")
+                logging.info(f"[-] {dt.now()} Error in Get price")
 
             bg = Booking.objects.filter(title=item_dict["title"], start=item_dict["start"], occupancy=occupancy).first()
             if not bg:
@@ -442,7 +443,7 @@ class BookingSearch:
                 _available.price = item_dict["price"]
                 _available.save()
         except Exception as e:
-            logging.info("[-] Error General data: "+str(e))
+            logging.info(f"[-] {dt.now()} Error General data: "+str(e))
             logging.info(item_dict)
         
         return item_dict
