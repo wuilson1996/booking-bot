@@ -162,6 +162,11 @@ class BookingSearch:
                                     driver.execute_script("arguments[0].click();", check_start)
                                     sleep(2)
                                 logging.info(f"[+] {dt.now()} Click button start success")
+                                try:
+                                    check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                                    logging.info(f"[+] {dt.now()} {check_start.get_attribute('innerHTML')}")
+                                except Exception as e0:
+                                    logging.info(f"[-] {dt.now()} Error in start get input check state")
                                 break
                                 
                     except NoSuchElementException as e:
