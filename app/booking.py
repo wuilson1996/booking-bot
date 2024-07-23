@@ -151,7 +151,7 @@ class BookingSearch:
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                        elements = _soup_elements.find_all("input")
+                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
                             logging.info(f"[+] {dt.now()} Start: {s}")
                             if str(start)+" estrellas" or str(start)+" stars" in str(s):
@@ -183,7 +183,7 @@ class BookingSearch:
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                        elements = _soup_elements.find_all("input")
+                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
                         for s in elements:
                             if "Hoteles" or "Hotels" in str(s):
                                 check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
