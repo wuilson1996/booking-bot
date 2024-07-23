@@ -155,7 +155,12 @@ class BookingSearch:
                         for s in elements:
                             logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                             if str(start)+" stars" in str(s.get('aria-label')) or str(start)+" estrellas" in str(s.get('aria-label')):# or str(start)+" stars" 
-                                driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
+                                check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                                try:
+                                    check_start.click()
+                                except ElementClickInterceptedException:
+                                    driver.execute_script("arguments[0].click();", check_start)
+                                    sleep(2)
                                 logging.info(f"[+] {dt.now()} Click button start success")
                                 break
                                 
