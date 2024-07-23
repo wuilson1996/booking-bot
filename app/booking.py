@@ -102,7 +102,7 @@ class BookingSearch:
                                         if _date_elem.date() == _now.date():
                                             _td.click()
                                             _now += datetime.timedelta(days=1)
-                                            logging.info(f"{dt.now()} - {str(_date_elem.date())+" - "+str(_now.date())}")
+                                            logging.info(f"{dt.now()} - {str(_date_elem.date())} - {str(_now.date())}")
                                             break
                                 except Exception as error2:
                                     #print("Error 74: "+str(error2))
