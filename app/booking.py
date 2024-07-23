@@ -153,6 +153,7 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input")
                         for s in elements:
+                            logging.info(f"[+] {dt.now()} Start: {s}")
                             if str(start)+" estrellas" in str(s):
                                 driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").click()
                                 logging.info(f"[+] {dt.now()} Click button start success")
@@ -191,6 +192,8 @@ class BookingSearch:
                                 except ElementClickInterceptedException as e2:
                                     driver.execute_script("arguments[0].click();", check_hotel)
                                     sleep(2)
+                                check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']").get_attribute("innerHTML")
+                                logging.info(f"[+] {dt.now()} {check_hotel.get_attribute('innerHTML')}")
                                 logging.info(f"[+] {dt.now()} Click button hoteles success")
                                 break
                     except NoSuchElementException as e:
