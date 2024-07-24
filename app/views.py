@@ -43,9 +43,16 @@ def active_process(request):
         for t in threads:
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
             t.join()
-        logging.info(f"[+] {dt.now()} Sleep 60 seconds...")
-        sleep(60)
-        logging.info(f"[+] {dt.now()} Sleep 60 seconds finish...")
+        
+        if p:
+            seconds = 60 * p.time_sleep_minutes
+            logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
+            sleep(seconds) # minutos definidos en proceso.
+        else:
+            seconds = 60 * 3
+            logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
+            sleep(seconds) # 3 minutos por default.
+        logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
         state = False
         for p in ProcessActive.objects.all():
             if p.currenct:
