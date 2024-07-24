@@ -235,7 +235,7 @@ class BookingSearch:
                                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                     for s in elements:
-                                        if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
+                                        if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" == str(s.get('aria-label')).split(":")[0].strip():
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(':')[0].strip()}")
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                             #break
