@@ -77,6 +77,7 @@ class BookingSearch:
 
         try:
             while True:
+                driver.get(driver.current_url+"&checkin=2024-07-24&checkout=2024-07-25")
                 # try:
                 #     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
                 #     #driver.execute_script("arguments[0].click();", b2)
@@ -141,7 +142,7 @@ class BookingSearch:
                 #     #print("Error 77: "+str(error))
                 #     _error = "Error in get date error1: "+str(error)
 
-                _date_elem = _now.date()
+                _date_elem = _now
                 _now += datetime.timedelta(days=1)
                 
                 #if _error is None:
