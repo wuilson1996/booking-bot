@@ -78,93 +78,11 @@ class BookingSearch:
         try:
             while True:
                 logging.info(driver.current_url)
-                driver.get(driver.current_url+"&checkin=2024-07-24&checkout=2024-07-25")
-                driver.implicitly_wait(15)
-                # try:
-                #     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
-                #     #driver.execute_script("arguments[0].click();", b2)
-                #     driver.execute_script("arguments[0].scrollIntoView(true);", b2)
-                #     sleep(1)
-                #     b2.click()
-                #     logging.info(f"[+] {dt.now()} Click button dropdown occupancy success")
-                #     sleep(2)
-                #     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
-                #     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
-                #     #logging.info(divs2.get_attribute("innerHTML"))
-                #     logging.info(f"{dt.now()} - {divs2.text} - {occupancy}")
-                #     for i in range(occupancy - int(divs2.text)):
-                #         buttons2 = divs2.find_elements_by_tag_name("button")
-                #         driver.execute_script("arguments[0].scrollIntoView(true);", buttons2[1])
-                #         sleep(1)
-                #         buttons2[1].click()
-                # except NoSuchElementException as e:
-                #     logging.info(f"[-] {dt.now()} Error in button occupancy, element not fount")
-                # except ElementClickInterceptedException as e:
-                #     logging.info(f"[-] {dt.now()} Error in button occupancy, element not clicked")
-                # except Exception as e:
-                #     logging.info(f"[-] {dt.now()} Error in button occupancy general: "+str(e))
-
-                # try:
-                #     _error = None
-                #     _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
-                #     driver.execute_script("arguments[0].scrollIntoView(true);", _date)
-                #     sleep(1)
-                #     _date.click()
-                #     logging.info(f"[+] {dt.now()} Click button dropdown date success")
-                #     divs = driver.find_element_by_xpath("//div[@data-testid='searchbox-datepicker-calendar']").find_element_by_tag_name("div").find_element_by_tag_name("div")
-                #     divs = [divs, divs.find_element_by_xpath('following-sibling::div')]
-                #     #print(divs[1].get_attribute("innerHTML"))
-                #     tds = divs[0].find_elements_by_tag_name("td")
-                #     tds += divs[1].find_elements_by_tag_name("td")
-                #     for _td in tds:
-                #         _date_soup = BeautifulSoup(_td.get_attribute("innerHTML"), "html.parser")
-                #         if _date_soup:
-                #             #print("td soup: "+str(_date_soup))
-                #             try:
-                #                 aux_date = search_date(str(_date_soup))
-                #                 #print("Date aux: "+str(aux_date))
-                #                 try:
-                #                     if len(aux_date) == 1:
-                #                         _date_elem = dt(int(aux_date[0][0]), int(aux_date[0][1]), int(aux_date[0][2]))
-                #                         if _date_elem.date() == _now.date():
-                #                             driver.execute_script("arguments[0].scrollIntoView(true);", _td)
-                #                             sleep(1)
-                #                             _td.click()
-                #                             logging.info(f"{dt.now()} - {str(_date_elem.date())} - {str(_now.date())}")
-                #                             _now += datetime.timedelta(days=1)
-                #                             break
-                #                 except Exception as error2:
-                #                     #print("Error 74: "+str(error2))
-                #                     _error = "Error get date error2: "+str(error2)
-                #             except Exception as error3:
-                #                 #print("Error 64: "+str(error3))
-                #                 _error = "Error in get date error3: "+str(error3)
-                            
-                # except Exception as error:
-                #     #print("Error 77: "+str(error))
-                #     _error = "Error in get date error1: "+str(error)
-
                 _date_elem = _now
                 _now += datetime.timedelta(days=1)
-                
-                #if _error is None:
-                # buttons = driver.find_elements_by_xpath("//button[@type='submit']")
-                # sleep(2)
+                driver.get(driver.current_url+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}")
+                driver.implicitly_wait(15)
 
-                # buttons = driver.find_elements_by_xpath("//button[@type='submit']")
-                # sleep(2)
-                # for b in buttons:
-                #     logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
-                #     if "Buscar" or "Search" in b.text:
-                #         try:
-                #             driver.execute_script("arguments[0].scrollIntoView(true);", b)
-                #             b.click()
-                #         except Exception as e:
-                #             logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
-                #             driver.execute_script("arguments[0].click();", b)
-                #             sleep(2)
-                #         break
-                
                 logging.info(driver.current_url)
 
                 try:
