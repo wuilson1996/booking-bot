@@ -77,7 +77,9 @@ class BookingSearch:
 
         try:
             while True:
+                logging.info(driver.current_url)
                 driver.get(driver.current_url+"&checkin=2024-07-24&checkout=2024-07-25")
+                driver.implicitly_wait(15)
                 # try:
                 #     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
                 #     #driver.execute_script("arguments[0].click();", b2)
