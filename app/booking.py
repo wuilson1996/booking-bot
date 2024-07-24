@@ -61,111 +61,157 @@ class BookingSearch:
         _date_end = dt(int(date_end[0]), int(date_end[1]), int(date_end[2]))
         cont = 0
         item_list = {}
+
+        buttons = driver.find_elements_by_xpath("//button[@type='submit']")
+        sleep(2)
+        for b in buttons:
+            logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
+            if "Buscar" or "Search" in b.text:
+                try:
+                    b.click()
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
+                    driver.execute_script("arguments[0].click();", b)
+                    sleep(2)
+                break
+
         try:
             while True:
-                try:
-                    b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
-                    #driver.execute_script("arguments[0].click();", b2)
-                    driver.execute_script("arguments[0].scrollIntoView(true);", b2)
-                    sleep(1)
-                    b2.click()
-                    logging.info(f"[+] {dt.now()} Click button dropdown occupancy success")
-                    sleep(2)
-                    _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
-                    divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
-                    #logging.info(divs2.get_attribute("innerHTML"))
-                    logging.info(f"{dt.now()} - {divs2.text} - {occupancy}")
-                    for i in range(occupancy - int(divs2.text)):
-                        buttons2 = divs2.find_elements_by_tag_name("button")
-                        driver.execute_script("arguments[0].scrollIntoView(true);", buttons2[1])
-                        sleep(1)
-                        buttons2[1].click()
-                except NoSuchElementException as e:
-                    logging.info(f"[-] {dt.now()} Error in button occupancy, element not fount")
-                except ElementClickInterceptedException as e:
-                    logging.info(f"[-] {dt.now()} Error in button occupancy, element not clicked")
-                except Exception as e:
-                    logging.info(f"[-] {dt.now()} Error in button occupancy general: "+str(e))
+                # try:
+                #     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
+                #     #driver.execute_script("arguments[0].click();", b2)
+                #     driver.execute_script("arguments[0].scrollIntoView(true);", b2)
+                #     sleep(1)
+                #     b2.click()
+                #     logging.info(f"[+] {dt.now()} Click button dropdown occupancy success")
+                #     sleep(2)
+                #     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
+                #     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
+                #     #logging.info(divs2.get_attribute("innerHTML"))
+                #     logging.info(f"{dt.now()} - {divs2.text} - {occupancy}")
+                #     for i in range(occupancy - int(divs2.text)):
+                #         buttons2 = divs2.find_elements_by_tag_name("button")
+                #         driver.execute_script("arguments[0].scrollIntoView(true);", buttons2[1])
+                #         sleep(1)
+                #         buttons2[1].click()
+                # except NoSuchElementException as e:
+                #     logging.info(f"[-] {dt.now()} Error in button occupancy, element not fount")
+                # except ElementClickInterceptedException as e:
+                #     logging.info(f"[-] {dt.now()} Error in button occupancy, element not clicked")
+                # except Exception as e:
+                #     logging.info(f"[-] {dt.now()} Error in button occupancy general: "+str(e))
 
-                try:
-                    _error = None
-                    _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
-                    driver.execute_script("arguments[0].scrollIntoView(true);", _date)
-                    sleep(1)
-                    _date.click()
-                    logging.info(f"[+] {dt.now()} Click button dropdown date success")
-                    divs = driver.find_element_by_xpath("//div[@data-testid='searchbox-datepicker-calendar']").find_element_by_tag_name("div").find_element_by_tag_name("div")
-                    divs = [divs, divs.find_element_by_xpath('following-sibling::div')]
-                    #print(divs[1].get_attribute("innerHTML"))
-                    tds = divs[0].find_elements_by_tag_name("td")
-                    tds += divs[1].find_elements_by_tag_name("td")
-                    for _td in tds:
-                        _date_soup = BeautifulSoup(_td.get_attribute("innerHTML"), "html.parser")
-                        if _date_soup:
-                            #print("td soup: "+str(_date_soup))
-                            try:
-                                aux_date = search_date(str(_date_soup))
-                                #print("Date aux: "+str(aux_date))
-                                try:
-                                    if len(aux_date) == 1:
-                                        _date_elem = dt(int(aux_date[0][0]), int(aux_date[0][1]), int(aux_date[0][2]))
-                                        if _date_elem.date() == _now.date():
-                                            driver.execute_script("arguments[0].scrollIntoView(true);", _td)
-                                            sleep(1)
-                                            _td.click()
-                                            _now += datetime.timedelta(days=1)
-                                            logging.info(f"{dt.now()} - {str(_date_elem.date())} - {str(_now.date())}")
-                                            break
-                                except Exception as error2:
-                                    #print("Error 74: "+str(error2))
-                                    _error = "Error get date error2: "+str(error2)
-                            except Exception as error3:
-                                #print("Error 64: "+str(error3))
-                                _error = "Error in get date error3: "+str(error3)
+                # try:
+                #     _error = None
+                #     _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
+                #     driver.execute_script("arguments[0].scrollIntoView(true);", _date)
+                #     sleep(1)
+                #     _date.click()
+                #     logging.info(f"[+] {dt.now()} Click button dropdown date success")
+                #     divs = driver.find_element_by_xpath("//div[@data-testid='searchbox-datepicker-calendar']").find_element_by_tag_name("div").find_element_by_tag_name("div")
+                #     divs = [divs, divs.find_element_by_xpath('following-sibling::div')]
+                #     #print(divs[1].get_attribute("innerHTML"))
+                #     tds = divs[0].find_elements_by_tag_name("td")
+                #     tds += divs[1].find_elements_by_tag_name("td")
+                #     for _td in tds:
+                #         _date_soup = BeautifulSoup(_td.get_attribute("innerHTML"), "html.parser")
+                #         if _date_soup:
+                #             #print("td soup: "+str(_date_soup))
+                #             try:
+                #                 aux_date = search_date(str(_date_soup))
+                #                 #print("Date aux: "+str(aux_date))
+                #                 try:
+                #                     if len(aux_date) == 1:
+                #                         _date_elem = dt(int(aux_date[0][0]), int(aux_date[0][1]), int(aux_date[0][2]))
+                #                         if _date_elem.date() == _now.date():
+                #                             driver.execute_script("arguments[0].scrollIntoView(true);", _td)
+                #                             sleep(1)
+                #                             _td.click()
+                #                             logging.info(f"{dt.now()} - {str(_date_elem.date())} - {str(_now.date())}")
+                #                             _now += datetime.timedelta(days=1)
+                #                             break
+                #                 except Exception as error2:
+                #                     #print("Error 74: "+str(error2))
+                #                     _error = "Error get date error2: "+str(error2)
+                #             except Exception as error3:
+                #                 #print("Error 64: "+str(error3))
+                #                 _error = "Error in get date error3: "+str(error3)
                             
-                except Exception as error:
-                    #print("Error 77: "+str(error))
-                    _error = "Error in get date error1: "+str(error)
+                # except Exception as error:
+                #     #print("Error 77: "+str(error))
+                #     _error = "Error in get date error1: "+str(error)
+
+                _date_elem = _now.date()
+                _now += datetime.timedelta(days=1)
                 
-                if _error is None:
-                    #logging.info(driver.current_url)
-                    buttons = driver.find_elements_by_xpath("//button[@type='submit']")
-                    sleep(2)
+                #if _error is None:
+                # buttons = driver.find_elements_by_xpath("//button[@type='submit']")
+                # sleep(2)
 
-                    buttons = driver.find_elements_by_xpath("//button[@type='submit']")
-                    sleep(2)
-                    for b in buttons:
-                        logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
-                        if "Buscar" or "Search" in b.text:
+                # buttons = driver.find_elements_by_xpath("//button[@type='submit']")
+                # sleep(2)
+                # for b in buttons:
+                #     logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
+                #     if "Buscar" or "Search" in b.text:
+                #         try:
+                #             driver.execute_script("arguments[0].scrollIntoView(true);", b)
+                #             b.click()
+                #         except Exception as e:
+                #             logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
+                #             driver.execute_script("arguments[0].click();", b)
+                #             sleep(2)
+                #         break
+                
+                logging.info(driver.current_url)
+
+                try:
+                    if cont <= 1:
+                        _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
+                        _button.click()
+                        logging.info(f"[+] {dt.now()} Click button modal success")
+                except NoSuchElementException as e:
+                    logging.info(f"[-] {dt.now()} Error in button Modal, not fount")
+                except ElementClickInterceptedException as e:
+                    logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
+                sleep(1)
+                try:
+                    _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                    elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                    for s in elements:
+                        #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                        if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
+                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
+                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
+                            check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                             try:
-                                driver.execute_script("arguments[0].scrollIntoView(true);", b)
-                                b.click()
-                            except Exception as e:
-                                logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
-                                driver.execute_script("arguments[0].click();", b)
+                                driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
+                                check_start.click()
+                            except ElementClickInterceptedException:
+                                driver.execute_script("arguments[0].click();", check_start)
                                 sleep(2)
+                            logging.info(f"[+] {dt.now()} Click button start success")
+                            try:
+                                _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                                elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                                for s in elements:
+                                    if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
+                                        logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
+                                        logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
+                                        #break
+                            except Exception as e0:
+                                logging.info(f"[-] {dt.now()} Error in start get input check state")
                             break
-                    
-                    logging.info(driver.current_url)
-
-                    try:
-                        if cont <= 1:
-                            _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
-                            _button.click()
-                            logging.info(f"[+] {dt.now()} Click button modal success")
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
-                    sleep(1)
+                            
+                except NoSuchElementException as e:
+                    logging.info(f"[-] {dt.now()} Error in start button, not fount")
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                        elements = _soup_elements.find_all("input")
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
-                            if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
+                            if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():#or str(start)+" stars"
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
@@ -186,143 +232,113 @@ class BookingSearch:
                                             #break
                                 except Exception as e0:
                                     logging.info(f"[-] {dt.now()} Error in start get input check state")
-                                break
+                                    break
                                 
                     except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in start button, not fount")
-                        try:
-                            _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                            elements = _soup_elements.find_all("input")
-                            for s in elements:
-                                #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
-                                if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():#or str(start)+" stars"
-                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
-                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
-                                    check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
-                                    try:
-                                        driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
-                                        check_start.click()
-                                    except ElementClickInterceptedException:
-                                        driver.execute_script("arguments[0].click();", check_start)
-                                        sleep(2)
-                                    logging.info(f"[+] {dt.now()} Click button start success")
-                                    try:
-                                        _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
-                                        for s in elements:
-                                            if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
-                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
-                                                #break
-                                    except Exception as e0:
-                                        logging.info(f"[-] {dt.now()} Error in start get input check state")
-                                        break
-                                    
-                        except NoSuchElementException as e:
-                            logging.info(f"[-] {dt.now()} Error in start button - reintento 2, not fount")
-                        except ElementClickInterceptedException as e:
-                            logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
-                        except Exception as e:
-                            logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
+                        logging.info(f"[-] {dt.now()} Error in start button - reintento 2, not fount")
                     except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
+                        logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
-                    sleep(1)
-                    try:
-                        _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
-                        for s in elements:
-                            #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
-                            if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                                logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
-                                logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
-                                check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
-                                try:
-                                    driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
-                                    check_hotel.click()
-                                except ElementClickInterceptedException as e2:
-                                    driver.execute_script("arguments[0].click();", check_hotel)
-                                    sleep(2)
-                                logging.info(f"[+] {dt.now()} Click button hoteles success")
-                                try:
-                                    _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                                    elements = _soup_elements.find_all("input", {"type": "checkbox"})
-                                    for s in elements:
-                                        if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" == str(s.get('aria-label')).split(":")[0].strip():
-                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
-                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
-                                            #break
-                                except Exception as e3:
-                                    logging.info(f"[-] {dt.now()} Error in Hoteles get input check")
-                                break
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
+                except ElementClickInterceptedException as e:
+                    logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
+                sleep(1)
+                try:
+                    _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                    elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                    for s in elements:
+                        #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
+                        if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
+                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
+                            logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
+                            check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                            try:
+                                driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
+                                check_hotel.click()
+                            except ElementClickInterceptedException as e2:
+                                driver.execute_script("arguments[0].click();", check_hotel)
+                                sleep(2)
+                            logging.info(f"[+] {dt.now()} Click button hoteles success")
+                            try:
+                                _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                                elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                                for s in elements:
+                                    if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" == str(s.get('aria-label')).split(":")[0].strip():
+                                        logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
+                                        logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
+                                        #break
+                            except Exception as e3:
+                                logging.info(f"[-] {dt.now()} Error in Hoteles get input check")
+                            break
+                except NoSuchElementException as e:
+                    logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
+                except ElementClickInterceptedException as e:
+                    logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
-                    sleep(1)
+                sleep(1)
+                try:
+                    dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
+                    logging.info(f"[+] {dt.now()} element price {str(dropdown_price)}")
                     try:
-                        dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
-                        logging.info(f"[+] {dt.now()} element price {str(dropdown_price)}")
-                        try:
-                            driver.execute_script("arguments[0].scrollIntoView(true);", dropdown_price)
-                            dropdown_price.click()
-                            sleep(1)
-                        except ElementClickInterceptedException as e02:
-                            driver.execute_script("arguments[0].click();", dropdown_price)
-                            sleep(2)
-                        logging.info(f"[+] {dt.now()} Click button dropdown success")
-                        #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
-                        div_li = driver.find_elements_by_xpath("//div[@data-testid='sorters-dropdown']")
-                        for dl in div_li:
-                            logging.info(f"[+] {dt.now()} Element: {dl.text}")
-                        check_price = driver.find_element_by_xpath("//button[@data-id='price']")
-                        try:
-                            driver.execute_script("arguments[0].scrollIntoView(true);", check_price)
-                            check_price.click()
-                        except ElementClickInterceptedException as e2:
-                            driver.execute_script("arguments[0].click();", check_price)
-                            sleep(2)
-                        logging.info(f"[+] {dt.now()} Click button price success")
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in button price, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in price button general: "+str(e))
+                        driver.execute_script("arguments[0].scrollIntoView(true);", dropdown_price)
+                        dropdown_price.click()
+                        sleep(1)
+                    except ElementClickInterceptedException as e02:
+                        driver.execute_script("arguments[0].click();", dropdown_price)
+                        sleep(2)
+                    logging.info(f"[+] {dt.now()} Click button dropdown success")
+                    #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
+                    div_li = driver.find_elements_by_xpath("//div[@data-testid='sorters-dropdown']")
+                    for dl in div_li:
+                        logging.info(f"[+] {dt.now()} Element: {dl.text}")
+                    check_price = driver.find_element_by_xpath("//button[@data-id='price']")
+                    try:
+                        driver.execute_script("arguments[0].scrollIntoView(true);", check_price)
+                        check_price.click()
+                    except ElementClickInterceptedException as e2:
+                        driver.execute_script("arguments[0].click();", check_price)
+                        sleep(2)
+                    logging.info(f"[+] {dt.now()} Click button price success")
+                except NoSuchElementException as e:
+                    logging.info(f"[-] {dt.now()} Error in button price, not fount")
+                except ElementClickInterceptedException as e:
+                    logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in price button general: "+str(e))
 
-                    sleep(2)
-                    # Items booking search
-                    items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
-                    logging.info(f"[+] {dt.now()} Elementos encontrados: {len(items)}")
-                    total_search = 0
-                    try:
-                        total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
-                        logging.info(f"[+] {dt.now()} Total search success: {total_search}")
-                        total_search = total_search.replace(",", "").replace(".", "")
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in get total_search, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in total_search, element not clicked1")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in total_search general: "+str(e))
+                sleep(2)
+                # Items booking search
+                items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
+                logging.info(f"[+] {dt.now()} Elementos encontrados: {len(items)}")
+                total_search = 0
+                try:
+                    total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
+                    logging.info(f"[+] {dt.now()} Total search success: {total_search}")
+                    total_search = total_search.replace(",", "").replace(".", "")
+                except NoSuchElementException as e:
+                    logging.info(f"[-] {dt.now()} Error in get total_search, not fount")
+                except ElementClickInterceptedException as e:
+                    logging.info(f"[-] {dt.now()} Error in total_search, element not clicked1")
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error in total_search general: "+str(e))
 
-                    try:
-                        for position in p.position:
-                            aux_d = cls.get_data_to_text(items[position], _date_elem, _now, occupancy, position, total_search)
-                            if aux_d["title"] not in list(item_list.keys()):
-                                item_list[aux_d["title"]] = []
-                            item_list[aux_d["title"]].append(aux_d)
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error 170: "+str(e))
-                    sleep(1)
-                        
-                    if _date_elem.date() >= _date_end.date():
-                        break
-                    cont += 1
+                try:
+                    for position in p.position:
+                        aux_d = cls.get_data_to_text(items[position], _date_elem, _now, occupancy, position, total_search)
+                        if aux_d["title"] not in list(item_list.keys()):
+                            item_list[aux_d["title"]] = []
+                        item_list[aux_d["title"]].append(aux_d)
+                except Exception as e:
+                    logging.info(f"[-] {dt.now()} Error 170: "+str(e))
+                sleep(1)
+                    
+                if _date_elem.date() >= _date_end.date():
+                    break
+                cont += 1
         except Exception as e2:
             logging.info(f"[-] {dt.now()} Error 218: "+str(e2))
 
