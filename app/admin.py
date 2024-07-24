@@ -11,6 +11,10 @@ class AvailableBookingAdmin(admin.ModelAdmin):
 class ProcessActiveAdmin(admin.ModelAdmin):
     search_fields = ["id", "date_end", "occupancy", "start"]
 
+class GeneralSearchAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
+admin.site.register(GeneralSearch, GeneralSearchAdmin)
