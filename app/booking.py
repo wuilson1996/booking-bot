@@ -65,8 +65,8 @@ class BookingSearch:
             while True:
                 try:
                     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
-                    driver.execute_script("arguments[0].click();", b2)
-                    #b2.click()
+                    #driver.execute_script("arguments[0].click();", b2)
+                    b2.click()
                     sleep(2)
                     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
                     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
