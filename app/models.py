@@ -47,3 +47,6 @@ class GeneralSearch(models.Model):
     url = models.TextField(default="https://www.booking.com")
     city_and_country = models.TextField(default="Madrid, Comunidad de Madrid, España")
     time_sleep_minutes = models.IntegerField(default=1)
+
+    def __str__(self) -> str:
+        return str(self.url)+" - "+str(self.city_and_country)+" - "+str(self.time_sleep_minutes)
