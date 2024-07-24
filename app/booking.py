@@ -155,7 +155,7 @@ class BookingSearch:
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                             if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split("/")[0].strip()}")
+                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
@@ -169,7 +169,7 @@ class BookingSearch:
                                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                     for s in elements:
                                         if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split("/")[0].strip()}")
+                                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
                                             logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                             #break
                                 except Exception as e0:
@@ -184,7 +184,7 @@ class BookingSearch:
                             for s in elements:
                                 #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                 if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():#or str(start)+" stars"
-                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split("/")[0].strip()}")
+                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
                                     logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                     check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
@@ -198,7 +198,7 @@ class BookingSearch:
                                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                         for s in elements:
                                             if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split("/")[0].strip()}")
+                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
                                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                                 #break
                                     except Exception as e0:
@@ -222,7 +222,7 @@ class BookingSearch:
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                             if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                                logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(":")[0].strip()}")
+                                logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(':')[0].strip()}")
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                 check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
@@ -236,7 +236,7 @@ class BookingSearch:
                                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                     for s in elements:
                                         if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(":")[0].strip()}")
+                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(':')[0].strip()}")
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                             #break
                                 except Exception as e3:
