@@ -80,7 +80,7 @@ class BookingSearch:
                 except ElementClickInterceptedException as e:
                     logging.info(f"[-] {dt.now()} Error in button occupancy, element not clicked")
                 except Exception as e:
-                    logging.info(f"[-] {dt.now()} Error in button occupancy general")
+                    logging.info(f"[-] {dt.now()} Error in button occupancy general: "+str(e))
 
                 try:
                     _error = None
@@ -147,7 +147,7 @@ class BookingSearch:
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
                     except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal general")
+                        logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -155,7 +155,7 @@ class BookingSearch:
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                             if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
+                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
@@ -169,7 +169,7 @@ class BookingSearch:
                                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                     for s in elements:
                                         if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
+                                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                                             logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                             #break
                                 except Exception as e0:
@@ -184,7 +184,7 @@ class BookingSearch:
                             for s in elements:
                                 #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                                 if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():#or str(start)+" stars"
-                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
+                                    logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                                     logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                     check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
@@ -198,7 +198,7 @@ class BookingSearch:
                                         elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                         for s in elements:
                                             if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label')).split('/')[0].strip()}")
+                                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                                 #break
                                     except Exception as e0:
@@ -210,11 +210,11 @@ class BookingSearch:
                         except ElementClickInterceptedException as e:
                             logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
                         except Exception as e:
-                            logging.info(f"[-] {dt.now()} Error in start button general, element not clicked")
+                            logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
                     except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in start button general")
+                        logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
                     sleep(1)
                     try:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
@@ -222,7 +222,7 @@ class BookingSearch:
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                             if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                                logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(':')[0].strip()}")
+                                logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                 check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
@@ -236,7 +236,7 @@ class BookingSearch:
                                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                                     for s in elements:
                                         if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" == str(s.get('aria-label')).split(":")[0].strip():
-                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label')).split(':')[0].strip()}")
+                                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
                                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                             #break
                                 except Exception as e3:
@@ -247,16 +247,18 @@ class BookingSearch:
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
                     except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button general")
+                        logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
                     sleep(1)
                     try:
                         dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
+                        logging.info(f"[+] {dt.now()} element price {str(dropdown_price)}")
                         try:
                             dropdown_price.click()
+                            sleep(1)
                         except ElementClickInterceptedException as e02:
                             driver.execute_script("arguments[0].click();", dropdown_price)
-                        sleep(1)
+                            sleep(2)
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
                         check_price = driver.find_element_by_xpath("//button[@data-id='price']")
                         try:
@@ -270,7 +272,7 @@ class BookingSearch:
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
                     except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in price button general")
+                        logging.info(f"[-] {dt.now()} Error in price button general: "+str(e))
 
                     sleep(2)
                     # Items booking search
@@ -286,7 +288,7 @@ class BookingSearch:
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in total_search, element not clicked1")
                     except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in total_search general")
+                        logging.info(f"[-] {dt.now()} Error in total_search general: "+str(e))
 
                     try:
                         for position in p.position:
