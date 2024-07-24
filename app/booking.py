@@ -66,7 +66,10 @@ class BookingSearch:
                 try:
                     b2 = driver.find_element_by_xpath("//button[@data-testid='occupancy-config']")
                     #driver.execute_script("arguments[0].click();", b2)
+                    driver.execute_script("arguments[0].scrollIntoView(true);", b2)
+                    sleep(1)
                     b2.click()
+                    logging.info(f"[+] {dt.now()} Click button dropdown occupancy success")
                     sleep(2)
                     _divs = driver.find_elements_by_xpath("//div[@data-testid='occupancy-popup']")
                     divs2 = _divs[0].find_element_by_tag_name("div").find_element_by_tag_name("div").find_elements_by_tag_name("div")[1]
@@ -74,6 +77,8 @@ class BookingSearch:
                     logging.info(f"{dt.now()} - {divs2.text} - {occupancy}")
                     for i in range(occupancy - int(divs2.text)):
                         buttons2 = divs2.find_elements_by_tag_name("button")
+                        driver.execute_script("arguments[0].scrollIntoView(true);", buttons2[1])
+                        sleep(1)
                         buttons2[1].click()
                 except NoSuchElementException as e:
                     logging.info(f"[-] {dt.now()} Error in button occupancy, element not fount")
@@ -85,7 +90,10 @@ class BookingSearch:
                 try:
                     _error = None
                     _date = driver.find_element_by_xpath("//div[@data-testid='searchbox-dates-container']")
+                    driver.execute_script("arguments[0].scrollIntoView(true);", _date)
+                    sleep(1)
                     _date.click()
+                    logging.info(f"[+] {dt.now()} Click button dropdown date success")
                     divs = driver.find_element_by_xpath("//div[@data-testid='searchbox-datepicker-calendar']").find_element_by_tag_name("div").find_element_by_tag_name("div")
                     divs = [divs, divs.find_element_by_xpath('following-sibling::div')]
                     #print(divs[1].get_attribute("innerHTML"))
@@ -102,6 +110,8 @@ class BookingSearch:
                                     if len(aux_date) == 1:
                                         _date_elem = dt(int(aux_date[0][0]), int(aux_date[0][1]), int(aux_date[0][2]))
                                         if _date_elem.date() == _now.date():
+                                            driver.execute_script("arguments[0].scrollIntoView(true);", _td)
+                                            sleep(1)
                                             _td.click()
                                             _now += datetime.timedelta(days=1)
                                             logging.info(f"{dt.now()} - {str(_date_elem.date())} - {str(_now.date())}")
@@ -128,6 +138,7 @@ class BookingSearch:
                         logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
                         if "Buscar" or "Search" in b.text:
                             try:
+                                driver.execute_script("arguments[0].scrollIntoView(true);", b)
                                 b.click()
                             except Exception as e:
                                 logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
@@ -159,6 +170,7 @@ class BookingSearch:
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
+                                    driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
                                     check_start.click()
                                 except ElementClickInterceptedException:
                                     driver.execute_script("arguments[0].click();", check_start)
@@ -188,6 +200,7 @@ class BookingSearch:
                                     logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                     check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
+                                        driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
                                         check_start.click()
                                     except ElementClickInterceptedException:
                                         driver.execute_script("arguments[0].click();", check_start)
@@ -226,6 +239,7 @@ class BookingSearch:
                                 logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                                 check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
+                                    driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
                                     check_hotel.click()
                                 except ElementClickInterceptedException as e2:
                                     driver.execute_script("arguments[0].click();", check_hotel)
@@ -254,6 +268,7 @@ class BookingSearch:
                         dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
                         logging.info(f"[+] {dt.now()} element price {str(dropdown_price)}")
                         try:
+                            driver.execute_script("arguments[0].scrollIntoView(true);", dropdown_price)
                             dropdown_price.click()
                             sleep(1)
                         except ElementClickInterceptedException as e02:
@@ -266,6 +281,7 @@ class BookingSearch:
                             logging.info(f"[+] {dt.now()} Element: {dl.text}")
                         check_price = driver.find_element_by_xpath("//button[@data-id='price']")
                         try:
+                            driver.execute_script("arguments[0].scrollIntoView(true);", check_price)
                             check_price.click()
                         except ElementClickInterceptedException as e2:
                             driver.execute_script("arguments[0].click();", check_price)
