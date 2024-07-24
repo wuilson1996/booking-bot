@@ -84,7 +84,7 @@ class BookingSearch:
                 driver.implicitly_wait(15)
 
                 logging.info(driver.current_url)
-                logging.info(f"[-] {dt.now()} - {_date_elem} - {_now}")
+                logging.info(f"[-] {dt.now()} - {_date_elem.date()} - {_now.date()}")
 
                 try:
                     if cont <= 1:
