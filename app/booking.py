@@ -78,7 +78,7 @@ class BookingSearch:
         try:
             _current_url = driver.current_url
             while True:
-                logging.info(driver.current_url)
+                #logging.info(driver.current_url)
                 _date_elem = _now
                 _now += datetime.timedelta(days=1)
                 #_current_url = str(driver.current_url)
@@ -109,14 +109,14 @@ class BookingSearch:
                     logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
                 except Exception as e:
                     logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
-                sleep(3)
+                sleep(2)
                 try:
                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                     for s in elements:
                         #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                         if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():# or str(start)+" stars" 
-                            logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
+                            #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                             logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                             check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                             try:
@@ -146,7 +146,7 @@ class BookingSearch:
                         for s in elements:
                             #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                             if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split("/")[0].strip():#or str(start)+" stars"
-                                logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
+                                #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {str(s.get('aria-label'))}")
                                 logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
@@ -185,7 +185,7 @@ class BookingSearch:
                     for s in elements:
                         #logging.info(f"[+] {dt.now()} - Hotels - Input: {s.get('aria-label')}")
                         if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                            logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
+                            #logging.info(f"[+] {dt.now()} - Hotels - Input: {str(s.get('aria-label'))}")
                             logging.info(f"[+] {dt.now()} - Hotels - Input: {s}")
                             check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                             try:
@@ -216,7 +216,6 @@ class BookingSearch:
                 sleep(2)
                 try:
                     dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
-                    logging.info(f"[+] {dt.now()} element price {str(dropdown_price)}")
                     try:
                         driver.execute_script("arguments[0].scrollIntoView(true);", dropdown_price)
                         dropdown_price.click()
