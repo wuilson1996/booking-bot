@@ -97,7 +97,7 @@ class BookingSearch:
                     logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
                 except Exception as e:
                     logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
-                sleep(1)
+                sleep(3)
                 try:
                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
@@ -166,7 +166,7 @@ class BookingSearch:
                     logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
                 except Exception as e:
                     logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
-                sleep(1)
+                sleep(2)
                 try:
                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
@@ -201,7 +201,7 @@ class BookingSearch:
                 except Exception as e:
                     logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
-                sleep(1)
+                sleep(2)
                 try:
                     dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
                     logging.info(f"[+] {dt.now()} element price {str(dropdown_price)}")
