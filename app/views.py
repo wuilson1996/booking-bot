@@ -32,7 +32,7 @@ def active_process(request):
             if not p.active:
                 booking = BookingSearch()
                 logging.info(f"[+] {dt.now()} Search driver...")
-                _driver = booking._driver()
+                _driver = booking._driver(general_search.url)
                 p.active = True
                 p.save()
                 #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
@@ -45,8 +45,8 @@ def active_process(request):
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
             t.join()
         
-        if p:
-            seconds = 60 * p.time_sleep_minutes
+        if general_search:
+            seconds = 60 * general_search.time_sleep_minutes
             logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
             sleep(seconds) # minutos definidos en proceso.
         else:

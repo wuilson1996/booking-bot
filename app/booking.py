@@ -20,8 +20,8 @@ def search_date(text):
 
 class BookingSearch:
     @classmethod
-    def _driver2(cls) -> None:
-        cls._url = "https://www.booking.com"
+    def _driver2(cls, url) -> None:
+        cls._url = url
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu")
@@ -30,8 +30,8 @@ class BookingSearch:
         return webdriver.Chrome(executable_path=os.path.abspath("chromedriver"), options=options)
 
     @classmethod
-    def _driver(cls) -> None:
-        cls._url = "https://www.booking.com"
+    def _driver(cls, url) -> None:
+        cls._url = url
         options = webdriver.FirefoxOptions()
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
