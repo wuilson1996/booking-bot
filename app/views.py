@@ -27,6 +27,7 @@ def active_process(request):
     logging.info(f"[+] {dt.now()} Activando process...")
     while True:
         threads = []
+        general_search = GeneralSearch.objects.all().last()
         for p in ProcessActive.objects.all():
             if not p.active:
                 booking = BookingSearch()
@@ -34,9 +35,9 @@ def active_process(request):
                 _driver = booking._driver()
                 p.active = True
                 p.save()
-                #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))
+                #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
                 logging.info(f"[+] {dt.now()} Process active in while...")
-                process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p))
+                process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p, general_search.city_and_country))
                 process.daemon = True
                 process.start()
                 threads.append(process)

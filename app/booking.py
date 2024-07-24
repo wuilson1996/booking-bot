@@ -40,7 +40,7 @@ class BookingSearch:
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
     @classmethod
-    def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None):
+    def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None, search_name=""):
         driver.get(cls._url)
         driver.implicitly_wait(15)
         sleep(5)
@@ -55,7 +55,7 @@ class BookingSearch:
             
         # Search
         search = driver.find_element_by_xpath("//input[@name='ss']")
-        search.send_keys("Madrid, Comunidad de Madrid, España")
+        search.send_keys(search_name)
 
         data = []
         _date_end = dt(int(date_end[0]), int(date_end[1]), int(date_end[2]))
