@@ -143,7 +143,7 @@ class BookingSearch:
                             _button.click()
                             logging.info(f"[+] {dt.now()} Click button modal success")
                     except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal")
+                        logging.info(f"[-] {dt.now()} Error in button Modal, not fount")
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
                     except Exception as e:
@@ -177,7 +177,7 @@ class BookingSearch:
                                 break
                                 
                     except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in start button")
+                        logging.info(f"[-] {dt.now()} Error in start button, not fount")
                         try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input")
@@ -206,7 +206,7 @@ class BookingSearch:
                                         break
                                     
                         except NoSuchElementException as e:
-                            logging.info(f"[-] {dt.now()} Error in start button - reintento 2")
+                            logging.info(f"[-] {dt.now()} Error in start button - reintento 2, not fount")
                         except ElementClickInterceptedException as e:
                             logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
                         except Exception as e:
@@ -243,7 +243,7 @@ class BookingSearch:
                                     logging.info(f"[-] {dt.now()} Error in Hoteles get input check")
                                 break
                     except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button")
+                        logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
                     except Exception as e:
@@ -261,6 +261,9 @@ class BookingSearch:
                             sleep(2)
                         logging.info(f"[+] {dt.now()} Click button dropdown success")
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
+                        div_li = driver.find_elements_by_xpath("//div[@data-testid='sorters-dropdown']")
+                        for dl in div_li:
+                            logging.info(f"[+] {dt.now()} Element: {dl.text}")
                         check_price = driver.find_element_by_xpath("//button[@data-id='price']")
                         try:
                             check_price.click()
@@ -269,7 +272,7 @@ class BookingSearch:
                             sleep(2)
                         logging.info(f"[+] {dt.now()} Click button price success")
                     except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in button price")
+                        logging.info(f"[-] {dt.now()} Error in button price, not fount")
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
                     except Exception as e:
@@ -285,7 +288,7 @@ class BookingSearch:
                         logging.info(f"[+] {dt.now()} Total search success: {total_search}")
                         total_search = total_search.replace(",", "").replace(".", "")
                     except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in get total_search")
+                        logging.info(f"[-] {dt.now()} Error in get total_search, not fount")
                     except ElementClickInterceptedException as e:
                         logging.info(f"[-] {dt.now()} Error in total_search, element not clicked1")
                     except Exception as e:
