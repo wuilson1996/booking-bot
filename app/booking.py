@@ -251,7 +251,11 @@ class BookingSearch:
 
                     sleep(1)
                     try:
-                        driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']").click()
+                        dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
+                        try:
+                            dropdown_price.click()
+                        except ElementClickInterceptedException as e02:
+                            driver.execute_script("arguments[0].click();", dropdown_price)
                         sleep(1)
                         #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
                         check_price = driver.find_element_by_xpath("//button[@data-id='price']")
