@@ -76,22 +76,23 @@ class BookingSearch:
                 break
 
         try:
+            _current_url = driver.current_url
             while True:
                 logging.info(driver.current_url)
                 _date_elem = _now
                 _now += datetime.timedelta(days=1)
-                _current_url = str(driver.current_url)
-                if "checkin" not in _current_url and "checkout" not in _current_url:
-                    _current_url = _current_url+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}"
-                else:
-                    for param in str(_current_url).split("&"):
-                        if "checkin" == param.split("=")[0]:
-                            _current_url = str(_current_url).replace(param, f"checkin={str(_date_elem.date())}")
+                #_current_url = str(driver.current_url)
+                #if "checkin" not in _current_url and "checkout" not in _current_url:
+                #_current_url = _current_url+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}"
+                # else:
+                #     for param in str(_current_url).split("&"):
+                #         if "checkin" == param.split("=")[0]:
+                #             _current_url = str(_current_url).replace(param, f"checkin={str(_date_elem.date())}")
 
-                        elif "checkout" == param.split("=")[0]:
-                            _current_url = str(_current_url).replace(param, f"checkout={str(_now.date())}")
+                #         elif "checkout" == param.split("=")[0]:
+                #             _current_url = str(_current_url).replace(param, f"checkout={str(_now.date())}")
                 
-                driver.get(_current_url)
+                driver.get(_current_url+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}")
                 driver.implicitly_wait(15)
 
                 logging.info(driver.current_url)
