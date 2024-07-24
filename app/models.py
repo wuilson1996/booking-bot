@@ -43,3 +43,7 @@ class ProcessActive(models.Model):
 
     def __str__(self) -> str:
         return str(self.date_end)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | "+str(self.active)
+
+class GeneralSearch(models.Model):
+    url = models.TextField(default="https://www.booking.com")
+    city_and_country = models.TextField(default="Madrid, Comunidad de Madrid, España")
