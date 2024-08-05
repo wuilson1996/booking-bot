@@ -8,6 +8,7 @@ from .booking import *
 import threading
 from datetime import datetime as dt
 from .models import *
+from .suitesferia import SuitesFeria
 # Create your views here.
 
 def active_process(request):
@@ -41,6 +42,32 @@ def active_process(request):
                 process.daemon = True
                 process.start()
                 threads.append(process)
+        
+        # get data suitesferia.
+        suites_feria = SuitesFeria()
+        resp = suites_feria.login()
+        logging.info(f"[+] {dt.now()} {resp}")
+        if resp["code"] == 200:
+            resp_sf = suites_feria.disponibilidad()
+            resp_sf = suites_feria.format_avail(resp_sf)
+            for dsf in resp_sf:
+                avail_sf = AvailSuitesFeria.objects.filter(date_avail = dsf["date"])
+                if not avail_sf:
+                    avail_sf = AvailSuitesFeria.objects.create(date_avail = dsf["date"])
+                for key_sf, value_sf in dsf["avail"].items():
+                    cant_asf = CantAvailSuitesFeria.objects.filter(avail_suites_feria = avail_sf, type_avail = key_sf).first()
+                    if not cant_asf:
+                        cant_asf = CantAvailSuitesFeria.objects.create(
+                            type_avail = key_sf,
+                            avail = value_sf,
+                            avail_suites_feria = avail_sf
+                        )
+                    else:
+                        cant_asf.avail = value_sf
+                        cant_asf.save()
+            resp_l = suites_feria.logout()
+            logging.info(f"[+] {dt.now()} {resp_l}")
+
         for t in threads:
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
             t.join()

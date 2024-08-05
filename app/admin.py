@@ -14,7 +14,15 @@ class ProcessActiveAdmin(admin.ModelAdmin):
 class GeneralSearchAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class AvailSuitesFeriaAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
+class CantAvailSuitesFeriaAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
 admin.site.register(GeneralSearch, GeneralSearchAdmin)
+admin.site.register(AvailSuitesFeria, AvailSuitesFeriaAdmin)
+admin.site.register(CantAvailSuitesFeria, CantAvailSuitesFeriaAdmin)

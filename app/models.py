@@ -50,3 +50,17 @@ class GeneralSearch(models.Model):
 
     def __str__(self) -> str:
         return str(self.url)+" - "+str(self.city_and_country)+" - "+str(self.time_sleep_minutes)
+
+class AvailSuitesFeria(models.Model):
+    date_avail = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return str(self.date_avail)
+
+class CantAvailSuitesFeria(models.Model):
+    type_avail = models.CharField(max_length=5)
+    avail = models.IntegerField(default=0)
+    avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return str(self.avail_suites_feria)+" - "+str(self.type_avail)+" - "+str(self.avail)
