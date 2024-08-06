@@ -4,9 +4,10 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .booking import *
+import locale
 import threading
 from datetime import datetime as dt
+from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
 # Create your views here.
@@ -112,37 +113,62 @@ def get_booking(request):
 
 def index(request):
     if request.user.is_authenticated:
-        available_booking = AvailableBooking.objects.all().order_by("id")
+        available_booking = AvailableBooking.objects.all().order_by("date_from")
         bookings = {}
         for b in available_booking:
-            if b.date_from not in bookings:
-                bookings[b.date_from] = {}
-            bookings[b.date_from]["date_from"] = b.date_from
-            bookings[b.date_from]["date_to"] = b.date_to
-            if b.booking.occupancy not in bookings[b.date_from]:
-                bookings[b.date_from][b.booking.occupancy] = {}
-
-            bookings[b.date_from][b.booking.occupancy]["total_search"] = b.total_search
-
-            if int(b.booking.start) != 0:
-                if b.booking.start not in bookings[b.date_from][b.booking.occupancy]:
-                    bookings[b.date_from][b.booking.occupancy][b.booking.start] = {}
+            _date = dt(
+                year=int(b.date_from.split("-")[0]),
+                month=int(b.date_from.split("-")[1]),
+                day=int(b.date_from.split("-")[2])
+            )
+            #print(_date.date(), dt.now().date())
+            if _date.date() >= dt.now().date():
+                if b.date_from not in bookings:
+                    bookings[b.date_from] = {}
+                bookings[b.date_from]["date_from"] = b.date_from
+                bookings[b.date_from]["date_to"] = b.date_to
+                locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+                fecha_especifica = dt.strptime(b.date_from, '%Y-%m-%d')
+                bookings[b.date_from]["day"] = fecha_especifica.strftime('%A')
+            
+                if b.booking.occupancy not in bookings[b.date_from]:
+                    bookings[b.date_from][b.booking.occupancy] = {}
                 
-                _price = b.price.replace("€ ", "")
+                avail_sf = AvailSuitesFeria.objects.filter(date_avail = b.date_from).last()
+                avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                    type_avail = str(b.booking.occupancy),
+                    avail_suites_feria = avail_sf
+                ).last()
 
-                if "media_total" not in bookings[b.date_from][b.booking.occupancy]:
-                    bookings[b.date_from][b.booking.occupancy]["media_total"] = 0
-                    bookings[b.date_from][b.booking.occupancy]["media_cant"] = 0
+                if avail_sf_cant:
+                    #print(avail_sf_cant)
+                    bookings[b.date_from][b.booking.occupancy]["suiteFeria"] = avail_sf_cant.avail
 
-                #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
-                #    print(_price, b.booking.start, b.position)
+                bookings[b.date_from][b.booking.occupancy]["total_search"] = b.total_search
 
-                if "COP" not in _price and b.position not in bookings[b.date_from][b.booking.occupancy][b.booking.start]:
-                    bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position] = {}
-                    bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position]["price"] = _price
-                    bookings[b.date_from][b.booking.occupancy]["media_total"] += int(_price)
-                    bookings[b.date_from][b.booking.occupancy]["media_cant"] += 1
-                    bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position]["name"] = b.booking.title
+                if int(b.booking.start) != 0:
+                    if b.booking.start not in bookings[b.date_from][b.booking.occupancy]:
+                        bookings[b.date_from][b.booking.occupancy][b.booking.start] = {}
+                    
+                    _price = b.price.replace("€ ", "")
+                    
+                    if "Hotel Suites Feria de Madrid" == b.booking.title:
+                        bookings[b.date_from][b.booking.occupancy]["priceSuitesFeria"] = _price
+
+                    if "media_total" not in bookings[b.date_from][b.booking.occupancy]:
+                        bookings[b.date_from][b.booking.occupancy]["media_total"] = 0
+                        bookings[b.date_from][b.booking.occupancy]["media_cant"] = 0
+
+                    #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
+                    #    print(_price, b.booking.start, b.position)
+
+                    if "COP" not in _price and b.position not in bookings[b.date_from][b.booking.occupancy][b.booking.start]:
+                        #print(b.booking.occupancy, b.booking.start, b.position, _price)
+                        bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position] = {}
+                        bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position]["price"] = _price
+                        bookings[b.date_from][b.booking.occupancy]["media_total"] += int(_price)
+                        bookings[b.date_from][b.booking.occupancy]["media_cant"] += 1
+                        bookings[b.date_from][b.booking.occupancy][b.booking.start][b.position]["name"] = b.booking.title
         #try:
         #    print(bookings["2024-05-10"])
         #except:
@@ -176,7 +202,7 @@ def booking_view(request):
                 "Zenit Conde de Orgaz",
                 "Ilunion Alcala Norte",
                 "Best Osuna",
-                "DWO Colours Alcala",
+                "DWO Colours Alcalá",
                 "Senator Barajas",
                 "Hotel Nuevo Boston",
                 "Sercotel Aeropuerto",
@@ -200,9 +226,9 @@ def booking_view(request):
             ]
             bookings["bookings"]["4"]["list"] = [
                 "Zenit Conde de Orgaz",
-                "Ilunion Alcala Norte",
+                "Ilunion Alcalá Norte",
                 "Best Osuna",
-                "DWO Colours Alcala",
+                "DWO Colours Alcalá",
                 "Senator Barajas",
                 "Hotel Nuevo Boston",
                 "Ilunion Pio XII",

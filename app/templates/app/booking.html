@@ -59,20 +59,15 @@
                   <!-- <td class="text-sm bg-success text-white">{{request.GET.date}}</td> -->
                   <td class="text-sm bg-info text-white">{{value.3.title}}</td>
                   <td class="text-sm bg-warning">
-                    {% for h in value.3.list %}
-                      <span class="text-sm text-white">
-                        {{h}}
-                      </span>
-                      </br>
-                    {% endfor %}
-                  </td>
-                  <td class="text-sm bg-warning">
                     {% for h in value.3.list2 %}
                       <span class="text-sm text-white bg-success">
                         {{h}}
                       </span>
                       </br>
                     {% endfor %}
+                  </td>
+                  <td class="text-sm bg-warning">
+                    
                   </td>
                   <td class="text-sm bg-warning text-white">
                     € {{value.3.min}}
@@ -85,7 +80,7 @@
                   <!-- <td class="text-sm bg-success text-white">{{request.GET.date}}</td> -->
                   <td class="text-sm bg-info text-white">{{value.4.title}}</td>
                   <td class="text-sm bg-warning">
-                    {% for h in value.4.list %}
+                    {% for h in value.4.list2 %}
                       <span class="text-sm text-white">
                         {{h}}
                       </span>
@@ -93,12 +88,6 @@
                     {% endfor %}
                   </td>
                   <td class="text-sm bg-warning">
-                    {% for h in value.4.list2 %}
-                      <span class="text-sm text-white">
-                        {{h}}
-                      </span>
-                      </br>
-                    {% endfor %}
                   </td>
                   <td class="text-sm bg-warning text-white">
                     € {{value.4.min}}
