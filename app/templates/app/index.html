@@ -73,14 +73,29 @@
       <div class="card">
         <!-- Card header -->
         <div class="pb-0 card-header">
-          <div class="d-lg-flex">
-            <div>
+          <div class="row">
+            <div class="col-md-2">
               <h5 class="mb-0">Bookings</h5>
               <p class="mb-0 text-sm">
                
               </p>
             </div>
-            <div class="my-auto mt-4 ms-auto mt-lg-0">
+            <div class="col-md-8">
+              <form action="" method="post">{% csrf_token %}
+                <div class="row">
+                  <div class="col-md-5">
+                    <input type="date" class="form-control" value="{{date_from}}" name="date_from" min="{{date_from}}">
+                  </div>
+                  <div class="col-md-5">
+                    <input type="date" class="form-control" value="{{date_to}}" name="date_to">
+                  </div>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-info">Filtrar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-2 my-auto mt-4 ms-auto mt-lg-0 text-end">
               <div class="my-auto ms-auto">
                 <!-- <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#userAdd" onclick="clearModal()">
                   <i class="fas fa-plus me-1"></i>
@@ -349,8 +364,8 @@
                       <tbody>
                         <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                           <td class="text-sm">
-                            <h2 class="text-white text-center">-</h2></br>
-                            <h2 class="text-white text-center">-</h2>
+                            <h2 class="text-white text-center">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}-{% endif %}</h2></br>
+                            <h2 class="text-white text-center">{% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}-{% endif %}</h2>
                           </td>
                           <td class="text-sm bg-warning text-white">
                             <table class="table table-flush text-white table-sm">

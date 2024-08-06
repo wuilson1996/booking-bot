@@ -10,13 +10,11 @@ class Booking(models.Model):
     distance = models.CharField(max_length=512)
     description = models.CharField(max_length=1024)
     img = models.CharField(max_length=3000)
-    occupancy = models.IntegerField(default=4)
     updated = models.DateTimeField()
     created = models.DateTimeField()
-
     
     def __str__(self) -> str:
-        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)+" | Occupancy: "+str(self.occupancy)
+        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)
     
 class AvailableBooking(models.Model):
     date_from = models.CharField(max_length=30)
@@ -26,11 +24,12 @@ class AvailableBooking(models.Model):
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
     position = models.IntegerField(default=0)
     total_search = models.IntegerField(default=0)
+    occupancy = models.IntegerField(default=4)
     updated = models.DateTimeField()
     created = models.DateTimeField()
 
     def __str__(self) -> str:
-        return str(self.booking)+" | "+str(self.date_from)+" - "+str(self.date_to)+" | Price: "+str(self.price)
+        return str(self.booking)+" | "+str(self.date_from)+" - "+str(self.date_to)+" | Price: "+str(self.price)+" | Occupancy: "+str(self.occupancy)
     
 class ProcessActive(models.Model):
     date_end = models.DateField()
@@ -61,6 +60,3 @@ class CantAvailSuitesFeria(models.Model):
     type_avail = models.CharField(max_length=5)
     avail = models.IntegerField(default=0)
     avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
-
-    def __str__(self) -> str:
-        return str(self.avail_suites_feria)+" - "+str(self.type_avail)+" - "+str(self.avail)

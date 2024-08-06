@@ -15,7 +15,8 @@
         <div class="pb-0 card-header">
           <div class="d-lg-flex">
             <div>
-              <h5 class="mb-0">Bookings - {{request.GET.date}}</h5>
+              <h5 class="mb-0">Bookings</br>
+              {{day}} - {{request.GET.date}}</h5>
               <p class="mb-0 text-sm">
                
               </p>
@@ -48,9 +49,7 @@
                   <!-- <th class="text-xs">Fecha</th> -->
                   <th class="text-xs">Tipo</th>
                   <th class="text-xs">Hoteles</th>
-                  <th class="text-xs">Hoteles Encontrados</th>
-                  <th class="text-xs">Minimo</th>
-                  <th class="text-xs">Media</th>
+                  <th class="text-xs">Historico de precios</th>
                 </tr>
               </thead>
               <tbody>
@@ -60,20 +59,85 @@
                   <td class="text-sm bg-info text-white">{{value.3.title}}</td>
                   <td class="text-sm bg-warning">
                     {% for h in value.3.list2 %}
-                      <span class="text-sm text-white bg-success">
+                      <span class="text-sm text-white">
                         {{h}}
                       </span>
                       </br>
                     {% endfor %}
                   </td>
                   <td class="text-sm bg-warning">
-                    
-                  </td>
-                  <td class="text-sm bg-warning text-white">
-                    € {{value.3.min}}
-                  </td>
-                  <td class="text-sm bg-warning text-white">
-                    € {% widthratio value.3.media value.3.media_cant 1 %}
+                    <table class="table table-flush bg-danger text-white table-sm">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-xs text-white">1</th>
+                          <th class="text-xs text-white">2</th>
+                          <th class="text-xs text-white">3</th>
+                          <th class="text-xs text-white">4</th>
+                          <th class="text-xs text-white">5</th>
+                          <th class="text-xs text-white">6</th>
+                          <th class="text-xs text-white">7</th>
+                          <th class="text-xs text-white">8</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <td>
+                          <h4>€ {% if value.3.7.min != 100000 %}{{value.3.7.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.7.media value.3.7.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.7.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.6.min != 100000 %}{{value.3.6.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.6.media value.3.6.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.6.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.5.min != 100000 %}{{value.3.5.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.5.media value.3.5.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.5.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.4.min != 100000 %}{{value.3.4.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.4.media value.3.4.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.4.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.3.min != 100000 %}{{value.3.3.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.3.media value.3.3.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.3.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.2.min != 100000 %}{{value.3.2.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.2.media value.3.2.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.2.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.1.min != 100000 %}{{value.3.1.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.1.media value.3.1.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.1.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.3.0.min != 100000 %}{{value.3.0.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.3.0.media value.3.0.media_cant 1 %}</h4><hr>
+                          {% for price in value.3.0.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                      </tbody>
+                    </table>
                   </td>
                 </tr>
                 <tr>
@@ -88,12 +152,78 @@
                     {% endfor %}
                   </td>
                   <td class="text-sm bg-warning">
-                  </td>
-                  <td class="text-sm bg-warning text-white">
-                    € {{value.4.min}}
-                  </td>
-                  <td class="text-sm bg-warning text-white">
-                    € {% widthratio value.4.media value.4.media_cant 1 %}
+                    <table class="table table-flush bg-danger text-white table-sm">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="text-xs text-white">1</th>
+                          <th class="text-xs text-white">2</th>
+                          <th class="text-xs text-white">3</th>
+                          <th class="text-xs text-white">4</th>
+                          <th class="text-xs text-white">5</th>
+                          <th class="text-xs text-white">6</th>
+                          <th class="text-xs text-white">7</th>
+                          <th class="text-xs text-white">8</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <td>
+                          <h4>€ {% if value.4.7.min != 100000 %}{{value.4.7.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.7.media value.4.7.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.7.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.6.min != 100000 %}{{value.4.6.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.6.media value.4.6.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.6.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.5.min != 100000 %}{{value.4.5.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.5.media value.4.5.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.5.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.4.min != 100000 %}{{value.4.4.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.4.media value.4.4.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.4.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.3.min != 100000 %}{{value.4.3.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.3.media value.4.3.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.3.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.2.min != 100000 %}{{value.4.2.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.2.media value.4.2.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.2.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.1.min != 100000 %}{{value.4.1.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.1.media value.4.1.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.1.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          <h4>€ {% if value.4.0.min != 100000 %}{{value.4.0.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4>€ {% widthratio value.4.0.media value.4.0.media_cant 1 %}</h4><hr>
+                          {% for price in value.4.0.prices %}
+                            <h5>€ {{price}}</h5><hr>
+                          {% endfor %}
+                        </td>
+                      </tbody>
+                    </table>
                   </td>
                 </tr>
                 {% endfor %}

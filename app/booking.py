@@ -11,6 +11,7 @@ import datetime
 import re
 from .models import *
 import os
+import platform
 
 _logging = logging.basicConfig(filename="logger.log", level=logging.INFO)
 
@@ -20,7 +21,7 @@ def search_date(text):
 
 class BookingSearch:
     @classmethod
-    def _driver2(cls, url) -> None:
+    def _driver_chrome(cls, url) -> None:
         cls._url = url
         options = webdriver.ChromeOptions()
         #options.add_argument("headless")
@@ -30,7 +31,7 @@ class BookingSearch:
         return webdriver.Chrome(executable_path=os.path.abspath("chromedriver.exe"), options=options)
 
     @classmethod
-    def _driver(cls, url) -> None:
+    def _driver_firefox(cls, url) -> None:
         cls._url = url
         options = webdriver.FirefoxOptions()
         options.add_argument("--headless")
@@ -39,6 +40,13 @@ class BookingSearch:
 
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
+    @classmethod
+    def _driver(cls, url) -> None:
+        if platform.system() == "Windows":
+            return cls._driver_chrome(url)
+        else:
+            return cls._driver_firefox(url)
+
     @classmethod
     def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None, search_name=""):
         driver.get(cls._url)
@@ -433,7 +441,7 @@ class BookingSearch:
             except Exception as e6:
                 logging.info(f"[-] {dt.now()} Error in Get price")
 
-            bg = Booking.objects.filter(title=item_dict["title"], start=item_dict["start"], occupancy=occupancy).first()
+            bg = Booking.objects.filter(title=item_dict["title"], start=item_dict["start"]).first()
             if not bg:
                 bg = Booking.objects.create(
                     start = item_dict["start"],
@@ -443,7 +451,6 @@ class BookingSearch:
                     distance = item_dict["distance"],
                     description = item_dict["description"],
                     img = item_dict["img"],
-                    occupancy = occupancy,
                     updated = dt.now(),
                     created = dt.now()
                 )
@@ -455,11 +462,10 @@ class BookingSearch:
                 bg.distance = item_dict["distance"]
                 bg.description = item_dict["description"]
                 bg.img = item_dict["img"]
-                bg.occupancy = occupancy
                 bg.updated = dt.now()
                 bg.save()
 
-            _available = AvailableBooking.objects.filter(date_from=item_dict["date_from"], date_to=item_dict["date_to"], booking=bg).first()
+            _available = AvailableBooking.objects.filter(date_from=item_dict["date_from"], date_to=item_dict["date_to"], booking=bg, occupancy=occupancy).first()
             if not _available:
                 _available = AvailableBooking.objects.create(
                     date_from = item_dict["date_from"],
@@ -469,7 +475,8 @@ class BookingSearch:
                     total_search = int(total_search),
                     price = item_dict["price"],
                     updated = dt.now(),
-                    created = dt.now()
+                    created = dt.now(),
+                    occupancy = occupancy
                 )
             else:
                 _available.date_from = item_dict["date_from"]
@@ -479,6 +486,7 @@ class BookingSearch:
                 _available.active = True
                 _available.updated = dt.now()
                 _available.price = item_dict["price"]
+                _available.occupancy = occupancy
                 _available.save()
             logging.info(item_dict)
         except Exception as e:
