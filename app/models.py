@@ -25,11 +25,12 @@ class AvailableBooking(models.Model):
     position = models.IntegerField(default=0)
     total_search = models.IntegerField(default=0)
     occupancy = models.IntegerField(default=4)
+    start = models.CharField(max_length=20)
     updated = models.DateTimeField()
     created = models.DateTimeField()
 
     def __str__(self) -> str:
-        return str(self.booking)+" | "+str(self.date_from)+" - "+str(self.date_to)+" | Price: "+str(self.price)+" | Occupancy: "+str(self.occupancy)
+        return str(self.booking)+" | "+str(self.date_from)+" - "+str(self.date_to)+" | Price: "+str(self.price)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)
     
 class ProcessActive(models.Model):
     date_end = models.DateField()

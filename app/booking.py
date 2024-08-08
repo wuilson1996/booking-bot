@@ -99,12 +99,10 @@ class BookingSearch:
 
                 #         elif "checkout" == param.split("=")[0]:
                 #             _current_url = str(_current_url).replace(param, f"checkout={str(_now.date())}")
-                
-                driver.get(_current_url+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}")
+                _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(occupancy))+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}"
+                driver.get(_url_performance)
                 driver.implicitly_wait(15)
-
-                logging.info(driver.current_url)
-                logging.info(f"[-] {dt.now()} - {_date_elem.date()} - {_now.date()}")
+                logging.info(f"[-] {dt.now()} - {_date_elem.date()} - {_now.date()} - {driver.current_url}")
 
                 try:
                     if cont <= 1:
@@ -441,7 +439,10 @@ class BookingSearch:
             except Exception as e6:
                 logging.info(f"[-] {dt.now()} Error in Get price")
 
-            bg = Booking.objects.filter(title=item_dict["title"], start=item_dict["start"]).first()
+            bg = Booking.objects.filter(
+                title=item_dict["title"], 
+                start=item_dict["start"]
+            ).first()
             if not bg:
                 bg = Booking.objects.create(
                     start = item_dict["start"],
@@ -465,7 +466,13 @@ class BookingSearch:
                 bg.updated = dt.now()
                 bg.save()
 
-            _available = AvailableBooking.objects.filter(date_from=item_dict["date_from"], date_to=item_dict["date_to"], booking=bg, occupancy=occupancy).first()
+            _available = AvailableBooking.objects.filter(
+                date_from=item_dict["date_from"], 
+                date_to=item_dict["date_to"], 
+                position=position, 
+                occupancy=occupancy, 
+                start=item_dict["start"]
+            ).first()
             if not _available:
                 _available = AvailableBooking.objects.create(
                     date_from = item_dict["date_from"],
@@ -476,17 +483,19 @@ class BookingSearch:
                     price = item_dict["price"],
                     updated = dt.now(),
                     created = dt.now(),
-                    occupancy = occupancy
+                    occupancy = occupancy,
+                    start = item_dict["start"]
                 )
             else:
                 _available.date_from = item_dict["date_from"]
                 _available.date_to = item_dict["date_to"]
-                _available.position = position
+                #_available.position = position
                 _available.total_search = int(total_search)
                 _available.active = True
                 _available.updated = dt.now()
                 _available.price = item_dict["price"]
                 _available.occupancy = occupancy
+                _available.booking = bg
                 _available.save()
             logging.info(item_dict)
         except Exception as e:
