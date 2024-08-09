@@ -20,9 +20,21 @@ class AvailSuitesFeriaAdmin(admin.ModelAdmin):
 class CantAvailSuitesFeriaAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class PriceAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
+class MessageByDayAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
+class EventByDayAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
 admin.site.register(GeneralSearch, GeneralSearchAdmin)
 admin.site.register(AvailSuitesFeria, AvailSuitesFeriaAdmin)
 admin.site.register(CantAvailSuitesFeria, CantAvailSuitesFeriaAdmin)
+admin.site.register(Price, PriceAdmin)
+admin.site.register(MessageByDay, MessageByDayAdmin)
+admin.site.register(EventByDay, EventByDayAdmin)

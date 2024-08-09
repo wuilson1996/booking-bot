@@ -61,3 +61,36 @@ class CantAvailSuitesFeria(models.Model):
     type_avail = models.CharField(max_length=5)
     avail = models.IntegerField(default=0)
     avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
+
+class Price(models.Model):
+    date_from = models.CharField(max_length=30)
+    OCCUPANCYS = (
+        (2, "2 Personas"),
+        (3, "3 Personas"),
+        (5, "5 Personas")
+    )
+    occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
+    price = models.CharField(max_length=50)
+
+class MessageByDay(models.Model):
+    date_from = models.CharField(max_length=30)
+    OCCUPANCYS = (
+        (2, "2 Personas"),
+        (3, "3 Personas"),
+        (5, "5 Personas")
+    )
+    occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
+    text = models.CharField(max_length=512)
+
+class EventByDay(models.Model):
+    date_from = models.CharField(max_length=30)
+    OCCUPANCYS = (
+        (2, "2 Personas"),
+        (3, "3 Personas"),
+        (5, "5 Personas")
+    )
+    occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
+    text = models.CharField(max_length=512)
+
+    def __str__(self) -> str:
+        return str(self.text)

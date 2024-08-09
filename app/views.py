@@ -114,6 +114,46 @@ def get_booking(request):
         result["message"] = "Proceso desactivado correctamente."
     return Response(result)
 
+@api_view(["POST"])
+def save_message(request):
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        _message_by_day = MessageByDay.objects.filter(
+            date_from = request.data["date"],
+            occupancy = request.data["occupancy"]
+        ).first()
+        if not _message_by_day:
+            _message_by_day = MessageByDay.objects.create(
+                date_from = request.data["date"],
+                occupancy = request.data["occupancy"],
+                text = request.data["text"]
+            )
+        else:
+            _message_by_day.text = request.data["text"]
+            _message_by_day.save()
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+    return Response(result)
+
+@api_view(["POST"])
+def save_price(request):
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        _price = Price.objects.filter(
+            date_from = request.data["date"],
+            occupancy = request.data["occupancy"]
+        ).first()
+        if not _price:
+            _price = Price.objects.create(
+                date_from = request.data["date"],
+                occupancy = request.data["occupancy"],
+                price = request.data["text"]
+            )
+        else:
+            _price.price = request.data["text"]
+            _price.save()
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+    return Response(result)
+
 def index(request):
     if request.user.is_authenticated:
         __date_from = str(dt.now().date())
@@ -147,6 +187,21 @@ def index(request):
                 if int(ocp) not in list(bookings[str(_date_from.date())].keys()):
                     bookings[str(_date_from.date())][int(ocp)] = {}
                 
+                # get message
+                __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+                if __price:
+                    bookings[str(_date_from.date())][int(ocp)]["tarifa"] = __price.price
+
+                # get price tarifa
+                __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+                if __message_by_day:
+                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = __message_by_day.text
+
+                # get event by day
+                __event_by_day = EventByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+                if __event_by_day:
+                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = __event_by_day.text
+
                 avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
                 avail_sf_cant = CantAvailSuitesFeria.objects.filter(
                     type_avail = int(ocp),

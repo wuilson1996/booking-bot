@@ -145,13 +145,17 @@
                         </tr>
                       </thead> -->
                       <tbody>
-                        <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                        <tr>
                           <td class="text-sm">
-                            <h2 class="text-white text-center">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}-{% endif %}</h2></br>
+                            <h2 class="text-white text-center">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}-{% endif %}</h2>
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Tarifa Manual" value="{{value.2.tarifa}}" aria-describedby="button-addon1" id="price{{date}}2">
+                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, 'price{{date}}2')">Guardar</button>
+                            </div>
                             <h2 class="text-white text-center">{% if "suiteFeria" in value.2 %}{{value.2.suiteFeria}}{% else %}-{% endif %}</h2>
                           </td>
                           
-                          <td class="text-sm bg-warning text-white">
+                          <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                             <table class="table table-flush text-white table-sm">
                               <thead class="thead-light">
                                 <tr>
@@ -183,8 +187,10 @@
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm"><h2 class="text-white">{{value.2.total_search}}</h2></td>
-                          <td class="text-sm">
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                            <h2 class="text-white">{{value.2.total_search}}</h2>
+                          </td>
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                             <table class="table table-flush text-white table-sm">
                               <tbody>
                                 <tr>
@@ -212,10 +218,13 @@
                                     <h3>{{value.2.3.4.price}}</h3>
                                   </td>
                                 </tr>
+                                <tr>
+                                  <h6 class="text-info">.</h6>
+                                </tr>
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm">
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                             <table class="table table-flush text-white table-sm">
                               <tbody>
                                 <tr>
@@ -247,10 +256,26 @@
                                     <h3 class="text-white">{{value.2.4.24.price}}</h3>
                                   </td>
                                 </tr>
+                                <tr>
+                                  <h6 class="text-white">{{value.2.eventByDay}}</h6>
+                                </tr>
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm"><h3 class="text-white">{% widthratio value.2.media_total value.2.media_cant 1 %}</h3></td>
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                            <h3 class="text-white">{% widthratio value.2.media_total value.2.media_cant 1 %}</h3>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td colspan="2">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Fija un mensaje para este tipo" value="{{value.2.messageDay}}" aria-describedby="button-addon2" id="text{{date}}2">
+                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, 'text{{date}}2')">Guardar</button>
+                            </div>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -266,12 +291,16 @@
                         </tr>
                       </thead> -->
                       <tbody>
-                        <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                        <tr>
                           <td class="text-sm">
                             <h2 class="text-white text-center">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}-{% endif %}</h2></br>
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Tarifa Manual" value="{{value.3.tarifa}}" aria-describedby="button-addon3" id="price{{date}}3">
+                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, 'price{{date}}3')">Guardar</button>
+                            </div>
                             <h2 class="text-white text-center">{% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %}</h2>
                           </td>
-                          <td class="text-sm bg-warning text-white">
+                          <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                             <table class="table table-flush text-white table-sm">
                               <thead class="thead-light">
                                 <tr>
@@ -293,10 +322,11 @@
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm"><h2 class="text-white">{{value.3.total_search}}</h2></td>
-                          <td class="text-sm">
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                            <h2 class="text-white">{{value.3.total_search}}</h2>
+                          </td>
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                             <table class="table table-flush text-white table-sm">
-
                               <tbody>
                                 <tr>
                                   <td class="text-sm bg-success">
@@ -315,10 +345,13 @@
                                     <h3>{{value.3.3.4.price}}</h3>
                                   </td>
                                 </tr>
+                                <tr>
+                                  <h6 class="text-dark">.</h6>
+                                </tr>
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm">
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                             <table class="table table-flush text-white table-sm">
                               <tbody>
                                 <tr>
@@ -342,10 +375,26 @@
                                   </td>
                                 </tr>
                               </tr>
+                              <tr>
+                                <h6 class="text-white">{{value.3.eventByDay}}</h6>
+                              </tr>
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm"><h3 class="text-white">{% widthratio value.3.media_total value.3.media_cant 1 %}</h3></td>
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                            <h3 class="text-white">{% widthratio value.3.media_total value.3.media_cant 1 %}</h3>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td colspan="2">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Fija un mensaje para este tipo" value="{{value.3.messageDay}}" aria-describedby="button-addon4" id="text{{date}}3">
+                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon4" onclick="saveMessage('{{date}}', 3, 'text{{date}}3')">Guardar</button>
+                            </div>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -362,12 +411,16 @@
                         </tr>
                       </thead> -->
                       <tbody>
-                        <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                        <tr>
                           <td class="text-sm">
                             <h2 class="text-white text-center">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}-{% endif %}</h2></br>
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Tarifa Manual" value="{{value.5.tarifa}}" aria-describedby="button-addon5" id="price{{date}}5">
+                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, 'price{{date}}5')">Guardar</button>
+                            </div>
                             <h2 class="text-white text-center">{% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}-{% endif %}</h2>
                           </td>
-                          <td class="text-sm bg-warning text-white">
+                          <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                             <table class="table table-flush text-white table-sm">
                               <thead class="thead-light">
                                 <tr>
@@ -384,8 +437,10 @@
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm"><h2 class="text-white">{{value.5.total_search}}</h2></td>
-                          <td class="text-sm">
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                            <h2 class="text-white">{{value.5.total_search}}</h2>
+                          </td>
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                             <table class="table table-flush text-white table-sm">
                               <tbody>
                                 <tr>
@@ -405,10 +460,13 @@
                                     <h3>{{value.5.3.4.price}}</h3>
                                   </td>
                                 </tr>
+                                <tr>
+                                  <h6 class="text-danger">.</h6>
+                                </tr>
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm">
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                             <table class="table table-flush text-white table-sm">
                               <tbody>
                                 <tr>
@@ -432,10 +490,26 @@
                                   </td>
                                 </tr>
                               </tr>
+                              <tr>
+                                <h6 class="text-white">{{value.5.eventByDay}}</h6>
+                              </tr>
                               </tbody>
                             </table>
                           </td>
-                          <td class="text-sm"><h3 class="text-white">{% widthratio value.5.media_total value.5.media_cant 1 %}</h3></td>
+                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                            <h3 class="text-white">{% widthratio value.5.media_total value.5.media_cant 1 %}</h3>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td colspan="2">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Fija un mensaje para este tipo" value="{{value.5.messageDay}}" aria-describedby="button-addon6" id="text{{date}}5">
+                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, 'text{{date}}5')">Guardar</button>
+                            </div>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -666,6 +740,44 @@
           url: '/get/booking',
           type: 'POST',
           data:{},
+          headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+          success: function(json) {
+            console.log(json);
+          },
+          error: function(error) {
+            console.log("Ocurrio un error");
+          }
+      });
+    }
+    function saveMessage(_date, occupancy, inputId){
+      inputText = document.getElementById(inputId).value;
+      $.ajax({
+          url: '/save/message',
+          type: 'POST',
+          data:{
+            date: _date,
+            occupancy: occupancy,
+            text: inputText
+          },
+          headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+          success: function(json) {
+            console.log(json);
+          },
+          error: function(error) {
+            console.log("Ocurrio un error");
+          }
+      });
+    }
+    function savePrice(_date, occupancy, inputId){
+      inputText = document.getElementById(inputId).value;
+      $.ajax({
+          url: '/save/price',
+          type: 'POST',
+          data:{
+            date: _date,
+            occupancy: occupancy,
+            text: inputText
+          },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
             console.log(json);
