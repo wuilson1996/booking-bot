@@ -71,6 +71,8 @@ class Price(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     price = models.CharField(max_length=50)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
 
 class MessageByDay(models.Model):
     date_from = models.CharField(max_length=30)
@@ -81,6 +83,8 @@ class MessageByDay(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     text = models.CharField(max_length=512)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
 
 class EventByDay(models.Model):
     date_from = models.CharField(max_length=30)
@@ -91,6 +95,37 @@ class EventByDay(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     text = models.CharField(max_length=512)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
 
     def __str__(self) -> str:
         return str(self.text)
+
+class TemporadaByDay(models.Model):
+    date_from = models.CharField(max_length=30)
+    COLORS = (
+        ("bg-success", "bg-success"),
+        ("bg-warning", "bg-warning"),
+        ("bg-info", "bg-info"),
+        ("bg-primary", "bg-primary"),
+        ("bg-secondary", "bg-secondary"),
+        ("bg-dark", "bg-dark"),
+    )
+    TEXT_COLORS = (
+        ("text-success", "text-success"),
+        ("text-warning", "text-warning"),
+        ("text-info", "text-info"),
+        ("text-secondary", "text-secondary"),
+        ("text-dark", "text-dark"),
+        ("text-white", "text-white"),
+        ("text-black", "text-black"),
+        ("text-primary", "text-primary"),
+    )
+    bg_color = models.TextField(choices=COLORS, default="bg-success")
+    text_color = models.TextField(choices=TEXT_COLORS, default="text-success")
+    number = models.CharField(max_length=3)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.number)+" - "+str(self.date_from)

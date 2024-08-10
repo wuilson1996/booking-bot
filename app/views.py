@@ -121,17 +121,25 @@ def save_message(request):
         _message_by_day = MessageByDay.objects.filter(
             date_from = request.data["date"],
             occupancy = request.data["occupancy"]
-        ).first()
+        ).last()
         if not _message_by_day:
             _message_by_day = MessageByDay.objects.create(
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
-                text = request.data["text"]
+                text = request.data["text"],
+                updated = dt.now(),
+                created = dt.now()
             )
         else:
-            _message_by_day.text = request.data["text"]
-            _message_by_day.save()
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+            if _message_by_day.text != request.data["text"]:
+                _message_by_day = MessageByDay.objects.create(
+                    date_from = request.data["date"],
+                    occupancy = request.data["occupancy"],
+                    text = request.data["text"],
+                    updated = dt.now(),
+                    created = dt.now()
+                )
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": str(_message_by_day.updated).split(".")[0]}
     return Response(result)
 
 @api_view(["POST"])
@@ -141,17 +149,20 @@ def save_price(request):
         _price = Price.objects.filter(
             date_from = request.data["date"],
             occupancy = request.data["occupancy"]
-        ).first()
+        ).last()
         if not _price:
             _price = Price.objects.create(
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
-                price = request.data["text"]
+                price = request.data["text"],
+                updated = dt.now(),
+                created = dt.now()
             )
         else:
             _price.price = request.data["text"]
+            _price.updated = dt.now()
             _price.save()
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": str(_price.updated).split(".")[0]}
     return Response(result)
 
 def index(request):
@@ -183,24 +194,30 @@ def index(request):
         while _date_from.date() <= _date_to.date():
             if str(_date_from.date()) not in bookings:
                 bookings[str(_date_from.date())] = {}
+            
+            # get event by day
+            __temporada_by_day = TemporadaByDay.objects.filter(date_from = str(_date_from.date())).last()
+            if __temporada_by_day:
+                bookings[str(_date_from.date())]["temporadaByDay"] = {"number":__temporada_by_day.number, "bgColor":str(__temporada_by_day.bg_color), "textColor":str(__temporada_by_day.text_color)}
+
             for ocp in occupancys:
                 if int(ocp) not in list(bookings[str(_date_from.date())].keys()):
                     bookings[str(_date_from.date())][int(ocp)] = {}
                 
-                # get message
+                # get price tarifa
                 __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __price:
-                    bookings[str(_date_from.date())][int(ocp)]["tarifa"] = __price.price
+                    bookings[str(_date_from.date())][int(ocp)]["tarifa"] = {"price":__price.price, "updated": str(__price.updated).split(".")[0]}
 
-                # get price tarifa
+                # get message
                 __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __message_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = __message_by_day.text
+                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"text":__message_by_day.text, "updated":str(__message_by_day.updated).split(".")[0]}
 
                 # get event by day
                 __event_by_day = EventByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __event_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = __event_by_day.text
+                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = {"text":__event_by_day.text, "updated":str(__event_by_day.updated).split(".")[0]}
 
                 avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
                 avail_sf_cant = CantAvailSuitesFeria.objects.filter(
@@ -215,16 +232,18 @@ def index(request):
                             type_avail = 1,
                             avail_suites_feria = avail_sf
                         ).last()
-                        bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] += avail_sf_cant.avail
+                        bookings[str(_date_from.date())][int(ocp)]["suiteFeria1"] = avail_sf_cant.avail
                 else:
-                    avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                        type_avail = 4,
-                        avail_suites_feria = avail_sf
-                    ).last()
-                    bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
+                    if int(ocp) == 5:
+                        avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 4,
+                            avail_suites_feria = avail_sf
+                        ).last()
+                        bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
                         
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
+                    bookings[avail_book.date_from]["updated"] = str(avail_book.updated).split(".")[0]
                     bookings[avail_book.date_from]["date_from"] = avail_book.date_from
                     bookings[avail_book.date_from]["date_to"] = avail_book.date_to
                     locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
@@ -232,6 +251,7 @@ def index(request):
                     bookings[avail_book.date_from]["day"] = fecha_especifica.strftime('%A')
                     
                     bookings[avail_book.date_from][avail_book.occupancy]["total_search"] = avail_book.total_search
+                    bookings[avail_book.date_from][avail_book.occupancy]["total_search_192"] = "{:.2f}".format(avail_book.total_search / 192 * 100)
 
                     if int(avail_book.booking.start) != 0:
                         if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
@@ -253,8 +273,9 @@ def index(request):
                             #print(b.booking.occupancy, b.booking.start, b.position, _price)
                             bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
                             bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
-                            bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
-                            bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
+                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                                bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
+                                bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
                             bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
             
             _date_from += datetime.timedelta(days=1)
@@ -275,9 +296,9 @@ def booking_view(request):
             if int(request.GET["occupancy"]) == 2:
                 bookings = {"bookings":{"3":{"list":[], "list2": [], "title":"2P 3*"}, "4":{"list":[], "list2": [], "title":"2P 4*"}}}
             else:
-                bookings = {"bookings":{"3":{"list":[],"list2": [],  "title":"3P 3*", "min": 100000, "media": 0, "media_cant": 0}, "4":{"list":[], "list2": [], "title":"3P 4*", "min": 100000, "media": 0, "media_cant": 0}}}
+                bookings = {"bookings":{"3":{"list":[],"list2": [],  "title":"3P 3*"}, "4":{"list":[], "list2": [], "title":"3P 4*"}}}
         else:
-            bookings = {"bookings":{"3":{"list":[],"list2": [],  "title":"5P 3*", "min": 100000, "media": 0, "media_cant": 0}, "4":{"list":[],"list2": [],  "title":"5P 4*", "min": 100000, "media": 0, "media_cant": 0}}}
+            bookings = {"bookings":{"3":{"list":[],"list2": [],  "title":"5P 3*"}, "4":{"list":[],"list2": [],  "title":"5P 4*"}}}
 
         stars = []
         for p in ProcessActive.objects.all():
@@ -291,8 +312,15 @@ def booking_view(request):
 
             #if not available_booking:
             for s in stars:
+                # get message
+                __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(request.GET["occupancy"])).all()
+                if __message_by_day:
+                    bookings["bookings"][str(s)]["messageDay"] = ""
+                    for m in __message_by_day:
+                        bookings["bookings"][str(s)]["messageDay"] += f"{m.text} - {str(m.updated).split('.')[0]} | "
+
                 if i not in list(bookings["bookings"][str(s)].keys()):
-                    bookings["bookings"][str(s)][i] = {"min": 100000, "media": 0, "media_cant": 0, "prices":[]}
+                    bookings["bookings"][str(s)][i] = {"min": 100000, "media": 0, "media_cant": 0, "prices":[], "suitesFeriaPrice": 0, "suitesFeria1": 0, "suitesFeria2": 0}
                     if not available_booking:
                         if int(request.GET["occupancy"]) == 2:
                             if s == 3:
@@ -304,12 +332,36 @@ def booking_view(request):
                                 bookings["bookings"][str(s)][i]["prices"] = [0,0,0,0,0]
                             else:
                                 bookings["bookings"][str(s)][i]["prices"] = [0,0,0,0,0,0]
-                    
+            
+                #print(str(_date_from.date() - datetime.timedelta(days=i)))
+                avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=i))).last()
+                avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                    type_avail = int(request.GET["occupancy"]),
+                    avail_suites_feria = avail_sf
+                ).last()
+
+                if avail_sf_cant:
+                    bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+                    if int(request.GET["occupancy"]) == 2:
+                        avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 1,
+                            avail_suites_feria = avail_sf
+                        ).last()
+                        bookings["bookings"][str(s)][i]["suitesFeria2"] = avail_sf_cant.avail
+                else:
+                    if int(request.GET["occupancy"]) == 5:
+                        avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 4,
+                            avail_suites_feria = avail_sf
+                        ).last()
+                        if avail_sf_cant:
+                            bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+
             for b in available_booking:
                 if int(b.booking.start) in stars:
                     _price = b.price.replace("€ ", "")
                     if i == 0:
-                        bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position))
+                        bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title)#+" - € "+_price+" - "+str(b.position)
 
                     if bookings["bookings"][str(b.booking.start)][i]["min"] > int(_price):
                         bookings["bookings"][str(b.booking.start)][i]["min"] = int(_price)
@@ -318,6 +370,8 @@ def booking_view(request):
                     bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
 
                     bookings["bookings"][str(b.booking.start)][i]["prices"].append(int(_price))
+                    if "Hotel Suites Feria de Madrid" == b.booking.title:
+                        bookings["bookings"][str(b.booking.start)][i]["suitesFeriaPrice"] = _price
         
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')

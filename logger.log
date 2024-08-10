@@ -25,3 +25,271 @@ WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f7
 WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
 INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
 INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /save/message
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\datastructures.py", line 76, in __getitem__
+    list_ = super().__getitem__(key)
+KeyError: 'text'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 129, in save_message
+    text = request.data["text"],
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\datastructures.py", line 78, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'text'
+ERROR:django.request:Internal Server Error: /save/message
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\datastructures.py", line 76, in __getitem__
+    list_ = super().__getitem__(key)
+KeyError: 'text'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 129, in save_message
+    text = request.data["text"],
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\datastructures.py", line 78, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'text'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\admin.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 305, in booking_view
+    bookings[str(_date_from.date())][int(request.GET["occupancy"])]["messageDay"] = ""
+KeyError: '2024-08-09'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 305, in booking_view
+    bookings["bookings"][int(request.GET["occupancy"])]["messageDay"] = ""
+KeyError: 2
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 305, in booking_view
+    bookings["bookings"][str(request.GET["occupancy"])]["messageDay"] = ""
+KeyError: '2'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 337, in booking_view
+    type_avail = int(ocp),
+NameError: name 'ocp' is not defined
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 342, in booking_view
+    bookings[str(_date_from.date())][str(s)]["suitesFeria2"] = avail_sf_cant.avail
+KeyError: '2024-08-09'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 354, in booking_view
+    bookings["bookings"][str(s)]["suiteFeria"] = avail_sf_cant.avail
+AttributeError: 'NoneType' object has no attribute 'avail'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 354, in booking_view
+    bookings["bookings"][str(s)][i]["suiteFeria"] = avail_sf_cant.avail
+AttributeError: 'NoneType' object has no attribute 'avail'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 354, in booking_view
+    bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+AttributeError: 'NoneType' object has no attribute 'avail'
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 354, in booking_view
+    bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+AttributeError: 'NoneType' object has no attribute 'avail'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 335, in booking_view
+    avail_sf = AvailSuitesFeria.objects.filter(date_avail = str((_date_from.date() - datetime.timedelta(days=i)).date())).last()
+AttributeError: 'datetime.date' object has no attribute 'date'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\WuilsonPc\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py", line 355, in booking_view
+    bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+AttributeError: 'NoneType' object has no attribute 'avail'
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
