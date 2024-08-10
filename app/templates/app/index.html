@@ -127,7 +127,6 @@
               <tbody>
                 {% for date, value in bookings.items %}
                 <tr>
-                  {{value.temporadaByDay}}
                   <td class="text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
                     {{date}}
                     </br>
