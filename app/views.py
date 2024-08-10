@@ -19,7 +19,7 @@ def active_process(request):
             month=int(a.date_from.split("-")[1]),
             day=int(a.date_from.split("-")[2]),
         )
-        if _date < dt.now():
+        if _date.date() < dt.now().date():
             a.delete()
         
     for p in ProcessActive.objects.all():
