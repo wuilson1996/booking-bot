@@ -67,7 +67,7 @@
                     {% endfor %}
                   </td>
                   <td class="text-sm bg-warning">
-                    <table class="table table-flush bg-danger text-white table-sm">
+                    <table class="table table-flush bg-info text-white table-sm">
                       <thead class="thead-light">
                         <tr>
                           <th class="text-xs text-white">Actual</th>
@@ -82,67 +82,67 @@
                       </thead>
                       <tbody>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.0.suitesFeria2}} / DL - {{value.4.0.suitesFeria1}}{% else %}{{value.4.0.suitesFeria1}}{% endif %}">€ {{value.4.0.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.0.min != 100000 %}{{value.4.0.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.0.suitesFeria2}} / DL - {{value.4.0.suitesFeria1}}{% else %}{{value.4.0.suitesFeria1}}{% endif %}">{{value.4.0.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.0.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.0.media value.4.0.media_cant 1 %}</h4><hr>
                           {% for price in value.4.0.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.1.suitesFeria2}} / DL - {{value.4.1.suitesFeria1}}{% else %}{{value.4.1.suitesFeria1}}{% endif %}">€ {{value.4.1.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.1.min != 100000 %}{{value.4.1.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.1.suitesFeria2}} / DL - {{value.4.1.suitesFeria1}}{% else %}{{value.4.1.suitesFeria1}}{% endif %}">{{value.4.1.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.1.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.1.media value.4.1.media_cant 1 %}</h4><hr>
                           {% for price in value.4.1.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.2.suitesFeria2}} / DL - {{value.4.2.suitesFeria1}}{% else %}{{value.4.2.suitesFeria1}}{% endif %}">€ {{value.4.2.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.2.min != 100000 %}{{value.4.2.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.2.suitesFeria2}} / DL - {{value.4.2.suitesFeria1}}{% else %}{{value.4.2.suitesFeria1}}{% endif %}">{{value.4.2.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.2.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.2.media value.4.2.media_cant 1 %}</h4><hr>
                           {% for price in value.4.2.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.3.suitesFeria2}} / DL - {{value.4.3.suitesFeria1}}{% else %}{{value.4.3.suitesFeria1}}{% endif %}">€ {{value.4.3.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.3.min != 100000 %}{{value.4.3.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.3.suitesFeria2}} / DL - {{value.4.3.suitesFeria1}}{% else %}{{value.4.3.suitesFeria1}}{% endif %}">{{value.4.3.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.3.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.3.media value.4.3.media_cant 1 %}</h4><hr>
                           {% for price in value.4.3.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.4.suitesFeria2}} / DL - {{value.4.4.suitesFeria1}}{% else %}{{value.4.4.suitesFeria1}}{% endif %}">€ {{value.4.4.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.4.min != 100000 %}{{value.4.4.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.4.suitesFeria2}} / DL - {{value.4.4.suitesFeria1}}{% else %}{{value.4.4.suitesFeria1}}{% endif %}">{{value.4.4.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.4.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.4.media value.4.4.media_cant 1 %}</h4><hr>
                           {% for price in value.4.4.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.5.suitesFeria2}} / DL - {{value.4.5.suitesFeria1}}{% else %}{{value.4.5.suitesFeria1}}{% endif %}">€ {{value.4.5.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.5.min != 100000 %}{{value.4.5.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.5.suitesFeria2}} / DL - {{value.4.5.suitesFeria1}}{% else %}{{value.4.5.suitesFeria1}}{% endif %}">{{value.4.5.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.5.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.5.media value.4.5.media_cant 1 %}</h4><hr>
                           {% for price in value.4.5.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.6.suitesFeria2}} / DL - {{value.4.6.suitesFeria1}}{% else %}{{value.4.6.suitesFeria1}}{% endif %}">€ {{value.4.6.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.6.min != 100000 %}{{value.4.6.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.6.suitesFeria2}} / DL - {{value.4.6.suitesFeria1}}{% else %}{{value.4.6.suitesFeria1}}{% endif %}">{{value.4.6.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.6.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.6.media value.4.6.media_cant 1 %}</h4><hr>
                           {% for price in value.4.6.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-info" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.7.suitesFeria2}} / DL - {{value.4.7.suitesFeria1}}{% else %}{{value.4.7.suitesFeria1}}{% endif %}">€ {{value.4.7.suitesFeriaPrice}}</h4><hr>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.4.7.min != 100000 %}{{value.4.7.min}}{% else %}0{% endif %}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.7.suitesFeria2}} / DL - {{value.4.7.suitesFeria1}}{% else %}{{value.4.7.suitesFeria1}}{% endif %}">{{value.4.7.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.7.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.7.media value.4.7.media_cant 1 %}</h4><hr>
                           {% for price in value.4.7.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                       </tbody>
@@ -162,7 +162,7 @@
                     {% endfor %}
                   </td>
                   <td class="text-sm bg-warning">
-                    <table class="table table-flush bg-danger text-white table-sm">
+                    <table class="table table-flush bg-info text-white table-sm">
                       <thead class="thead-light">
                         <tr>
                           <th class="text-xs text-white">Actual</th>
@@ -177,59 +177,51 @@
                       </thead>
                       <tbody>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.0.min != 100000 %}{{value.3.0.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.0.media value.3.0.media_cant 1 %}</h4><hr>
                           {% for price in value.3.0.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.1.min != 100000 %}{{value.3.1.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.1.media value.3.1.media_cant 1 %}</h4><hr>
                           {% for price in value.3.1.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.2.min != 100000 %}{{value.3.2.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.2.media value.3.2.media_cant 1 %}</h4><hr>
                           {% for price in value.3.2.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.3.min != 100000 %}{{value.3.3.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.3.media value.3.3.media_cant 1 %}</h4><hr>
                           {% for price in value.3.3.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.4.min != 100000 %}{{value.3.4.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.4.media value.3.4.media_cant 1 %}</h4><hr>
                           {% for price in value.3.4.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.5.min != 100000 %}{{value.3.5.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.5.media value.3.5.media_cant 1 %}</h4><hr>
                           {% for price in value.3.5.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.6.min != 100000 %}{{value.3.6.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.6.media value.3.6.media_cant 1 %}</h4><hr>
                           {% for price in value.3.6.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-secondary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Precio Minimo">€ {% if value.3.7.min != 100000 %}{{value.3.7.min}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.7.media value.3.7.media_cant 1 %}</h4><hr>
                           {% for price in value.3.7.prices %}
-                            <h5>€ {{price}}</h5><hr>
+                            <h5 class="{{price.bg}} {{price.color}}">€ {{price.price}}</h5><hr>
                           {% endfor %}
                         </td>
                       </tbody>

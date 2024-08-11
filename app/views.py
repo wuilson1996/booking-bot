@@ -114,6 +114,7 @@ def get_booking(request):
         result["message"] = "Proceso desactivado correctamente."
     return Response(result)
 
+
 @api_view(["POST"])
 def save_message(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
@@ -163,6 +164,56 @@ def save_price(request):
             _price.updated = dt.now()
             _price.save()
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": str(_price.updated).split(".")[0]}
+    return Response(result)
+
+@api_view(["POST"])
+def save_temp(request):
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        _temp_by_day = TemporadaByDay.objects.filter(
+            date_from = request.data["date"]
+        ).last()
+        if not _temp_by_day:
+            _temp_by_day = TemporadaByDay.objects.create(
+                date_from = request.data["date"],
+                bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0],
+                text_color = "text-white",
+                number = request.data["numTemp"],
+                updated = dt.now(),
+                created = dt.now()
+            )
+        else:
+            _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0]
+            _temp_by_day.number = request.data["numTemp"]
+            _temp_by_day.updated = dt.now()
+            _temp_by_day.save()
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+    return Response(result)
+
+@api_view(["POST"])
+def save_event(request):
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        _event_by_day = EventByDay.objects.filter(
+            date_from = request.data["date"],
+            occupancy = request.data["occupancy"]
+        ).last()
+        if not _event_by_day:
+            _event_by_day = EventByDay.objects.create(
+                date_from = request.data["date"],
+                occupancy = request.data["occupancy"],
+                text = request.data["text"],
+                updated = dt.now(),
+                created = dt.now()
+            )
+        else:
+            _event_by_day.date_from = request.data["date"]
+            _event_by_day.occupancy = request.data["occupancy"]
+            _event_by_day.text = request.data["text"]
+            _event_by_day.updated = dt.now()
+            _event_by_day.save()
+
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
     return Response(result)
 
 def index(request):
@@ -240,9 +291,34 @@ def index(request):
                             avail_suites_feria = avail_sf
                         ).last()
                         bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
-                        
+                
+                available_booking2 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
+                for avail_book in available_booking2:
+                    if "media_total1" not in bookings[str(_date_from.date())][avail_book.occupancy]:
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] = 0
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] = 0
+
+                    _price3 = avail_book.price.replace("€ ", "")
+
+                    if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
+
+                available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                for avail_book in available_booking3:
+                    if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
+                    
+                    _price4 = avail_book.price.replace("€ ", "")
+
+                    if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
+                        bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
+
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
+
                     bookings[avail_book.date_from]["updated"] = str(avail_book.updated).split(".")[0]
                     bookings[avail_book.date_from]["date_from"] = avail_book.date_from
                     bookings[avail_book.date_from]["date_to"] = avail_book.date_to
@@ -261,6 +337,40 @@ def index(request):
                         
                         if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
                             bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
+                            if int(avail_book.booking.start) == 4:
+                                available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
+                                available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                                for ab1 in available_booking1:
+                                    if "Hotel Suites Feria de Madrid" == ab1.booking.title:
+                                        _price1 = ab1.price.replace("€ ", "")
+                                        bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeria1"] = int(_price1)
+                                        bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
+                                        break
+                                
+                                for ab7 in available_booking7:
+                                    if "Hotel Suites Feria de Madrid" == ab7.booking.title:
+                                        _price7 = ab7.price.replace("€ ", "")
+                                        bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeria7"] = int(_price7)
+                                        bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
+                                        break
+
+                        if "Zenit Conde de Orgaz" == avail_book.booking.title:
+                            bookings[avail_book.date_from][avail_book.occupancy]["priceZEN"] = _price
+                        
+                        if "Best Osuna" == avail_book.booking.title:
+                            bookings[avail_book.date_from][avail_book.occupancy]["priceOSU"] = _price
+                        
+                        if "Travelodge Torrelaguna" == avail_book.booking.title:
+                            bookings[avail_book.date_from][avail_book.occupancy]["priceTOR"] = _price
+                        
+                        if "Senator Barajas" == avail_book.booking.title:
+                            bookings[avail_book.date_from][avail_book.occupancy]["priceBAR"] = _price
+                        
+                        if "ALIANZA SUITES" == avail_book.booking.title:
+                            bookings[avail_book.date_from][avail_book.occupancy]["priceAZA"] = _price
+                        
+                        #if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
+                        #    bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
 
                         if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
                             bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
@@ -286,6 +396,63 @@ def index(request):
     
 def booking_view(request):
     if request.user.is_authenticated:
+        data_aux = {
+            "2": {#occupancy
+                "4":[#stars
+                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
+                    {"price": 0, "bg": "bg-primary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-warning", "color": "text-white"},
+                    {"price": 0, "bg": "bg-danger", "color": "text-white"}
+                ],
+                "3":[
+                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                ]
+            },
+            "3":{
+                "4":[
+                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                ],
+                "3": [
+                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                ]
+            },
+            "5":{
+                "4":[
+                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                ],
+                "3": [
+                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                ]
+            }
+        }
+
         _date_from = dt(
             year=int(request.GET["date"].split("-")[0]),
             month=int(request.GET["date"].split("-")[1]),
@@ -324,14 +491,43 @@ def booking_view(request):
                     if not available_booking:
                         if int(request.GET["occupancy"]) == 2:
                             if s == 3:
-                                bookings["bookings"][str(s)][i]["prices"] = [0,0,0,0,0]
+                                bookings["bookings"][str(s)][i]["prices"] = [
+                                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                                ]
                             else:
-                                bookings["bookings"][str(s)][i]["prices"] = [0,0,0,0,0,0,0,0,0]
+                                bookings["bookings"][str(s)][i]["prices"] = [
+                                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-white", "color": "text-black"},
+                                    {"price": 0, "bg": "bg-primary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-warning", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-danger", "color": "text-white"}
+                                ]
                         elif int(request.GET["occupancy"]) in [3, 5]:
                             if s == 3:
-                                bookings["bookings"][str(s)][i]["prices"] = [0,0,0,0,0]
+                                bookings["bookings"][str(s)][i]["prices"] = [
+                                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                                ]
                             else:
-                                bookings["bookings"][str(s)][i]["prices"] = [0,0,0,0,0,0]
+                                bookings["bookings"][str(s)][i]["prices"] = [
+                                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                                ]
             
                 #print(str(_date_from.date() - datetime.timedelta(days=i)))
                 avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=i))).last()
@@ -356,22 +552,42 @@ def booking_view(request):
                         ).last()
                         if avail_sf_cant:
                             bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+                
+                bookings["bookings"][str(s)][i]["suitesFeriaTotal"] = bookings["bookings"][str(s)][i]["suitesFeria2"] + bookings["bookings"][str(s)][i]["suitesFeria1"]
 
+            acum1 = 0
+            acum2 = 0
             for b in available_booking:
                 if int(b.booking.start) in stars:
+                    if int(b.booking.start) == 3:
+                        acum = acum1
+                    if int(b.booking.start) == 4:
+                        acum = acum2
                     _price = b.price.replace("€ ", "")
                     if i == 0:
-                        bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title)#+" - € "+_price+" - "+str(b.position)
+                        bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position))
 
                     if bookings["bookings"][str(b.booking.start)][i]["min"] > int(_price):
                         bookings["bookings"][str(b.booking.start)][i]["min"] = int(_price)
 
-                    bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
-                    bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
-
-                    bookings["bookings"][str(b.booking.start)][i]["prices"].append(int(_price))
+                    if int(b.booking.start) == 4:
+                        if b.position in [0,1,2,3,4,9]:
+                            bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
+                            bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
+                    elif int(b.booking.start) == 3:
+                        bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
+                        bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
+                    #print(request.GET["occupancy"], b.booking.start, acum)
+                    _text_price = data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]
+                    _text_price["price"] = int(_price)
+                    bookings["bookings"][str(b.booking.start)][i]["prices"].append(_text_price)
                     if "Hotel Suites Feria de Madrid" == b.booking.title:
                         bookings["bookings"][str(b.booking.start)][i]["suitesFeriaPrice"] = _price
+                    
+                    if int(b.booking.start) == 3:
+                        acum1 += 1
+                    if int(b.booking.start) == 4:
+                        acum2 += 1
         
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')

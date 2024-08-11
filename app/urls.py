@@ -11,5 +11,7 @@ urlpatterns = [
     path("booking", booking_view, name="booking"),
     path('save/price', save_price, name="save_price"),
     path('save/message', save_message, name="save_message"),
+    path('save/temp', save_temp, name="save_temp"),
+    path('save/event', save_event, name="save_event"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

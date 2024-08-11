@@ -104,10 +104,9 @@ class EventByDay(models.Model):
 class TemporadaByDay(models.Model):
     date_from = models.CharField(max_length=30)
     COLORS = (
-        ("bg-success", "bg-success"),
+        ("bg-danger", "bg-danger"),
         ("bg-warning", "bg-warning"),
-        ("bg-info", "bg-info"),
-        ("bg-primary", "bg-primary"),
+        ("bg-success", "bg-success"),
         ("bg-secondary", "bg-secondary"),
         ("bg-dark", "bg-dark"),
     )
