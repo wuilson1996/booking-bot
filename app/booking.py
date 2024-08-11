@@ -48,7 +48,7 @@ class BookingSearch:
             return cls._driver_firefox(url)
 
     @classmethod
-    def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, p:ProcessActive=None, search_name=""):
+    def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, process:ProcessActive=None, search_name=""):
         driver.get(cls._url)
         driver.implicitly_wait(15)
         sleep(5)
@@ -267,7 +267,7 @@ class BookingSearch:
                     logging.info(f"[-] {dt.now()} Error in total_search general: "+str(e))
 
                 try:
-                    for position in p.position:
+                    for position in process.position:
                         aux_d = cls.get_data_to_text(items[position], _date_elem, _now, occupancy, position, total_search)
                         if aux_d["title"] not in list(item_list.keys()):
                             item_list[aux_d["title"]] = []
@@ -301,8 +301,8 @@ class BookingSearch:
         #         except Exception as e:
         #             print("Error 237: "+str(e))
         
-        p.active = False
-        p.save()
+        #p.active = False
+        #p.save()
 
     @classmethod
     def filter_data(cls, data):

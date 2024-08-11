@@ -13,5 +13,6 @@ urlpatterns = [
     path('save/message', save_message, name="save_message"),
     path('save/temp', save_temp, name="save_temp"),
     path('save/event', save_event, name="save_event"),
+    path("check/booking/process", check_booking_process, name="check_booking_process")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

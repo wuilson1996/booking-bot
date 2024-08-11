@@ -20,10 +20,17 @@
               </div>
               <div class="my-auto mt-4 ms-auto mt-lg-0">
                 <div class="my-auto ms-auto">
-                  <button class="me-2 mb-0 btn btn-dark" type="button" onclick="activeAlert()">
-                    <i class="fas fa-key me-1"></i>
-                    Activar extraccion
-                  </button>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button" onclick="activeAlert()">
+                        <i class="fas fa-key me-1"></i>
+                        Activar extraccion
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -470,7 +477,7 @@
                               <thead class="thead-light">
                                 <tr>
                                   <th class="text-xs text-white">AZA</th>
-                                  <th class="text-xs text-white">.</th>
+                                  <th class="text-xs text-white">ECO</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -480,7 +487,7 @@
                                     <!--<h5>0</h5>-->
                                   </td>
                                   <td class="text-sm">
-                                    <h3>{% if 'priceP' in value.5 %}{{value.5.priceP}}{% else %}0{% endif %}</h3></br>
+                                    <h3>{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</h3></br>
                                     <!--<h5>0</h5>-->
                                   </td>
                                 </tr>
@@ -782,10 +789,13 @@
       $.ajax({
           url: '/get/booking',
           type: 'POST',
-          data:{},
+          data:{
+            date: document.getElementById("date_process").value
+          },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
             console.log(json);
+            checkActiveProcess();
             Swal.fire({
               title: 'Activar de proceso',
               text: "!"+json.message+"!",
@@ -798,6 +808,28 @@
                 
               }
             })
+          },
+          error: function(error) {
+            console.log("Ocurrio un error");
+          }
+      });
+    }
+    function checkActiveProcess(){
+      $.ajax({
+          url: '/check/booking/process',
+          type: 'POST',
+          data:{},
+          headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+          success: function(json) {
+            if (json.active){
+              $("#buttonActive").text("");
+              $("#buttonActive").append("Desactivar extraccion");
+              $("#buttonActive").prop("class", "me-2 mb-0 btn btn-success");
+            }else{
+              $("#buttonActive").text("");
+              $("#buttonActive").append("Activar extraccion");
+              $("#buttonActive").prop("class", "me-2 mb-0 btn btn-danger");
+            }
           },
           error: function(error) {
             console.log("Ocurrio un error");
@@ -892,6 +924,11 @@
         tempOption($(this).val(), '{{date}}');
       });
     '{% endfor %}'
+
+    checkActiveProcess();
+    setInterval(function(){
+      checkActiveProcess();
+    },10000);
   </script>
 
 

@@ -75,7 +75,7 @@ def active_process(request):
         for t in threads:
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
             t.join()
-        
+
         if general_search:
             seconds = 60 * general_search.time_sleep_minutes
             logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
@@ -87,24 +87,32 @@ def active_process(request):
         logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
         state = False
         for p in ProcessActive.objects.all():
+            p.active = False
+            p.save()
             if p.currenct:
                 state = True
-                break
+
         if not state:
             break
+    
+    for p in ProcessActive.objects.all():
+        p.active = False
+        p.currenct = False
+        p.save()
     logging.info(f"[+] {dt.now()} Finalizando process...")
 
 @api_view(["POST"])
 def get_booking(request):
     state = False
     for p in ProcessActive.objects.all():
-        if p.currenct:
+        if p.currenct or p.active:
             state = True
             break
     result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
     if not state:
         for p in ProcessActive.objects.all():
             p.active = False
+            p.date_end = request.data["date"]
             p.save()
         threading.Thread(target=active_process, args=(request,)).start()
     else:
@@ -114,6 +122,16 @@ def get_booking(request):
         result["message"] = "Proceso desactivado correctamente."
     return Response(result)
 
+@api_view(["POST"])
+def check_booking_process(request):
+    state = False
+    for p in ProcessActive.objects.all():
+        if p.currenct or p.active:
+            state = True
+            break
+    
+    result = {"code": 200, "status": "OK", "active":state}
+    return Response(result)
 
 @api_view(["POST"])
 def save_message(request):
@@ -369,8 +387,8 @@ def index(request):
                         if "ALIANZA SUITES" == avail_book.booking.title:
                             bookings[avail_book.date_from][avail_book.occupancy]["priceAZA"] = _price
                         
-                        #if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
-                        #    bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
+                        if "Eco Alcalá Suites" == avail_book.booking.title:
+                            bookings[avail_book.date_from][avail_book.occupancy]["priceECO"] = _price
 
                         if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
                             bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
@@ -390,7 +408,9 @@ def index(request):
             
             _date_from += datetime.timedelta(days=1)
 
-        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to})
+        _date_process = ProcessActive.objects.all().last()
+
+        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end)})
     else:
         return redirect("sign-in")
     
