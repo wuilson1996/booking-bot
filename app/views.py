@@ -10,7 +10,26 @@ from datetime import datetime as dt
 from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
+import time
 # Create your views here.
+
+def generate_date_with_month(_date:str):
+    ___date_from = dt(
+        year=int(_date.split("-")[0]),
+        month=int(_date.split("-")[1]),
+        day=int(_date.split("-")[2])
+    )
+    return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')
+
+def generate_date_with_month_time(_date:str):
+    _time = _date.split(" ")[1].split(".")[0]
+    _date = _date.split(" ")[0]
+    ___date_from = dt(
+        year=int(_date.split("-")[0]),
+        month=int(_date.split("-")[1]),
+        day=int(_date.split("-")[2])
+    )
+    return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')+" "+_time[:-3]
 
 def active_process(request):
     for a in AvailableBooking.objects.all():
@@ -79,11 +98,20 @@ def active_process(request):
         if general_search:
             seconds = 60 * general_search.time_sleep_minutes
             logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
-            sleep(seconds) # minutos definidos en proceso.
         else:
             seconds = 60 * 3
             logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
-            sleep(seconds) # 3 minutos por default.
+        
+        start_time = time.time()
+        while time.time() - start_time < seconds:
+            acum = 0
+            for _p in ProcessActive.objects.all():
+                if not _p.currenct:
+                    acum += 1
+            if acum == len(ProcessActive.objects.all()):
+                break
+            time.sleep(1)
+        #sleep(seconds) # 3 minutos por default.
         logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
         state = False
         for p in ProcessActive.objects.all():
@@ -158,7 +186,7 @@ def save_message(request):
                     updated = dt.now(),
                     created = dt.now()
                 )
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": str(_message_by_day.updated).split(".")[0]}
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_message_by_day.updated))}
     return Response(result)
 
 @api_view(["POST"])
@@ -181,7 +209,7 @@ def save_price(request):
             _price.price = request.data["text"]
             _price.updated = dt.now()
             _price.save()
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": str(_price.updated).split(".")[0]}
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
     return Response(result)
 
 @api_view(["POST"])
@@ -237,7 +265,7 @@ def save_event(request):
 def index(request):
     if request.user.is_authenticated:
         __date_from = str(dt.now().date())
-        __date_to = str(dt.now().date() + datetime.timedelta(days=1))
+        __date_to = str(dt.now().date() + datetime.timedelta(days=15))
         if "date_from" in request.POST:
             __date_from = str(request.POST["date_from"])
         if "date_to" in request.POST:
@@ -276,17 +304,20 @@ def index(request):
                 # get price tarifa
                 __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __price:
-                    bookings[str(_date_from.date())][int(ocp)]["tarifa"] = {"price":__price.price, "updated": str(__price.updated).split(".")[0]}
+                    bookings[str(_date_from.date())][int(ocp)]["tarifa"] = {
+                        "price":__price.price, 
+                        "updated": generate_date_with_month_time(str(__price.updated))
+                    }
 
                 # get message
                 __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __message_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"text":__message_by_day.text, "updated":str(__message_by_day.updated).split(".")[0]}
+                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"text":__message_by_day.text, "updated":generate_date_with_month_time(str(__message_by_day.updated))}
 
                 # get event by day
                 __event_by_day = EventByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __event_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = {"text":__event_by_day.text, "updated":str(__event_by_day.updated).split(".")[0]}
+                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = {"text":__event_by_day.text, "updated":generate_date_with_month_time(str(__event_by_day.updated))}
 
                 avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
                 avail_sf_cant = CantAvailSuitesFeria.objects.filter(
@@ -337,9 +368,9 @@ def index(request):
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
 
-                    bookings[avail_book.date_from]["updated"] = str(avail_book.updated).split(".")[0]
-                    bookings[avail_book.date_from]["date_from"] = avail_book.date_from
-                    bookings[avail_book.date_from]["date_to"] = avail_book.date_to
+                    bookings[avail_book.date_from]["updated"] = str(avail_book.updated).split(".")[0][:-3]
+                    bookings[avail_book.date_from]["date_from"] = generate_date_with_month(avail_book.date_from)
+                    bookings[avail_book.date_from]["date_to"] = generate_date_with_month(avail_book.date_to)
                     locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
                     fecha_especifica = dt.strptime(avail_book.date_from, '%Y-%m-%d')
                     bookings[avail_book.date_from]["day"] = fecha_especifica.strftime('%A')
@@ -611,7 +642,8 @@ def booking_view(request):
         
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')
-        return render(request, "app/booking.html", {"bookings":bookings, "segment": "index", "day": fecha_especifica.strftime('%A')})
+        ___date = generate_date_with_month(request.GET["date"])
+        return render(request, "app/booking.html", {"bookings":bookings, "segment": "index", "day": fecha_especifica.strftime('%A'), "date": ___date})
     else:
         return redirect("sign-in")
 

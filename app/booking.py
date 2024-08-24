@@ -86,6 +86,9 @@ class BookingSearch:
         try:
             _current_url = driver.current_url
             while True:
+                process = ProcessActive.objects.filter(pk = process.pk).first()
+                if not process.currenct:
+                    break
                 #logging.info(driver.current_url)
                 _date_elem = _now
                 _now += datetime.timedelta(days=1)
