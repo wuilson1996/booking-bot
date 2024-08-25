@@ -135,11 +135,11 @@
                 {% for date, value in bookings.items %}
                 <tr>
                   <td colspan="2" class="text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                    <h1 class="text-white my-4">{{value.totalFeria}}</h1>
+                    <h2 class="text-white my-4">{{value.totalFeria}}</h2>
                     <hr>
-                    <h3 class="text-white my-4">{{value.day}}</h3>
+                    <h4 class="text-white my-4">{{value.day}}</h4>
                     </br>
-                    <h3 class="text-white my-4">{{value.date_from}}</h3>
+                    <h4 class="text-white my-4">{{value.date_from}}</h4>
                     <hr>
                     {{value.updated}}
                     <hr>
