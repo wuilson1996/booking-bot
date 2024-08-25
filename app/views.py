@@ -38,7 +38,7 @@ def active_process(request):
             month=int(a.date_from.split("-")[1]),
             day=int(a.date_from.split("-")[2]),
         )
-        if _date.date() < dt.now().date():
+        if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
             a.delete()
         
     for p in ProcessActive.objects.all():
