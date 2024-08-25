@@ -290,7 +290,7 @@ def index(request):
         #print(occupancys)
         while _date_from.date() <= _date_to.date():
             if str(_date_from.date()) not in bookings:
-                bookings[str(_date_from.date())] = {}
+                bookings[str(_date_from.date())] = {"totalFeria": 0}
             
             # get event by day
             __temporada_by_day = TemporadaByDay.objects.filter(date_from = str(_date_from.date())).last()
@@ -319,20 +319,25 @@ def index(request):
                 if __event_by_day:
                     bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = {"text":__event_by_day.text, "updated":generate_date_with_month_time(str(__event_by_day.updated))}
 
+                # Disponiblidad actual
                 avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
                 avail_sf_cant = CantAvailSuitesFeria.objects.filter(
                     type_avail = int(ocp),
                     avail_suites_feria = avail_sf
                 ).last()
-
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria"] = 0
                 if avail_sf_cant:
                     bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail
+                    bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
                     if int(ocp) == 2:
                         avail_sf_cant = CantAvailSuitesFeria.objects.filter(
                             type_avail = 1,
                             avail_suites_feria = avail_sf
                         ).last()
                         bookings[str(_date_from.date())][int(ocp)]["suiteFeria1"] = avail_sf_cant.avail
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail
+                        bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
                 else:
                     if int(ocp) == 5:
                         avail_sf_cant = CantAvailSuitesFeria.objects.filter(
@@ -340,6 +345,54 @@ def index(request):
                             avail_suites_feria = avail_sf
                         ).last()
                         bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail
+                        bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
+
+                #Disponibilidad 1 dia atras
+                avail_sf1 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=1))).last()
+                avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
+                    type_avail = int(ocp),
+                    avail_suites_feria = avail_sf1
+                ).last()
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] = 0
+                if avail_sf_cant1:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
+                    if int(ocp) == 2:
+                        avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 1,
+                            avail_suites_feria = avail_sf1
+                        ).last()
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
+                else:
+                    if int(ocp) == 5:
+                        avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 4,
+                            avail_suites_feria = avail_sf1
+                        ).last()
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
+
+                #Disponibilidad 7 dias atras
+                avail_sf7 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=7))).last()
+                avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
+                    type_avail = int(ocp),
+                    avail_suites_feria = avail_sf7
+                ).last()
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] = 0
+                if avail_sf_cant7:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
+                    if int(ocp) == 2:
+                        avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 1,
+                            avail_suites_feria = avail_sf7
+                        ).last()
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
+                else:
+                    if int(ocp) == 5:
+                        avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
+                            type_avail = 4,
+                            avail_suites_feria = avail_sf7
+                        ).last()
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
                 
                 available_booking2 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
                 for avail_book in available_booking2:
@@ -368,7 +421,7 @@ def index(request):
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
 
-                    bookings[avail_book.date_from]["updated"] = str(avail_book.updated).split(".")[0][:-3]
+                    bookings[avail_book.date_from]["updated"] = generate_date_with_month_time(str(avail_book.updated))
                     bookings[avail_book.date_from]["date_from"] = generate_date_with_month(avail_book.date_from)
                     bookings[avail_book.date_from]["date_to"] = generate_date_with_month(avail_book.date_to)
                     locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
@@ -535,7 +588,7 @@ def booking_view(request):
                 if __message_by_day:
                     bookings["bookings"][str(s)]["messageDay"] = ""
                     for m in __message_by_day:
-                        bookings["bookings"][str(s)]["messageDay"] += f"{m.text} - {str(m.updated).split('.')[0]} | "
+                        bookings["bookings"][str(s)]["messageDay"] += f"{m.text} - {generate_date_with_month_time(str(m.updated))} | "
 
                 if i not in list(bookings["bookings"][str(s)].keys()):
                     bookings["bookings"][str(s)][i] = {"min": 100000, "media": 0, "media_cant": 0, "prices":[], "suitesFeriaPrice": 0, "suitesFeria1": 0, "suitesFeria2": 0}
