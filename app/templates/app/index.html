@@ -134,7 +134,7 @@
               <tbody>
                 {% for date, value in bookings.items %}
                 <tr>
-                  <td colspan="2" class="text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                  <td class="text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
                     <h2 class="text-white my-4">{{value.totalFeria}}</h2>
                     <hr>
                     <h4 class="text-white my-4">{{value.day}}</h4>
@@ -925,6 +925,11 @@
     setInterval(function(){
       checkActiveProcess();
     },10000);
+
+    //document.body.style.transform = "scale(0.9)";
+    //document.body.style.transformOrigin = "0 0"; // Establece el origen de la transformación
+    document.body.style.zoom = "90%";
+
   </script>
 
 
