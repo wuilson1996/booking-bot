@@ -134,8 +134,13 @@
               <tbody>
                 {% for date, value in bookings.items %}
                 <tr>
-                  <td class="text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                    <h2 class="text-white my-4">{{value.totalFeria}}</h2>
+                  <td class="w-12 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                    <h1 class="text-white my-4">{{value.totalFeria}}</h1>
+                    <div class="input-group mb-3">
+                      <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
+                      <input type="number" class="form-control form-control-sm" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
+                    </div>
+                    <h2 class="{{value.availWithDateRest.color}} my-4">{{value.availWithDateRest.value}}</h2>
                     <hr>
                     <h4 class="text-white my-4">{{value.day}}</h4>
                     </br>
@@ -193,13 +198,18 @@
                                 <tbody>
                                   <tr>
                                     <td>
-                                      M: {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %}<br>
-                                      D: {% if "suiteFeria" in value.2 %}{{value.2.suiteFeria}}{% else %}0{% endif %}
+                                      M: {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %} | 
+                                      {% if "suiteFeriaM1" in value.2 %}{{value.2.suiteFeriaM1}}{% else %}0{% endif %} | 
+                                      {% if "suiteFeriaM7" in value.2 %}{{value.2.suiteFeriaM7}}{% else %}0{% endif %}
+                                      <br>
+                                      D: {% if "suiteFeria" in value.2 %}{{value.2.suiteFeria}}{% else %}0{% endif %} | 
+                                      {% if "suiteFeriaD1" in value.2 %}{{value.2.suiteFeriaD1}}{% else %}0{% endif %} | 
+                                      {% if "suiteFeriaD7" in value.2 %}{{value.2.suiteFeriaD7}}{% else %}0{% endif %}
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                       {% if "priceSuitesFeriaRest1" in value.2 %}{{value.2.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
                                       {% if "priceSuitesFeriaRest7" in value.2 %}{{value.2.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                                    </td>
+                                    </td> -->
                                   </tr>
                                 </tbody>
                               </table>
@@ -342,11 +352,11 @@
                               <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
                               <input type="text" class="form-control form-control-sm" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
                             </div>
-                            <h4 class="text-white text-center">
+                            <!-- <h4 class="text-white text-center">
                               {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
                               {% if "priceSuitesFeriaRest1" in value.3 %}{{value.3.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
                               {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                            </h4>
+                            </h4> -->
                           </td>
                           <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                             <table class="table table-flush text-white table-sm">
@@ -469,11 +479,11 @@
                               <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
                               <input type="text" class="form-control form-control-sm" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
                             </div>
-                            <h4 class="text-white text-center">
+                            <!-- <h4 class="text-white text-center">
                               {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
                               {% if "priceSuitesFeriaRest1" in value.5 %}{{value.5.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
                               {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                            </h4>
+                            </h4> -->
                           </td>
                           <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                             <table class="table table-flush text-white table-sm">
@@ -909,6 +919,25 @@
         type: 'POST',
         data:{
           numTemp: numTemp,
+          date:_date
+        },
+        headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+        success: function(json) {
+          console.log(json);
+          window.location.href = "{{request.path}}";
+        },
+        error: function(error) {
+          console.log("Ocurrio un error");
+        }
+      });
+    }
+    function saveAvailWithDate(_date){
+      _avail = document.getElementById("avail"+_date).value
+      $.ajax({
+        url: '/save/avail/with/date',
+        type: 'POST',
+        data:{
+          avail: _avail,
           date:_date
         },
         headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},

@@ -121,7 +121,7 @@ class BookingSearch:
                             except ElementClickInterceptedException:
                                 driver.execute_script("arguments[0].click();", check_start)
                                 sleep(2)
-                            logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{start} - O:{occupancy}")
+                            logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{start} - O:{occupancy}")
                             break
                             
                 except NoSuchElementException as e:
@@ -221,6 +221,26 @@ class BookingSearch:
                     logging.info(f"[-] {dt.now()} Error in total_search, element not clicked1")
                 except Exception as e:
                     logging.info(f"[-] {dt.now()} Error in total_search general: "+str(e))
+
+                try:
+                    comp = Complement.objects.filter(date_from=str(_date_elem.date()), occupancy=occupancy, start=start).first()
+                    if not comp:
+                        Complement.objects.create(
+                            total_search = total_search,
+                            occupancy = occupancy,
+                            start = start,
+                            date_from = str(_date_elem.date()),
+                            date_to = str(_now.date()),
+                            updated = dt.now(),
+                            created = dt.now()
+                        )
+                    else:
+                        comp.total_search = total_search
+                        comp.updated = dt.now()
+                        comp.created = dt.now()
+                        comp.save()
+                except Exception as er2:
+                    logging.info(f"[-] {dt.now()} Error 228: "+str(er2))
 
                 try:
                     for position in process.position:
@@ -423,6 +443,29 @@ class BookingSearch:
                     bg.updated = dt.now()
                     bg.save()
 
+                # _complement = Complement.objects.filter(
+                #     date_from=item_dict["date_from"], 
+                #     date_to=item_dict["date_to"], 
+                #     occupancy=occupancy, 
+                #     start=item_dict["start"]
+                # ).first()
+                # if not _complement:
+                #     _complement = Complement.objects.create(
+                #         total_search=total_search,
+                #         date_from=item_dict["date_from"], 
+                #         date_to=item_dict["date_to"], 
+                #         occupancy=occupancy, 
+                #         start=item_dict["start"]
+                #     )
+                # else:
+                #     _complement.total_search = total_search
+                #     _complement.save()
+                    
+                # _available = AvailableBooking.objects.filter(
+                #     position=position,
+                #     complement=_complement
+                # ).first()
+
                 _available = AvailableBooking.objects.filter(
                     date_from=item_dict["date_from"], 
                     date_to=item_dict["date_to"], 
@@ -444,14 +487,14 @@ class BookingSearch:
                         start = item_dict["start"]
                     )
                 else:
-                    _available.date_from = item_dict["date_from"]
-                    _available.date_to = item_dict["date_to"]
+                    #_available.date_from = item_dict["date_from"]
+                    #_available.date_to = item_dict["date_to"]
                     #_available.position = position
                     _available.total_search = int(total_search)
                     _available.active = True
                     _available.updated = dt.now()
                     _available.price = item_dict["price"]
-                    _available.occupancy = occupancy
+                    #_available.occupancy = occupancy
                     _available.booking = bg
                     _available.save()
                 logging.info(item_dict)

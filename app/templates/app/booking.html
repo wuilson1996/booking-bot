@@ -57,8 +57,8 @@
                 
                 <tr class="tr">
                   <!-- <td class="text-sm bg-success text-white">{{request.GET.date}}</td> -->
-                  <td class="text-sm bg-info text-white">{{value.4.title}}</td>
-                  <td class="text-sm bg-warning" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.4.messageDay}}">
+                  <td class="text-sm {{bg_color}} text-white">{{value.4.title}}</td>
+                  <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.4.messageDay}}">
                     {% for h in value.4.list2 %}
                       <span class="text-sm text-white">
                         {{h}}
@@ -66,8 +66,8 @@
                       </br>
                     {% endfor %}
                   </td>
-                  <td class="text-sm bg-warning">
-                    <table class="table table-flush bg-info text-white table-sm">
+                  <td class="text-sm {{bg_color}}">
+                    <table class="table table-flush {{bg_color}} text-white table-sm">
                       <thead class="thead-light">
                         <tr>
                           <th class="text-xs text-white">Actual</th>
@@ -82,7 +82,7 @@
                       </thead>
                       <tbody>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.0.suitesFeria2}} / DL - {{value.4.0.suitesFeria1}}{% else %}{{value.4.0.suitesFeria1}}{% endif %}">{{value.4.0.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.0.suitesFeria2}} / D - {{value.4.0.suitesFeria1}}{% else %}{{value.4.0.suitesFeria1}}{% endif %}">{{value.4.0.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.0.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.0.media value.4.0.media_cant 1 %}</h4><hr>
                           {% for price in value.4.0.prices %}
@@ -90,7 +90,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.1.suitesFeria2}} / DL - {{value.4.1.suitesFeria1}}{% else %}{{value.4.1.suitesFeria1}}{% endif %}">{{value.4.1.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.1.suitesFeria2}} / D - {{value.4.1.suitesFeria1}}{% else %}{{value.4.1.suitesFeria1}}{% endif %}">{{value.4.1.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.1.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.1.media value.4.1.media_cant 1 %}</h4><hr>
                           {% for price in value.4.1.prices %}
@@ -98,7 +98,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.2.suitesFeria2}} / DL - {{value.4.2.suitesFeria1}}{% else %}{{value.4.2.suitesFeria1}}{% endif %}">{{value.4.2.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.2.suitesFeria2}} / D - {{value.4.2.suitesFeria1}}{% else %}{{value.4.2.suitesFeria1}}{% endif %}">{{value.4.2.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.2.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.2.media value.4.2.media_cant 1 %}</h4><hr>
                           {% for price in value.4.2.prices %}
@@ -106,7 +106,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.3.suitesFeria2}} / DL - {{value.4.3.suitesFeria1}}{% else %}{{value.4.3.suitesFeria1}}{% endif %}">{{value.4.3.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.3.suitesFeria2}} / D - {{value.4.3.suitesFeria1}}{% else %}{{value.4.3.suitesFeria1}}{% endif %}">{{value.4.3.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.3.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.3.media value.4.3.media_cant 1 %}</h4><hr>
                           {% for price in value.4.3.prices %}
@@ -114,7 +114,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.4.suitesFeria2}} / DL - {{value.4.4.suitesFeria1}}{% else %}{{value.4.4.suitesFeria1}}{% endif %}">{{value.4.4.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.4.suitesFeria2}} / D - {{value.4.4.suitesFeria1}}{% else %}{{value.4.4.suitesFeria1}}{% endif %}">{{value.4.4.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.4.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.4.media value.4.4.media_cant 1 %}</h4><hr>
                           {% for price in value.4.4.prices %}
@@ -122,7 +122,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.5.suitesFeria2}} / DL - {{value.4.5.suitesFeria1}}{% else %}{{value.4.5.suitesFeria1}}{% endif %}">{{value.4.5.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.5.suitesFeria2}} / D - {{value.4.5.suitesFeria1}}{% else %}{{value.4.5.suitesFeria1}}{% endif %}">{{value.4.5.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.5.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.5.media value.4.5.media_cant 1 %}</h4><hr>
                           {% for price in value.4.5.prices %}
@@ -130,7 +130,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.6.suitesFeria2}} / DL - {{value.4.6.suitesFeria1}}{% else %}{{value.4.6.suitesFeria1}}{% endif %}">{{value.4.6.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.6.suitesFeria2}} / D - {{value.4.6.suitesFeria1}}{% else %}{{value.4.6.suitesFeria1}}{% endif %}">{{value.4.6.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.6.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.6.media value.4.6.media_cant 1 %}</h4><hr>
                           {% for price in value.4.6.prices %}
@@ -138,7 +138,7 @@
                           {% endfor %}
                         </td>
                         <td>
-                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M/I - {{value.4.7.suitesFeria2}} / DL - {{value.4.7.suitesFeria1}}{% else %}{{value.4.7.suitesFeria1}}{% endif %}">{{value.4.7.suitesFeriaTotal}}</h4><hr>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.7.suitesFeria2}} / D - {{value.4.7.suitesFeria1}}{% else %}{{value.4.7.suitesFeria1}}{% endif %}">{{value.4.7.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.7.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.7.media value.4.7.media_cant 1 %}</h4><hr>
                           {% for price in value.4.7.prices %}
@@ -152,8 +152,8 @@
 
                 <tr class="tr">
                   <!-- <td class="text-sm bg-success text-white">{{request.GET.date}}</td> -->
-                  <td class="text-sm bg-info text-white">{{value.3.title}}</td>
-                  <td class="text-sm bg-warning" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.3.messageDay}}">
+                  <td class="text-sm {{bg_color}} text-white">{{value.3.title}}</td>
+                  <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.3.messageDay}}">
                     {% for h in value.3.list2 %}
                       <span class="text-sm text-white">
                         {{h}}
@@ -161,8 +161,8 @@
                       </br>
                     {% endfor %}
                   </td>
-                  <td class="text-sm bg-warning">
-                    <table class="table table-flush bg-info text-white table-sm">
+                  <td class="text-sm {{bg_color}}">
+                    <table class="table table-flush {{bg_color}} text-white table-sm">
                       <thead class="thead-light">
                         <tr>
                           <th class="text-xs text-white">Actual</th>

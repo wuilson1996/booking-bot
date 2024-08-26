@@ -15,13 +15,26 @@ class Booking(models.Model):
     
     def __str__(self) -> str:
         return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)
-    
+
+class Complement(models.Model):
+    total_search = models.IntegerField(default=0)
+    occupancy = models.IntegerField(default=4)
+    start = models.CharField(max_length=20)
+    date_from = models.CharField(max_length=30)
+    date_to = models.CharField(max_length=30)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.total_search)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | From: "+str(self.date_from)+" | To: "+str(self.date_to)    
+
 class AvailableBooking(models.Model):
     date_from = models.CharField(max_length=30)
     date_to = models.CharField(max_length=30)
     active = models.BooleanField(default=True)
     price = models.CharField(max_length=30)
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    complement = models.ForeignKey(Complement, on_delete=models.CASCADE, null=True, blank=True)
     position = models.IntegerField(default=0)
     total_search = models.IntegerField(default=0)
     occupancy = models.IntegerField(default=4)
@@ -62,6 +75,15 @@ class CantAvailSuitesFeria(models.Model):
     avail = models.IntegerField(default=0)
     avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
 
+class AvailWithDate(models.Model):
+    date_from = models.CharField(max_length=30)
+    avail = models.CharField(max_length=50)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.avail)
+
 class Price(models.Model):
     date_from = models.CharField(max_length=30)
     OCCUPANCYS = (
@@ -74,6 +96,9 @@ class Price(models.Model):
     updated = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return str(self.price)
+
 class MessageByDay(models.Model):
     date_from = models.CharField(max_length=30)
     OCCUPANCYS = (
@@ -85,6 +110,9 @@ class MessageByDay(models.Model):
     text = models.CharField(max_length=512)
     updated = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.text)
 
 class EventByDay(models.Model):
     date_from = models.CharField(max_length=30)

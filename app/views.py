@@ -262,6 +262,28 @@ def save_event(request):
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
     return Response(result)
 
+@api_view(["POST"])
+def save_avail_with_date(request):
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        _event_by_day = AvailWithDate.objects.filter(
+            date_from = request.data["date"],
+        ).last()
+        if not _event_by_day:
+            _event_by_day = AvailWithDate.objects.create(
+                date_from = request.data["date"],
+                avail = request.data["avail"],
+                updated = dt.now(),
+                created = dt.now()
+            )
+        else:
+            _event_by_day.avail = request.data["avail"]
+            _event_by_day.updated = dt.now()
+            _event_by_day.save()
+
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+    return Response(result)
+
 def index(request):
     if request.user.is_authenticated:
         __date_from = str(dt.now().date())
@@ -291,12 +313,20 @@ def index(request):
         while _date_from.date() <= _date_to.date():
             if str(_date_from.date()) not in bookings:
                 bookings[str(_date_from.date())] = {"totalFeria": 0}
-            
+
+            # ----------------
+            bookings[str(_date_from.date())]["date_from"] = generate_date_with_month(str(_date_from.date()))
+            bookings[str(_date_from.date())]["date_to"] = generate_date_with_month(str(_date_from.date() + datetime.timedelta(days=1)))
+            locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+            fecha_especifica = dt.strptime(str(_date_from.date()), '%Y-%m-%d')
+            bookings[str(_date_from.date())]["day"] = fecha_especifica.strftime('%A')
+            # ----------------------------
+
             # get event by day
             __temporada_by_day = TemporadaByDay.objects.filter(date_from = str(_date_from.date())).last()
             if __temporada_by_day:
                 bookings[str(_date_from.date())]["temporadaByDay"] = {"number":__temporada_by_day.number, "bgColor":str(__temporada_by_day.bg_color), "textColor":str(__temporada_by_day.text_color)}
-
+        
             for ocp in occupancys:
                 if int(ocp) not in list(bookings[str(_date_from.date())].keys()):
                     bookings[str(_date_from.date())][int(ocp)] = {}
@@ -357,12 +387,14 @@ def index(request):
                 bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] = 0
                 if avail_sf_cant1:
                     bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM1"] = avail_sf_cant1.avail
                     if int(ocp) == 2:
                         avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
                             type_avail = 1,
                             avail_suites_feria = avail_sf1
                         ).last()
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] = avail_sf_cant1.avail
                 else:
                     if int(ocp) == 5:
                         avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
@@ -380,12 +412,14 @@ def index(request):
                 bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] = 0
                 if avail_sf_cant7:
                     bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM7"] = avail_sf_cant7.avail
                     if int(ocp) == 2:
                         avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
                             type_avail = 1,
                             avail_suites_feria = avail_sf7
                         ).last()
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] = avail_sf_cant7.avail
                 else:
                     if int(ocp) == 5:
                         avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
@@ -418,19 +452,15 @@ def index(request):
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
 
+                #--------------
+                for comp in Complement.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp)):
+                    if int(comp.start) in [4]:
+                        bookings[str(_date_from.date())]["updated"] = generate_date_with_month_time(str(comp.updated))
+                        bookings[str(_date_from.date())][int(ocp)]["total_search"] = comp.total_search
+                        bookings[str(_date_from.date())][int(ocp)]["total_search_192"] = "{:.2f}".format(comp.total_search / 192 * 100)
+                #----------------
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
-
-                    bookings[avail_book.date_from]["updated"] = generate_date_with_month_time(str(avail_book.updated))
-                    bookings[avail_book.date_from]["date_from"] = generate_date_with_month(avail_book.date_from)
-                    bookings[avail_book.date_from]["date_to"] = generate_date_with_month(avail_book.date_to)
-                    locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-                    fecha_especifica = dt.strptime(avail_book.date_from, '%Y-%m-%d')
-                    bookings[avail_book.date_from]["day"] = fecha_especifica.strftime('%A')
-                    
-                    bookings[avail_book.date_from][avail_book.occupancy]["total_search"] = avail_book.total_search
-                    bookings[avail_book.date_from][avail_book.occupancy]["total_search_192"] = "{:.2f}".format(avail_book.total_search / 192 * 100)
-
                     if int(avail_book.booking.start) != 0:
                         if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
                             bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
@@ -490,6 +520,13 @@ def index(request):
                                 bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
                             bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
             
+            avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
+            bookings[str(_date_from.date())]["availWithDate"] = 0
+            if avail_with_date:
+                bookings[str(_date_from.date())]["availWithDate"] = int(avail_with_date.avail)
+            valueRest = bookings[str(_date_from.date())]["totalFeria"] - bookings[str(_date_from.date())]["availWithDate"]
+            bookings[str(_date_from.date())]["availWithDateRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
             _date_from += datetime.timedelta(days=1)
 
         _date_process = ProcessActive.objects.all().last()
@@ -682,7 +719,11 @@ def booking_view(request):
                         bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
                         bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
                     #print(request.GET["occupancy"], b.booking.start, acum)
-                    _text_price = data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]
+                    _text_price = {
+                        "price": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["price"], 
+                        "bg": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["bg"], 
+                        "color": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["color"]
+                    }
                     _text_price["price"] = int(_price)
                     bookings["bookings"][str(b.booking.start)][i]["prices"].append(_text_price)
                     if "Hotel Suites Feria de Madrid" == b.booking.title:
@@ -696,7 +737,13 @@ def booking_view(request):
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')
         ___date = generate_date_with_month(request.GET["date"])
-        return render(request, "app/booking.html", {"bookings":bookings, "segment": "index", "day": fecha_especifica.strftime('%A'), "date": ___date})
+        if int(request.GET["occupancy"]) == 2:
+            bg_color = "bg-info"
+        elif int(request.GET["occupancy"]) == 3:
+            bg_color = "bg-dark"
+        else:
+            bg_color = "bg-danger"
+        return render(request, "app/booking.html", {"bookings":bookings, "segment": "index", "day": fecha_especifica.strftime('%A'), "date": ___date, "bg_color": bg_color})
     else:
         return redirect("sign-in")
 
