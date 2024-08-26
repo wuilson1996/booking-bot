@@ -32,6 +32,9 @@ class EventByDayAdmin(admin.ModelAdmin):
 class TemporadaByDayAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class ComplementAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
@@ -42,3 +45,4 @@ admin.site.register(Price, PriceAdmin)
 admin.site.register(MessageByDay, MessageByDayAdmin)
 admin.site.register(EventByDay, EventByDayAdmin)
 admin.site.register(TemporadaByDay, TemporadaByDayAdmin)
+admin.site.register(Complement, ComplementAdmin)
