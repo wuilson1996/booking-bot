@@ -55,19 +55,19 @@ Configuraciones Process.
     * Occupancy: 2
     * Start: 4
     * Position: [0, 1, 2, 3, 4, 9, 14, 19, 24]
-
+    ------------------------------------------
     * Occupancy: 2
     * Start: 3
     * Position: [0, 1, 2, 3, 4]
-
+    ------------------------------------------
     * Occupancy: 3
     * Start: 3
     * Position: [0, 1, 2, 3, 4]
-
+    ------------------------------------------
     * Occupancy: 5
     * Start: 3
     * Position: [0, 1, 2, 3, 4]
-
+    ------------------------------------------
     * Occupancy: 5
     * Start: 4
     * Position: [0, 1, 2, 3, 4, 9]
