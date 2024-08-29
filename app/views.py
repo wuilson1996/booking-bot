@@ -396,7 +396,7 @@ def index(request):
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
                         bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] = avail_sf_cant1.avail
                 else:
-                    if int(ocp) == 5:
+                    if int(ocp) == 5 and avail_sf_cant1:
                         avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
                             type_avail = 4,
                             avail_suites_feria = avail_sf1
@@ -421,7 +421,7 @@ def index(request):
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
                         bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] = avail_sf_cant7.avail
                 else:
-                    if int(ocp) == 5:
+                    if int(ocp) == 5 and avail_sf_cant7:
                         avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
                             type_avail = 4,
                             avail_suites_feria = avail_sf7
