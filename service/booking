@@ -1,9 +1,9 @@
 server {
-    server_name traver.wuilsoft.tech;
+    server_name IP_or_domain;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /staticfiles/ {
-        root /traver;
+        root /booking-bot;
     }
 
     keepalive_timeout 360000;
@@ -13,6 +13,6 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/traver.sock;
+        proxy_pass http://unix:/run/booking.sock;
     }
 }
