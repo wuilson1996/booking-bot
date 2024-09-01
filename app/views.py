@@ -31,43 +31,13 @@ def generate_date_with_month_time(_date:str):
     )
     return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')+" "+_time[:-3]
 
-def active_process(request):
-    for a in AvailableBooking.objects.all():
-        _date = dt(
-            year=int(a.date_from.split("-")[0]),
-            month=int(a.date_from.split("-")[1]),
-            day=int(a.date_from.split("-")[2]),
-        )
-        if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
-            a.delete()
-        
-    for p in ProcessActive.objects.all():
-        p.currenct = True
-        p.save()
-
-    logging.info(f"[+] {dt.now()} Activando process...")
+def active_process_sf():
     while True:
-        threads = []
-        general_search = GeneralSearch.objects.all().last()
-        for p in ProcessActive.objects.all():
-            if not p.active:
-                booking = BookingSearch()
-                logging.info(f"[+] {dt.now()} Search driver...")
-                _driver = booking._driver(general_search.url)
-                p.active = True
-                p.save()
-                #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
-                logging.info(f"[+] {dt.now()} Process active in while...")
-                process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p, general_search.city_and_country))
-                process.daemon = True
-                process.start()
-                threads.append(process)
-        
         # get data suitesferia.
         try:
             suites_feria = SuitesFeria()
             resp = suites_feria.login()
-            logging.info(f"[+] {dt.now()} {resp}")
+            logging.info(f"[+] Login suites feria: {dt.now()} {resp}")
             if resp["code"] == 200:
                 resp_sf = suites_feria.disponibilidad()
                 resp_sf = suites_feria.format_avail(resp_sf)
@@ -87,9 +57,54 @@ def active_process(request):
                             cant_asf.avail = value_sf
                             cant_asf.save()
                 resp_l = suites_feria.logout()
-                logging.info(f"[+] {dt.now()} {resp_l}")
+                logging.info(f"[+] Logout suites feria: {dt.now()} {resp_l}")
+            
+            state = False
+            for p in ProcessActive.objects.all():
+                if not p.currenct and not p.active:
+                    state = True
+
+            if state:
+                break
+            time.sleep(30)
         except Exception as er:
-            logging.info(f"[+] {dt.now()} Error: "+str(er))
+            logging.info(f"[+] {dt.now()} Error Get Suites feria: "+str(er))
+            time.sleep(30)
+
+    logging.info(f"[+] {dt.now()} Finalizando process suites feria...")
+
+def active_process(request):
+    for a in AvailableBooking.objects.all():
+        _date = dt(
+            year=int(a.date_from.split("-")[0]),
+            month=int(a.date_from.split("-")[1]),
+            day=int(a.date_from.split("-")[2]),
+        )
+        if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
+            a.delete()
+        
+    for p in ProcessActive.objects.all():
+        p.currenct = True
+        p.save()
+
+    logging.info(f"[+] {dt.now()} Activando process...")
+    threading.Thread(target=active_process_sf).start()
+    while True:
+        threads = []
+        general_search = GeneralSearch.objects.all().last()
+        for p in ProcessActive.objects.all():
+            if not p.active:
+                booking = BookingSearch()
+                logging.info(f"[+] {dt.now()} Search driver...")
+                _driver = booking._driver(general_search.url)
+                p.active = True
+                p.save()
+                #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
+                logging.info(f"[+] {dt.now()} Process active in while...")
+                process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p, general_search.city_and_country))
+                process.daemon = True
+                process.start()
+                threads.append(process)
 
         for t in threads:
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
@@ -369,7 +384,7 @@ def index(request):
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail
                         bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
                 else:
-                    if int(ocp) == 5 and avail_sf_cant:
+                    if int(ocp) == 5:
                         avail_sf_cant = CantAvailSuitesFeria.objects.filter(
                             type_avail = 4,
                             avail_suites_feria = avail_sf
