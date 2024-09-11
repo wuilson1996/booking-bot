@@ -73,7 +73,7 @@ class BookingSearch:
         buttons = driver.find_elements_by_xpath("//button[@type='submit']")
         sleep(2)
         for b in buttons:
-            logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
+            #logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
             if "Buscar" or "Search" in b.text:
                 try:
                     b.click()
@@ -100,7 +100,7 @@ class BookingSearch:
                     if cont <= 1:
                         _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
                         _button.click()
-                        logging.info(f"[+] {dt.now()} Click button modal success: {_date_elem.date()} - {_now.date()} - S:{start} - O:{occupancy}")
+                        #logging.info(f"[+] {dt.now()} Click button modal success: {_date_elem.date()} - {_now.date()} - S:{start} - O:{occupancy}")
                 except NoSuchElementException as e:
                     logging.info(f"[-] {dt.now()} Error in button Modal, not fount")
                 except ElementClickInterceptedException as e:
@@ -112,8 +112,9 @@ class BookingSearch:
                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                     for s in elements:
+                        logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
                         if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():# or str(start)+" stars" 
-                            logging.info(f"[+] {dt.now()} - {_date_elem.date()} - {_now.date()} - O:{occupancy} - S:{str(start)} stars - Input: {s}")
+                            logging.info(f"[+] {dt.now()} - Stars - {_date_elem.date()} - {_now.date()} - O:{occupancy} - S:{str(start)} stars - Input: {s}")
                             check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                             try:
                                 driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
@@ -130,8 +131,9 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input")
                         for s in elements:
+                            logging.info(f"[+] {dt.now()} - Log2 - {str(start)} stars - Input: {s.get('aria-label')}")
                             if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():#or str(start)+" stars"
-                                logging.info(f"[+] {dt.now()} - O:{occupancy} - S:{str(start)} stars - Input: {s}")
+                                logging.info(f"[+] {dt.now()} - Stars - O:{occupancy} - S:{str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
                                     driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
@@ -158,7 +160,7 @@ class BookingSearch:
                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                     for s in elements:
                         if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                            logging.info(f"[+] {dt.now()} - Hotels - {_date_elem.date()} - {_now.date()}  - S:{start} - O:{occupancy} - Input: {s}")
+                            #logging.info(f"[+] {dt.now()} - Hotels - {_date_elem.date()} - {_now.date()}  - S:{start} - O:{occupancy} - Input: {s}")
                             check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                             try:
                                 driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
@@ -497,7 +499,7 @@ class BookingSearch:
                     #_available.occupancy = occupancy
                     _available.booking = bg
                     _available.save()
-                logging.info(item_dict)
+                #logging.info(item_dict)
             else:
                 logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
         except Exception as e:
