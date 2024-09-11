@@ -730,7 +730,7 @@ def booking_view(request):
 
                         _price = b.price.replace("€ ", "")
                         if i == 0:
-                            bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position)+" - "+str(b.start))
+                            bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position))#+" - "+str(b.start)
 
                         if bookings["bookings"][str(b.booking.start)][i]["min"] > int(_price):
                             bookings["bookings"][str(b.booking.start)][i]["min"] = int(_price)
