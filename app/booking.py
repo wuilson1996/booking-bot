@@ -112,8 +112,8 @@ class BookingSearch:
                     _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                     elements = _soup_elements.find_all("input", {"type": "checkbox"})
                     for s in elements:
-                        logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
-                        if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():# or str(start)+" stars" 
+                        #logging.info(f"[+] {dt.now()} - {str(start)} stars - Input: {s.get('aria-label')}")
+                        if str(start)+" stars" == str(s.get('aria-label')).split(":")[0].strip() or str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():# or str(start)+" stars" 
                             logging.info(f"[+] {dt.now()} - Stars - {_date_elem.date()} - {_now.date()} - O:{occupancy} - S:{str(start)} stars - Input: {s}")
                             check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                             try:
@@ -131,8 +131,8 @@ class BookingSearch:
                         _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                         elements = _soup_elements.find_all("input")
                         for s in elements:
-                            logging.info(f"[+] {dt.now()} - Log2 - {str(start)} stars - Input: {s.get('aria-label')}")
-                            if str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():#or str(start)+" stars"
+                            #logging.info(f"[+] {dt.now()} - Log2 - {str(start)} stars - Input: {s.get('aria-label')}")
+                            if str(start)+" stars" == str(s.get('aria-label')).split(":")[0].strip() or str(start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():#or str(start)+" stars"
                                 logging.info(f"[+] {dt.now()} - Stars - O:{occupancy} - S:{str(start)} stars - Input: {s}")
                                 check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                 try:
