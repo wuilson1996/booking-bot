@@ -61,7 +61,7 @@
                   <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.4.messageDay}}">
                     {% for h in value.4.list2 %}
                       <span class="text-sm text-white">
-                        {{h}}
+                        {{h.title}} - {{h.price}} - {{h.position}}
                       </span>
                       </br>
                     {% endfor %}
@@ -156,7 +156,7 @@
                   <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.3.messageDay}}">
                     {% for h in value.3.list2 %}
                       <span class="text-sm text-white">
-                        {{h}}
+                        {{h.title}} - {{h.price}} - {{h.position}}
                       </span>
                       </br>
                     {% endfor %}

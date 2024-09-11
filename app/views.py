@@ -730,7 +730,13 @@ def booking_view(request):
 
                         _price = b.price.replace("€ ", "")
                         if i == 0:
-                            bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position))#+" - "+str(b.start)
+                            bookings["bookings"][str(b.booking.start)]["list2"].append(
+                                {
+                                    "title": b.booking.title, 
+                                    "price": _price, 
+                                    "position": str(b.position)
+                                }
+                            )#+" - "+str(b.start)
 
                         if bookings["bookings"][str(b.booking.start)][i]["min"] > int(_price):
                             bookings["bookings"][str(b.booking.start)][i]["min"] = int(_price)
@@ -765,6 +771,8 @@ def booking_view(request):
                     if "list" not in str(k) and "title" not in str(k) and "messageDay" not in str(k):
                         #print(k)
                         v2["prices"] = sorted(v2["prices"], key=lambda x: int(x["position"]))
+                    elif "list2" == str(k):
+                        v["list2"] = sorted(v2, key=lambda x: int(x["position"]))
         except Exception as eSort:
             print(f"Error in Sorted: {eSort}")
         # try:
