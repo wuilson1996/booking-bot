@@ -629,9 +629,9 @@ def booking_view(request):
                 stars.append(int(p.start))
         for i in range(0, 8, 1):
             if i == 0:
-                available_booking = AvailableBooking.objects.filter(date_from=request.GET["date"], occupancy=int(request.GET["occupancy"])).order_by("id")
+                available_booking = AvailableBooking.objects.filter(date_from=request.GET["date"], occupancy=int(request.GET["occupancy"])).order_by("-updated")
             else:
-                available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=i)), occupancy=int(request.GET["occupancy"])).order_by("id")
+                available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=i)), occupancy=int(request.GET["occupancy"])).order_by("-updated")
 
             #if not available_booking:
             for s in stars:
@@ -715,40 +715,66 @@ def booking_view(request):
             acum2 = 0
             for b in available_booking:
                 if int(b.booking.start) in stars:
+                    #print(int(b.booking.start), stars, int(b.booking.start) in stars, i)
                     if int(b.booking.start) == 3:
                         acum = acum1
                     if int(b.booking.start) == 4:
                         acum = acum2
-                    _price = b.price.replace("€ ", "")
-                    if i == 0:
-                        bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position))
+                    try:
+                        _text_price = {
+                            "price": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["price"], 
+                            "bg": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["bg"], 
+                            "color": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["color"],
+                            "position": b.position
+                        }
 
-                    if bookings["bookings"][str(b.booking.start)][i]["min"] > int(_price):
-                        bookings["bookings"][str(b.booking.start)][i]["min"] = int(_price)
+                        _price = b.price.replace("€ ", "")
+                        if i == 0:
+                            bookings["bookings"][str(b.booking.start)]["list2"].append("*"+b.booking.title+" - € "+_price+" - "+str(b.position) if b.booking.title in bookings["bookings"][str(b.booking.start)]["list"] else ""+b.booking.title+" - € "+_price+" - "+str(b.position)+" - "+str(b.start))
 
-                    if int(b.booking.start) == 4:
-                        if b.position in [0,1,2,3,4,9]:
+                        if bookings["bookings"][str(b.booking.start)][i]["min"] > int(_price):
+                            bookings["bookings"][str(b.booking.start)][i]["min"] = int(_price)
+
+                        if int(b.booking.start) == 4:
+                            if b.position in [0,1,2,3,4,9]:
+                                bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
+                                bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
+                        elif int(b.booking.start) == 3:
                             bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
                             bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
-                    elif int(b.booking.start) == 3:
-                        bookings["bookings"][str(b.booking.start)][i]["media"] += int(_price)
-                        bookings["bookings"][str(b.booking.start)][i]["media_cant"] += 1
-                    #print(request.GET["occupancy"], b.booking.start, acum)
-                    _text_price = {
-                        "price": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["price"], 
-                        "bg": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["bg"], 
-                        "color": data_aux[request.GET["occupancy"]][str(b.booking.start)][acum]["color"]
-                    }
-                    _text_price["price"] = int(_price)
-                    bookings["bookings"][str(b.booking.start)][i]["prices"].append(_text_price)
-                    if "Hotel Suites Feria de Madrid" == b.booking.title:
-                        bookings["bookings"][str(b.booking.start)][i]["suitesFeriaPrice"] = _price
+                        #print(request.GET["occupancy"], b.booking.start, acum, b.updated)
+                        #print(acum)
+
+                        _text_price["price"] = int(_price)
+                        bookings["bookings"][str(b.booking.start)][i]["prices"].append(_text_price)
+                        if "Hotel Suites Feria de Madrid" == b.booking.title:
+                            bookings["bookings"][str(b.booking.start)][i]["suitesFeriaPrice"] = _price
+                            
+                    except Exception as eIndex:
+                        pass#print(f"Error index: {i} - {str(b.booking.start)} - "+str(eIndex))
                     
                     if int(b.booking.start) == 3:
                         acum1 += 1
                     if int(b.booking.start) == 4:
                         acum2 += 1
-        
+
+        try:
+            for st,v in bookings["bookings"].items():#3,4
+                #print(st)
+                for k,v2 in v.items():#0,1,2,3,4,5,...,8
+                    if "list" not in str(k) and "title" not in str(k) and "messageDay" not in str(k):
+                        #print(k)
+                        v2["prices"] = sorted(v2["prices"], key=lambda x: int(x["position"]))
+        except Exception as eSort:
+            print(f"Error in Sorted: {eSort}")
+        # try:
+        #     aux_list = []
+        #     for ps in reversed(bookings["bookings"][str(b.booking.start)][i]["prices"]):
+        #         aux_list.append(ps)
+        #     bookings["bookings"][str(b.booking.start)][i]["prices"] = aux_list
+        # except Exception as eSort:
+        #     print("Error in Sorted: "+str(eSort))
+
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')
         ___date = generate_date_with_month(request.GET["date"])
