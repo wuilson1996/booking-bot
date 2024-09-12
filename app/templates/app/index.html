@@ -134,17 +134,22 @@
               <tbody>
                 {% for date, value in bookings.items %}
                 <tr>
-                  <td class="w-12 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                    <h1 class="text-white my-4">{{value.totalFeria}}</h1>
-                    <div class="input-group mb-3">
-                      <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
-                      <input type="number" class="form-control form-control-sm" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
-                    </div>
-                    <h2 class="{{value.availWithDateRest.color}} my-4">{{value.availWithDateRest.value}}</h2>
-                    <hr>
+                  <td class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                    
+                    <h4 class="text-white my-4">{{value.date_from}}</h4>
+                    </br>
+                    </br>
+                    </br>
                     <h4 class="text-white my-4">{{value.day}}</h4>
                     </br>
-                    <h4 class="text-white my-4">{{value.date_from}}</h4>
+                    </br>
+                    <hr>
+                    <h1 class="text-white my-4">{{value.totalFeria}}</h1>
+                    <div class="input-group mb-3">
+                      <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
+                      <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
+                    </div>
+                    <h2 class="{{value.availWithDateRest.color}} my-4">{{value.availWithDateRest.value}}</h2>
                     <hr>
                     {{value.updated}}
                     <hr>
@@ -158,7 +163,7 @@
                         <option value="4" {% if value.temporadaByDay.number == '4' %}selected{% endif %}>Temporada 4</option>
                         <option value="5" {% if value.temporadaByDay.number == '5' %}selected{% endif %}>Temporada 5</option>
                       </select>
-                      <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
+                      <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
                     </div>
                   </td>
                   <td>
@@ -177,8 +182,8 @@
                         <tr>
                           <td colspan="6">
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Fijar evento" value="{{value.2.eventByDay.text}}" aria-describedby="button-addon7" id="textEvent{{date}}2">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.2.eventByDay.text}}" aria-describedby="button-addon7" id="textEvent{{date}}2">
                             </div>
                           </td>
                         </tr>
@@ -188,10 +193,10 @@
                             <h5 class="text-white">{{value.2.total_search_192}}%</h5>
                           </td>
                           <td class="text-sm">
-                            <span class="text-white" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
+                            <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Tarifa Manual" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
                             </div>
                             <h4 class="text-white text-center">
                               <table class="table table-flush text-white table-sm">
@@ -312,10 +317,10 @@
                         </tr>
                         <tr>
                           <td colspan="6">
-                            <span id="textDate{{date}}2">{{value.2.messageDay.updated}}</span>
+                            <span id="textDate{{date}}2" class="text-lg">{{value.2.messageDay.updated}}</span>
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Fija un mensaje para este tipo" value="{{value.2.messageDay.text}}" aria-describedby="button-addon2" id="text{{date}}2">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.2.messageDay.text}}" aria-describedby="button-addon2" id="text{{date}}2">
                             </div>
                           </td>
                         </tr>
@@ -336,8 +341,8 @@
                         <tr>
                           <td colspan="6">
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon8" onclick="saveEvent('{{date}}', 3)">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Fijar evento" value="{{value.3.eventByDay.text}}" aria-describedby="button-addon8" id="textEvent{{date}}3">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon8" onclick="saveEvent('{{date}}', 3)">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.3.eventByDay.text}}" aria-describedby="button-addon8" id="textEvent{{date}}3">
                             </div>
                           </td>
                         </tr>
@@ -347,10 +352,10 @@
                             <h5 class="text-white">{{value.3.total_search_192}}%</h5>
                           </td>
                           <td class="text-sm">
-                            <span class="text-white" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
+                            <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
                             </div>
                             <!-- <h4 class="text-white text-center">
                               {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
@@ -438,10 +443,10 @@
                         </tr>
                         <tr>
                           <td colspan="6">
-                            <span id="textDate{{date}}3">{{value.3.messageDay.updated}}</span>
+                            <span id="textDate{{date}}3" class="text-lg">{{value.3.messageDay.updated}}</span>
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon4" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Fija un mensaje para este tipo" value="{{value.3.messageDay.text}}" aria-describedby="button-addon4" id="text{{date}}3">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon4" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.3.messageDay.text}}" aria-describedby="button-addon4" id="text{{date}}3">
                             </div>
                           </td>
                         </tr>
@@ -463,8 +468,8 @@
                         <tr>
                           <td colspan="6">
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon9" onclick="saveEvent('{{date}}', 5)">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Fijar evento" value="{{value.5.eventByDay.text}}" aria-describedby="button-addon9" id="textEvent{{date}}5">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon9" onclick="saveEvent('{{date}}', 5)">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.5.eventByDay.text}}" aria-describedby="button-addon9" id="textEvent{{date}}5">
                             </div>
                           </td>
                         </tr>
@@ -474,10 +479,10 @@
                             <h5 class="text-white">{{value.5.total_search_192}}%</h5>
                           </td>
                           <td class="text-sm">
-                            <span class="text-white" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
+                            <span class="text-white text-lg" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
                             </div>
                             <!-- <h4 class="text-white text-center">
                               {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
@@ -565,10 +570,10 @@
                         </tr>
                         <tr>
                           <td colspan="6">
-                            <span id="textDate{{date}}5">{{value.5.messageDay.updated}}</span>
+                            <span id="textDate{{date}}5" class="text-lg">{{value.5.messageDay.updated}}</span>
                             <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
-                              <input type="text" class="form-control form-control-sm" placeholder="Fija un mensaje para este tipo" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
+                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
+                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
                             </div>
                           </td>
                         </tr>

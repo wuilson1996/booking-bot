@@ -449,7 +449,7 @@ def index(request):
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] = 0
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] = 0
 
-                    _price3 = avail_book.price.replace("€ ", "")
+                    _price3 = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
 
                     if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
@@ -461,7 +461,7 @@ def index(request):
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
                     
-                    _price4 = avail_book.price.replace("€ ", "")
+                    _price4 = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
 
                     if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
@@ -480,7 +480,7 @@ def index(request):
                         if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
                             bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
                         
-                        _price = avail_book.price.replace("€ ", "")
+                        _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
                         
                         if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
                             bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
@@ -489,14 +489,14 @@ def index(request):
                                 available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
                                 for ab1 in available_booking1:
                                     if "Hotel Suites Feria de Madrid" == ab1.booking.title:
-                                        _price1 = ab1.price.replace("€ ", "")
+                                        _price1 = ab1.price.replace("€ ", "").replace(".", "").replace(",", "")
                                         bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeria1"] = int(_price1)
                                         bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
                                         break
                                 
                                 for ab7 in available_booking7:
                                     if "Hotel Suites Feria de Madrid" == ab7.booking.title:
-                                        _price7 = ab7.price.replace("€ ", "")
+                                        _price7 = ab7.price.replace("€ ", "").replace(".", "").replace(",", "")
                                         bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeria7"] = int(_price7)
                                         bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
                                         break
@@ -728,7 +728,7 @@ def booking_view(request):
                             "position": b.position
                         }
 
-                        _price = b.price.replace("€ ", "")
+                        _price = b.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if i == 0:
                             bookings["bookings"][str(b.booking.start)]["list2"].append(
                                 {
@@ -775,13 +775,6 @@ def booking_view(request):
                         v["list2"] = sorted(v2, key=lambda x: int(x["position"]))
         except Exception as eSort:
             print(f"Error in Sorted: {eSort}")
-        # try:
-        #     aux_list = []
-        #     for ps in reversed(bookings["bookings"][str(b.booking.start)][i]["prices"]):
-        #         aux_list.append(ps)
-        #     bookings["bookings"][str(b.booking.start)][i]["prices"] = aux_list
-        # except Exception as eSort:
-        #     print("Error in Sorted: "+str(eSort))
 
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')
