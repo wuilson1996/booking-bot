@@ -552,7 +552,7 @@ def index(request):
 
         _date_process = ProcessActive.objects.all().last()
         range_bt = "1"
-        if request.method == "POST":
+        if "range_bt" in request.POST:
             range_bt = request.POST["range_bt"]
 
         return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt})
