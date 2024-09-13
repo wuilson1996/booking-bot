@@ -541,12 +541,13 @@ def index(request):
                 bookings[str(_date_from.date())]["availWithDate"] = int(avail_with_date.avail)
             valueRest = bookings[str(_date_from.date())]["totalFeria"] - bookings[str(_date_from.date())]["availWithDate"]
             bookings[str(_date_from.date())]["availWithDateRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
-            if request.POST["range_bt"] == "2":
-                if valueRest != 0:
-                    del bookings[str(_date_from.date())]
-            elif request.POST["range_bt"] == "3":
-                if valueRest == 0:
-                    del bookings[str(_date_from.date())]
+            if "range_bt" in request.POST:
+                if request.POST["range_bt"] == "2":
+                    if valueRest != 0:
+                        del bookings[str(_date_from.date())]
+                elif request.POST["range_bt"] == "3":
+                    if valueRest == 0:
+                        del bookings[str(_date_from.date())]
 
             _date_from += datetime.timedelta(days=1)
 
