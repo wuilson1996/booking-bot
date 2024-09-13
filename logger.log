@@ -13,3 +13,8 @@ INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\a
 INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
 INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
 INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+WARNING:django.request:Not Found: /sign-in-dash
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\WuilsonPc\Desktop\progra\booking\booking\booking\settings.py changed, reloading.

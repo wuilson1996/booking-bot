@@ -541,12 +541,21 @@ def index(request):
                 bookings[str(_date_from.date())]["availWithDate"] = int(avail_with_date.avail)
             valueRest = bookings[str(_date_from.date())]["totalFeria"] - bookings[str(_date_from.date())]["availWithDate"]
             bookings[str(_date_from.date())]["availWithDateRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+            if request.POST["range_bt"] == "2":
+                if valueRest != 0:
+                    del bookings[str(_date_from.date())]
+            elif request.POST["range_bt"] == "3":
+                if valueRest == 0:
+                    del bookings[str(_date_from.date())]
 
             _date_from += datetime.timedelta(days=1)
 
         _date_process = ProcessActive.objects.all().last()
+        range_bt = "1"
+        if request.method == "POST":
+            range_bt = request.POST["range_bt"]
 
-        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end)})
+        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt})
     else:
         return redirect("sign-in")
     

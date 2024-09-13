@@ -90,11 +90,18 @@
             <div class="col-md-8">
               <form action="" method="post">{% csrf_token %}
                 <div class="row">
-                  <div class="col-md-5">
+                  <div class="col-md-3">
                     <input type="date" class="form-control" value="{{date_from}}" name="date_from" min="{{date_from}}">
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-3">
                     <input type="date" class="form-control" value="{{date_to}}" name="date_to">
+                  </div>
+                  <div class="col-md-4">
+                    <select name="range_bt" id="range_bt" class="form-control">
+                      <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
+                      <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
+                      <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
+                    </select>
                   </div>
                   <div class="col-md-2">
                     <button type="submit" class="btn btn-info">Filtrar</button>
@@ -149,7 +156,7 @@
                       <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
                       <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
                     </div>
-                    <h2 class="{{value.availWithDateRest.color}} my-4">{{value.availWithDateRest.value}}</h2>
+                    <h2 class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
                     <hr>
                     {{value.updated}}
                     <hr>
