@@ -168,11 +168,11 @@ def reset_service():
     try:
         subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
         subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
-        print("Servicio booking y nginx reiniciado correctamente.")
+        logging.info("Servicio booking y nginx reiniciado correctamente.")
     except subprocess.CalledProcessError as e:
-        print(f"Error al reiniciar el servicio booking: {e}")
+        logging.info(f"Error al reiniciar el servicio booking: {e}")
     except Exception as ex:
-        print(f"Se produjo un error: {ex}")
+        logging.info(f"Se produjo un error: {ex}")
 
     for p in ProcessActive.objects.all():
         p.currenct = False
