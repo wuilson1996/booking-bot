@@ -11,6 +11,7 @@ from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
 import time
+import subprocess
 # Create your views here.
 
 def generate_date_with_month(_date:str):
@@ -159,10 +160,30 @@ def get_booking(request):
             p.save()
         threading.Thread(target=active_process, args=(request,)).start()
     else:
-        for p in ProcessActive.objects.all():
-            p.currenct = False
-            p.save()
-        result["message"] = "Proceso desactivado correctamente."
+        result["message"] = "Proceso ya se encuentra activado."
+        result["code"] = 400
+    return Response(result)
+
+def reset_service():
+    try:
+        subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
+        subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
+        print("Servicio booking y nginx reiniciado correctamente.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error al reiniciar el servicio booking: {e}")
+    except Exception as ex:
+        print(f"Se produjo un error: {ex}")
+
+    for p in ProcessActive.objects.all():
+        p.currenct = False
+        p.active = False
+        p.save()
+
+@api_view(["POST"])
+def finish_get_booking(request):
+    reset_service()
+    result = {}
+    result["message"] = "Proceso desactivado correctamente."
     return Response(result)
 
 @api_view(["POST"])

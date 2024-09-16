@@ -5,6 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('get/booking', get_booking, name="get_booking"),
+    path('finish/get/booking', finish_get_booking, name="finish_get_booking"),
     path("sign-in", login, name="sign-in"),
     path("log-out", logout, name="log-out"),
     path("", index, name="index"),
