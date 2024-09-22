@@ -141,7 +141,7 @@
               <tbody>
                 {% for date, value in bookings.items %}
                 <tr>
-                  <td class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                  <td id="temp-bg{{date}}" class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
                     
                     <h4 class="text-white my-4">{{value.date_from}}</h4>
                     </br>
@@ -151,16 +151,16 @@
                     </br>
                     </br>
                     <hr>
-                    <h1 class="text-white my-4">{{value.totalFeria}}</h1>
+                    <h1 class="text-white my-4" id="temp-t{{date}}">{{value.totalFeria}}</h1>
                     <div class="input-group mb-3">
                       <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
                       <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
                     </div>
-                    <h2 class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
+                    <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
                     <hr>
-                    {{value.updated}}
+                    <span id="temp-update{{date}}">{{value.updated}}</span>
                     <hr>
-                    <h3 class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
+                    <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
                     <div class="input-group mb-3">
                       <select id="temp{{date}}" class="form-control form-control-sm" value="{{value.temporadaByDay.number}}">
                         <option value="">Seleccionar</option>
@@ -966,7 +966,7 @@
       });
     }
     function tempOption(_date){
-      numTemp = document.getElementById("temp"+_date).value
+      numTemp = document.getElementById("temp"+_date).value;
       $.ajax({
         url: '/save/temp',
         type: 'POST',
@@ -976,8 +976,18 @@
         },
         headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
         success: function(json) {
-          console.log(json);
-          window.location.href = "{{request.path}}";
+          //console.log(json);
+          //window.location.href = "{{request.path}}";
+          //json.bg_color;
+          $("#temp-bg"+_date).prop("class", "w-15 text-sm text-center "+json.bg_color);
+          $("#temp-n"+_date).text(numTemp);
+          var texto = $("#temp-n2"+_date).text();
+          if (parseInt(texto) < 0 && json.bg_color == "bg-danger"){
+            $("#temp-n2"+_date).addClass("bg-white");
+          }else{
+            $("#temp-n2"+_date).removeClass("bg-white");
+          }
+          $("#temp-update"+_date).addClass("text-white");
         },
         error: function(error) {
           console.log("Ocurrio un error");
@@ -996,7 +1006,24 @@
         headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
         success: function(json) {
           console.log(json);
-          window.location.href = "{{request.path}}";
+          //window.location.href = "{{request.path}}";
+          numTemp = document.getElementById("temp"+_date).value;
+          var texto = $("#temp-t"+_date).text();
+          $("#temp-n2"+_date).text(parseInt(texto) - parseInt(_avail));
+          console.log((parseInt(texto) - parseInt(_avail)));
+          if ((parseInt(texto) - parseInt(_avail)) < 0){
+            $("#temp-n2"+_date).removeClass("text-white");
+            $("#temp-n2"+_date).addClass("text-danger");
+            if (parseInt(numTemp) == 1){
+              $("#temp-n2"+_date).addClass("bg-white");
+            }else{
+              $("#temp-n2"+_date).removeClass("bg-white");
+            }
+          }else{
+            $("#temp-n2"+_date).removeClass("text-danger");
+            $("#temp-n2"+_date).addClass("text-white");
+            $("#temp-n2"+_date).removeClass("bg-white");
+          }
         },
         error: function(error) {
           console.log("Ocurrio un error");

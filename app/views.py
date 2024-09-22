@@ -255,21 +255,28 @@ def save_temp(request):
         _temp_by_day = TemporadaByDay.objects.filter(
             date_from = request.data["date"]
         ).last()
-        if not _temp_by_day:
-            _temp_by_day = TemporadaByDay.objects.create(
-                date_from = request.data["date"],
-                bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0],
-                text_color = "text-white",
-                number = request.data["numTemp"],
-                updated = dt.now(),
-                created = dt.now()
-            )
+        bg_color = "bg-success"
+        if request.data["numTemp"]:
+            if not _temp_by_day:
+                _temp_by_day = TemporadaByDay.objects.create(
+                    date_from = request.data["date"],
+                    bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0],
+                    text_color = "text-white",
+                    number = request.data["numTemp"],
+                    updated = dt.now(),
+                    created = dt.now()
+                )
+            else:
+                _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0]
+                _temp_by_day.number = request.data["numTemp"]
+                _temp_by_day.updated = dt.now()
+                _temp_by_day.save()
+            bg_color = _temp_by_day.bg_color
         else:
-            _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0]
-            _temp_by_day.number = request.data["numTemp"]
-            _temp_by_day.updated = dt.now()
-            _temp_by_day.save()
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+            if _temp_by_day:
+                _temp_by_day.delete()
+
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "bg_color": bg_color}
     return Response(result)
 
 @api_view(["POST"])
