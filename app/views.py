@@ -173,6 +173,38 @@ def reset_service():
         logging.info(f"Error al reiniciar el servicio booking: {e}")
     except Exception as ex:
         logging.info(f"Se produjo un error: {ex}")
+    
+    try:
+        subprocess.run('sudo sync; echo 1 | sudo tee /proc/sys/vm/drop_caches', shell=True)
+        logging.info("Clear memory1.")
+    except subprocess.CalledProcessError as e:
+        logging.info(f"Error clear memory1: {e}")
+    except Exception as ex:
+        logging.info(f"Se produjo un error in cleal memory1: {ex}")
+    
+    try:
+        subprocess.run('sudo sync; echo 2 | sudo tee /proc/sys/vm/drop_caches', shell=True)
+        logging.info("Clear memory2.")
+    except subprocess.CalledProcessError as e:
+        logging.info(f"Error clear memory2: {e}")
+    except Exception as ex:
+        logging.info(f"Se produjo un error in cleal memory2: {ex}")
+
+    try:
+        subprocess.run('sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches', shell=True)
+        logging.info("Clear memory3.")
+    except subprocess.CalledProcessError as e:
+        logging.info(f"Error clear memory3: {e}")
+    except Exception as ex:
+        logging.info(f"Se produjo un error in cleal memory3: {ex}")
+
+    try:
+        subprocess.run('sudo sync; echo 4 | sudo tee /proc/sys/vm/drop_caches', shell=True)
+        logging.info("Clear memory4.")
+    except subprocess.CalledProcessError as e:
+        logging.info(f"Error clear memory4: {e}")
+    except Exception as ex:
+        logging.info(f"Se produjo un error in cleal memory4: {ex}")
 
     for p in ProcessActive.objects.all():
         p.currenct = False
