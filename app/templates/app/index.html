@@ -90,17 +90,25 @@
             <div class="col-md-8">
               <form action="" method="post">{% csrf_token %}
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <input type="date" class="form-control" value="{{date_from}}" name="date_from" min="{{date_from}}">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <input type="date" class="form-control" value="{{date_to}}" name="date_to">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <select name="range_bt" id="range_bt" class="form-control">
                       <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
                       <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
                       <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <select name="range_pg" id="range_pg" class="form-control">
+                      <option value="25" {% if range_pg == '25' %}selected{% endif %}>25 Dias</option>
+                      <option value="50" {% if range_pg == '50' %}selected{% endif %}>50 Dias</option>
+                      <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
+                      <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
                     </select>
                   </div>
                   <div class="col-md-2">
@@ -738,7 +746,7 @@
       const dataTableSearch = new simpleDatatables.DataTable("#client-list", {
         searchable: true,
         fixedHeight: false,
-        perPage: 15
+        perPage: parseInt('{{range_pg}}')
       });
 
       document.querySelectorAll(".export").forEach(function(el) {

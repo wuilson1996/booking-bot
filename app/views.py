@@ -581,10 +581,13 @@ def index(request):
 
         _date_process = ProcessActive.objects.all().last()
         range_bt = "1"
+        range_pg = "50"
         if "range_bt" in request.POST:
             range_bt = request.POST["range_bt"]
+        if "range_pg" in request.POST:
+            range_pg = request.POST["range_pg"]
 
-        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt})
+        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt, "range_pg": range_pg})
     else:
         return redirect("sign-in")
     
