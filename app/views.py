@@ -147,21 +147,23 @@ def active_process(request):
 
 @api_view(["POST"])
 def get_booking(request):
-    state = False
-    for p in ProcessActive.objects.all():
-        if p.currenct or p.active:
-            state = True
-            break
-    result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
-    if not state:
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        state = False
         for p in ProcessActive.objects.all():
-            p.active = False
-            p.date_end = request.data["date"]
-            p.save()
-        threading.Thread(target=active_process, args=(request,)).start()
-    else:
-        result["message"] = "Proceso ya se encuentra activado."
-        result["code"] = 400
+            if p.currenct or p.active:
+                state = True
+                break
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+        if not state:
+            for p in ProcessActive.objects.all():
+                p.active = False
+                p.date_end = request.data["date"]
+                p.save()
+            threading.Thread(target=active_process, args=(request,)).start()
+        else:
+            result["message"] = "Proceso ya se encuentra activado."
+            result["code"] = 400
     return Response(result)
 
 def reset_service():
@@ -213,20 +215,25 @@ def reset_service():
 
 @api_view(["POST"])
 def finish_get_booking(request):
-    reset_service()
-    result = {}
-    result["message"] = "Proceso desactivado correctamente."
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        reset_service()
+        result["code"] = 200
+        result["status"] = "OK"
+        result["message"] = "Proceso desactivado correctamente."
     return Response(result)
 
 @api_view(["POST"])
 def check_booking_process(request):
-    state = False
-    for p in ProcessActive.objects.all():
-        if p.currenct or p.active:
-            state = True
-            break
-    
-    result = {"code": 200, "status": "OK", "active":state}
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        state = False
+        for p in ProcessActive.objects.all():
+            if p.currenct or p.active:
+                state = True
+                break
+        
+        result = {"code": 200, "status": "OK", "active":state}
     return Response(result)
 
 @api_view(["POST"])
