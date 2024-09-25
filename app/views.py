@@ -95,17 +95,20 @@ def active_process(request):
         general_search = GeneralSearch.objects.all().last()
         for p in ProcessActive.objects.all():
             if not p.active:
-                booking = BookingSearch()
-                logging.info(f"[+] {dt.now()} Search driver...")
-                _driver = booking._driver(general_search.url)
-                p.active = True
-                p.save()
-                #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
-                logging.info(f"[+] {dt.now()} Process active in while...")
-                process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p, general_search.city_and_country))
-                process.daemon = True
-                process.start()
-                threads.append(process)
+                try:
+                    booking = BookingSearch()
+                    logging.info(f"[+] {dt.now()} Search driver...")
+                    _driver = booking._driver(general_search.url)
+                    p.active = True
+                    p.save()
+                    #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
+                    logging.info(f"[+] {dt.now()} Process active in while...")
+                    process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p, general_search.city_and_country))
+                    process.daemon = True
+                    process.start()
+                    threads.append(process)
+                except Exception as ec:
+                    logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
 
         for t in threads:
             logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
