@@ -372,17 +372,22 @@ def save_avail_with_date(request):
 def index(request):
     if request.user.is_authenticated:
         __date_from = str(dt.now().date())
-        __date_to = str(dt.now().date() + datetime.timedelta(days=15))
+        __date_to = str(dt.now().date() + datetime.timedelta(days=50))
+            
         if "date_from" in request.POST:
             __date_from = str(request.POST["date_from"])
         if "date_to" in request.POST:
             __date_to = str(request.POST["date_to"])
+        
+        if "range_pg" in request.POST:
+            __date_to = str(dt.now().date() + datetime.timedelta(days=int(request.POST["range_pg"])))
 
         _date_from = dt(
             year=int(__date_from.split("-")[0]),
             month=int(__date_from.split("-")[1]),
             day=int(__date_from.split("-")[2])
         )
+        _date_from_current = _date_from
         _date_to = dt(
             year=int(__date_to.split("-")[0]),
             month=int(__date_to.split("-")[1]),
@@ -464,7 +469,7 @@ def index(request):
                         bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
 
                 #Disponibilidad 1 dia atras
-                avail_sf1 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=1))).last()
+                avail_sf1 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from_current.date() - datetime.timedelta(days=1))).last()
                 avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
                     type_avail = int(ocp),
                     avail_suites_feria = avail_sf1
@@ -489,7 +494,7 @@ def index(request):
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
 
                 #Disponibilidad 7 dias atras
-                avail_sf7 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=7))).last()
+                avail_sf7 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from_current.date() - datetime.timedelta(days=7))).last()
                 avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
                     type_avail = int(ocp),
                     avail_suites_feria = avail_sf7
@@ -513,7 +518,7 @@ def index(request):
                         ).last()
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
                 
-                available_booking2 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
+                available_booking2 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
                 for avail_book in available_booking2:
                     if "media_total1" not in bookings[str(_date_from.date())][avail_book.occupancy]:
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] = 0
@@ -525,7 +530,7 @@ def index(request):
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
 
-                available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
                 for avail_book in available_booking3:
                     if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
                         bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
@@ -555,8 +560,8 @@ def index(request):
                         if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
                             bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
                             if int(avail_book.booking.start) == 4:
-                                available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
-                                available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                                available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
+                                available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
                                 for ab1 in available_booking1:
                                     if "Hotel Suites Feria de Madrid" == ab1.booking.title:
                                         _price1 = ab1.price.replace("€ ", "").replace(".", "").replace(",", "")
@@ -697,6 +702,7 @@ def booking_view(request):
             month=int(request.GET["date"].split("-")[1]),
             day=int(request.GET["date"].split("-")[2])
         )
+        _date_from_current = dt.now()
         bookings = {}
         if int(request.GET["occupancy"]) in [2, 3]:
             if int(request.GET["occupancy"]) == 2:
@@ -714,7 +720,7 @@ def booking_view(request):
             if i == 0:
                 available_booking = AvailableBooking.objects.filter(date_from=request.GET["date"], occupancy=int(request.GET["occupancy"])).order_by("-updated")
             else:
-                available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date() - datetime.timedelta(days=i)), occupancy=int(request.GET["occupancy"])).order_by("-updated")
+                available_booking = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=i)), occupancy=int(request.GET["occupancy"])).order_by("-updated")
 
             #if not available_booking:
             for s in stars:

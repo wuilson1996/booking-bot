@@ -93,9 +93,9 @@
                   <div class="col-md-2">
                     <input type="date" class="form-control" value="{{date_from}}" name="date_from" min="{{date_from}}">
                   </div>
-                  <div class="col-md-2">
+                  <!--<div class="col-md-2">
                     <input type="date" class="form-control" value="{{date_to}}" name="date_to">
-                  </div>
+                  </div>-->
                   <div class="col-md-3">
                     <select name="range_bt" id="range_bt" class="form-control">
                       <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
@@ -341,7 +341,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <table class="table table-flush bg-dark text-white table-sm">
+                    <table class="table table-flush bg-success text-white table-sm">
                       <!-- <thead class="thead-light">
                         <tr>
                           <th class="text-xs"></th>
