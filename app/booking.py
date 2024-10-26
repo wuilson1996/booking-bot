@@ -50,10 +50,11 @@ class BookingSearch:
     @classmethod
     def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, process:ProcessActive=None, search_name=""):
         try:
+            _driver.delete_all_cookies()
             driver.get(cls._url)
             driver.implicitly_wait(15)
             sleep(5)
-            logging.info(driver.current_url)
+            #logging.info(driver.current_url)
             try:
                 _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
                 _button.click()
@@ -121,7 +122,7 @@ class BookingSearch:
                                 except ElementClickInterceptedException:
                                     driver.execute_script("arguments[0].click();", check_start)
                                     sleep(2)
-                                logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{start} - O:{occupancy}")
+                                #logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{start} - O:{occupancy}")
                                 break
                                 
                     except NoSuchElementException as e:
@@ -140,7 +141,7 @@ class BookingSearch:
                                     except ElementClickInterceptedException:
                                         driver.execute_script("arguments[0].click();", check_start)
                                         sleep(2)
-                                    logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{start} - O:{occupancy}")
+                                    #logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{start} - O:{occupancy}")
                                     break
                                     
                         except NoSuchElementException as e:
