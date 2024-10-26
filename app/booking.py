@@ -263,10 +263,10 @@ class BookingSearch:
         except Exception as e02:
             logging.info(f"[-] {dt.now()} Error General 264: "+str(e02))
 
-        try:
-            driver.close()
-        except Exception as ec:
-            logging.info(f"[-] {dt.now()} Error in close driver 269: "+str(ec))
+        #try:
+        #    driver.close()
+        #except Exception as ec:
+        #    logging.info(f"[-] {dt.now()} Error in close driver 269: "+str(ec))
         # for b in Booking.objects.filter(start = start, occupancy = occupancy):
         #     for a in AvailableBooking.objects.filter(booking = b):
         #         state = False
