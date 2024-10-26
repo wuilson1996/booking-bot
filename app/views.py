@@ -138,33 +138,13 @@ def active_process():
                 seconds = 60 * 3
                 logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
             
-            start_time = time.time()
-            while time.time() - start_time < seconds:
-                acum = 0
-                for _p in ProcessActive.objects.all():
-                    if not _p.currenct:
-                        acum += 1
-                if acum == len(ProcessActive.objects.all()):
-                    break
-                time.sleep(1)
-            #sleep(seconds) # 3 minutos por default.
+            sleep(seconds)
             logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
-            state = False
             for p in ProcessActive.objects.all():
                 p.active = False
                 p.save()
-                if p.currenct:
-                    state = True
-
-            if not state:
-                break
         except Exception as e:
             logging.info(f"[+] {dt.now()} Error process general: {e}...")
-    for p in ProcessActive.objects.all():
-        p.active = False
-        p.currenct = False
-        p.save()
-    logging.info(f"[+] {dt.now()} Finalizando process...")
 
 @api_view(["POST"])
 def get_booking(request):
