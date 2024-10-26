@@ -347,15 +347,15 @@ class BookingSearch:
         try:
             item_dict = {
                 "start": 0,
+                "price": "",
+                "date_from": str(_date_elem.date()),
+                "date_to":  str(_now.date()),
                 "title": "",
                 "link": "",
                 "address": "",
                 "distance": "",
                 "description": "",
-                "img": "",
-                "price": "",
-                "date_from": str(_date_elem.date()),
-                "date_to":  str(_now.date())
+                "img": ""
             }
             html = item.get_attribute("innerHTML")
             try:
@@ -445,7 +445,7 @@ class BookingSearch:
         except Exception as e:
             logging.info(f"[-] {dt.now()} Error General data: "+str(e))
             logging.info(f"[-] Data Error Start: {item_dict}")
-            
+
 
 if __name__ == "__main__":
     booking = BookingSearch()
