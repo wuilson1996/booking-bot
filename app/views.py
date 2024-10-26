@@ -74,7 +74,7 @@ def active_process_sf():
 
     logging.info(f"[+] {dt.now()} Finalizando process suites feria...")
 
-def active_process(request):
+def active_process():
     for a in AvailableBooking.objects.all():
         _date = dt(
             year=int(a.date_from.split("-")[0]),
@@ -83,65 +83,83 @@ def active_process(request):
         )
         if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
             a.delete()
-        
+    
+    general_search = GeneralSearch.objects.all().last()
+    instances = []
     for p in ProcessActive.objects.all():
         p.currenct = True
         p.save()
 
+        booking = BookingSearch()
+        instances.append({
+            "booking": booking,
+            "driver": booking._driver(general_search.url)
+        })
+
     logging.info(f"[+] {dt.now()} Activando process...")
     threading.Thread(target=active_process_sf).start()
     while True:
-        threads = []
-        general_search = GeneralSearch.objects.all().last()
-        for p in ProcessActive.objects.all():
-            if not p.active:
-                try:
-                    booking = BookingSearch()
-                    logging.info(f"[+] {dt.now()} Search driver...")
-                    _driver = booking._driver(general_search.url)
-                    p.active = True
-                    p.save()
-                    #process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), request.data["date_end"].split("-"), request.data["occupancy"], request.data["start"]))"Madrid, Comunidad de Madrid, España"
-                    logging.info(f"[+] {dt.now()} Process active in while...")
-                    process = threading.Thread(target=booking.controller, args=(_driver, dt.now(), str(p.date_end).split("-"), int(p.occupancy), int(p.start), p, general_search.city_and_country))
-                    process.daemon = True
-                    process.start()
-                    threads.append(process)
-                except Exception as ec:
-                    logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
+        try:
+            threads = []
+            cont = 0
+            for p in ProcessActive.objects.all():
+                if not p.active:
+                    try:
+                        logging.info(f"[+] {dt.now()} Process active in while. Search browser... {instances[cont]['booking']}")
+                        p.active = True
+                        p.save()
+                        process = threading.Thread(
+                            target=instances[cont]["booking"].controller, 
+                            args=(
+                                instances[cont]["driver"], 
+                                dt.now(), 
+                                str(p.date_end).split("-"), 
+                                int(p.occupancy), 
+                                int(p.start), 
+                                p, 
+                                general_search.city_and_country
+                            )
+                        )
+                        process.daemon = True
+                        process.start()
+                        threads.append(process)
+                    except Exception as ec:
+                        logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
+                cont += 1
 
-        for t in threads:
-            logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
-            t.join()
+            for t in threads:
+                logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
+                t.join()
 
-        if general_search:
-            seconds = 60 * general_search.time_sleep_minutes
-            logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
-        else:
-            seconds = 60 * 3
-            logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
-        
-        start_time = time.time()
-        while time.time() - start_time < seconds:
-            acum = 0
-            for _p in ProcessActive.objects.all():
-                if not _p.currenct:
-                    acum += 1
-            if acum == len(ProcessActive.objects.all()):
+            if general_search:
+                seconds = 60 * general_search.time_sleep_minutes
+                logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
+            else:
+                seconds = 60 * 3
+                logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
+            
+            start_time = time.time()
+            while time.time() - start_time < seconds:
+                acum = 0
+                for _p in ProcessActive.objects.all():
+                    if not _p.currenct:
+                        acum += 1
+                if acum == len(ProcessActive.objects.all()):
+                    break
+                time.sleep(1)
+            #sleep(seconds) # 3 minutos por default.
+            logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
+            state = False
+            for p in ProcessActive.objects.all():
+                p.active = False
+                p.save()
+                if p.currenct:
+                    state = True
+
+            if not state:
                 break
-            time.sleep(1)
-        #sleep(seconds) # 3 minutos por default.
-        logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
-        state = False
-        for p in ProcessActive.objects.all():
-            p.active = False
-            p.save()
-            if p.currenct:
-                state = True
-
-        if not state:
-            break
-    
+        except Exception as e:
+            logging.info(f"[+] {dt.now()} Error process general: {e}...")
     for p in ProcessActive.objects.all():
         p.active = False
         p.currenct = False
@@ -163,7 +181,7 @@ def get_booking(request):
                 p.active = False
                 p.date_end = request.data["date"]
                 p.save()
-            threading.Thread(target=active_process, args=(request,)).start()
+            threading.Thread(target=active_process).start()
         else:
             result["message"] = "Proceso ya se encuentra activado."
             result["code"] = 400
