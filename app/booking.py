@@ -50,7 +50,7 @@ class BookingSearch:
     @classmethod
     def controller(cls, driver, _now:dt.now=dt.now(), date_end=list(), occupancy=2, start=4, process:ProcessActive=None, search_name=""):
         try:
-            _driver.delete_all_cookies()
+            driver.delete_all_cookies()
             driver.get(cls._url)
             driver.implicitly_wait(15)
             sleep(5)
