@@ -156,3 +156,35 @@ class TemporadaByDay(models.Model):
 
     def __str__(self) -> str:
         return str(self.number)+" - "+str(self.date_from)
+
+class CopyPriceWithDay(models.Model):
+    """
+        related to object with.
+        date_from
+        position
+        occupancy
+        start
+    """
+    price = models.CharField(max_length=30)
+    created = models.DateTimeField(null=True, blank=True)
+    avail_booking = models.ForeignKey(AvailableBooking, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.price
+    
+class PriceWithNameHotel(models.Model):
+    start = models.CharField(max_length=20)
+    title = models.CharField(max_length=512)
+    link = models.CharField(max_length=3000)
+    address = models.CharField(max_length=512)
+    distance = models.CharField(max_length=512)
+    description = models.CharField(max_length=1024)
+    img = models.CharField(max_length=3000)
+    updated = models.DateTimeField()
+    created = models.DateTimeField()
+    date_from = models.CharField(max_length=30)
+    date_to = models.CharField(max_length=30)
+    price = models.CharField(max_length=30)
+
+    def __str__(self) -> str:
+        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)

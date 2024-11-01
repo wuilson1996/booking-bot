@@ -7,12 +7,11 @@ from rest_framework.response import Response
 import locale
 import threading
 from datetime import datetime as dt
+import time
+import subprocess
 from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
-import time
-import subprocess
-# Create your views here.
 
 def generate_date_with_month(_date:str):
     ___date_from = dt(
@@ -601,12 +600,16 @@ def index(request):
 
                         if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start]:
                             #print(b.booking.occupancy, b.booking.start, b.position, _price)
-                            bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
-                            bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
-                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
-                                bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
-                                bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
-                            bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
+                            try:
+                                if _price:
+                                    bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
+                                    bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
+                                    if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                                        bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
+                                        bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
+                                    bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
+                            except Exception as e:
+                                logging.info(f"[-] Error price: {e}")
             
             avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
             bookings[str(_date_from.date())]["availWithDate"] = 0
@@ -719,6 +722,7 @@ def booking_view(request):
                 available_booking = AvailableBooking.objects.filter(date_from=request.GET["date"], occupancy=int(request.GET["occupancy"])).order_by("-updated")
             else:
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=i)), occupancy=int(request.GET["occupancy"])).order_by("-updated")
+                #available_booking = CopyPriceWithDay.objects.filter()
 
             #if not available_booking:
             for s in stars:
