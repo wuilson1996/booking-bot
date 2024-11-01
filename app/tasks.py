@@ -4,6 +4,9 @@ import threading
 import time
 from datetime import datetime, timedelta
 from .models import *
+from pathlib import Path
+
+LOCK_FILE_PATH = "/tmp/ejecutar_funcion.lock"
 
 def ejecutar_funcion():
     print("¡Función ejecutada a las 10:00 p.m!")
@@ -61,8 +64,23 @@ def iniciar_tarea_diaria():
             # Espera hasta las 10:00 p.m.
             time.sleep(tiempo_espera)
             
-            # Ejecuta la función
-            ejecutar_funcion()
+            # Revisa si el archivo de bloqueo existe
+            lock_file = Path(LOCK_FILE_PATH)
+            if lock_file.exists():
+                print("Otro worker ya está ejecutando la tarea.")
+                continue
+            
+            try:
+                # Crea el archivo de bloqueo
+                lock_file.touch()
+
+                # Ejecuta la función
+                ejecutar_funcion()
+            
+            finally:
+                # Elimina el archivo de bloqueo
+                if lock_file.exists():
+                    lock_file.unlink()
 
     # Iniciar el thread
     thread = threading.Thread(target=tarea_en_thread)
