@@ -717,7 +717,7 @@ def booking_view(request):
         for p in ProcessActive.objects.all():
             if int(p.start) not in stars:
                 stars.append(int(p.start))
-        for i in range(0, 8, 1):
+        for i in range(0, 1, 1):
             if i == 0:
                 available_booking = AvailableBooking.objects.filter(date_from=request.GET["date"], occupancy=int(request.GET["occupancy"])).order_by("-updated")
             else:
