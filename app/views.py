@@ -741,7 +741,7 @@ def booking_view(request):
             if __message_by_day:
                 bookings["bookings"][str(s)]["messageDay"] = ""
                 for m in __message_by_day:
-                    bookings["bookings"][str(s)]["messageDay"] += f"{m.text} - {generate_date_with_month_time(str(m.updated))} | "
+                    bookings["bookings"][str(s)]["messageDay"] += f"<{m.text} - {generate_date_with_month_time(str(m.updated))}>"
 
             for i in range(0, 8, 1):
                 #if i not in list(bookings["bookings"][str(s)].keys()):
