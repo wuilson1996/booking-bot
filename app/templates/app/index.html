@@ -746,7 +746,7 @@
       const dataTableSearch = new simpleDatatables.DataTable("#client-list", {
         searchable: true,
         fixedHeight: false,
-        perPage: parseInt('{{range_pg}}')
+        perPage: parseInt('{{range_pg}}') + 1
       });
 
       document.querySelectorAll(".export").forEach(function(el) {

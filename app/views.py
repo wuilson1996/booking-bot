@@ -369,7 +369,7 @@ def save_avail_with_date(request):
 def index(request):
     if request.user.is_authenticated:
         __date_from = str(dt.now().date())
-        __date_to = str(dt.now().date() + datetime.timedelta(days=50))
+        __date_to = str(dt.now().date() + datetime.timedelta(days=90))
             
         if "date_from" in request.POST:
             __date_from = str(request.POST["date_from"])
@@ -643,7 +643,7 @@ def index(request):
 
         _date_process = ProcessActive.objects.all().last()
         range_bt = "1"
-        range_pg = "50"
+        range_pg = "90"
         if "range_bt" in request.POST:
             range_bt = request.POST["range_bt"]
         if "range_pg" in request.POST:
