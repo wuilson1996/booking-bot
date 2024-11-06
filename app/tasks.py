@@ -53,7 +53,7 @@ def iniciar_tarea_diaria():
             ahora = datetime.now()
             
             # Próxima ejecución a las 10:00 p.m. de hoy o mañana
-            proxima_ejecucion = ahora.replace(hour=23, minute=41, second=0, microsecond=0)
+            proxima_ejecucion = ahora.replace(hour=22, minute=0, second=0, microsecond=0)
             if ahora > proxima_ejecucion:
                 proxima_ejecucion += timedelta(days=1)
             
