@@ -12,7 +12,7 @@ def ejecutar_funcion():
     print("¡Función ejecutada a las 10:00 p.m!")
     # 60 dias
     __date_from = str(datetime.now().date())
-    __date_to = str(datetime.now().date() + timedelta(days=5))
+    __date_to = str(datetime.now().date() + timedelta(days=365))
     _date_from = datetime(
         year=int(__date_from.split("-")[0]),
         month=int(__date_from.split("-")[1]),
