@@ -538,92 +538,92 @@ def index(request):
                             bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] = 0
 
                         _price3 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        if _price3 != "":
+                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
 
-                        if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
-
-                        #available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
-                        try:
-                            copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
-                        except Exception as e:
-                            copy_prices1 = CopyPriceWithDay()
-                            copy_prices1.price = "0"
-                        if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
-                        
-                        _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
-
-                        if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
-                        #---------------------------------
-
-                        if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
-                            bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
-                        
-                        _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
-                        
-                        # change price with nameprice hotel.
-                        if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
-                            if int(avail_book.booking.start) == 4:
-                                # change price with nameprice hotel.
-                                available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
-                                available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
-                                for ab1 in available_booking1:
-                                    if "Hotel Suites Feria de Madrid" == ab1.booking.title:
-                                        _price1 = ab1.price.replace("€ ", "").replace(".", "").replace(",", "")
-                                        bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeria1"] = int(_price1)
-                                        bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
-                                        break
-                                
-                                for ab7 in available_booking7:
-                                    if "Hotel Suites Feria de Madrid" == ab7.booking.title:
-                                        _price7 = ab7.price.replace("€ ", "").replace(".", "").replace(",", "")
-                                        bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeria7"] = int(_price7)
-                                        bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
-                                        break
-                        
-                        # change price with nameprice hotel.
-                        if "Zenit Conde de Orgaz" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceZEN"] = _price
-                        
-                        if "Best Osuna" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceOSU"] = _price
-                        
-                        if "Travelodge Torrelaguna" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceTOR"] = _price
-                        
-                        if "Senator Barajas" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceBAR"] = _price
-                        
-                        if "ALIANZA SUITES" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceAZA"] = _price
-                        
-                        if "Eco Alcalá Suites" == avail_book.booking.title:
-                            bookings[avail_book.date_from][avail_book.occupancy]["priceECO"] = _price
-
-                        if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
-                            bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
-                            bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] = 0
-
-                        #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
-                        #    print(_price, b.booking.start, b.position)
-
-                        if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start]:
-                            #print(b.booking.occupancy, b.booking.start, b.position, _price)
+                            #available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
                             try:
-                                if _price:
-                                    bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
-                                    bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
-                                    if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
-                                        bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
-                                        bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
-                                    bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
+                                copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
                             except Exception as e:
-                                logging.info(f"[-] Error price: {e}")
+                                copy_prices1 = CopyPriceWithDay()
+                                copy_prices1.price = "0"
+                            if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
+                            
+                            _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
+
+                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
+                            #---------------------------------
+
+                            if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
+                                bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
+                            
+                            _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
+                            
+                            # change price with nameprice hotel.
+                            if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
+                                if int(avail_book.booking.start) == 4:
+                                    # change price with nameprice hotel.
+                                    available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
+                                    available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                                    for ab1 in available_booking1:
+                                        if "Hotel Suites Feria de Madrid" == ab1.booking.title:
+                                            _price1 = ab1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                                            bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeria1"] = int(_price1)
+                                            bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
+                                            break
+                                    
+                                    for ab7 in available_booking7:
+                                        if "Hotel Suites Feria de Madrid" == ab7.booking.title:
+                                            _price7 = ab7.price.replace("€ ", "").replace(".", "").replace(",", "")
+                                            bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeria7"] = int(_price7)
+                                            bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
+                                            break
+                            
+                            # change price with nameprice hotel.
+                            if "Zenit Conde de Orgaz" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceZEN"] = _price
+                            
+                            if "Best Osuna" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceOSU"] = _price
+                            
+                            if "Travelodge Torrelaguna" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceTOR"] = _price
+                            
+                            if "Senator Barajas" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceBAR"] = _price
+                            
+                            if "ALIANZA SUITES" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceAZA"] = _price
+                            
+                            if "Eco Alcalá Suites" == avail_book.booking.title:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceECO"] = _price
+
+                            if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
+                                bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
+                                bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] = 0
+
+                            #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
+                            #    print(_price, b.booking.start, b.position)
+
+                            if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start]:
+                                #print(b.booking.occupancy, b.booking.start, b.position, _price)
+                                try:
+                                    if _price:
+                                        bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
+                                        bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
+                                        if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                                            bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
+                                            bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
+                                        bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
+                                except Exception as e:
+                                    logging.info(f"[-] Error price: {e}")
             
             avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
             bookings[str(_date_from.date())]["availWithDate"] = 0
