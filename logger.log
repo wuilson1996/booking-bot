@@ -280,3 +280,4 @@ WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f7
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
