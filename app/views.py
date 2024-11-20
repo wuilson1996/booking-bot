@@ -525,7 +525,6 @@ def index(request):
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
                     if int(avail_book.booking.start) != 0:
-
                         #----------------------------------
                         #available_booking2 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
                         try:
@@ -543,28 +542,28 @@ def index(request):
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
 
-                            #available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
-                            try:
-                                copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
-                            except Exception as e:
-                                copy_prices1 = CopyPriceWithDay()
-                                copy_prices1.price = "0"
-                            if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
-                            
-                            _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
-
+                        #available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                        try:
+                            copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
+                        except Exception as e:
+                            copy_prices1 = CopyPriceWithDay()
+                            copy_prices1.price = "0"
+                        if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
+                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
+                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
+                        
+                        _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        if _price4 != "":
                             if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
-                            #---------------------------------
+                        #---------------------------------
 
-                            if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
-                                bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
-                            
-                            _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
-                            
+                        if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
+                            bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
+                        
+                        _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        if _price != "":
                             # change price with nameprice hotel.
                             if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
                                 bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
@@ -831,7 +830,6 @@ def booking_view(request):
                         }
 
                         _price = b.price.replace("€ ", "").replace(".", "").replace(",", "")
-
                         bookings["bookings"][str(b.booking.start)]["list2"].append(
                             {
                                 "title": b.booking.title, 
