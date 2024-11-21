@@ -128,11 +128,6 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
                   </svg>Import
                 </button> -->
-                <button type="button" class="me-2 mb-0 btn btn-white" data-bs-toggle="modal" data-bs-target="#char-modal">
-                  <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
-                  </svg>Estadisticas
-                </button>
                 <button class="mt-1 mb-0 btn btn-white export mt-sm-0" data-type="csv" type="button" name="button">
                   <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 7.20711C5.90237 6.81658 5.90237 6.18342 6.29289 5.79289L9.29289 2.79289C9.48043 2.60536 9.73478 2.5 10 2.5C10.2652 2.5 10.5196 2.60536 10.7071 2.79289L13.7071 5.79289C14.0976 6.18342 14.0976 6.81658 13.7071 7.20711C13.3166 7.59763 12.6834 7.59763 12.2929 7.20711L11 5.91421V13.5C11 14.0523 10.5523 14.5 10 14.5C9.44771 14.5 9 14.0523 9 13.5V5.91421L7.70711 7.20711C7.31658 7.59763 6.68342 7.59763 6.29289 7.20711Z" fill="#111827" />
@@ -678,33 +673,67 @@
     </div>
   </div>
 
-  <div class="modal fade" id="char-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog mt-lg-10 modal-xl">
+  <div class="modal fade" id="userAdd" data-backdrop="static">
+    <div class="modal-dialog mt-lg-10">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Estadisticas</h5>
+          <h5 class="modal-title" id="ModalLabel">Agregar Usuario</h5>
           <i class="fas fa-upload ms-3"></i>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <div class="row mt-4 h-30">
-            <div class="col-md-12">
-              <div class="card z-index-2">
-                <div class="card-header p-3 pb-0">
-                  <h6>Line chart</h6>
+        <form method="post" action="create-booking" id="frm" enctype="multipart/form-data">{% csrf_token %}
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control form-control-sm" required id="name" name="name">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="lastname">Apellido</label>
+                        <input type="text" class="form-control form-control-sm" required id="lastname" name="lastname">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="phone">Telefono</label>
+                        <input type="text" class="form-control form-control-sm" required id="phone" name="phone">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="email">Correo</label>
+                        <input type="email" class="form-control form-control-sm" required id="email" name="email">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="username">Usuario</label>
+                        <input type="text" class="form-control form-control-sm" required id="username" name="username">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="password">Clave</label>
+                        <input type="text" class="form-control form-control-sm" required id="password" name="password">
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="file">Imagen</label>
+                        <input type="file" class="form-control form-control-sm" required id="file" name="file">
+                    </div>
+                    <div class="form-group col-8">
+                        <label for="permission">Permiso</label>
+                        <select class="form-control form-control-sm" name="permission" required id="permission">
+                            {% for p in permission %}
+                                <option value="{{p.pk}}">{{p.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-4 mt-2">
+                        <div class="form-check form-switch ps-0 mt-4">
+                            <input class="form-check-input ms-0" type="checkbox" id="state" name="state" checked="">
+                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="state">Acceso</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body p-3">
-                  <div class="chart">
-                    <canvas id="line-chart" class="chart-canvas" height="300"></canvas>
-                  </div>
-                </div>
-              </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-dark btn-sm">Upload</button>
-        </div>
+            <div class="modal-footer">
+                <input type="hidden" name="pk" id="pk" value="0">
+                <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-dark btn-sm" id="buttonSave">Guardar</button>
+            </div>
+        </form>
       </div>
     </div>
   </div>
@@ -737,7 +766,6 @@
         });
       });
     };
-
     function activeAlert(){
         Swal.fire({
         title: 'Activar Proceso de extraccion.',
@@ -1018,119 +1046,6 @@
     //document.body.style.transform = "scale(0.9)";
     //document.body.style.transformOrigin = "0 0"; // Establece el origen de la transformación
     document.body.style.zoom = "90%";
-    
-    // var ctx1 = document.getElementById("line-chart").getContext("2d");
-
-    // var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-    // gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    // gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    // gradientStroke1.addColorStop(0, 'rgba(94, 114, 228,0)'); //purple colors
-
-    // var gradientStroke2 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-    // gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-    // gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    // gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-    // new Chart(ctx1, {
-    //   type: "line",
-    //   data: {
-    //     labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    //     datasets: [{
-    //         label: "Organic Search",
-    //         tension: 0.4,
-    //         borderWidth: 0,
-    //         pointRadius: 2,
-    //         pointBackgroundColor: "#5e72e4",
-    //         borderColor: "#5e72e4",
-    //         borderWidth: 3,
-    //         backgroundColor: gradientStroke1,
-    //         data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-    //         maxBarThickness: 6
-    //       },
-    //       {
-    //         label: "Referral",
-    //         tension: 0.4,
-    //         borderWidth: 0,
-    //         pointRadius: 2,
-    //         pointBackgroundColor: "#3A416F",
-    //         borderColor: "#3A416F",
-    //         borderWidth: 3,
-    //         backgroundColor: gradientStroke2,
-    //         data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-    //         maxBarThickness: 6
-    //       },
-    //       {
-    //         label: "Direct",
-    //         tension: 0.4,
-    //         borderWidth: 0,
-    //         pointRadius: 2,
-    //         pointBackgroundColor: "#17c1e8",
-    //         borderColor: "#17c1e8",
-    //         borderWidth: 3,
-    //         backgroundColor: gradientStroke2,
-    //         data: [40, 80, 70, 90, 30, 90, 140, 130, 200],
-    //         maxBarThickness: 6
-    //       },
-    //     ],
-    //   },
-    //   options: {
-    //     responsive: true,
-    //     maintainAspectRatio: false,
-    //     plugins: {
-    //       legend: {
-    //         display: false,
-    //       }
-    //     },
-    //     interaction: {
-    //       intersect: false,
-    //       mode: 'index',
-    //     },
-    //     scales: {
-    //       y: {
-    //         grid: {
-    //           drawBorder: false,
-    //           display: true,
-    //           drawOnChartArea: true,
-    //           drawTicks: false,
-    //           borderDash: [5, 5]
-    //         },
-    //         ticks: {
-    //           display: true,
-    //           padding: 10,
-    //           color: '#b2b9bf',
-    //           font: {
-    //             size: 11,
-    //             family: "Open Sans",
-    //             style: 'normal',
-    //             lineHeight: 2
-    //           },
-    //         }
-    //       },
-    //       x: {
-    //         grid: {
-    //           drawBorder: false,
-    //           display: true,
-    //           drawOnChartArea: true,
-    //           drawTicks: true,
-    //           borderDash: [5, 5]
-    //         },
-    //         ticks: {
-    //           display: true,
-    //           color: '#b2b9bf',
-    //           padding: 10,
-    //           font: {
-    //             size: 11,
-    //             family: "Open Sans",
-    //             style: 'normal',
-    //             lineHeight: 2
-    //           },
-    //         }
-    //       },
-    //     },
-    //   },
-    // });
 
   </script>
 
