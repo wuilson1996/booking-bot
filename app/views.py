@@ -82,53 +82,47 @@ def active_process():
         )
         if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
             a.delete()
-    
-    general_search = GeneralSearch.objects.all().last()
-    instances = []
-    for p in ProcessActive.objects.all():
-        p.currenct = True
-        p.save()
-
-        booking = BookingSearch()
-        instances.append({
-            "booking": booking,
-            "driver": booking._driver(general_search.url)
-        })
 
     logging.info(f"[+] {dt.now()} Activando process...")
     threading.Thread(target=active_process_sf).start()
     while True:
         try:
-            threads = []
-            cont = 0
             for p in ProcessActive.objects.all():
-                if not p.active:
-                    try:
-                        logging.info(f"[+] {dt.now()} Process active in while. Search browser... {instances[cont]['booking']}")
-                        p.active = True
-                        p.save()
-                        process = threading.Thread(
-                            target=instances[cont]["booking"].controller, 
-                            args=(
-                                instances[cont]["driver"], 
-                                dt.now(), 
-                                str(p.date_end).split("-"), 
-                                int(p.occupancy), 
-                                int(p.start), 
-                                p, 
-                                general_search.city_and_country
-                            )
-                        )
-                        process.daemon = True
-                        process.start()
-                        threads.append(process)
-                    except Exception as ec:
-                        logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
-                cont += 1
+                p.active = True
+                p.save()
 
-            for t in threads:
-                logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
-                t.join()
+            general_search = GeneralSearch.objects.all().last()
+
+            booking = BookingSearch()
+            _driver = booking._driver(general_search.url)
+            _date_end = dt(
+                int(str(general_search.proces_active.last().date_end).split("-")[0]),
+                int(str(general_search.proces_active.last().date_end).split("-")[1]),
+                int(str(general_search.proces_active.last().date_end).split("-")[2])
+            )
+            _now = dt.now()
+            alert = True
+            while True:
+                __time = time.time()
+                for gs in GeneralSearch.objects.all():
+                    for pa in gs.proces_active.all():
+                        try:
+                            logging.info(f"[+] {dt.now()} Search browser... {_now} {booking} {gs.city_and_country} {pa}")
+                            booking.controller(
+                                driver=_driver, 
+                                _now=_now,
+                                process=pa,
+                                search_name=gs.city_and_country,
+                                alert=alert
+                            )
+                            alert = False
+                        except Exception as ec:
+                            logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
+                
+                logging.info(f"[+] Tiempo transcurrido: {time.time() - __time}")
+                _now += datetime.timedelta(days=1)
+                if _now.date() >= _date_end.date():
+                    break
 
             if general_search:
                 seconds = 60 * general_search.time_sleep_minutes
@@ -165,6 +159,10 @@ def get_booking(request):
             result["message"] = "Proceso ya se encuentra activado."
             result["code"] = 400
     return Response(result)
+
+def reset_service_with_task():
+    reset_service()
+    threading.Thread(target=active_process).start()
 
 def reset_service():
     try:
@@ -299,14 +297,14 @@ def save_temp(request):
             if not _temp_by_day:
                 _temp_by_day = TemporadaByDay.objects.create(
                     date_from = request.data["date"],
-                    bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0],
+                    bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])][0],
                     text_color = "text-white",
                     number = request.data["numTemp"],
                     updated = dt.now(),
                     created = dt.now()
                 )
             else:
-                _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])-1][0]
+                _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])][0]
                 _temp_by_day.number = request.data["numTemp"]
                 _temp_by_day.updated = dt.now()
                 _temp_by_day.save()
@@ -368,8 +366,10 @@ def save_avail_with_date(request):
 
 def index(request):
     if request.user.is_authenticated:
+        cant_default = 90
+        __time = time.time()
         __date_from = str(dt.now().date())
-        __date_to = str(dt.now().date() + datetime.timedelta(days=90))
+        __date_to = str(dt.now().date() + datetime.timedelta(days=cant_default))
             
         if "date_from" in request.POST:
             __date_from = str(request.POST["date_from"])
@@ -464,56 +464,50 @@ def index(request):
                         bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
                         bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail
                         bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
-
+                
                 #Disponibilidad 1 dia atras
-                avail_sf1 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from_current.date() - datetime.timedelta(days=1))).last()
-                avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
-                    type_avail = int(ocp),
-                    avail_suites_feria = avail_sf1
-                ).last()
+                copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
+                try:
+                    cpwd = copy_avail_with_name[0]
+                except Exception as ecpwd:
+                    cpwd = CopyAvailWithDaySF()
+                    cpwd.avail_1 = 0
+                    cpwd.avail_2 = 0
+                    cpwd.avail_4 = 0
+                    cpwd.created = str(dt.now())
+                
                 bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] = 0
-                if avail_sf_cant1:
-                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
-                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM1"] = avail_sf_cant1.avail
-                    if int(ocp) == 2:
-                        avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 1,
-                            avail_suites_feria = avail_sf1
-                        ).last()
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] = avail_sf_cant1.avail
-                else:
-                    if int(ocp) == 5 and avail_sf_cant1:
-                        avail_sf_cant1 = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 4,
-                            avail_suites_feria = avail_sf1
-                        ).last()
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += avail_sf_cant1.avail
+                
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_1
+                bookings[str(_date_from.date())][int(ocp)]["totalFeriaM1"] = cpwd.avail_1
+
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_2
+                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] = cpwd.avail_2
+
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_4
+                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] += cpwd.avail_4
 
                 #Disponibilidad 7 dias atras
-                avail_sf7 = AvailSuitesFeria.objects.filter(date_avail = str(_date_from_current.date() - datetime.timedelta(days=7))).last()
-                avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
-                    type_avail = int(ocp),
-                    avail_suites_feria = avail_sf7
-                ).last()
+                copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
+                try:
+                    cpwd = copy_avail_with_name[6]
+                except Exception as ecpwd:
+                    cpwd = CopyAvailWithDaySF()
+                    cpwd.avail_1 = 0
+                    cpwd.avail_2 = 0
+                    cpwd.avail_4 = 0
+                    cpwd.created = str(dt.now())
+
                 bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] = 0
-                if avail_sf_cant7:
-                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
-                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM7"] = avail_sf_cant7.avail
-                    if int(ocp) == 2:
-                        avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 1,
-                            avail_suites_feria = avail_sf7
-                        ).last()
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] = avail_sf_cant7.avail
-                else:
-                    if int(ocp) == 5 and avail_sf_cant7:
-                        avail_sf_cant7 = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 4,
-                            avail_suites_feria = avail_sf7
-                        ).last()
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += avail_sf_cant7.avail
+
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_1
+                bookings[str(_date_from.date())][int(ocp)]["totalFeriaM7"] = cpwd.avail_1
+
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_2
+                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] = cpwd.avail_2
+
+                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_4
+                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] += cpwd.avail_4
 
                 #--------------
                 for comp in Complement.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp)):
@@ -565,44 +559,49 @@ def index(request):
                         _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price != "":
                             # change price with nameprice hotel.
-                            if "Hotel Suites Feria de Madrid" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = _price
-                                if int(avail_book.booking.start) == 4:
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+                                #if int(avail_book.booking.start) == 4:
                                     # change price with nameprice hotel.
-                                    available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
-                                    available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
-                                    for ab1 in available_booking1:
-                                        if "Hotel Suites Feria de Madrid" == ab1.booking.title:
-                                            _price1 = ab1.price.replace("€ ", "").replace(".", "").replace(",", "")
-                                            bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeria1"] = int(_price1)
-                                            bookings[avail_book.date_from][ab1.occupancy]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
-                                            break
+                                    #available_booking1 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
+                                    #available_booking7 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                                available_booking1 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel, created = str(_date_from_current.date() - datetime.timedelta(days=1))).last()
+                                if available_booking1:
+                                    _price1 = available_booking1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                                    bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria1"] = int(_price1)
+                                    bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
                                     
-                                    for ab7 in available_booking7:
-                                        if "Hotel Suites Feria de Madrid" == ab7.booking.title:
-                                            _price7 = ab7.price.replace("€ ", "").replace(".", "").replace(",", "")
-                                            bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeria7"] = int(_price7)
-                                            bookings[avail_book.date_from][ab7.occupancy]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
-                                            break
+                                available_booking7 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel, created = str(_date_from_current.date() - datetime.timedelta(days=7))).last()
+                                if available_booking7:
+                                    _price7 = available_booking7.price.replace("€ ", "").replace(".", "").replace(",", "")
+                                    bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeria7"] = int(_price7)
+                                    bookings[avail_book.date_from][avail_book.occupancy]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[avail_book.date_from][avail_book.occupancy] else 0
                             
                             # change price with nameprice hotel.
-                            if "Zenit Conde de Orgaz" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceZEN"] = _price
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Zenit Conde de Orgaz", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceZEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                             
-                            if "Best Osuna" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceOSU"] = _price
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Best Osuna", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceOSU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                             
-                            if "Travelodge Torrelaguna" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceTOR"] = _price
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceTOR"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                             
-                            if "Senator Barajas" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceBAR"] = _price
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Senator Barajas", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceBAR"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                             
-                            if "ALIANZA SUITES" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceAZA"] = _price
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Alianza Suites", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceAZA"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                             
-                            if "Eco Alcalá Suites" == avail_book.booking.title:
-                                bookings[avail_book.date_from][avail_book.occupancy]["priceECO"] = _price
+                            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Eco Alcalá Suites", date_from = str(_date_from.date())).first()
+                            if price_with_name_hotel:
+                                bookings[avail_book.date_from][avail_book.occupancy]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
 
                             if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
                                 bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
@@ -642,12 +641,12 @@ def index(request):
 
         _date_process = ProcessActive.objects.all().last()
         range_bt = "1"
-        range_pg = "90"
+        range_pg = str(cant_default)
         if "range_bt" in request.POST:
             range_bt = request.POST["range_bt"]
         if "range_pg" in request.POST:
             range_pg = request.POST["range_pg"]
-
+        print(time.time() - __time)
         return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt, "range_pg": range_pg})
     else:
         return redirect("sign-in")
@@ -657,56 +656,56 @@ def booking_view(request):
         data_aux = {
             "2": {#occupancy
                 "4":[#stars
-                    {"price": 0, "bg": "bg-success", "color": "text-black"},
-                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-white", "color": "text-black"},
-                    {"price": 0, "bg": "bg-primary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-danger", "color": "text-white"},
                     {"price": 0, "bg": "bg-warning", "color": "text-white"},
-                    {"price": 0, "bg": "bg-danger", "color": "text-white"}
+                    {"price": 0, "bg": "bg-primary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-secondary", "color": "text-white"},
+                    {"price": 0, "bg": "bg-success", "color": "text-black"}
                 ],
                 "3":[
-                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                    {"price": 0, "bg": "bg-success", "color": "text-black"}
                 ]
             },
             "3":{
                 "4":[
-                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                    {"price": 0, "bg": "bg-success", "color": "text-black"}
                 ],
                 "3": [
-                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                    {"price": 0, "bg": "bg-success", "color": "text-black"}
                 ]
             },
             "5":{
                 "4":[
-                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                    {"price": 0, "bg": "bg-success", "color": "text-black"}
                 ],
                 "3": [
-                    {"price": 0, "bg": "bg-success", "color": "text-black"},
+                    {"price": 0, "bg": "bg-white", "color": "text-black"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                     {"price": 0, "bg": "bg-secondary", "color": "text-white"},
-                    {"price": 0, "bg": "bg-white", "color": "text-black"}
+                    {"price": 0, "bg": "bg-success", "color": "text-black"}
                 ]
             }
         }
@@ -738,9 +737,9 @@ def booking_view(request):
             # get message
             __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(request.GET["occupancy"])).all()
             if __message_by_day:
-                bookings["bookings"][str(s)]["messageDay"] = ""
+                bookings["bookings"][str(s)]["messageDay"] = []
                 for m in __message_by_day:
-                    bookings["bookings"][str(s)]["messageDay"] += f"<{m.text} - {generate_date_with_month_time(str(m.updated))}>"
+                    bookings["bookings"][str(s)]["messageDay"].append(f"{m.text} ----- {generate_date_with_month_time(str(m.updated))}")
 
             for i in range(0, 8, 1):
                 #if i not in list(bookings["bookings"][str(s)].keys()):
@@ -785,32 +784,69 @@ def booking_view(request):
                                 {"price": 0, "bg": "bg-secondary", "color": "text-white"},
                                 {"price": 0, "bg": "bg-white", "color": "text-black"}
                             ]
-            
-                #print(str(_date_from.date() - datetime.timedelta(days=i)))
-                avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date() - datetime.timedelta(days=i))).last()
-                avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                    type_avail = int(request.GET["occupancy"]),
-                    avail_suites_feria = avail_sf
-                ).last()
 
-                if avail_sf_cant:
-                    bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
-                    if int(request.GET["occupancy"]) == 2:
+                if s == 4:
+                    avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
+                    if i == 0:
                         avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 1,
+                            type_avail = int(request.GET["occupancy"]),
                             avail_suites_feria = avail_sf
                         ).last()
-                        bookings["bookings"][str(s)][i]["suitesFeria2"] = avail_sf_cant.avail
-                else:
-                    if int(request.GET["occupancy"]) == 5:
-                        avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 4,
-                            avail_suites_feria = avail_sf
-                        ).last()
+
                         if avail_sf_cant:
                             bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
-                
-                bookings["bookings"][str(s)][i]["suitesFeriaTotal"] = bookings["bookings"][str(s)][i]["suitesFeria2"] + bookings["bookings"][str(s)][i]["suitesFeria1"]
+                            if int(request.GET["occupancy"]) == 2:
+                                avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                                    type_avail = 1,
+                                    avail_suites_feria = avail_sf
+                                ).last()
+                                bookings["bookings"][str(s)][i]["suitesFeria2"] += avail_sf_cant.avail
+                        else:
+                            if int(request.GET["occupancy"]) == 5:
+                                avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                                    type_avail = 4,
+                                    avail_suites_feria = avail_sf
+                                ).last()
+                                if avail_sf_cant:
+                                    bookings["bookings"][str(s)][i]["suitesFeria1"] = avail_sf_cant.avail
+                    else:
+                        copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
+                        try:
+                            cpwd = copy_avail_with_name[i - 1]
+                        except Exception as ecpwd:
+                            cpwd = CopyAvailWithDaySF()
+                            cpwd.avail_1 = 0
+                            cpwd.avail_2 = 0
+                            cpwd.avail_4 = 0
+                            cpwd.created = str(dt.now())
+                        
+                        bookings["bookings"][str(s)][i]["suitesFeria2"] = cpwd.avail_1
+                        bookings["bookings"][str(s)][i]["suitesFeria1"] = cpwd.avail_2
+                        bookings["bookings"][str(s)][i]["suitesFeria1"] += cpwd.avail_4
+
+                    bookings["bookings"][str(s)][i]["suitesFeriaTotal"] = bookings["bookings"][str(s)][i]["suitesFeria2"] + bookings["bookings"][str(s)][i]["suitesFeria1"]
+
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date())).first()
+            if price_with_name_hotel:
+                price_w_name = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+                bookings["bookings"][str(s)][0]["suitesFeriaPrice"] = price_w_name
+                # change price with name hotel.
+                try:
+                    cont = 1
+                    copy_price_with_name = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[:7]
+                    for index_cpwd in range(7):
+                        try:
+                            cpwd = copy_price_with_name[index_cpwd]
+                        except Exception as ecpwd:
+                            cpwd = CopyPriceWithNameFromDay()
+                            cpwd.price = "0"
+                            cpwd.created = str(dt.now())
+                        
+                        cp_price = cpwd.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        bookings["bookings"][str(s)][cont]["suitesFeriaPrice"] = cp_price
+                        cont += 1
+                except Exception as e:
+                    pass
 
             acum1 = 0
             acum2 = 0
@@ -832,8 +868,8 @@ def booking_view(request):
                         _price = b.price.replace("€ ", "").replace(".", "").replace(",", "")
                         bookings["bookings"][str(b.booking.start)]["list2"].append(
                             {
-                                "title": b.booking.title, 
-                                "price": _price, 
+                                "title": b.booking.title,
+                                "price": _price,
                                 "position": str(b.position)
                             }
                         )
@@ -852,12 +888,10 @@ def booking_view(request):
 
                         _text_price["price"] = int(_price)
                         bookings["bookings"][str(b.booking.start)][0]["prices"].append(_text_price)
-                        if "Hotel Suites Feria de Madrid" == b.booking.title:
-                            bookings["bookings"][str(b.booking.start)][0]["suitesFeriaPrice"] = _price
                             
                     except Exception as eIndex:
                         pass#print(f"Error index: {i} - {str(b.booking.start)} - "+str(eIndex))
-                    
+
                     try:
                         cont = 1
                         #print("--------------------------------------------------")
@@ -894,10 +928,6 @@ def booking_view(request):
 
                             _text_price["price"] = int(cp_price)
                             bookings["bookings"][str(b.booking.start)][cont]["prices"].append(_text_price)
-                            
-                            # change price with name hotel.
-                            if "Hotel Suites Feria de Madrid" == b.booking.title:
-                                bookings["bookings"][str(b.booking.start)][cont]["suitesFeriaPrice"] = cp_price
                             
                             cont += 1
                     except Exception as e001:

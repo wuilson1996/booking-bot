@@ -8,735 +8,642 @@
 {% block content %}
 
 <div class="m-4 row">
-    <div class="col-12">
-      <div class="card">
-        <div class="pb-4 card-body">
-            <div class="d-lg-flex">
-              <div>
-                <h5 class="mb-4">Informacion personal</h5>
-                <p class="mb-0 text-sm">
-                 
-                </p>
-              </div>
-              <div class="my-auto mt-4 ms-auto mt-lg-0">
-                <div class="my-auto ms-auto">
-                  <div class="row">
-                    <div class="col-12 col-sm-6">
-                      <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
-                        <i class="fas fa-key me-1"></i>
-                        Activar extraccion
-                      </button>
-                    </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="pb-4 card-body">
+          <div class="d-lg-flex">
+            <div>
+              <h5 class="mb-4">Informacion personal</h5>
+              <p class="mb-0 text-sm">
+                
+              </p>
+            </div>
+            <div class="my-auto mt-4 ms-auto mt-lg-0">
+              <div class="my-auto ms-auto">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
+                      <i class="fas fa-key me-1"></i>
+                      Activar extraccion
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-sm-3">
-                    <div class="row gx-4">
-                        <div class="col-auto">
-                          <div class="avatar avatar-xl position-relative">
-                            <img src="../../../static/assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-                          </div>
-                        </div>
-                        <div class="col-auto my-auto">
-                          <div class="h-100">
-                            <h5 class="mb-1">
-                              {{request.user.username}}
-                            </h5>
-                            <p class="mb-0 font-weight-bold text-sm">
-                              Usuario - {{request.user.username}}
-                            </p>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-1 text-start">
-                    <p>Email:</p>
-                    <p>Telefono:</p>
-                </div>
-                <div class="col-12 col-sm-4 text-start">
-                    <p>{{request.user.email}}</p>
-                    <p></p>
-                </div>
-                <div class="col-12 col-sm-3">
-                    {% if not user_info.active %}
-                        <span class="badge badge-success badge-sm">Activo</span>
-                    {% else %}
-                        <span class="badge badge-danger badge-sm">No activo</span>
-                    {% endif %}
-                </div>
-            </div>
           </div>
-      </div>
+          <div class="row">
+              <div class="col-12 col-sm-3">
+                  <div class="row gx-4">
+                      <div class="col-auto">
+                        <div class="avatar avatar-xl position-relative">
+                          <img src="../../../static/assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        </div>
+                      </div>
+                      <div class="col-auto my-auto">
+                        <div class="h-100">
+                          <h5 class="mb-1">
+                            {{request.user.username}}
+                          </h5>
+                          <p class="mb-0 font-weight-bold text-sm">
+                            Usuario - {{request.user.username}}
+                          </p>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-1 text-start">
+                  <p>Email:</p>
+                  <p>Telefono:</p>
+              </div>
+              <div class="col-12 col-sm-4 text-start">
+                  <p>{{request.user.email}}</p>
+                  <p></p>
+              </div>
+              <div class="col-12 col-sm-3">
+                  {% if not user_info.active %}
+                      <span class="badge badge-success badge-sm">Activo</span>
+                  {% else %}
+                      <span class="badge badge-danger badge-sm">No activo</span>
+                  {% endif %}
+              </div>
+          </div>
+        </div>
     </div>
+  </div>
 </div>
 
 <div class="m-4 row">
-    <div class="col-12">
-      <div class="card">
-        <!-- Card header -->
-        <div class="pb-0 card-header">
-          <div class="row">
-            <div class="col-md-2">
-              <h5 class="mb-0">Bookings</h5>
-              <p class="mb-0 text-sm">
-               
-              </p>
-            </div>
-            <div class="col-md-8">
-              <form action="" method="post">{% csrf_token %}
-                <div class="row">
-                  <div class="col-md-2">
-                    <input type="date" class="form-control" value="{{date_from}}" name="date_from" min="{{date_from}}">
-                  </div>
-                  <!--<div class="col-md-2">
-                    <input type="date" class="form-control" value="{{date_to}}" name="date_to">
-                  </div>-->
-                  <div class="col-md-3">
-                    <select name="range_bt" id="range_bt" class="form-control">
-                      <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
-                      <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
-                      <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <select name="range_pg" id="range_pg" class="form-control">
-                      <option value="25" {% if range_pg == '25' %}selected{% endif %}>25 Dias</option>
-                      <option value="50" {% if range_pg == '50' %}selected{% endif %}>50 Dias</option>
-                      <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
-                      <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-info">Filtrar</button>
-                  </div>
+  <div class="col-12">
+    <div class="card">
+      <!-- Card header -->
+      <div class="pb-0 card-header">
+        <div class="row">
+          <div class="col-md-2">
+            <h5 class="mb-0">Bookings</h5>
+            <p class="mb-0 text-sm">
+              
+            </p>
+          </div>
+          <div class="col-md-8">
+            <form action="" method="post">{% csrf_token %}
+              <div class="row">
+                <div class="col-md-2">
+                  <input type="date" class="form-control" value="{{date_from}}" name="date_from">
                 </div>
-              </form>
+                <!--<div class="col-md-2">
+                  <input type="date" class="form-control" value="{{date_to}}" name="date_to">
+                </div>-->
+                <div class="col-md-3">
+                  <select name="range_bt" id="range_bt" class="form-control">
+                    <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
+                    <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
+                    <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select name="range_pg" id="range_pg" class="form-control">
+                    <option value="25" {% if range_pg == '25' %}selected{% endif %}>25 Dias</option>
+                    <option value="50" {% if range_pg == '50' %}selected{% endif %}>50 Dias</option>
+                    <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
+                    <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-info">Filtrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-2 my-auto mt-4 ms-auto mt-lg-0 text-end">
+            <div class="my-auto ms-auto">
+              <!-- <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#userAdd" onclick="clearModal()">
+                <i class="fas fa-plus me-1"></i>
+                Nuevo Booking
+              </button>
+              <button type="button" class="me-2 mb-0 btn btn-white" data-bs-toggle="modal" data-bs-target="#import">
+                <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
+                </svg>Import
+              </button> -->
+              <button type="button" class="me-2 mb-0 btn btn-white" data-bs-toggle="modal" data-bs-target="#stadistics">Estadisticas
+              </button>
+              <button class="mt-1 mb-0 btn btn-white export mt-sm-0" data-type="csv" type="button" name="button">
+                <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 7.20711C5.90237 6.81658 5.90237 6.18342 6.29289 5.79289L9.29289 2.79289C9.48043 2.60536 9.73478 2.5 10 2.5C10.2652 2.5 10.5196 2.60536 10.7071 2.79289L13.7071 5.79289C14.0976 6.18342 14.0976 6.81658 13.7071 7.20711C13.3166 7.59763 12.6834 7.59763 12.2929 7.20711L11 5.91421V13.5C11 14.0523 10.5523 14.5 10 14.5C9.44771 14.5 9 14.0523 9 13.5V5.91421L7.70711 7.20711C7.31658 7.59763 6.68342 7.59763 6.29289 7.20711Z" fill="#111827" />
+                </svg>Export
+              </button>
             </div>
-            <div class="col-md-2 my-auto mt-4 ms-auto mt-lg-0 text-end">
-              <div class="my-auto ms-auto">
-                <!-- <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#userAdd" onclick="clearModal()">
-                  <i class="fas fa-plus me-1"></i>
-                  Nuevo Booking
-                </button>
-                <button type="button" class="me-2 mb-0 btn btn-white" data-bs-toggle="modal" data-bs-target="#import">
-                  <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
-                  </svg>Import
-                </button> -->
-                <button class="mt-1 mb-0 btn btn-white export mt-sm-0" data-type="csv" type="button" name="button">
-                  <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 7.20711C5.90237 6.81658 5.90237 6.18342 6.29289 5.79289L9.29289 2.79289C9.48043 2.60536 9.73478 2.5 10 2.5C10.2652 2.5 10.5196 2.60536 10.7071 2.79289L13.7071 5.79289C14.0976 6.18342 14.0976 6.81658 13.7071 7.20711C13.3166 7.59763 12.6834 7.59763 12.2929 7.20711L11 5.91421V13.5C11 14.0523 10.5523 14.5 10 14.5C9.44771 14.5 9 14.0523 9 13.5V5.91421L7.70711 7.20711C7.31658 7.59763 6.68342 7.59763 6.29289 7.20711Z" fill="#111827" />
-                  </svg>Export
-                </button>
+          </div>
+        </div>
+      </div>
+      <div class="px-0 pb-0 card-body">
+        <div class="table-responsive">
+          <table class="table table-flush table-sm" id="client-list">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-xs">Fecha</th>
+                <th class="text-xs">Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for date, value in bookings.items %}
+              <tr>
+                <td id="temp-bg{{date}}" class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                  
+                  <h4 class="text-white my-4">{{value.date_from}}</h4>
+                  </br>
+                  </br>
+                  </br>
+                  <h4 class="text-white my-4">{{value.day}}</h4>
+                  </br>
+                  </br>
+                  <hr>
+                  <h1 class="text-white my-4" id="temp-t{{date}}">{{value.totalFeria}}</h1>
+                  <div class="input-group mb-3">
+                    <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
+                    <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
+                  </div>
+                  <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
+                  <hr>
+                  <span id="temp-update{{date}}">{{value.updated}}</span>
+                  <hr>
+                  <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
+                  <div class="input-group mb-3">
+                    <select id="temp{{date}}" class="form-control form-control-sm" value="{{value.temporadaByDay.number}}">
+                      <option value="">Seleccionar</option>
+                      <option value="0" {% if value.temporadaByDay.number == '0' %}selected{% endif %}>Temporada 0</option>
+                      <option value="1" {% if value.temporadaByDay.number == '1' %}selected{% endif %}>Temporada 1</option>
+                      <option value="2" {% if value.temporadaByDay.number == '2' %}selected{% endif %}>Temporada 2</option>
+                      <option value="3" {% if value.temporadaByDay.number == '3' %}selected{% endif %}>Temporada 3</option>
+                      <option value="4" {% if value.temporadaByDay.number == '4' %}selected{% endif %}>Temporada 4</option>
+                      <option value="5" {% if value.temporadaByDay.number == '5' %}selected{% endif %}>Temporada 5</option>
+                    </select>
+                    <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
+                  </div>
+                </td>
+                <td>
+                  <table class="table table-flush bg-info text-white table-sm">
+                    <!-- <thead class="thead-light">
+                      <tr>
+                        <th class="text-xs"></th>
+                        <th class="text-xs text-white">Precio en base a nombre de hotel</th>
+                        <th class="text-xs text-white">H. DSP. (4*)</th>
+                        <th class="text-xs text-white">Precio hotel 3*</th>
+                        <th class="text-xs text-white">Precio hotel 4*</th>
+                        <th class="text-xs text-white">Media</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <td colspan="6">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.2.eventByDay.text}}" aria-describedby="button-addon7" id="textEvent{{date}}2">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <h2 class="text-white">{{value.2.total_search}}</h2>
+                          <h5 class="text-white">{{value.2.total_search_192}}%</h5>
+                        </td>
+                        <td class="text-sm">
+                          <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                          </div>
+                          <h4 class="text-white text-center">
+                            <table class="table table-flush text-white table-sm">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    M: {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %} | 
+                                    {% if "totalFeriaM1" in value.2 %}{{value.2.totalFeriaM1}}{% else %}0{% endif %} | 
+                                    {% if "totalFeriaM7" in value.2 %}{{value.2.totalFeriaM7}}{% else %}0{% endif %}
+                                    <br>
+                                    D: {% if "suiteFeria" in value.2 %}{{value.2.suiteFeria}}{% else %}0{% endif %} | 
+                                    {% if "totalFeriaD1" in value.2 %}{{value.2.totalFeriaD1}}{% else %}0{% endif %} | 
+                                    {% if "totalFeriaD7" in value.2 %}{{value.2.totalFeriaD7}}{% else %}0{% endif %}
+                                  </td>
+                                  <!-- <td>
+                                    {% if "priceSuitesFeriaRest1" in value.2 %}{{value.2.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
+                                    {% if "priceSuitesFeriaRest7" in value.2 %}{{value.2.priceSuitesFeriaRest7}}{% else %}0{% endif %}
+                                  </td> -->
+                                </tr>
+                              </tbody>
+                            </table>
+                          </h4>
+                        </td>
+                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm">
+                                  ZEN<h3>{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</h3>
+                                  OSU<h3>{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</h3>
+                                  <!--<h5>0</h5>-->
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} | </span>
+                            {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %} | 
+                            {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                            {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %} | </span>
+                            {% if "media_total1" in value.5 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %} | 
+                            {% if "media_total7" in value.5 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}
+                          </h4>
+                        </td>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm bg-success">
+                                  <h3>{{value.2.4.0.price}}</h3>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.2.4.1.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.2.4.2.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.2.4.3.price}}</h5>
+                                </td>
+                                <td class="bg-secondary">
+                                  <h3 class="text-white">{{value.2.4.4.price}}</h3>
+                                </td>
+                                <td class="text-sm bg-white">
+                                  <h3>{{value.2.4.9.price}}</h3>
+                                </td>
+                                <td class="bg-primary">
+                                  <h3 class="text-white">{{value.2.4.14.price}}</h3>
+                                </td>
+                                <td class="bg-warning">
+                                  <h3 class="text-white">{{value.2.4.19.price}}</h3>
+                                </td>
+                                <td class="bg-danger">
+                                  <h3 class="text-white">{{value.2.4.24.price}}</h3>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm bg-success">
+                                  <h2>
+                                    {{value.2.3.0.price}}
+                                  </h2>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">
+                                    {{value.2.3.1.price}}
+                                  </h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">
+                                    {{value.2.3.2.price}}
+                                  </h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">
+                                    {{value.2.3.3.price}}
+                                  </h5>
+                                </td>
+                                <td class="text-lg bg-white">
+                                  <h3>{{value.2.3.4.price}}</h3>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6">
+                          <span id="textDate{{date}}2" class="text-lg">{{value.2.messageDay.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.2.messageDay.text}}" aria-describedby="button-addon2" id="text{{date}}2">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table class="table table-flush bg-success text-white table-sm">
+                    <!-- <thead class="thead-light">
+                      <tr>
+                        <th class="text-xs"></th>
+                        <th class="text-xs text-white">Precio en base a nombre de hotel</th>
+                        <th class="text-xs text-white">H. DSP. (4*)</th>
+                        <th class="text-xs text-white">Precio hotel 3*</th>
+                        <th class="text-xs text-white">Precio hotel 4*</th>
+                        <th class="text-xs text-white">Media</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <td colspan="6">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon8" onclick="saveEvent('{{date}}', 3)">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.3.eventByDay.text}}" aria-describedby="button-addon8" id="textEvent{{date}}3">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <h2 class="text-white">{{value.3.total_search}}</h2>
+                          <h5 class="text-white">{{value.3.total_search_192}}%</h5>
+                        </td>
+                        <td class="text-sm">
+                          <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
+                          </div>
+                          <!-- <h4 class="text-white text-center">
+                            {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
+                            {% if "priceSuitesFeriaRest1" in value.3 %}{{value.3.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
+                          </h4> -->
+                        </td>
+                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm">
+                                  TOR<h3>{% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</h3>
+                                  BAR<h3>{% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</h3>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "totalFeria" in value.3 %}{{value.3.totalFeria}}{% else %}0{% endif %} | </span>
+                            {% if "totalFeria1" in value.3 %}{{value.3.totalFeria1}}{% else %}0{% endif %} | 
+                            {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                            {% if "priceSuitesFeria1" in value.3 %}{{value.3.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeria7" in value.3 %}{{value.3.priceSuitesFeria7}}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %} | </span>
+                            {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
+                            {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
+                          </h4>
+                        </td>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm bg-success">
+                                  <h3>{{value.3.4.0.price}}</h3>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.3.4.1.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.3.4.2.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.3.4.3.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h3 class="text-white">{{value.3.4.4.price}}</h3>
+                                </td>
+                                <td class="text-sm bg-white">
+                                  <h3>{{value.3.4.9.price}}</h3>
+                                </td>
+                              </tr>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm bg-success">
+                                  <h2>{{value.3.3.0.price}}</h2>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.3.3.1.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.3.3.2.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.3.3.3.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-white">
+                                  <h3>{{value.3.3.4.price}}</h3>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6">
+                          <span id="textDate{{date}}3" class="text-lg">{{value.3.messageDay.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon4" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.3.messageDay.text}}" aria-describedby="button-addon4" id="text{{date}}3">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <table class="table table-flush bg-danger text-white table-sm">
+                    <!-- <thead class="thead-light">
+                      <tr>
+                        <th class="text-xs"></th>
+                        <th class="text-xs text-white">Precio en base a nombre de hotel</th>
+                        <th class="text-xs text-white">H. DSP. (4*)</th>
+                        <th class="text-xs text-white">Precio hotel 3*</th>
+                        <th class="text-xs text-white">Precio hotel 4*</th>
+                        <th class="text-xs text-white">Media</th>
+                      </tr>
+                    </thead> -->
+                    <tbody>
+                      <tr>
+                        <td colspan="6">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon9" onclick="saveEvent('{{date}}', 5)">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.5.eventByDay.text}}" aria-describedby="button-addon9" id="textEvent{{date}}5">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <h2 class="text-white">{{value.5.total_search}}</h2>
+                          <h5 class="text-white">{{value.5.total_search_192}}%</h5>
+                        </td>
+                        <td class="text-sm">
+                          <span class="text-white text-lg" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                          </div>
+                          <!-- <h4 class="text-white text-center">
+                            {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeriaRest1" in value.5 %}{{value.5.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
+                          </h4> -->
+                        </td>
+                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm">
+                                  AZA<h3>{% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</h3>
+                                  ECO<h3>{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</h3></br>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "totalFeria" in value.5 %}{{value.5.totalFeria}}{% else %}0{% endif %} | </span>
+                            {% if "totalFeria1" in value.5 %}{{value.5.totalFeria1}}{% else %}0{% endif %} | 
+                            {% if "totalFeria7" in value.5 %}{{value.5.totalFeria7}}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                            {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeria7" in value.5 %}{{value.5.priceSuitesFeria7}}{% else %}0{% endif %} 
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
+                            {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
+                            {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
+                          </h4>
+                        </td>
+                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm bg-success">
+                                  <h3>{{value.5.4.0.price}}</h3>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.5.4.1.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.5.4.2.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.5.4.3.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h3 class="text-white">{{value.5.4.4.price}}</h3>
+                                </td>
+                                <td class="text-sm bg-white">
+                                  <h3>{{value.5.4.9.price}}</h3>
+                                </td>
+                              </tr>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm bg-success">
+                                  <h2>{{value.5.3.0.price}}</h2>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.5.3.1.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.5.3.2.price}}</h5>
+                                </td>
+                                <td class="text-sm bg-secondary">
+                                  <h5 class="text-white">{{value.5.3.3.price}}</h5>
+                                </td>
+                                <td class="text-sm  bg-white">
+                                  <h3>{{value.5.3.4.price}}</h3>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6">
+                          <span id="textDate{{date}}5" class="text-lg">{{value.5.messageDay.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th class="text-xs">Fecha</th>
+                <th class="text-xs"></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="stadistics" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Estadisticas</h5>
+        <i class="fas fa-upload ms-3"></i>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4 h-30">
+          <div class="col-md-12">
+            <div class="card z-index-2">
+              <div class="card-header p-3 pb-0">
+                <h6></h6>
+              </div>
+              <div class="card-body p-3">
+                <div class="chart">
+                  <canvas id="lineStad" class="chart-canvas" height="300"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="px-0 pb-0 card-body">
-          <div class="table-responsive">
-            <table class="table table-flush table-sm" id="client-list">
-              <thead class="thead-light">
-                <tr>
-                  <th class="text-xs">Fecha</th>
-                  <th class="text-xs">Tipo</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for date, value in bookings.items %}
-                <tr>
-                  <td id="temp-bg{{date}}" class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                    
-                    <h4 class="text-white my-4">{{value.date_from}}</h4>
-                    </br>
-                    </br>
-                    </br>
-                    <h4 class="text-white my-4">{{value.day}}</h4>
-                    </br>
-                    </br>
-                    <hr>
-                    <h1 class="text-white my-4" id="temp-t{{date}}">{{value.totalFeria}}</h1>
-                    <div class="input-group mb-3">
-                      <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
-                      <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
-                    </div>
-                    <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
-                    <hr>
-                    <span id="temp-update{{date}}">{{value.updated}}</span>
-                    <hr>
-                    <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
-                    <div class="input-group mb-3">
-                      <select id="temp{{date}}" class="form-control form-control-sm" value="{{value.temporadaByDay.number}}">
-                        <option value="">Seleccionar</option>
-                        <option value="1" {% if value.temporadaByDay.number == '1' %}selected{% endif %}>Temporada 1</option>
-                        <option value="2" {% if value.temporadaByDay.number == '2' %}selected{% endif %}>Temporada 2</option>
-                        <option value="3" {% if value.temporadaByDay.number == '3' %}selected{% endif %}>Temporada 3</option>
-                        <option value="4" {% if value.temporadaByDay.number == '4' %}selected{% endif %}>Temporada 4</option>
-                        <option value="5" {% if value.temporadaByDay.number == '5' %}selected{% endif %}>Temporada 5</option>
-                      </select>
-                      <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
-                    </div>
-                  </td>
-                  <td>
-                    <table class="table table-flush bg-info text-white table-sm">
-                      <!-- <thead class="thead-light">
-                        <tr>
-                          <th class="text-xs"></th>
-                          <th class="text-xs text-white">Precio en base a nombre de hotel</th>
-                          <th class="text-xs text-white">H. DSP. (4*)</th>
-                          <th class="text-xs text-white">Precio hotel 3*</th>
-                          <th class="text-xs text-white">Precio hotel 4*</th>
-                          <th class="text-xs text-white">Media</th>
-                        </tr>
-                      </thead> -->
-                      <tbody>
-                        <tr>
-                          <td colspan="6">
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.2.eventByDay.text}}" aria-describedby="button-addon7" id="textEvent{{date}}2">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                            <h2 class="text-white">{{value.2.total_search}}</h2>
-                            <h5 class="text-white">{{value.2.total_search_192}}%</h5>
-                          </td>
-                          <td class="text-sm">
-                            <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
-                            </div>
-                            <h4 class="text-white text-center">
-                              <table class="table table-flush text-white table-sm">
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      M: {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %} | 
-                                      {% if "suiteFeriaM1" in value.2 %}{{value.2.suiteFeriaM1}}{% else %}0{% endif %} | 
-                                      {% if "suiteFeriaM7" in value.2 %}{{value.2.suiteFeriaM7}}{% else %}0{% endif %}
-                                      <br>
-                                      D: {% if "suiteFeria" in value.2 %}{{value.2.suiteFeria}}{% else %}0{% endif %} | 
-                                      {% if "suiteFeriaD1" in value.2 %}{{value.2.suiteFeriaD1}}{% else %}0{% endif %} | 
-                                      {% if "suiteFeriaD7" in value.2 %}{{value.2.suiteFeriaD7}}{% else %}0{% endif %}
-                                    </td>
-                                    <!-- <td>
-                                      {% if "priceSuitesFeriaRest1" in value.2 %}{{value.2.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
-                                      {% if "priceSuitesFeriaRest7" in value.2 %}{{value.2.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                                    </td> -->
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </h4>
-                          </td>
-                          <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm">
-                                    ZEN<h3>{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</h3>
-                                    OSU<h3>{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</h3>
-                                    <!--<h5>0</h5>-->
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} | </span>
-                              {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %} | 
-                              {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}
-                            </h4>
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                              {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                              {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
-                            </h4>
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %} | </span>
-                              {% if "media_total1" in value.5 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %} | 
-                              {% if "media_total7" in value.5 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}
-                            </h4>
-                          </td>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm bg-success">
-                                    <h3>{{value.2.4.0.price}}</h3>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.2.4.1.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.2.4.2.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.2.4.3.price}}</h5>
-                                  </td>
-                                  <td class="bg-secondary">
-                                    <h3 class="text-white">{{value.2.4.4.price}}</h3>
-                                  </td>
-                                  <td class="text-sm bg-white">
-                                    <h3>{{value.2.4.9.price}}</h3>
-                                  </td>
-                                  <td class="bg-primary">
-                                    <h3 class="text-white">{{value.2.4.14.price}}</h3>
-                                  </td>
-                                  <td class="bg-warning">
-                                    <h3 class="text-white">{{value.2.4.19.price}}</h3>
-                                  </td>
-                                  <td class="bg-danger">
-                                    <h3 class="text-white">{{value.2.4.24.price}}</h3>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm bg-success">
-                                    <h2>
-                                      {{value.2.3.0.price}}
-                                    </h2>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">
-                                      {{value.2.3.1.price}}
-                                    </h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">
-                                      {{value.2.3.2.price}}
-                                    </h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">
-                                      {{value.2.3.3.price}}
-                                    </h5>
-                                  </td>
-                                  <td class="text-lg bg-white">
-                                    <h3>{{value.2.3.4.price}}</h3>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="6">
-                            <span id="textDate{{date}}2" class="text-lg">{{value.2.messageDay.updated}}</span>
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.2.messageDay.text}}" aria-describedby="button-addon2" id="text{{date}}2">
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table class="table table-flush bg-success text-white table-sm">
-                      <!-- <thead class="thead-light">
-                        <tr>
-                          <th class="text-xs"></th>
-                          <th class="text-xs text-white">Precio en base a nombre de hotel</th>
-                          <th class="text-xs text-white">H. DSP. (4*)</th>
-                          <th class="text-xs text-white">Precio hotel 3*</th>
-                          <th class="text-xs text-white">Precio hotel 4*</th>
-                          <th class="text-xs text-white">Media</th>
-                        </tr>
-                      </thead> -->
-                      <tbody>
-                        <tr>
-                          <td colspan="6">
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon8" onclick="saveEvent('{{date}}', 3)">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.3.eventByDay.text}}" aria-describedby="button-addon8" id="textEvent{{date}}3">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                            <h2 class="text-white">{{value.3.total_search}}</h2>
-                            <h5 class="text-white">{{value.3.total_search_192}}%</h5>
-                          </td>
-                          <td class="text-sm">
-                            <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
-                            </div>
-                            <!-- <h4 class="text-white text-center">
-                              {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
-                              {% if "priceSuitesFeriaRest1" in value.3 %}{{value.3.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
-                              {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                            </h4> -->
-                          </td>
-                          <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm">
-                                    TOR<h3>{% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</h3>
-                                    BAR<h3>{% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</h3>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "totalFeria" in value.3 %}{{value.3.totalFeria}}{% else %}0{% endif %} | </span>
-                              {% if "totalFeria1" in value.3 %}{{value.3.totalFeria1}}{% else %}0{% endif %} | 
-                              {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}
-                            </h4>
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                              {% if "priceSuitesFeria1" in value.3 %}{{value.3.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                              {% if "priceSuitesFeria7" in value.3 %}{{value.3.priceSuitesFeria7}}{% else %}0{% endif %}
-                            </h4>
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %} | </span>
-                              {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
-                              {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
-                            </h4>
-                          </td>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm bg-success">
-                                    <h3>{{value.3.4.0.price}}</h3>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.3.4.1.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.3.4.2.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.3.4.3.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h3 class="text-white">{{value.3.4.4.price}}</h3>
-                                  </td>
-                                  <td class="text-sm bg-white">
-                                    <h3>{{value.3.4.9.price}}</h3>
-                                  </td>
-                                </tr>
-                              </tr>
-                              </tbody>
-                            </table>
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm bg-success">
-                                    <h2>{{value.3.3.0.price}}</h2>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.3.3.1.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.3.3.2.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.3.3.3.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-white">
-                                    <h3>{{value.3.3.4.price}}</h3>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="6">
-                            <span id="textDate{{date}}3" class="text-lg">{{value.3.messageDay.updated}}</span>
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon4" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.3.messageDay.text}}" aria-describedby="button-addon4" id="text{{date}}3">
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                    <table class="table table-flush bg-danger text-white table-sm">
-                      <!-- <thead class="thead-light">
-                        <tr>
-                          <th class="text-xs"></th>
-                          <th class="text-xs text-white">Precio en base a nombre de hotel</th>
-                          <th class="text-xs text-white">H. DSP. (4*)</th>
-                          <th class="text-xs text-white">Precio hotel 3*</th>
-                          <th class="text-xs text-white">Precio hotel 4*</th>
-                          <th class="text-xs text-white">Media</th>
-                        </tr>
-                      </thead> -->
-                      <tbody>
-                        <tr>
-                          <td colspan="6">
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon9" onclick="saveEvent('{{date}}', 5)">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fijar evento" value="{{value.5.eventByDay.text}}" aria-describedby="button-addon9" id="textEvent{{date}}5">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                            <h2 class="text-white">{{value.5.total_search}}</h2>
-                            <h5 class="text-white">{{value.5.total_search_192}}%</h5>
-                          </td>
-                          <td class="text-sm">
-                            <span class="text-white text-lg" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
-                            </div>
-                            <!-- <h4 class="text-white text-center">
-                              {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
-                              {% if "priceSuitesFeriaRest1" in value.5 %}{{value.5.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
-                              {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                            </h4> -->
-                          </td>
-                          <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm">
-                                    AZA<h3>{% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</h3>
-                                    ECO<h3>{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</h3></br>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "totalFeria" in value.5 %}{{value.5.totalFeria}}{% else %}0{% endif %} | </span>
-                              {% if "totalFeria1" in value.5 %}{{value.5.totalFeria1}}{% else %}0{% endif %} | 
-                              {% if "totalFeria7" in value.5 %}{{value.5.totalFeria7}}{% else %}0{% endif %}
-                            </h4>
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                              {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                              {% if "priceSuitesFeria7" in value.5 %}{{value.5.priceSuitesFeria7}}{% else %}0{% endif %} 
-                            </h4>
-                            <h4 class="text-white text-start">
-                              <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
-                              {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
-                              {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
-                            </h4>
-                          </td>
-                          <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm bg-success">
-                                    <h3>{{value.5.4.0.price}}</h3>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.5.4.1.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.5.4.2.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.5.4.3.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h3 class="text-white">{{value.5.4.4.price}}</h3>
-                                  </td>
-                                  <td class="text-sm bg-white">
-                                    <h3>{{value.5.4.9.price}}</h3>
-                                  </td>
-                                </tr>
-                              </tr>
-                              </tbody>
-                            </table>
-                            <table class="table table-flush text-white table-sm">
-                              <tbody>
-                                <tr>
-                                  <td class="text-sm bg-success">
-                                    <h2>{{value.5.3.0.price}}</h2>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.5.3.1.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.5.3.2.price}}</h5>
-                                  </td>
-                                  <td class="text-sm bg-secondary">
-                                    <h5 class="text-white">{{value.5.3.3.price}}</h5>
-                                  </td>
-                                  <td class="text-sm  bg-white">
-                                    <h3>{{value.5.3.4.price}}</h3>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="6">
-                            <span id="textDate{{date}}5" class="text-lg">{{value.5.messageDay.updated}}</span>
-                            <div class="input-group mb-3">
-                              <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
-                              <input type="text" class="form-control form-control-lg text-lg" placeholder="Fija un mensaje para este tipo" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th class="text-xs">Fecha</th>
-                  <th class="text-xs"></th>
-                </tr>
-              </tfoot>
-            </table>
-            <!-- <table class="table table-flush" id="client-list">
-              <thead class="thead-light">
-                <tr>
-                  <th class="text-xs">Title</th>
-                  <th class="text-xs">Address</th>
-                  <th class="text-xs">Start</th>
-                  <th class="text-xs">Update</th>
-                  <th class="text-xs">Occupancy</th>
-                  <th class="text-xs">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for b in bookings %}
-                <tr>
-                  <td>
-                    <div class="row align-items-center">
-                        <div class="col-auto d-flex align-items-center">
-                          <a href="javascript:;" class="avatar">
-                            <img class="border-radius-lg" alt="Image placeholder" src="{{b.img}}">
-                          </a>
-                        </div>
-                        <div class="col ml-2">
-                          <h6 class="mb-0">
-                            <a href="javascript:;">{{b.title}}</a>
-                          </h6>
-                          {% if not u.active %}
-                            <span class="badge badge-success badge-sm">Activo</span>
-                          {% else %}
-                            <span class="badge badge-danger badge-sm">No activo</span>
-                          {% endif %}
-                        </div>
-                    </div>
-                  </td>
-                  <td class="text-sm">{{b.address}}</td>
-                  <td class="text-sm">{{b.start}}</td>
-                  <td class="text-sm">{{b.updated}}</td>
-                  <td class="text-sm">{{b.occupancy}}</td>
-                  <td class="text-sm">
-                    <a href="#" onclick="viewModal()" data-bs-toggle="tooltip" data-bs-placement="left" title="Ver Disponibilidad">
-                      <i class="fas fa-eye text-dark"></i>
-                    </a>
-                    <a href="#" onclick="viewModal()" class="mx-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Editar Disponibilidad">
-                      <i class="fas fa-user-edit text-dark"></i>
-                    </a>
-                    <a href="javascript:;" onclick="activeAlert('{{u.user.pk}}')" data-bs-toggle="tooltip" data-bs-placement="left" title="Eliminar Disponibilidad">
-                      <i class="fas fa-trash text-dark"></i>
-                    </a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th class="text-xs">Title</th>
-                  <th class="text-xs">Address</th>
-                  <th class="text-xs">Start</th>
-                  <th class="text-xs">Update</th>
-                  <th class="text-xs">Occupancy</th>
-                  <th class="text-xs">Action</th>
-                </tr>
-              </tfoot>
-            </table> -->
-          </div>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-
-  <div class="modal fade" id="userAdd" data-backdrop="static">
-    <div class="modal-dialog mt-lg-10">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Agregar Usuario</h5>
-          <i class="fas fa-upload ms-3"></i>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form method="post" action="create-booking" id="frm" enctype="multipart/form-data">{% csrf_token %}
-            <div class="modal-body">
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label for="name">Nombre</label>
-                        <input type="text" class="form-control form-control-sm" required id="name" name="name">
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="lastname">Apellido</label>
-                        <input type="text" class="form-control form-control-sm" required id="lastname" name="lastname">
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="phone">Telefono</label>
-                        <input type="text" class="form-control form-control-sm" required id="phone" name="phone">
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="email">Correo</label>
-                        <input type="email" class="form-control form-control-sm" required id="email" name="email">
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="username">Usuario</label>
-                        <input type="text" class="form-control form-control-sm" required id="username" name="username">
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="password">Clave</label>
-                        <input type="text" class="form-control form-control-sm" required id="password" name="password">
-                    </div>
-                    <div class="form-group col-12">
-                        <label for="file">Imagen</label>
-                        <input type="file" class="form-control form-control-sm" required id="file" name="file">
-                    </div>
-                    <div class="form-group col-8">
-                        <label for="permission">Permiso</label>
-                        <select class="form-control form-control-sm" name="permission" required id="permission">
-                            {% for p in permission %}
-                                <option value="{{p.pk}}">{{p.name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group col-4 mt-2">
-                        <div class="form-check form-switch ps-0 mt-4">
-                            <input class="form-check-input ms-0" type="checkbox" id="state" name="state" checked="">
-                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="state">Acceso</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" name="pk" id="pk" value="0">
-                <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-dark btn-sm" id="buttonSave">Guardar</button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
+</div>
 
 {% include 'includes/scripts.html' %}
 
@@ -766,6 +673,7 @@
         });
       });
     };
+
     function activeAlert(){
         Swal.fire({
         title: 'Activar Proceso de extraccion.',
@@ -797,39 +705,6 @@
           finishactiveProcess();
         }
       })
-    }
-    modalCalendarClick = new bootstrap.Modal(document.getElementById('userAdd'));
-    function viewModal(pk_user, name, lastname, phone, email, username, permission, state, edit=true){
-        document.getElementById("pk").value = pk_user;
-        document.getElementById("name").value = name;
-        document.getElementById("lastname").value = lastname;
-        document.getElementById("phone").value = phone;
-        document.getElementById("email").value = email;
-        document.getElementById("username").value = username;
-        document.getElementById("permission").value = permission;
-
-        if (state == "True"){
-            $("#state").prop("checked", true);
-        }else{
-            $("#state").prop("checked", false);
-        }
-        if (edit){
-            document.getElementById("buttonSave").classList.remove('d-none');
-            document.getElementById("buttonSave").textContent = "Modificar";
-            document.getElementById("password").required = false;
-            document.getElementById("file").required = false;
-        }else{
-            document.getElementById("buttonSave").classList.add('d-none');
-        }
-        modalCalendarClick.show();
-    }
-    function clearModal(){
-        document.getElementById("frm").reset();
-        document.getElementById("pk").value = "0";
-        document.getElementById("buttonSave").classList.add('d-none');
-        document.getElementById("buttonSave").textContent = "Guardar";
-        document.getElementById("password").required = true;
-        document.getElementById("file").required = true;
     }
 
     function activeProcess(){
@@ -1045,7 +920,120 @@
 
     //document.body.style.transform = "scale(0.9)";
     //document.body.style.transformOrigin = "0 0"; // Establece el origen de la transformación
-    document.body.style.zoom = "90%";
+    //document.body.style.zoom = "90%";
+    
+    var ctx1 = document.getElementById("lineStad").getContext("2d");
+
+    var gradientStroke = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke.addColorStop(0, 'rgba(94, 114, 228,0)'); //purple colors
+
+    var gradientStroke2 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Organic Search",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
+          },
+          {
+            label: "Referral",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#3A416F",
+            borderColor: "#3A416F",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+          },
+          {
+            label: "Direct",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#17c1e8",
+            borderColor: "#17c1e8",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: [40, 80, 70, 90, 30, 90, 140, 130, 200],
+            maxBarThickness: 6
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: true,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 10,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
 
   </script>
 

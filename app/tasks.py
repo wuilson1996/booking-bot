@@ -5,11 +5,12 @@ import time
 from datetime import datetime, timedelta
 from .models import *
 from pathlib import Path
+import logging
 
 LOCK_FILE_PATH = "/tmp/ejecutar_funcion.lock"
 
 def ejecutar_funcion():
-    print("¡Función ejecutada a las 10:00 p.m!")
+    logging.info("¡Función ejecutada a las 10:00 p.m!")
     # 60 dias
     __date_from = str(datetime.now().date())
     __date_to = str(datetime.now().date() + timedelta(days=365))
@@ -30,19 +31,61 @@ def ejecutar_funcion():
             occupancys.append(p.occupancy)
     
     while _date_from.date() <= _date_to.date():
-        #print("--------------------------------------------------------------------------------")
-        #print(_date_from, _date_to)
-        for ocp in occupancys:
-            available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
-            for avail_book in available_booking:
-                if int(avail_book.booking.start) != 0:
-                    #print(f"Price: {avail_book.price}, Ocupancy:{ocp}, Position:{avail_book.position} Start: {avail_book.start}")
-                    CopyPriceWithDay.objects.create(
-                        price = avail_book.price,
-                        created = str(datetime.now().date()),
-                        avail_booking = avail_book
-                    )
+        try:
+            # copy price with booking
+            for ocp in occupancys:
+                available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
+                for avail_book in available_booking:
+                    if int(avail_book.booking.start) != 0:
+                        #print(f"Price: {avail_book.price}, Ocupancy:{ocp}, Position:{avail_book.position} Start: {avail_book.start}")
+                        CopyPriceWithDay.objects.create(
+                            price = avail_book.price,
+                            created = str(datetime.now().date()),
+                            avail_booking = avail_book
+                        )
+        except Exception as e:
+            logging.info(f"Error copy price. {e}")
+            
+        try:
+            # copy price with suites feria.
+            price_with_name = PriceWithNameHotel.objects.filter(date_from = str(_date_from.date())).first()
+            if price_with_name:
+                CopyPriceWithNameFromDay.objects.create(
+                    price = price_with_name.price,
+                    created = str(datetime.now().date()),
+                    avail = price_with_name
+                )
+        except Exception as e:
+            logging.info(f"Error copy price suites feria. {e}")
 
+        try:
+            # copy avail with suites feria.
+            asf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).first()
+            if asf:
+                casf1 = CantAvailSuitesFeria.objects.filter(avail_suites_feria = asf, type_avail = 1).last()
+                casf1_avail = 0
+                if casf1:
+                    casf1_avail = casf1.avail
+
+                casf2 = CantAvailSuitesFeria.objects.filter(avail_suites_feria = asf, type_avail = 2).last()
+                casf2_avail = 0
+                if casf2:
+                    casf2_avail = casf2.avail
+                    
+                casf4 = CantAvailSuitesFeria.objects.filter(avail_suites_feria = asf, type_avail = 4).last()
+                casf4_avail = 0
+                if casf4:
+                    casf4_avail = casf4.avail
+                CopyAvailWithDaySF.objects.create(
+                    type_avail = "0",
+                    avail_1 = str(casf1_avail),
+                    avail_2 = str(casf2_avail),
+                    avail_4 = str(casf4_avail),
+                    created = str(datetime.now().date()),
+                    avail_suites_feria = asf
+                )
+        except Exception as e:
+            logging.info(f"Error copy avail suites feria. {e}")
         _date_from += timedelta(days=1)
 
 def iniciar_tarea_diaria():
@@ -59,7 +102,7 @@ def iniciar_tarea_diaria():
             
             # Calcula el tiempo hasta la próxima ejecución
             tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
-            print(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución")
+            logging.info(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución")
 
             # Espera hasta las 10:00 p.m.
             time.sleep(tiempo_espera)
@@ -67,7 +110,7 @@ def iniciar_tarea_diaria():
             # Revisa si el archivo de bloqueo existe
             lock_file = Path(LOCK_FILE_PATH)
             if lock_file.exists():
-                print("Otro worker ya está ejecutando la tarea.")
+                logging.info("Otro worker ya está ejecutando la tarea.")
                 continue
             
             try:

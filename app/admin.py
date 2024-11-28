@@ -17,6 +17,9 @@ class GeneralSearchAdmin(admin.ModelAdmin):
 class AvailSuitesFeriaAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class AvailWithDateAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 class CantAvailSuitesFeriaAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
@@ -41,11 +44,18 @@ class CopyPriceWithDayAdmin(admin.ModelAdmin):
 class PriceWithNameHotelAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class CopyPriceWithNameFromDayAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
+class CopyAvailWithDaySFAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
 admin.site.register(GeneralSearch, GeneralSearchAdmin)
 admin.site.register(AvailSuitesFeria, AvailSuitesFeriaAdmin)
+admin.site.register(AvailWithDate, AvailWithDateAdmin)
 admin.site.register(CantAvailSuitesFeria, CantAvailSuitesFeriaAdmin)
 admin.site.register(Price, PriceAdmin)
 admin.site.register(MessageByDay, MessageByDayAdmin)
@@ -54,3 +64,5 @@ admin.site.register(TemporadaByDay, TemporadaByDayAdmin)
 admin.site.register(Complement, ComplementAdmin)
 admin.site.register(CopyPriceWithDay, CopyPriceWithDayAdmin)
 admin.site.register(PriceWithNameHotel, PriceWithNameHotelAdmin)
+admin.site.register(CopyPriceWithNameFromDay, CopyPriceWithNameFromDayAdmin)
+admin.site.register(CopyAvailWithDaySF, CopyAvailWithDaySFAdmin)

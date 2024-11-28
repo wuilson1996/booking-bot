@@ -89,8 +89,12 @@ DB_PROD = True
 if not DB_PROD:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'django.db.backends.mysql',  # Utiliza el backend de MySQL
+            'NAME': 'booking_bot',   # Nombre de la base de datos
+            'USER': 'root',                   # Usuario de la base de datos
+            'PASSWORD': '123456789',#'KazYCK5o',            # Contraseña del usuario
+            'HOST': 'localhost',                    # Host, si es local usa 'localhost'
+            'PORT': '3306',                         # Puerto de MariaDB, usualmente 3306
         }
     }
 else:

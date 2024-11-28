@@ -31,12 +31,10 @@
                 <!-- <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#userAdd" onclick="clearModal()">
                   <i class="fas fa-plus me-1"></i>
                   Nuevo Booking
-                </button>
-                <button type="button" class="me-2 mb-0 btn btn-white" data-bs-toggle="modal" data-bs-target="#import">
-                  <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
-                  </svg>Import
-                </button> -->
+                </button>-->
+                <button type="button" class="me-2 mb-0 btn btn-info" data-bs-toggle="modal" data-bs-target="#history">
+                  Historial de cambios
+                </button> 
                 <button class="mt-1 mb-0 btn btn-white export mt-sm-0" data-type="csv" type="button" name="button">
                   <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 7.20711C5.90237 6.81658 5.90237 6.18342 6.29289 5.79289L9.29289 2.79289C9.48043 2.60536 9.73478 2.5 10 2.5C10.2652 2.5 10.5196 2.60536 10.7071 2.79289L13.7071 5.79289C14.0976 6.18342 14.0976 6.81658 13.7071 7.20711C13.3166 7.59763 12.6834 7.59763 12.2929 7.20711L11 5.91421V13.5C11 14.0523 10.5523 14.5 10 14.5C9.44771 14.5 9 14.0523 9 13.5V5.91421L7.70711 7.20711C7.31658 7.59763 6.68342 7.59763 6.29289 7.20711Z" fill="#111827" />
@@ -51,9 +49,8 @@
             <table class="table table-flush table-sm" id="client-list">
               <thead class="thead-light">
                 <tr>
-                  <!-- <th class="text-xs">Fecha</th> -->
                   <th class="text-xs">Tipo</th>
-                  <th class="text-xs">Hoteles</th>
+                  <th class="text-xs"></th>
                   <th class="text-xs">Historico de precios</th>
                 </tr>
               </thead>
@@ -63,18 +60,19 @@
                 <tr class="tr">
                   <!-- <td class="text-sm bg-success text-white">{{request.GET.date}}</td> -->
                   <td class="text-sm {{bg_color}} text-white">{{value.4.title}}</td>
-                  <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.4.messageDay}}">
-                    {% for h in value.4.list2 %}
+                  <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="">
+                   <!--  {% for h in value.4.list2 %}
                       <span class="text-sm text-white">
                         {{h.title}} - {{h.price}} - {{h.position}}
                       </span>
                       </br>
-                    {% endfor %}
+                    {% endfor %} -->
                   </td>
                   <td class="text-sm {{bg_color}}">
                     <table class="table table-flush {{bg_color}} text-white table-sm">
                       <thead class="thead-light">
                         <tr>
+                          <th class="text-xs text-white">Hotel</th>
                           <th class="text-xs text-white">Actual</th>
                           <th class="text-xs text-white">1</th>
                           <th class="text-xs text-white">2</th>
@@ -86,6 +84,19 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <td>
+                          <h5 class="text-info">.
+                          </h5><br>
+                          <h5 class="text-info">.
+                          </h5><br>
+                          <h5 class="text-info">.
+                          </h5><br>
+                          {% for h in value.4.list2 %}
+                            <h5 class="text-white">
+                              {{h.title}}
+                            </h5><hr>
+                          {% endfor %}
+                        </td>
                         <td>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.0.suitesFeria2}} / D - {{value.4.0.suitesFeria1}}{% else %}{{value.4.0.suitesFeria1}}{% endif %}">{{value.4.0.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.0.suitesFeriaPrice}}</h4><hr>
@@ -158,18 +169,19 @@
                 <tr class="tr">
                   <!-- <td class="text-sm bg-success text-white">{{request.GET.date}}</td> -->
                   <td class="text-sm {{bg_color}} text-white">{{value.3.title}}</td>
-                  <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{value.3.messageDay}}">
-                    {% for h in value.3.list2 %}
+                  <td class="text-sm {{bg_color}}" data-bs-toggle="tooltip" data-bs-placement="right" title="">
+                    <!-- {% for h in value.3.list2 %}
                       <span class="text-sm text-white">
                         {{h.title}} - {{h.price}} - {{h.position}}
                       </span>
                       </br>
-                    {% endfor %}
+                    {% endfor %} -->
                   </td>
                   <td class="text-sm {{bg_color}}">
                     <table class="table table-flush {{bg_color}} text-white table-sm">
                       <thead class="thead-light">
                         <tr>
+                          <th class="text-xs text-white">Hotel</th>
                           <th class="text-xs text-white">Actual</th>
                           <th class="text-xs text-white">1</th>
                           <th class="text-xs text-white">2</th>
@@ -181,6 +193,15 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <td>
+                          <h5 class="text-info">.
+                          </h5><br>
+                          {% for h in value.3.list2 %}
+                            <h5 class="text-white">
+                              {{h.title}}
+                            </h5><hr>
+                          {% endfor %}
+                        </td>
                         <td>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.3.0.media value.3.0.media_cant 1 %}</h4><hr>
                           {% for price in value.3.0.prices %}
@@ -251,6 +272,27 @@
     </div>
   </div>
 
+  <div class="modal fade" id="history" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog mt-lg-10">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Historial de cambios</h5>
+          <i class="fas fa-upload ms-3"></i>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% for value in bookings.values %}
+            {% for mv in value.4.messageDay %}
+              <p class="text-sm">{{mv}}</p>
+            {% endfor %}
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 
 {% include 'includes/scripts.html' %}

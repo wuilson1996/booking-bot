@@ -14,7 +14,7 @@ class Booking(models.Model):
     created = models.DateTimeField()
     
     def __str__(self) -> str:
-        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)
+        return str(self.pk)+" | "+str(self.title)+" | Start: "+str(self.start)
 
 class Complement(models.Model):
     total_search = models.IntegerField(default=0)
@@ -53,16 +53,28 @@ class ProcessActive(models.Model):
     position = models.JSONField(default={})
     currenct = models.BooleanField(default=False)
 
+    TYPE_PROCES = (
+        (1, "City"),
+        (2, "Name")
+    )
+    type_proces = models.IntegerField(choices=TYPE_PROCES, default=1)
+
     def __str__(self) -> str:
-        return str(self.date_end)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | "+str(self.active)
+        return str(self.date_end)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | "+str(self.active)+" | "+str(self.currenct)+" | "+str(self.type_proces)
 
 class GeneralSearch(models.Model):
     url = models.TextField(default="https://www.booking.com")
     city_and_country = models.TextField(default="Madrid, Comunidad de Madrid, España")
     time_sleep_minutes = models.IntegerField(default=1)
+    TYPE_SEARCH = (
+        (1, "City"),
+        (2, "Name")
+    )
+    type_search = models.IntegerField(choices=TYPE_SEARCH, default=1)
+    proces_active = models.ManyToManyField(ProcessActive, null=True, blank=True)
 
     def __str__(self) -> str:
-        return str(self.url)+" - "+str(self.city_and_country)+" - "+str(self.time_sleep_minutes)
+        return str(self.url)+" | "+str(self.city_and_country)+" | "+str(self.time_sleep_minutes)+" | "+str(self.type_search)
 
 class AvailSuitesFeria(models.Model):
     date_avail = models.CharField(max_length=50)
@@ -75,6 +87,9 @@ class CantAvailSuitesFeria(models.Model):
     avail = models.IntegerField(default=0)
     avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.type_avail)+" | "+str(self.avail_suites_feria)+" | "+ str(self.avail)
+
 class AvailWithDate(models.Model):
     date_from = models.CharField(max_length=30)
     avail = models.CharField(max_length=50)
@@ -82,7 +97,7 @@ class AvailWithDate(models.Model):
     created = models.DateTimeField(null=True, blank=True)
 
     def __str__(self) -> str:
-        return str(self.avail)
+        return str(self.avail)+" | "+str(self.date_from)
 
 class Price(models.Model):
     date_from = models.CharField(max_length=30)
@@ -133,6 +148,7 @@ class TemporadaByDay(models.Model):
     date_from = models.CharField(max_length=30)
     COLORS = (
         ("bg-danger", "bg-danger"),
+        ("bg-info", "bg-info"),
         ("bg-warning", "bg-warning"),
         ("bg-success", "bg-success"),
         ("bg-secondary", "bg-secondary"),
@@ -166,12 +182,12 @@ class CopyPriceWithDay(models.Model):
         start
     """
     price = models.CharField(max_length=30)
-    created = models.DateTimeField(null=True, blank=True)
+    created = models.DateField(null=True, blank=True)
     avail_booking = models.ForeignKey(AvailableBooking, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.price
-    
+
 class PriceWithNameHotel(models.Model):
     start = models.CharField(max_length=20)
     title = models.CharField(max_length=512)
@@ -187,4 +203,23 @@ class PriceWithNameHotel(models.Model):
     price = models.CharField(max_length=30)
 
     def __str__(self) -> str:
-        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)
+        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)+" | "+str(self.date_from)
+    
+class CopyPriceWithNameFromDay(models.Model):
+    price = models.CharField(max_length=30)
+    created = models.DateField(null=True, blank=True)
+    avail = models.ForeignKey(PriceWithNameHotel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.price
+    
+class CopyAvailWithDaySF(models.Model):
+    type_avail = models.CharField(max_length=5)
+    avail_1 = models.IntegerField(default=0)
+    avail_2 = models.IntegerField(default=0)
+    avail_4 = models.IntegerField(default=0)
+    created = models.DateField(null=True, blank=True)
+    avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.avail_suites_feria)+" | "+ str(self.avail_1)+" | "+ str(self.avail_2)+" | "+ str(self.avail_4)
