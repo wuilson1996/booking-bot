@@ -128,7 +128,8 @@
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
                 </svg>Import
               </button> -->
-              <button type="button" class="me-2 mb-0 btn btn-white" data-bs-toggle="modal" data-bs-target="#stadistics">Estadisticas
+              <button type="button" class="me-2 mb-0 btn btn-warning" data-bs-toggle="modal" data-bs-target="#stadistics">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i> Estadisticas
               </button>
               <button class="mt-1 mb-0 btn btn-white export mt-sm-0" data-type="csv" type="button" name="button">
                 <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -936,12 +937,24 @@
     gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
     gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
 
+    dataStat2 = []
+    dataStat3 = []
+    dataStat5 = []
+    dataStatName = []
+    '{% for date, value in bookings.items %}'
+      dataStat2.push('{{value.2.total_search}}');
+      dataStat3.push('{{value.3.total_search}}');
+      dataStat5.push('{{value.5.total_search}}');
+      
+      dataStatName.push('{{value.date_from}}');
+    '{% endfor %}'
+
     new Chart(ctx1, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: dataStatName,
         datasets: [{
-            label: "Organic Search",
+            label: "Ocupacion de 2",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -949,11 +962,11 @@
             borderColor: "#5e72e4",
             borderWidth: 3,
             backgroundColor: gradientStroke,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            data: dataStat2,
             maxBarThickness: 6
           },
           {
-            label: "Referral",
+            label: "Ocupacion de 3",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -961,11 +974,11 @@
             borderColor: "#3A416F",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
-            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            data: dataStat3,
             maxBarThickness: 6
           },
           {
-            label: "Direct",
+            label: "Ocupacion de 4",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -973,7 +986,7 @@
             borderColor: "#17c1e8",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
-            data: [40, 80, 70, 90, 30, 90, 140, 130, 200],
+            data: dataStat5,
             maxBarThickness: 6
           },
         ],

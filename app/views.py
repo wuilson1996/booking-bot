@@ -94,6 +94,11 @@ def active_process():
             "booking": booking,
             "driver": booking._driver(general_search.url)
         })
+    
+    pa_with_name = ProcessActive.objects.filter(type_proces = 2).first()
+    pa_with_name.active = True
+    pa_with_name.currenct = True
+    pa_with_name.save()
 
     logging.info(f"[+] {dt.now()} Activando process...")
     threading.Thread(target=active_process_sf).start()
@@ -104,15 +109,15 @@ def active_process():
             for p in ProcessActive.objects.filter(type_proces = 1):
                 if not p.active:
                     try:
-                        logging.info(f"[+] {dt.now()} Process active in while. Search browser... {instances[cont]['booking']}")
+                        logging.info(f"[+] {dt.now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
                         p.active = True
                         p.save()
                         process = threading.Thread(
                             target=instances[cont]["booking"].controller, 
                             args=(
-                                instances[cont]["driver"], 
-                                dt.now(), 
-                                p, 
+                                instances[cont]["driver"],
+                                dt.now(),
+                                p,
                                 general_search.city_and_country
                             )
                         )
@@ -126,6 +131,20 @@ def active_process():
             for t in threads:
                 logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
                 t.join()
+            
+            # add process name hotel.
+            logging.info(f"[+] {dt.now()} Process active in while. Search with name browser... {instances[0]['booking']}")
+            for gs in GeneralSearch.objects.filter(type_search = 2):
+                #if gs.proces_active.last().active:
+                try:
+                    instances[0]["booking"].controller(
+                        instances[0]["driver"],
+                        dt.now(),
+                        gs.proces_active.last(),
+                        gs.city_and_country
+                    )
+                except Exception as ec:
+                    logging.info(f"[+] {dt.now()} Error in Execute controller with name... {ec}")
 
             if general_search:
                 seconds = 60 * general_search.time_sleep_minutes
@@ -133,9 +152,6 @@ def active_process():
             else:
                 seconds = 60 * 3
                 logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
-            
-            # add process name hotel.
-            
 
             sleep(seconds)
 
@@ -373,7 +389,7 @@ def save_avail_with_date(request):
 
 def index(request):
     if request.user.is_authenticated:
-        cant_default = 25
+        cant_default = 50
         __time = time.time()
         __date_from = str(dt.now().date())
         __date_to = str(dt.now().date() + datetime.timedelta(days=cant_default))

@@ -63,6 +63,8 @@ class BookingSearch:
                 logging.info(f"[-] {dt.now()} Error in button cookies, element not fount")
             except ElementClickInterceptedException as e:
                 logging.info(f"[-] {dt.now()} Error in button cookies, element not clicked")
+            except Exception as e:
+                logging.info(f"[-] {dt.now()} Error general in button cookies, element not clicked")
 
             _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
             cont = 0
@@ -280,11 +282,6 @@ class BookingSearch:
                 logging.info(f"[-] {dt.now()} Error 262: "+str(e2))
         except Exception as e02:
             logging.info(f"[-] {dt.now()} Error General 264: "+str(e02))
-
-        try:
-            driver.close()
-        except Exception as ec:
-            logging.info(f"[-] {dt.now()} Error in close driver 269: "+str(ec))
 
     @classmethod
     def filter_data(cls, data):
