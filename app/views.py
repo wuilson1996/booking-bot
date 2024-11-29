@@ -389,7 +389,7 @@ def save_avail_with_date(request):
 
 def index(request):
     if request.user.is_authenticated:
-        cant_default = 50
+        cant_default = 25
         __time = time.time()
         __date_from = str(dt.now().date())
         __date_to = str(dt.now().date() + datetime.timedelta(days=cant_default))
