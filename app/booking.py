@@ -67,6 +67,20 @@ class BookingSearch:
             _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
             cont = 0
 
+            # Search
+            sleep(2)
+            search = driver.find_element_by_xpath("//input[@name='ss']")
+            search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
+            search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
+            sleep(1)
+            # Escribe el texto en el campo de búsqueda
+            #logging.info(f"Search name or city: {search_name} {_now}")
+            search.send_keys(search_name)
+            sleep(1)
+            # Confirma con ENTER
+            search.send_keys(Keys.RETURN)
+            sleep(2)
+
             try:
                 _current_url = driver.current_url
                 while True:
@@ -84,19 +98,6 @@ class BookingSearch:
                     driver.get(_url_performance)
                     driver.implicitly_wait(15)
                     #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
-
-                    # Search
-                    sleep(2)
-                    search = driver.find_element_by_xpath("//input[@name='ss']")
-                    search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
-                    search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
-                    sleep(1)
-                    # Escribe el texto en el campo de búsqueda
-                    #logging.info(f"Search name or city: {search_name} {_now}")
-                    search.send_keys(search_name)
-                    sleep(1)
-                    # Confirma con ENTER
-                    search.send_keys(Keys.RETURN)
 
                     try:
                         if cont <= 1:
