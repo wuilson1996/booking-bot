@@ -91,15 +91,15 @@ class BookingSearch:
                         break
                     _date_elem = _now
                     _now += datetime.timedelta(days=1)
-                    if "group_adults" in _current_url:
-                        logging.info("[+] group_adults encontrado dentro de la url...")
-                        _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
-                        # Reemplazar las fechas en la URL usando expresiones regulares
-                        _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={str(_date_elem.date())}", _url_performance)
-                        _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
-                    else:
-                        logging.info("[+] group_adults no encontrado dentro de la url...")
-                        _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
+                    #if "group_adults" in _current_url:
+                        #logging.info("[+] group_adults encontrado dentro de la url...")
+                    _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
+                    # Reemplazar las fechas en la URL usando expresiones regulares
+                    _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={str(_date_elem.date())}", _url_performance)
+                    _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
+                    #else:
+                    #    logging.info("[+] group_adults no encontrado dentro de la url...")
+                    #    _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
                     driver.get(_url_performance)
                     driver.implicitly_wait(15)
                     #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
