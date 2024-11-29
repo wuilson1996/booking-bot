@@ -106,32 +106,14 @@ class BookingSearch:
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
                     sleep(3)
-                    try:
-                        _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
-                        for s in elements:
-                            #logging.info(f"[+] {dt.now()} - {str(process.start)} stars - Input: {s.get('aria-label')}")
-                            if str(process.start)+" stars" == str(s.get('aria-label')).split(":")[0].strip() or str(process.start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(process.start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():# or str(process.start)+" stars" 
-                                #logging.info(f"[+] {dt.now()} - Stars - {_date_elem.date()} - {_now.date()} - O:{process.occupancy} - S:{str(process.start)} stars - Input: {s}")
-                                check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
-                                try:
-                                    driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
-                                    check_start.click()
-                                except ElementClickInterceptedException:
-                                    driver.execute_script("arguments[0].click();", check_start)
-                                    sleep(2)
-                                logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
-                                break
-                                
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in start button, not fount")
+                    if process.type_proces == 1:
                         try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                            elements = _soup_elements.find_all("input")
+                            elements = _soup_elements.find_all("input", {"type": "checkbox"})
                             for s in elements:
-                                #logging.info(f"[+] {dt.now()} - Log2 - {str(start)} stars - Input: {s.get('aria-label')}")
-                                if str(process.start)+" stars" == str(s.get('aria-label')).split(":")[0].strip() or str(process.start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(process.start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():#or str(process.start)+" stars"
-                                    #logging.info(f"[+] {dt.now()} - Stars - O:{process.occupancy} - S:{str(process.start)} stars - Input: {s}")
+                                #logging.info(f"[+] {dt.now()} - {str(process.start)} stars - Input: {s.get('aria-label')}")
+                                if str(process.start)+" stars" == str(s.get('aria-label')).split(":")[0].strip() or str(process.start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(process.start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():# or str(process.start)+" stars" 
+                                    #logging.info(f"[+] {dt.now()} - Stars - {_date_elem.date()} - {_now.date()} - O:{process.occupancy} - S:{str(process.start)} stars - Input: {s}")
                                     check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
                                         driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
@@ -139,85 +121,104 @@ class BookingSearch:
                                     except ElementClickInterceptedException:
                                         driver.execute_script("arguments[0].click();", check_start)
                                         sleep(2)
-                                    logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                                    logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
                                     break
                                     
                         except NoSuchElementException as e:
-                            logging.info(f"[-] {dt.now()} Error in start button - reintento 2, not fount")
+                            logging.info(f"[-] {dt.now()} Error in start button, not fount")
+                            try:
+                                _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                                elements = _soup_elements.find_all("input")
+                                for s in elements:
+                                    #logging.info(f"[+] {dt.now()} - Log2 - {str(start)} stars - Input: {s.get('aria-label')}")
+                                    if str(process.start)+" stars" == str(s.get('aria-label')).split(":")[0].strip() or str(process.start)+" stars" == str(s.get('aria-label')).split("/")[0].strip() or str(process.start)+" estrellas" == str(s.get('aria-label')).split(":")[0].strip():#or str(process.start)+" stars"
+                                        #logging.info(f"[+] {dt.now()} - Stars - O:{process.occupancy} - S:{str(process.start)} stars - Input: {s}")
+                                        check_start = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
+                                        try:
+                                            driver.execute_script("arguments[0].scrollIntoView(true);", check_start)
+                                            check_start.click()
+                                        except ElementClickInterceptedException:
+                                            driver.execute_script("arguments[0].click();", check_start)
+                                            sleep(2)
+                                        logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                                        break
+                                        
+                            except NoSuchElementException as e:
+                                logging.info(f"[-] {dt.now()} Error in start button - reintento 2, not fount")
+                            except ElementClickInterceptedException as e:
+                                logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
+                            except Exception as e:
+                                logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
                         except ElementClickInterceptedException as e:
-                            logging.info(f"[-] {dt.now()} Error in start button, element not clicked2")
+                            logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
                         except Exception as e:
                             logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
-                    sleep(3)
-                    try:
-                        _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
-                        elements = _soup_elements.find_all("input", {"type": "checkbox"})
-                        for s in elements:
-                            if "Hotel" == str(s.get('aria-label')).split(":")[0].strip():
-                                #logging.info(f"Hotel: {s}")
-                                check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
-                                try:
-                                    driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
-                                    check_hotel.click()
-                                    sleep(2)
-                                    check_hotel.click()
-                                    sleep(2)
-                                except ElementClickInterceptedException as e2:
-                                    pass
-                            
-                            if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                                #logging.info(f"Hoteles: {s}")
-                                #logging.info(f"[+] {dt.now()} - Hotels - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy} - Input: {s}")
-                                check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
-                                try:
-                                    driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
-                                    check_hotel.click()
-                                except ElementClickInterceptedException as e2:
-                                    driver.execute_script("arguments[0].click();", check_hotel)
-                                    sleep(2)
-                                logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
-                                break
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
-
-                    sleep(3)
-                    try:
-                        dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
+                        sleep(3)
                         try:
-                            driver.execute_script("arguments[0].scrollIntoView(true);", dropdown_price)
-                            dropdown_price.click()
-                            sleep(1)
-                        except ElementClickInterceptedException as e02:
-                            driver.execute_script("arguments[0].click();", dropdown_price)
-                            sleep(2)
-                        #logging.info(f"[+] {dt.now()} Click button dropdown success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
-                        #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
+                            _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
+                            elements = _soup_elements.find_all("input", {"type": "checkbox"})
+                            for s in elements:
+                                if "Hotel" == str(s.get('aria-label')).split(":")[0].strip():
+                                    #logging.info(f"Hotel: {s}")
+                                    check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
+                                    try:
+                                        driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
+                                        check_hotel.click()
+                                        sleep(2)
+                                        check_hotel.click()
+                                        sleep(2)
+                                    except ElementClickInterceptedException as e2:
+                                        pass
+                                
+                                if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
+                                    #logging.info(f"Hoteles: {s}")
+                                    #logging.info(f"[+] {dt.now()} - Hotels - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy} - Input: {s}")
+                                    check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
+                                    try:
+                                        driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
+                                        check_hotel.click()
+                                    except ElementClickInterceptedException as e2:
+                                        driver.execute_script("arguments[0].click();", check_hotel)
+                                        sleep(2)
+                                    logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                                    break
+                        except NoSuchElementException as e:
+                            logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
+                        except ElementClickInterceptedException as e:
+                            logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
+                        except Exception as e:
+                            logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
-                        # div_li = driver.find_elements_by_xpath("//div[@data-testid='sorters-dropdown']")
-                        # for dl in div_li:
-                        #     logging.info(f"[+] {dt.now()} Element: {dl.text}")
-                        check_price = driver.find_element_by_xpath("//button[@data-id='price']")
+                        sleep(3)
                         try:
-                            driver.execute_script("arguments[0].scrollIntoView(true);", check_price)
-                            check_price.click()
-                        except ElementClickInterceptedException as e2:
-                            driver.execute_script("arguments[0].click();", check_price)
-                            sleep(2)
-                        logging.info(f"[+] {dt.now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in button price, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in price button general: "+str(e))
+                            dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
+                            try:
+                                driver.execute_script("arguments[0].scrollIntoView(true);", dropdown_price)
+                                dropdown_price.click()
+                                sleep(1)
+                            except ElementClickInterceptedException as e02:
+                                driver.execute_script("arguments[0].click();", dropdown_price)
+                                sleep(2)
+                            #logging.info(f"[+] {dt.now()} Click button dropdown success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                            #driver.find_element_by_xpath("//div[@data-testid='sorters-dropdown']")
+
+                            # div_li = driver.find_elements_by_xpath("//div[@data-testid='sorters-dropdown']")
+                            # for dl in div_li:
+                            #     logging.info(f"[+] {dt.now()} Element: {dl.text}")
+                            check_price = driver.find_element_by_xpath("//button[@data-id='price']")
+                            try:
+                                driver.execute_script("arguments[0].scrollIntoView(true);", check_price)
+                                check_price.click()
+                            except ElementClickInterceptedException as e2:
+                                driver.execute_script("arguments[0].click();", check_price)
+                                sleep(2)
+                            logging.info(f"[+] {dt.now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                        except NoSuchElementException as e:
+                            logging.info(f"[-] {dt.now()} Error in button price, not fount")
+                        except ElementClickInterceptedException as e:
+                            logging.info(f"[-] {dt.now()} Error in price button, element not clicked")
+                        except Exception as e:
+                            logging.info(f"[-] {dt.now()} Error in price button general: "+str(e))
 
                     sleep(3)
                     # Items booking search
@@ -235,30 +236,31 @@ class BookingSearch:
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error in total_search general: "+str(e))
 
-                    try:
-                        comp = Complement.objects.filter(date_from=str(_date_elem.date()), occupancy=process.occupancy, start=process.start).first()
-                        if not comp:
-                            Complement.objects.create(
-                                total_search = total_search,
-                                occupancy = process.occupancy,
-                                start = process.start,
-                                date_from = str(_date_elem.date()),
-                                date_to = str(_now.date()),
-                                updated = dt.now(),
-                                created = dt.now()
-                            )
-                        else:
-                            comp.total_search = total_search
-                            comp.updated = dt.now()
-                            comp.created = dt.now()
-                            comp.save()
-                    except Exception as er2:
-                        logging.info(f"[-] {dt.now()} Error 228: "+str(er2))
+                    if process.type_proces == 1:
+                        try:
+                            comp = Complement.objects.filter(date_from=str(_date_elem.date()), occupancy=process.occupancy, start=process.start).first()
+                            if not comp:
+                                Complement.objects.create(
+                                    total_search = total_search,
+                                    occupancy = process.occupancy,
+                                    start = process.start,
+                                    date_from = str(_date_elem.date()),
+                                    date_to = str(_now.date()),
+                                    updated = dt.now(),
+                                    created = dt.now()
+                                )
+                            else:
+                                comp.total_search = total_search
+                                comp.updated = dt.now()
+                                comp.created = dt.now()
+                                comp.save()
+                        except Exception as er2:
+                            logging.info(f"[-] {dt.now()} Error 228: "+str(er2))
 
                     try:
                         logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
                         for position in process.position:
-                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search)
+                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process)
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error 170: "+str(e))
                     sleep(1)
@@ -371,11 +373,11 @@ class BookingSearch:
         driver.implicitly_wait(15)
 
     @classmethod
-    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search):
+    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive):
         try:
             item_dict = {
                 "start": 0,
-                "price": "",
+                "price": "0",
                 "occupancy": occupancy,
                 "date_from": str(_date_elem.date()),
                 "date_to":  str(_now.date()),
@@ -412,13 +414,96 @@ class BookingSearch:
             except Exception as e6:
                 logging.info(f"[-] {dt.now()} Error in Get price")
 
-            if item_dict["start"] != 0:
-                bg = Booking.objects.filter(
-                    title=item_dict["title"], 
-                    start=item_dict["start"]
-                ).first()
-                if not bg:
-                    bg = Booking.objects.create(
+            if process.type_proces == 1:
+                if item_dict["start"] != 0:
+                    bg = Booking.objects.filter(
+                        title=item_dict["title"], 
+                        start=item_dict["start"]
+                    ).first()
+                    if not bg:
+                        bg = Booking.objects.create(
+                            start = item_dict["start"],
+                            title = item_dict["title"],
+                            link = item_dict["link"],
+                            address = item_dict["address"],
+                            distance = item_dict["distance"],
+                            description = item_dict["description"],
+                            img = item_dict["img"],
+                            updated = dt.now(),
+                            created = dt.now()
+                        )
+                    else:
+                        bg.start = item_dict["start"]
+                        bg.title = item_dict["title"]
+                        bg.link = item_dict["link"]
+                        bg.address = item_dict["address"]
+                        bg.distance = item_dict["distance"]
+                        bg.description = item_dict["description"]
+                        bg.img = item_dict["img"]
+                        bg.updated = dt.now()
+                        bg.save()
+
+                    # _complement = Complement.objects.filter(
+                    #     date_from=item_dict["date_from"], 
+                    #     date_to=item_dict["date_to"], 
+                    #     occupancy=occupancy, 
+                    #     start=item_dict["start"]
+                    # ).first()
+                    # if not _complement:
+                    #     _complement = Complement.objects.create(
+                    #         total_search=total_search,
+                    #         date_from=item_dict["date_from"], 
+                    #         date_to=item_dict["date_to"], 
+                    #         occupancy=occupancy, 
+                    #         start=item_dict["start"]
+                    #     )
+                    # else:
+                    #     _complement.total_search = total_search
+                    #     _complement.save()
+                        
+                    # _available = AvailableBooking.objects.filter(
+                    #     position=position,
+                    #     complement=_complement
+                    # ).first()
+
+                    _available = AvailableBooking.objects.filter(
+                        date_from=item_dict["date_from"], 
+                        date_to=item_dict["date_to"], 
+                        position=position, 
+                        occupancy=occupancy, 
+                        start=item_dict["start"]
+                    ).first()
+                    if not _available:
+                        _available = AvailableBooking.objects.create(
+                            date_from = item_dict["date_from"],
+                            date_to = item_dict["date_to"],
+                            booking = bg,
+                            position = position,
+                            total_search = int(total_search),
+                            price = item_dict["price"],
+                            updated = dt.now(),
+                            created = dt.now(),
+                            occupancy = occupancy,
+                            start = item_dict["start"]
+                        )
+                    else:
+                        #_available.date_from = item_dict["date_from"]
+                        #_available.date_to = item_dict["date_to"]
+                        #_available.position = position
+                        _available.total_search = int(total_search)
+                        _available.active = True
+                        _available.updated = dt.now()
+                        _available.price = item_dict["price"]
+                        #_available.occupancy = occupancy
+                        _available.booking = bg
+                        _available.save()
+                    logging.info(item_dict)
+                else:
+                    logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
+            else:
+                price_with_name_hotel = PriceWithNameHotel.objects.filter(title = item_dict["title"], date_from = item_dict["date_from"]).first()
+                if not price_with_name_hotel:
+                    price_with_name_hotel = PriceWithNameHotel.objects.create(
                         start = item_dict["start"],
                         title = item_dict["title"],
                         link = item_dict["link"],
@@ -427,76 +512,17 @@ class BookingSearch:
                         description = item_dict["description"],
                         img = item_dict["img"],
                         updated = dt.now(),
-                        created = dt.now()
-                    )
-                else:
-                    bg.start = item_dict["start"]
-                    bg.title = item_dict["title"]
-                    bg.link = item_dict["link"]
-                    bg.address = item_dict["address"]
-                    bg.distance = item_dict["distance"]
-                    bg.description = item_dict["description"]
-                    bg.img = item_dict["img"]
-                    bg.updated = dt.now()
-                    bg.save()
-
-                # _complement = Complement.objects.filter(
-                #     date_from=item_dict["date_from"], 
-                #     date_to=item_dict["date_to"], 
-                #     occupancy=occupancy, 
-                #     start=item_dict["start"]
-                # ).first()
-                # if not _complement:
-                #     _complement = Complement.objects.create(
-                #         total_search=total_search,
-                #         date_from=item_dict["date_from"], 
-                #         date_to=item_dict["date_to"], 
-                #         occupancy=occupancy, 
-                #         start=item_dict["start"]
-                #     )
-                # else:
-                #     _complement.total_search = total_search
-                #     _complement.save()
-                    
-                # _available = AvailableBooking.objects.filter(
-                #     position=position,
-                #     complement=_complement
-                # ).first()
-
-                _available = AvailableBooking.objects.filter(
-                    date_from=item_dict["date_from"], 
-                    date_to=item_dict["date_to"], 
-                    position=position, 
-                    occupancy=occupancy, 
-                    start=item_dict["start"]
-                ).first()
-                if not _available:
-                    _available = AvailableBooking.objects.create(
+                        created = dt.now(),
                         date_from = item_dict["date_from"],
                         date_to = item_dict["date_to"],
-                        booking = bg,
-                        position = position,
-                        total_search = int(total_search),
-                        price = item_dict["price"],
-                        updated = dt.now(),
-                        created = dt.now(),
-                        occupancy = occupancy,
-                        start = item_dict["start"]
+                        price = item_dict["price"]
                     )
                 else:
-                    #_available.date_from = item_dict["date_from"]
-                    #_available.date_to = item_dict["date_to"]
-                    #_available.position = position
-                    _available.total_search = int(total_search)
-                    _available.active = True
-                    _available.updated = dt.now()
-                    _available.price = item_dict["price"]
-                    #_available.occupancy = occupancy
-                    _available.booking = bg
-                    _available.save()
-                logging.info(item_dict)
-            else:
-                logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
+                    price_with_name_hotel.price = item_dict["price"]
+                    price_with_name_hotel.save()
+                
+                logging.info(f"[+] Data Start success: {item_dict}")
+
         except Exception as e:
             logging.info(f"[-] {dt.now()} Error General data: "+str(e))
             logging.info(item_dict)
