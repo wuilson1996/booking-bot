@@ -82,47 +82,53 @@ def active_process():
         )
         if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
             a.delete()
+    
+    general_search = GeneralSearch.objects.filter(type_search = 1).last()
+    instances = []
+    for p in general_search.proces_active.all():
+        p.currenct = True
+        p.save()
+
+        booking = BookingSearch()
+        instances.append({
+            "booking": booking,
+            "driver": booking._driver(general_search.url)
+        })
 
     logging.info(f"[+] {dt.now()} Activando process...")
     threading.Thread(target=active_process_sf).start()
     while True:
         try:
-            for p in ProcessActive.objects.all():
-                p.active = True
-                p.save()
-
-            general_search = GeneralSearch.objects.all().last()
-
-            booking = BookingSearch()
-            _driver = booking._driver(general_search.url)
-            _date_end = dt(
-                int(str(general_search.proces_active.last().date_end).split("-")[0]),
-                int(str(general_search.proces_active.last().date_end).split("-")[1]),
-                int(str(general_search.proces_active.last().date_end).split("-")[2])
-            )
-            _now = dt.now()
-            alert = True
-            while True:
-                __time = time.time()
-                for gs in GeneralSearch.objects.all():
-                    for pa in gs.proces_active.all():
-                        try:
-                            logging.info(f"[+] {dt.now()} Search browser... {_now} {booking} {gs.city_and_country} {pa}")
-                            booking.controller(
-                                driver=_driver, 
-                                _now=_now,
-                                process=pa,
-                                search_name=gs.city_and_country,
-                                alert=alert
+            threads = []
+            cont = 0
+            for p in ProcessActive.objects.filter(type_proces = 1):
+                if not p.active:
+                    try:
+                        logging.info(f"[+] {dt.now()} Process active in while. Search browser... {instances[cont]['booking']}")
+                        p.active = True
+                        p.save()
+                        process = threading.Thread(
+                            target=instances[cont]["booking"].controller, 
+                            args=(
+                                instances[cont]["driver"], 
+                                dt.now(), 
+                                str(p.date_end).split("-"), 
+                                int(p.occupancy), 
+                                int(p.start), 
+                                p, 
+                                general_search.city_and_country
                             )
-                            alert = False
-                        except Exception as ec:
-                            logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
-                
-                logging.info(f"[+] Tiempo transcurrido: {time.time() - __time}")
-                _now += datetime.timedelta(days=1)
-                if _now.date() >= _date_end.date():
-                    break
+                        )
+                        process.daemon = True
+                        process.start()
+                        threads.append(process)
+                    except Exception as ec:
+                        logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
+                cont += 1
+
+            for t in threads:
+                logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
+                t.join()
 
             if general_search:
                 seconds = 60 * general_search.time_sleep_minutes
@@ -131,7 +137,11 @@ def active_process():
                 seconds = 60 * 3
                 logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
             
+            # add process name hotel.
+            
+            
             sleep(seconds)
+
             logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
             for p in ProcessActive.objects.all():
                 p.active = False
