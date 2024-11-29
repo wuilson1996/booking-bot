@@ -63,7 +63,7 @@ class BookingSearch:
                 cls._url_performance = _current_url
             _date_elem = _now
             _now += datetime.timedelta(days=1)
-            _url_performance = _current_url + f"ss={search_name}&group_adults{str(process.occupancy)}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}"
+            _url_performance = _current_url + f"ss={search_name}&group_adults={str(process.occupancy)}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}"
 
             #driver.delete_all_cookies()
             driver.get(_url_performance)

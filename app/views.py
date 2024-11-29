@@ -112,9 +112,6 @@ def active_process():
                             args=(
                                 instances[cont]["driver"], 
                                 dt.now(), 
-                                str(p.date_end).split("-"), 
-                                int(p.occupancy), 
-                                int(p.start), 
                                 p, 
                                 general_search.city_and_country
                             )
@@ -139,7 +136,7 @@ def active_process():
             
             # add process name hotel.
             
-            
+
             sleep(seconds)
 
             logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
