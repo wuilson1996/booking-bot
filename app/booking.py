@@ -39,6 +39,8 @@ class BookingSearch:
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
 
+        options.set_preference("browser.privatebrowsing.autostart", True)
+
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
     @classmethod
@@ -76,7 +78,7 @@ class BookingSearch:
                     _date_elem = _now
                     _now += datetime.timedelta(days=1)
                     #_url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}"
-                    _url_performance = cls._url + f"ss={search_name}&group_adults={str(process.occupancy)}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}"
+                    _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
                     driver.get(_url_performance)
                     driver.implicitly_wait(15)
                     #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
