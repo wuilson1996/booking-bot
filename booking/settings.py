@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'booking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DB_PROD = True
+DB_PROD = False
 if DB_PROD:
     DATABASES = {
         'default': {
