@@ -169,22 +169,9 @@ class BookingSearch:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input", {"type": "checkbox"})
                             for s in elements:
-                                if "Hotel" == str(s.get('aria-label')).split(":")[0].strip():
-                                    #logging.info(f"Hotel: {s}")
-                                    check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
-                                    try:
-                                        driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
-                                        check_hotel.click()
-                                        sleep(2)
-                                        check_hotel.click()
-                                        sleep(2)
-                                    except ElementClickInterceptedException as e2:
-                                        pass
-                                
                                 if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
-                                    #logging.info(f"Hoteles: {s}")
-                                    #logging.info(f"[+] {dt.now()} - Hotels - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy} - Input: {s}")
-                                    check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
+                                    logging.info(f"{s}")
+                                    check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
                                         driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
                                         check_hotel.click()
@@ -194,11 +181,11 @@ class BookingSearch:
                                     logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                     break
                         except NoSuchElementException as e:
-                            logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount: {e}")
+                            logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
                         except ElementClickInterceptedException as e:
-                            logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked: {e}")
+                            logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
                         except Exception as e:
-                            logging.info(f"[-] {dt.now()} Error in Hoteles button general: {e}")
+                            logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
                         sleep(3)
                         try:
