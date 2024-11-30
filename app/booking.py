@@ -166,29 +166,31 @@ class BookingSearch:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input", {"type": "checkbox"})
                             for s in elements:
-                                logging.info(f"{s}")
+                                #logging.info(f"{s}")
                                 if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" == str(s.get('aria-label')).split(":")[0].strip():
                                     logging.info(f"{s}")
                                     check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
                                         driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
                                     except NoSuchElementException as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll button, not fount: {e}")
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll, not fount: {e}")
                                     except ElementClickInterceptedException as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll button, element not clicked: {e}")
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll, element not clicked: {e}")
                                     except Exception as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll button general: "+str(e))
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll, general: "+str(e))
                                     try:
                                         check_hotel.click()
-                                    except ElementClickInterceptedException as e2:
+                                    except NoSuchElementException as e:
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
+                                    except ElementClickInterceptedException as e:
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
                                         driver.execute_script("arguments[0].click();", check_hotel)
                                         sleep(2)
+                                    except Exception as e:
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
+                                        
                                     logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                     break
-                        except NoSuchElementException as e:
-                            logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
-                        except ElementClickInterceptedException as e:
-                            logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
                         except Exception as e:
                             logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
