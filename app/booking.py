@@ -53,7 +53,7 @@ class BookingSearch:
         try:
             driver.get(cls._url)
             driver.implicitly_wait(15)
-            driver.delete_all_cookies()
+            #driver.delete_all_cookies()
             sleep(5)
             #logging.info(driver.current_url)
             try:
@@ -65,24 +65,21 @@ class BookingSearch:
                 logging.info(f"[-] {dt.now()} Error in button cookies, element not clicked")
                 
             # Search
+            sleep(2)
             search = driver.find_element_by_xpath("//input[@name='ss']")
+            search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
+            search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
+            sleep(1)
+            # Escribe el texto en el campo de búsqueda
+            logging.info(f"Search name or city: {search_name} {_now}")
             search.send_keys(search_name)
-
+            sleep(1)
+            # Confirma con ENTER
+            search.send_keys(Keys.RETURN)
+            sleep(1)
+            
             _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
             cont = 0
-
-            buttons = driver.find_elements_by_xpath("//button[@type='submit']")
-            sleep(2)
-            for b in buttons:
-                #logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
-                if "Buscar" or "Search" in b.text:
-                    try:
-                        b.click()
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
-                        driver.execute_script("arguments[0].click();", b)
-                        sleep(2)
-                    break
 
             try:
                 _current_url = driver.current_url
