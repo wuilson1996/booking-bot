@@ -940,11 +940,15 @@
     dataStat2 = []
     dataStat3 = []
     dataStat5 = []
+    totalFeria = []
+    totalTemp = []
     dataStatName = []
     '{% for date, value in bookings.items %}'
       dataStat2.push('{{value.2.total_search}}');
       dataStat3.push('{{value.3.total_search}}');
       dataStat5.push('{{value.5.total_search}}');
+      totalFeria.push('{{value.totalFeria}}');
+      totalTemp.push('{{value.temporadaByDay.number}}');
       
       dataStatName.push('{{value.date_from}}');
     '{% endfor %}'
@@ -987,6 +991,30 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataStat5,
+            maxBarThickness: 6
+          },
+          {
+            label: "Disponibilidad",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: totalFeria,
+            maxBarThickness: 6
+          },
+          {
+            label: "Temporada",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#fb6340",
+            borderColor: "#fb6340",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: totalTemp,
             maxBarThickness: 6
           },
         ],
