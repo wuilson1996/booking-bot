@@ -172,6 +172,13 @@ class BookingSearch:
                                     check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
                                         driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
+                                    except NoSuchElementException as e:
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll button, not fount: {e}")
+                                    except ElementClickInterceptedException as e:
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll button, element not clicked: {e}")
+                                    except Exception as e:
+                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll button general: "+str(e))
+                                    try:
                                         check_hotel.click()
                                     except ElementClickInterceptedException as e2:
                                         driver.execute_script("arguments[0].click();", check_hotel)
