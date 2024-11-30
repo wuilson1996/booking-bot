@@ -63,25 +63,26 @@ class BookingSearch:
                 logging.info(f"[-] {dt.now()} Error in button cookies, element not fount")
             except ElementClickInterceptedException as e:
                 logging.info(f"[-] {dt.now()} Error in button cookies, element not clicked")
-            except Exception as e:
-                logging.info(f"[-] {dt.now()} Error general in button cookies, element not clicked")
+                
+            # Search
+            search = driver.find_element_by_xpath("//input[@name='ss']")
+            search.send_keys(search_name)
 
             _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
             cont = 0
 
-            # Search
+            buttons = driver.find_elements_by_xpath("//button[@type='submit']")
             sleep(2)
-            search = driver.find_element_by_xpath("//input[@name='ss']")
-            search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
-            search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
-            sleep(1)
-            # Escribe el texto en el campo de búsqueda
-            #logging.info(f"Search name or city: {search_name} {_now}")
-            search.send_keys(search_name)
-            sleep(1)
-            # Confirma con ENTER
-            search.send_keys(Keys.RETURN)
-            sleep(2)
+            for b in buttons:
+                #logging.info(f"[+] {dt.now()} Button Submit: {b.text}")
+                if "Buscar" or "Search" in b.text:
+                    try:
+                        b.click()
+                    except Exception as e:
+                        logging.info(f"[-] {dt.now()} Error in button submit general, element not clicked")
+                        driver.execute_script("arguments[0].click();", b)
+                        sleep(2)
+                    break
 
             try:
                 _current_url = driver.current_url
@@ -89,20 +90,26 @@ class BookingSearch:
                     process = ProcessActive.objects.filter(pk = process.pk).first()
                     if not process.currenct:
                         break
+                    # _date_elem = _now
+                    # _now += datetime.timedelta(days=1)
+                    # #if "group_adults" in _current_url:
+                    #     #logging.info("[+] group_adults encontrado dentro de la url...")
+                    # _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
+                    # # Reemplazar las fechas en la URL usando expresiones regulares
+                    # _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={str(_date_elem.date())}", _url_performance)
+                    # _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
+                    # #else:
+                    # #    logging.info("[+] group_adults no encontrado dentro de la url...")
+                    # #    _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
+                    # driver.get(_url_performance)
+                    # driver.implicitly_wait(15)
+                    # #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
+
                     _date_elem = _now
                     _now += datetime.timedelta(days=1)
-                    #if "group_adults" in _current_url:
-                        #logging.info("[+] group_adults encontrado dentro de la url...")
-                    _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
-                    # Reemplazar las fechas en la URL usando expresiones regulares
-                    _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={str(_date_elem.date())}", _url_performance)
-                    _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
-                    #else:
-                    #    logging.info("[+] group_adults no encontrado dentro de la url...")
-                    #    _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
+                    _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))+f"&checkin={str(_date_elem.date())}&checkout={_now.date()}"
                     driver.get(_url_performance)
                     driver.implicitly_wait(15)
-                    #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
 
                     try:
                         if cont <= 1:
@@ -168,17 +175,17 @@ class BookingSearch:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input", {"type": "checkbox"})
                             for s in elements:
-                                if "Hotel" == str(s.get('aria-label')).split(":")[0].strip():
-                                    #logging.info(f"Hotel: {s}")
-                                    check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
-                                    try:
-                                        driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
-                                        check_hotel.click()
-                                        sleep(2)
-                                        check_hotel.click()
-                                        sleep(2)
-                                    except ElementClickInterceptedException as e2:
-                                        pass
+                                # if "Hotel" == str(s.get('aria-label')).split(":")[0].strip():
+                                #     #logging.info(f"Hotel: {s}")
+                                #     check_hotel = driver.find_element_by_xpath("//div[@data-filters-item='ht_id:"+str(s.get("value"))+"']")
+                                #     try:
+                                #         driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
+                                #         check_hotel.click()
+                                #         sleep(2)
+                                #         check_hotel.click()
+                                #         sleep(2)
+                                #     except ElementClickInterceptedException as e2:
+                                #         pass
                                 
                                 if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" in str(s.get('aria-label')).split(":")[0].strip():
                                     #logging.info(f"Hoteles: {s}")
