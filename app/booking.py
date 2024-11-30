@@ -172,22 +172,15 @@ class BookingSearch:
                                     check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
                                         driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
-                                    except NoSuchElementException as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll, not fount: {e}")
-                                    except ElementClickInterceptedException as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll, element not clicked: {e}")
+                                        sleep(2)  # Permitir que el desplazamiento se complete
                                     except Exception as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles Scroll, general: "+str(e))
+                                        logging.info(f"[-] {dt.now()} Error durante el scroll: {e}")
                                     try:
                                         check_hotel.click()
-                                    except NoSuchElementException as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles button, not fount")
-                                    except ElementClickInterceptedException as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles button, element not clicked")
+                                    except Exception as e:
+                                        logging.info(f"[-] {dt.now()} Error al hacer click, intentando con JavaScript: {e}")
                                         driver.execute_script("arguments[0].click();", check_hotel)
                                         sleep(2)
-                                    except Exception as e:
-                                        logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
                                         
                                     logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                     break
