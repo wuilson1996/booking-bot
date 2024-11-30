@@ -398,15 +398,16 @@ def index(request):
             __date_from = str(request.POST["date_from"])
         if "date_to" in request.POST:
             __date_to = str(request.POST["date_to"])
-        
-        if "range_pg" in request.POST:
-            __date_to = str(dt.now().date() + datetime.timedelta(days=int(request.POST["range_pg"])))
 
         _date_from = dt(
             year=int(__date_from.split("-")[0]),
             month=int(__date_from.split("-")[1]),
             day=int(__date_from.split("-")[2])
         )
+
+        if "range_pg" in request.POST:
+            __date_to = str(_date_from.date() + datetime.timedelta(days=int(request.POST["range_pg"])))
+
         _date_from_current = _date_from
         _date_to = dt(
             year=int(__date_to.split("-")[0]),
