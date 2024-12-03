@@ -148,7 +148,7 @@ class TemporadaByDay(models.Model):
     date_from = models.CharField(max_length=30)
     COLORS = (
         ("bg-danger", "bg-danger"),
-        ("bg-info", "bg-info"),
+        ("bg-danger", "bg-danger"),
         ("bg-warning", "bg-warning"),
         ("bg-success", "bg-success"),
         ("bg-secondary", "bg-secondary"),
@@ -188,6 +188,7 @@ class CopyPriceWithDay(models.Model):
     def __str__(self):
         return self.price
 
+# agregar ocupacion de cada nombre de precio.
 class PriceWithNameHotel(models.Model):
     start = models.CharField(max_length=20)
     title = models.CharField(max_length=512)
@@ -201,6 +202,7 @@ class PriceWithNameHotel(models.Model):
     date_from = models.CharField(max_length=30)
     date_to = models.CharField(max_length=30)
     price = models.CharField(max_length=30)
+    occupancy = models.IntegerField(default=2)
 
     def __str__(self) -> str:
         return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)+" | "+str(self.date_from)
@@ -211,7 +213,7 @@ class CopyPriceWithNameFromDay(models.Model):
     avail = models.ForeignKey(PriceWithNameHotel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.price
+        return str(self.price)+" | "+str(self.avail)
     
 class CopyAvailWithDaySF(models.Model):
     type_avail = models.CharField(max_length=5)

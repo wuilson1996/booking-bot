@@ -10,7 +10,7 @@ import logging
 LOCK_FILE_PATH = "/tmp/ejecutar_funcion.lock"
 
 def ejecutar_funcion():
-    logging.info("¡Función ejecutada a las 10:00 p.m!")
+    logging.info("¡init copy 10:00 p.m!")
     # 60 dias
     __date_from = str(datetime.now().date())
     __date_to = str(datetime.now().date() + timedelta(days=365))
@@ -32,6 +32,7 @@ def ejecutar_funcion():
     
     while _date_from.date() <= _date_to.date():
         try:
+            logging.info("[+] Copy price.")
             # copy price with booking
             for ocp in occupancys:
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
@@ -47,8 +48,9 @@ def ejecutar_funcion():
             logging.info(f"Error copy price. {e}")
             
         try:
+            logging.info("[+] Copy price suites feria.")
             # copy price with suites feria.
-            price_with_name = PriceWithNameHotel.objects.filter(date_from = str(_date_from.date())).first()
+            price_with_name = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date())).first()
             if price_with_name:
                 CopyPriceWithNameFromDay.objects.create(
                     price = price_with_name.price,
@@ -59,6 +61,7 @@ def ejecutar_funcion():
             logging.info(f"Error copy price suites feria. {e}")
 
         try:
+            logging.info("[+] Copy avail suites feria.")
             # copy avail with suites feria.
             asf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).first()
             if asf:
@@ -87,6 +90,8 @@ def ejecutar_funcion():
         except Exception as e:
             logging.info(f"Error copy avail suites feria. {e}")
         _date_from += timedelta(days=1)
+
+    logging.info("[+] finish Copy")
 
 def iniciar_tarea_diaria():
     def tarea_en_thread():
