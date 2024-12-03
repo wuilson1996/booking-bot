@@ -494,7 +494,7 @@ class BookingSearch:
                 else:
                     logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
             else:
-                price_with_name_hotel = PriceWithNameHotel.objects.filter(title = item_dict["title"], date_from = item_dict["date_from"]).first()
+                price_with_name_hotel = PriceWithNameHotel.objects.filter(title = item_dict["title"], date_from = item_dict["date_from"], occupancy = occupancy).first()
                 if not price_with_name_hotel:
                     price_with_name_hotel = PriceWithNameHotel.objects.create(
                         start = item_dict["start"],
@@ -508,7 +508,8 @@ class BookingSearch:
                         created = dt.now(),
                         date_from = item_dict["date_from"],
                         date_to = item_dict["date_to"],
-                        price = item_dict["price"]
+                        price = item_dict["price"],
+                        occupancy = occupancy
                     )
                 else:
                     price_with_name_hotel.price = item_dict["price"]
