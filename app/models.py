@@ -205,7 +205,7 @@ class PriceWithNameHotel(models.Model):
     occupancy = models.IntegerField(default=2)
 
     def __str__(self) -> str:
-        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)+" | "+str(self.date_from)
+        return str(self.id)+" | "+str(self.title)+" | Start: "+str(self.start)+" | "+str(self.date_from)+" | Occupancy: "+str(self.occupancy)
     
 class CopyPriceWithNameFromDay(models.Model):
     price = models.CharField(max_length=30)

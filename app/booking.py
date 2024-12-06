@@ -56,13 +56,14 @@ class BookingSearch:
             #driver.delete_all_cookies()
             sleep(5)
             #logging.info(driver.current_url)
-            try:
-                _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
-                _button.click()
-            except NoSuchElementException as e:
-                logging.info(f"[-] {dt.now()} Error in button cookies, element not fount")
-            except ElementClickInterceptedException as e:
-                logging.info(f"[-] {dt.now()} Error in button cookies, element not clicked")
+            if process.type_proces == 1:
+                try:
+                    _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
+                    _button.click()
+                except NoSuchElementException as e:
+                    logging.info(f"[-] {dt.now()} Error in button cookies, element not fount")
+                except ElementClickInterceptedException as e:
+                    logging.info(f"[-] {dt.now()} Error in button cookies, element not clicked")
                 
             # Search
             sleep(2)
@@ -102,17 +103,18 @@ class BookingSearch:
                     driver.implicitly_wait(15)
                     #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
 
-                    try:
-                        if cont <= 1:
-                            _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
-                            _button.click()
-                            #logging.info(f"[+] {dt.now()} Click button modal success: {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
-                    except NoSuchElementException as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal, not fount")
-                    except ElementClickInterceptedException as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
-                    except Exception as e:
-                        logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
+                    if process.type_proces == 1:
+                        try:
+                            if cont <= 1:
+                                _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
+                                _button.click()
+                                #logging.info(f"[+] {dt.now()} Click button modal success: {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
+                        except NoSuchElementException as e:
+                            logging.info(f"[-] {dt.now()} Error in button Modal, not fount")
+                        except ElementClickInterceptedException as e:
+                            logging.info(f"[-] {dt.now()} Error in button Modal, element not clicked")
+                        except Exception as e:
+                            logging.info(f"[-] {dt.now()} Error in button Modal general: "+str(e))
                     sleep(3)
                     if process.type_proces == 1:
                         try:

@@ -94,11 +94,6 @@ def active_process():
             "booking": booking,
             "driver": booking._driver(general_search.url)
         })
-    
-    pa_with_name = ProcessActive.objects.filter(type_proces = 2).first()
-    pa_with_name.active = True
-    pa_with_name.currenct = True
-    pa_with_name.save()
 
     logging.info(f"[+] {dt.now()} Activando process...")
     threading.Thread(target=active_process_sf).start()
@@ -132,6 +127,12 @@ def active_process():
                 logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
                 t.join()
             
+            pa_with_name = ProcessActive.objects.filter(type_proces = 2)
+            for __p in pa_with_name:
+                __p.active = True
+                __p.currenct = True
+                __p.save()
+
             # add process name hotel.
             logging.info(f"[+] {dt.now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             for gs in GeneralSearch.objects.filter(type_search = 2):
