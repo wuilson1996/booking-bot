@@ -50,8 +50,8 @@ def ejecutar_funcion():
         try:
             logging.info("[+] Copy price suites feria.")
             # copy price with suites feria.
-            price_with_name = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date())).first()
-            if price_with_name:
+            price_with_names = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()))
+            for price_with_name in price_with_names:
                 CopyPriceWithNameFromDay.objects.create(
                     price = price_with_name.price,
                     created = str(datetime.now().date()),
