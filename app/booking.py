@@ -286,9 +286,9 @@ class BookingSearch:
                         break
                     cont += 1
 
-                    if int(total_search) > 0:
-                        _date_elem = _now
-                        _now += datetime.timedelta(days=1)
+                    #if int(total_search) > 0:
+                    _date_elem = _now
+                    _now += datetime.timedelta(days=1)
             except Exception as e2:
                 logging.info(f"[-] {dt.now()} Error 262: "+str(e2))
         except Exception as e02:
