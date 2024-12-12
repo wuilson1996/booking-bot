@@ -94,21 +94,25 @@ class BookingSearch:
                     if not process.currenct:
                         break
                     
+                    if "ss" not in _current_url:
+                        _url_performance = _url_performance + f"ss={search_name}"
+
                     if "group_adults" in _current_url:
                         #logging.info("[+] group_adults encontrado dentro de la url...")
                         _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
                     else:
-                        _url_performance = _url_performance + f"ss={search_name}"
+                        _url_performance = _url_performance + f"&group_adults={str(process.occupancy)}"
+
                     # Reemplazar las fechas en la URL usando expresiones regulares
                     if "checkin" in _current_url:
                         _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={str(_date_elem.date())}", _url_performance)
                     else:
-                        _url_performance = _url_performance + f"checkin={str(_date_elem.date())}"
+                        _url_performance = _url_performance + f"&checkin={str(_date_elem.date())}"
 
                     if "checkout" in _current_url:
                         _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
                     else:
-                        _url_performance = _url_performance + f"checkout={_now.date()}"
+                        _url_performance = _url_performance + f"&checkout={_now.date()}"
                     #else:
                     #    logging.info("[+] group_adults no encontrado dentro de la url...")
                     #    _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
