@@ -74,6 +74,11 @@ def ejecutar_funcion():
                 casf2_avail = 0
                 if casf2:
                     casf2_avail = casf2.avail
+                
+                casf3 = CantAvailSuitesFeria.objects.filter(avail_suites_feria = asf, type_avail = 3).last()
+                casf3_avail = 0
+                if casf3:
+                    casf3_avail = casf3.avail
                     
                 casf4 = CantAvailSuitesFeria.objects.filter(avail_suites_feria = asf, type_avail = 4).last()
                 casf4_avail = 0
@@ -83,6 +88,7 @@ def ejecutar_funcion():
                     type_avail = "0",
                     avail_1 = str(casf1_avail),
                     avail_2 = str(casf2_avail),
+                    avail_3 = str(casf3_avail),
                     avail_4 = str(casf4_avail),
                     created = str(datetime.now().date()),
                     avail_suites_feria = asf

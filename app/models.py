@@ -219,6 +219,7 @@ class CopyAvailWithDaySF(models.Model):
     type_avail = models.CharField(max_length=5)
     avail_1 = models.IntegerField(default=0)
     avail_2 = models.IntegerField(default=0)
+    avail_3 = models.IntegerField(default=0)
     avail_4 = models.IntegerField(default=0)
     created = models.DateField(null=True, blank=True)
     avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)

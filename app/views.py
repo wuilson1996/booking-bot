@@ -499,19 +499,24 @@ def index(request):
                     cpwd = CopyAvailWithDaySF()
                     cpwd.avail_1 = 0
                     cpwd.avail_2 = 0
+                    cpwd.avail_3 = 0
                     cpwd.avail_4 = 0
                     cpwd.created = str(dt.now())
-                
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] = 0
-                
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_1
-                bookings[str(_date_from.date())][int(ocp)]["totalFeriaM1"] = cpwd.avail_1
 
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_2
-                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] = cpwd.avail_2
+                if "totalFeria1" not in bookings[str(_date_from.date())][int(ocp)].keys():
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] = 0
+                if int(ocp) == 2:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_1
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM1"] = cpwd.avail_1
 
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_4
-                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] += cpwd.avail_4
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_2
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaD1"] = cpwd.avail_2
+
+                elif int(ocp) == 3:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_3
+
+                elif int(ocp) == 5:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_4
 
                 #Disponibilidad 7 dias atras
                 copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
@@ -521,19 +526,26 @@ def index(request):
                     cpwd = CopyAvailWithDaySF()
                     cpwd.avail_1 = 0
                     cpwd.avail_2 = 0
+                    cpwd.avail_3 = 0
                     cpwd.avail_4 = 0
                     cpwd.created = str(dt.now())
 
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] = 0
+                if "totalFeria7" not in bookings[str(_date_from.date())][int(ocp)].keys():
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] = 0
 
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_1
-                bookings[str(_date_from.date())][int(ocp)]["totalFeriaM7"] = cpwd.avail_1
+                if int(ocp) == 2:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_1
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM7"] = cpwd.avail_1
 
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_2
-                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] = cpwd.avail_2
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_2
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] = cpwd.avail_2
 
-                bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_4
-                bookings[str(_date_from.date())][int(ocp)]["totalFeriaD7"] += cpwd.avail_4
+                elif int(ocp) == 3:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_3
+
+                elif int(ocp) == 5:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_4
+
 
                 #--------------
                 for comp in Complement.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp)):
@@ -853,9 +865,13 @@ def booking_view(request):
                             cpwd.avail_4 = 0
                             cpwd.created = str(dt.now())
                         
-                        bookings["bookings"][str(s)][i]["suitesFeria2"] = cpwd.avail_1
-                        bookings["bookings"][str(s)][i]["suitesFeria1"] = cpwd.avail_2
-                        bookings["bookings"][str(s)][i]["suitesFeria1"] += cpwd.avail_4
+                        if int(request.GET["occupancy"]) == 2:
+                            bookings["bookings"][str(s)][i]["suitesFeria2"] = cpwd.avail_1
+                            bookings["bookings"][str(s)][i]["suitesFeria1"] = cpwd.avail_2
+                        elif int(request.GET["occupancy"]) == 3:
+                            bookings["bookings"][str(s)][i]["suitesFeria1"] += cpwd.avail_3
+                        elif int(request.GET["occupancy"]) == 5:
+                            bookings["bookings"][str(s)][i]["suitesFeria1"] += cpwd.avail_4
 
                     bookings["bookings"][str(s)][i]["suitesFeriaTotal"] = bookings["bookings"][str(s)][i]["suitesFeria2"] + bookings["bookings"][str(s)][i]["suitesFeria1"]
 
