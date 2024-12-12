@@ -273,7 +273,7 @@ class BookingSearch:
                         break
                     cont += 1
 
-                    if total_search > 0:
+                    if int(total_search) > 0:
                         _date_elem = _now
                         _now += datetime.timedelta(days=1)
             except Exception as e2:
