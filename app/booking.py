@@ -39,6 +39,8 @@ class BookingSearch:
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
 
+        options.set_preference("browser.privatebrowsing.autostart", True)
+
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
     @classmethod
@@ -53,7 +55,7 @@ class BookingSearch:
         try:
             driver.get(cls._url)
             driver.implicitly_wait(15)
-            #driver.delete_all_cookies()
+            driver.delete_all_cookies()
             sleep(5)
             #logging.info(driver.current_url)
             #if process.type_proces == 1:
