@@ -84,14 +84,16 @@ class BookingSearch:
             _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
             cont = 0
 
+            _date_elem = _now
+            _now += datetime.timedelta(days=1)
+
             try:
                 _current_url = driver.current_url
                 while True:
                     process = ProcessActive.objects.filter(pk = process.pk).first()
                     if not process.currenct:
                         break
-                    _date_elem = _now
-                    _now += datetime.timedelta(days=1)
+                    
                     #if "group_adults" in _current_url:
                         #logging.info("[+] group_adults encontrado dentro de la url...")
                     _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
@@ -107,7 +109,7 @@ class BookingSearch:
 
                     #if process.type_proces == 1:
                     try:
-                        if cont <= 1:
+                        if cont <= 2:
                             _button = driver.find_element_by_xpath("//button[@aria-label='Ignorar información sobre el inicio de sesión.']")
                             _button.click()
                             #logging.info(f"[+] {dt.now()} Click button modal success: {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
@@ -165,7 +167,7 @@ class BookingSearch:
                             logging.info(f"[-] {dt.now()} Error in start button, element not clicked1")
                         except Exception as e:
                             logging.info(f"[-] {dt.now()} Error in start button general: "+str(e))
-                        sleep(4)
+                        sleep(3)
                         try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input", {"type": "checkbox"})
@@ -191,7 +193,7 @@ class BookingSearch:
                         except Exception as e:
                             logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
 
-                        sleep(4)
+                        sleep(3)
                         try:
                             dropdown_price = driver.find_element_by_xpath("//button[@data-testid='sorters-dropdown-trigger']")
                             try:
@@ -222,7 +224,7 @@ class BookingSearch:
                         except Exception as e:
                             logging.info(f"[-] {dt.now()} Error in price button general: "+str(e))
 
-                    sleep(4)
+                    sleep(3)
                     # Items booking search
                     items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
                     logging.info(f"[+] {dt.now()} Elementos encontrados: {len(items)} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
@@ -270,6 +272,10 @@ class BookingSearch:
                     if _date_elem.date() >= _date_end.date():
                         break
                     cont += 1
+
+                    if total_search > 0:
+                        _date_elem = _now
+                        _now += datetime.timedelta(days=1)
             except Exception as e2:
                 logging.info(f"[-] {dt.now()} Error 262: "+str(e2))
         except Exception as e02:
