@@ -651,6 +651,48 @@ def index(request):
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Best Osuna", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceOSU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceSF"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Ilunion Alcala Norte", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceILU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Eco Alcala Suites", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Silken Puerta Madrid", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceSIL"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Exe Madrid Norte", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceEXE"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Sercotel Alcala 611", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceSER"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Axor Feria", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceAXO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "DWO Colours Alcala", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceDWO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Nuevo Boston", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceBOS"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+            
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Senator Barajas", date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                bookings[price_with_name_hotel.date_from][2]["priceSEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+
+            
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 3).first()
             if price_with_name_hotel:

@@ -128,9 +128,9 @@
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 9.79289C6.68342 9.40237 7.31658 9.40237 7.70711 9.79289L9 11.0858V3.5C9 2.94772 9.44771 2.5 10 2.5C10.5523 2.5 11 2.94771 11 3.5V11.0858L12.2929 9.79289C12.6834 9.40237 13.3166 9.40237 13.7071 9.79289C14.0976 10.1834 14.0976 10.8166 13.7071 11.2071L10.7071 14.2071C10.5196 14.3946 10.2652 14.5 10 14.5C9.73478 14.5 9.48043 14.3946 9.29289 14.2071L6.29289 11.2071C5.90237 10.8166 5.90237 10.1834 6.29289 9.79289Z" fill="#111827" />
                 </svg>Import
               </button> -->
-              <button type="button" class="me-2 mb-0 btn btn-warning" data-bs-toggle="modal" data-bs-target="#stadistics">
+              <!-- <button type="button" class="me-2 mb-0 btn btn-warning" data-bs-toggle="modal" data-bs-target="#stadistics">
                 <i class="fa fa-bar-chart" aria-hidden="true"></i> Estadisticas
-              </button>
+              </button> -->
               <button class="mt-1 mb-0 btn btn-white export mt-sm-0" data-type="csv" type="button" name="button">
                 <svg width="14" height="15" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 7.20711C5.90237 6.81658 5.90237 6.18342 6.29289 5.79289L9.29289 2.79289C9.48043 2.60536 9.73478 2.5 10 2.5C10.2652 2.5 10.5196 2.60536 10.7071 2.79289L13.7071 5.79289C14.0976 6.18342 14.0976 6.81658 13.7071 7.20711C13.3166 7.59763 12.6834 7.59763 12.2929 7.20711L11 5.91421V13.5C11 14.0523 10.5523 14.5 10 14.5C9.44771 14.5 9 14.0523 9 13.5V5.91421L7.70711 7.20711C7.31658 7.59763 6.68342 7.59763 6.29289 7.20711Z" fill="#111827" />
@@ -619,8 +619,8 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Estadisticas</h5>
-        <i class="fas fa-upload ms-3"></i>
+        <h5 class="modal-title" id="ModalLabel">Disponibilidad </h5>
+        <i class="fa fa-bar-chart m-2"></i>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -642,6 +642,83 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="stadistics2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Tarifaz </h5>
+        <i class="fa fa-bar-chart m-2"></i>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4 h-30">
+          <div class="col-md-12">
+            <div class="card z-index-2">
+              <div class="card-header p-3 pb-0">
+                <h6></h6>
+              </div>
+              <div class="card-body p-3">
+                <div class="chart">
+                  <canvas id="lineStad2" class="chart-canvas" height="300"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-plugin">
+  <a class="fixed-plugin-button text-white position-fixed px-3 py-2 bg-warning">
+    <i class="fa fa-bar-chart py-2"></i> Estadísticas
+  </a>
+  <div class="card shadow-lg">
+    <div class="card-header pb-0 pt-3 bg-transparent ">
+      <div class="float-start">
+        <h5 class="mt-3 mb-0">Estadisticas</h5>
+        <p></p>
+      </div>
+      <div class="float-end mt-4">
+        <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+          <i class="fa fa-close"></i>
+        </button>
+      </div>
+      <!-- End Toggle Button -->
+    </div>
+    <!-- <hr class="horizontal dark my-1"> -->
+    <div class="card-body pt-sm-3 pt-0 overflow-auto">
+      <!-- Sidebar Backgrounds -->
+      <!-- <div>
+        <h6 class="mb-0">Sidebar Colors</h6>
+      </div> -->
+
+      <!-- Sidenav Type -->
+      <!-- <div class="mt-3">
+        <h6 class="mb-0">Estadisticas</h6>
+        <p class="text-sm"></p>
+      </div> -->
+      <!-- <div class="d-flex">
+        <button class="btn bg-gradient-primary w-100 px-3 mb-2 active me-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
+        <button class="btn bg-gradient-primary w-100 px-3 mb-2" data-class="bg-default" onclick="sidebarType(this)">Dark</button>
+      </div> -->
+      
+      <hr class="horizontal dark">
+      <button type="button" class="me-2 mb-0 btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#stadistics">
+        <i class="fa fa-bar-chart" aria-hidden="true"></i> Disponibilidad
+      </button>
+      <hr class="horizontal dark">
+      <button type="button" class="me-2 mb-0 btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#stadistics2">
+        <i class="fa fa-bar-chart" aria-hidden="true"></i> Tarifaz
+      </button>
     </div>
   </div>
 </div>
@@ -958,7 +1035,7 @@
       data: {
         labels: dataStatName,
         datasets: [{
-            label: "Ocupacion de 2",
+            label: "Dobles",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -970,7 +1047,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Ocupacion de 3",
+            label: "Triples",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -982,7 +1059,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Ocupacion de 4",
+            label: "Suites",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -994,7 +1071,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Disponibilidad",
+            label: "Disp",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -1006,7 +1083,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Temporada",
+            label: "Temp",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -1024,7 +1101,292 @@
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false,
+            display: true,
+            position: 'top',
+            align: 'end',
+            labels: {
+              boxWidth: 6,
+              boxHeight: 6,
+              padding: 20,
+              pointStyle: 'circle',
+              borderRadius: 50,
+              usePointStyle: true,
+              font: {
+                weight: 600,
+              },
+            },
+            tooltip: {
+              backgroundColor: '#fff',
+              titleColor: '#1e293b',
+              bodyColor: '#1e293b',
+              borderColor: '#e9ecef',
+              borderWidth: 1,
+              pointRadius: 2,
+              usePointStyle: true,
+              boxWidth: 8,
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: true,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 10,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+    var ctx2 = document.getElementById("lineStad2").getContext("2d");
+
+    dataSuitesFeria = []
+    dataZenit = []
+    dataOsuna = []
+    dataIlunion = []
+    dataEco = []
+    dataSilken = []
+    dataExe = []
+    dataSercotel = []
+    dataAxor = []
+    dataDwo = []
+    dataBoston = []
+    dataSenator = []
+
+    dataStatName = []
+    '{% for date, value in bookings.items %}'
+      dataZenit.push("{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}");
+      dataOsuna.push("{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}");
+      dataSuitesFeria.push("{% if 'priceSF' in value.2 %}{{value.2.priceSF}}{% else %}0{% endif %}");
+      dataIlunion.push("{% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}");
+      dataEco.push("{% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}");
+      dataSilken.push("{% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}");
+      dataExe.push("{% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}");
+      dataSercotel.push("{% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}");
+      dataAxor.push("{% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}");
+      dataDwo.push("{% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}");
+      dataBoston.push("{% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}");
+      dataSenator.push("{% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}");
+      dataStatName.push('{{value.date_from}}');
+    '{% endfor %}'
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: dataStatName,
+        datasets: [{
+            label: "Suites Feria",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#2dce89",
+            borderColor: "#2dce89",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataSuitesFeria,
+            maxBarThickness: 6
+          },
+          {
+            label: "ZENIT",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: dataZenit,
+            maxBarThickness: 6
+          },
+          {
+            label: "OSUNA",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataOsuna,
+            maxBarThickness: 6
+          },
+          {
+            label: "ILUNION",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#fb6340",
+            borderColor: "#fb6340",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataIlunion,
+            maxBarThickness: 6
+          },
+          {
+            label: "ECO",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataEco,
+            maxBarThickness: 6
+          },
+          {
+            label: "SILKEN",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#2dce89",
+            borderColor: "#2dce89",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataSilken,
+            maxBarThickness: 6
+          },
+          {
+            label: "EXE",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataExe,
+            maxBarThickness: 6
+          },
+          {
+            label: "SERCOTEL",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#6c757d",
+            borderColor: "#6c757d",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataSercotel,
+            maxBarThickness: 6
+          },
+          {
+            label: "AXOR",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#2dce89",
+            borderColor: "#2dce89",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataAxor,
+            maxBarThickness: 6
+          },
+          {
+            label: "DWO",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#6c757d",
+            borderColor: "#6c757d",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataDwo,
+            maxBarThickness: 6
+          },
+          {
+            label: "BOSTON",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#2dce89",
+            borderColor: "#2dce89",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataBoston,
+            maxBarThickness: 6
+          },
+          {
+            label: "SENATOR",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#fb6340",
+            borderColor: "#fb6340",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataSenator,
+            maxBarThickness: 6
+          }
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'end',
+            labels: {
+              boxWidth: 6,
+              boxHeight: 6,
+              padding: 20,
+              pointStyle: 'circle',
+              borderRadius: 50,
+              usePointStyle: true,
+              font: {
+                weight: 600,
+              },
+            },
+            tooltip: {
+              backgroundColor: '#fff',
+              titleColor: '#1e293b',
+              bodyColor: '#1e293b',
+              borderColor: '#e9ecef',
+              borderWidth: 1,
+              pointRadius: 2,
+              usePointStyle: true,
+              boxWidth: 8,
+            }
           }
         },
         interaction: {

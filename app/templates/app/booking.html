@@ -28,10 +28,9 @@
             </div>
             <div class="my-auto mt-4 ms-auto mt-lg-0">
               <div class="my-auto ms-auto">
-                <!-- <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#userAdd" onclick="clearModal()">
-                  <i class="fas fa-plus me-1"></i>
-                  Nuevo Booking
-                </button>-->
+                <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#stadistics">
+                  <i class="fa fa-bar-chart" aria-hidden="true"></i> Disponibilidad
+                </button>
                 <button type="button" class="me-2 mb-0 btn btn-info" data-bs-toggle="modal" data-bs-target="#history">
                   Historial de cambios
                 </button> 
@@ -40,6 +39,18 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 16.9477 3.44772 16.5 4 16.5H16C16.5523 16.5 17 16.9477 17 17.5C17 18.0523 16.5523 18.5 16 18.5H4C3.44772 18.5 3 18.0523 3 17.5ZM6.29289 7.20711C5.90237 6.81658 5.90237 6.18342 6.29289 5.79289L9.29289 2.79289C9.48043 2.60536 9.73478 2.5 10 2.5C10.2652 2.5 10.5196 2.60536 10.7071 2.79289L13.7071 5.79289C14.0976 6.18342 14.0976 6.81658 13.7071 7.20711C13.3166 7.59763 12.6834 7.59763 12.2929 7.20711L11 5.91421V13.5C11 14.0523 10.5523 14.5 10 14.5C9.44771 14.5 9 14.0523 9 13.5V5.91421L7.70711 7.20711C7.31658 7.59763 6.68342 7.59763 6.29289 7.20711Z" fill="#111827" />
                   </svg>Export
                 </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-header">
+            <p>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Button with data-bs-target
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
               </div>
             </div>
           </div>
@@ -294,6 +305,36 @@
     </div>
   </div>
   
+  <div class="modal fade" id="stadistics" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Estadisticas</h5>
+          <i class="fas fa-upload ms-3"></i>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mt-4 h-30">
+            <div class="col-md-12">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pb-0">
+                  <h6></h6>
+                </div>
+                <div class="card-body p-3">
+                  <div class="chart">
+                    <canvas id="lineStad" class="chart-canvas" height="300"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% include 'includes/scripts.html' %}
 
@@ -339,6 +380,324 @@
         }
       })
     }
+
+    var ctx1 = document.getElementById("lineStad").getContext("2d");
+
+    var gradientStroke = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke.addColorStop(0, 'rgba(94, 114, 228,0)'); //purple colors
+
+    var gradientStroke2 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+    dataStat2 = []
+    dataStat3 = []
+    dataStat4 = []
+    dataStat5 = []
+    dataStat6 = []
+    dataStat7 = []
+    dataStat8 = []
+    dataStat9 = []
+    dataStatMedia = []
+    dataStatSF = []
+    dataStatAV = []
+    dataStatName = []
+
+    cont = 1;
+    '{% for value in bookings.values %}'
+      dataStatAV.push('{{value.4.0.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.1.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.2.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.3.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.4.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.5.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.6.suitesFeriaTotal}}');
+      dataStatAV.push('{{value.4.7.suitesFeriaTotal}}');
+
+      dataStatSF.push('{{value.4.0.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.1.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.2.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.3.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.4.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.5.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.6.suitesFeriaPrice}}');
+      dataStatSF.push('{{value.4.7.suitesFeriaPrice}}');
+      
+      dataStatMedia.push('{% widthratio value.4.0.media value.4.0.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.1.media value.4.1.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.2.media value.4.2.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.3.media value.4.3.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.4.media value.4.4.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.5.media value.4.5.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.6.media value.4.6.media_cant 1 %}');
+      dataStatMedia.push('{% widthratio value.4.7.media value.4.7.media_cant 1 %}');
+
+      '{% for price in value.4.0.prices %}'
+        dataStat2.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.1.prices %}'
+        dataStat3.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.2.prices %}'
+        dataStat4.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.3.prices %}'
+        dataStat5.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.4.prices %}'
+        dataStat6.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.5.prices %}'
+        dataStat7.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.6.prices %}'
+        dataStat8.push('{{price.price}}');
+      '{% endfor %}'
+      '{% for price in value.4.7.prices %}'
+        dataStat9.push('{{price.price}}');
+      '{% endfor %}'
+    '{% endfor %}'
+
+    // Array principal que contiene todos los dataStat
+    const allDataStats = [dataStat2, dataStat3, dataStat4, dataStat5, dataStat6, dataStat7, dataStat8, dataStat9];
+    // Aquí se crean los arrays nuevos para cada posición
+    let newArrays = [];
+    // Determina el tamaño del primer array (asume que todos son del mismo tamaño)
+    const length = dataStat2.length;
+    // Crea nuevos arrays separados por posición
+    for (let i = 0; i < length; i++) {
+      let tempArray = [];
+      // Recorre todos los dataStat y extrae el valor en la posición actual
+      for (let j = 0; j < allDataStats.length; j++) {
+        tempArray.push(allDataStats[j][i]);
+      }
+      // Guarda el nuevo array resultante
+      newArrays.push(tempArray);
+    }
+
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Actual", "Dia 1", "Dia 2", "Dia 3", "Dia 4", "Dia 5", "Dia 6", "Dia 7"],
+        datasets: [{
+            label: "Disponibilidad",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: dataStatAV,
+            maxBarThickness: 6
+          },
+          {
+            label: "Suites feria",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: dataStatSF,
+            maxBarThickness: 6
+          },
+          {
+            label: "Media",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: dataStatMedia,
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 0",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#2dce89",
+            borderColor: "#2dce89",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: newArrays[0],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 1",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#6c757d",
+            borderColor: "#6c757d",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[1],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 2",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#6c757d",
+            borderColor: "#6c757d",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[2],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 3",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#6c757d",
+            borderColor: "#6c757d",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[3],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 4",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#6c757d",
+            borderColor: "#6c757d",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[4],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 5",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[5],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 6",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[6],
+            maxBarThickness: 6
+          },
+          {
+            label: "Posicion - 7",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#fb6340",
+            borderColor: "#fb6340",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[7],
+            maxBarThickness: 6
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'end',
+            labels: {
+              boxWidth: 6,
+              boxHeight: 6,
+              padding: 20,
+              pointStyle: 'circle',
+              borderRadius: 50,
+              usePointStyle: true,
+              font: {
+                weight: 600,
+              },
+            },
+            tooltip: {
+              backgroundColor: '#fff',
+              titleColor: '#1e293b',
+              bodyColor: '#1e293b',
+              borderColor: '#e9ecef',
+              borderWidth: 1,
+              pointRadius: 2,
+              usePointStyle: true,
+              boxWidth: 8,
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: true,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 10,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
   </script>
 
 
