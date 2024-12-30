@@ -50,6 +50,9 @@ class CopyPriceWithNameFromDayAdmin(admin.ModelAdmin):
 class CopyAvailWithDaySFAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class CopyComplementWithDayAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
@@ -66,3 +69,4 @@ admin.site.register(CopyPriceWithDay, CopyPriceWithDayAdmin)
 admin.site.register(PriceWithNameHotel, PriceWithNameHotelAdmin)
 admin.site.register(CopyPriceWithNameFromDay, CopyPriceWithNameFromDayAdmin)
 admin.site.register(CopyAvailWithDaySF, CopyAvailWithDaySFAdmin)
+admin.site.register(CopyComplementWithDay, CopyComplementWithDayAdmin)

@@ -95,6 +95,19 @@ def ejecutar_funcion():
                 )
         except Exception as e:
             logging.info(f"Error copy avail suites feria. {e}")
+
+
+        try:
+            logging.info("[+] Copy complement total search.")
+            for c in Complement.objects.filter(date_from = str(_date_from.date()), start = 4):
+                CopyComplementWithDay.objects.create(
+                    total_search = c.total_search,
+                    created = str(datetime.now().date()),
+                    complement = c
+                )
+        except Exception as e:
+            logging.info(f"Error complement total search. {e}")
+
         _date_from += timedelta(days=1)
 
     logging.info("[+] finish Copy")

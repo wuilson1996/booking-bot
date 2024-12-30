@@ -546,9 +546,8 @@ def index(request):
                 elif int(ocp) == 5:
                     bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] += cpwd.avail_4
 
-
                 #--------------
-                for comp in Complement.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp)):
+                for comp in Complement.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp), start=4):
                     if int(comp.start) in [4]:
                         bookings[str(_date_from.date())]["updated"] = generate_date_with_month_time(str(comp.updated))
                         bookings[str(_date_from.date())][int(ocp)]["total_search"] = comp.total_search
@@ -827,6 +826,14 @@ def booking_view(request):
                 bookings["bookings"][str(s)]["messageDay"] = []
                 for m in __message_by_day:
                     bookings["bookings"][str(s)]["messageDay"].append(f"{m.text} ----- {generate_date_with_month_time(str(m.updated))}")
+            
+            __com = None
+            avail_sf = None
+            if s == 4:
+                __com = Complement.objects.filter(date_from = request.GET["date"], occupancy = int(request.GET["occupancy"]), start = s).first()
+                bookings["bookings"][str(s)]["dispTotal"] = __com.total_search
+
+                avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
 
             for i in range(0, 8, 1):
                 #if i not in list(bookings["bookings"][str(s)].keys()):
@@ -872,8 +879,7 @@ def booking_view(request):
                                 {"price": 0, "bg": "bg-white", "color": "text-black"}
                             ]
 
-                if s == 4:
-                    avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
+                if s == 4 and avail_sf:
                     if i == 0:
                         avail_sf_cant = CantAvailSuitesFeria.objects.filter(
                             type_avail = int(request.GET["occupancy"]),
@@ -915,8 +921,20 @@ def booking_view(request):
                         elif int(request.GET["occupancy"]) == 5:
                             bookings["bookings"][str(s)][i]["suitesFeria1"] += cpwd.avail_4
 
-                    bookings["bookings"][str(s)][i]["suitesFeriaTotal"] = bookings["bookings"][str(s)][i]["suitesFeria2"] + bookings["bookings"][str(s)][i]["suitesFeria1"]
+                        if __com:
+                            __com_ht = CopyComplementWithDay.objects.filter(complement = __com).order_by("-id")[:7]
 
+                            try:
+                                __com2 = __com_ht[i - 1]
+                            except Exception as ecom:
+                                __com2 = CopyComplementWithDay()
+                                __com2.total_search = 0
+                                __com2.created = str(dt.now())
+
+                            bookings["bookings"][str(s)][i]["dispTotal"] = __com2.total_search
+
+                    bookings["bookings"][str(s)][i]["suitesFeriaTotal"] = bookings["bookings"][str(s)][i]["suitesFeria2"] + bookings["bookings"][str(s)][i]["suitesFeria1"]
+                    
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()), occupancy = int(request.GET["occupancy"])).first()
             if price_with_name_hotel:
                 price_w_name = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")

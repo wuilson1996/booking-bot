@@ -102,6 +102,8 @@
                           </h5><br>
                           <h5 class="text-info">.
                           </h5><br>
+                          <h5 class="text-info">.
+                          </h5><br>
                           {% for h in value.4.list2 %}
                             <h5 class="text-white">
                               {{h.title}}
@@ -109,6 +111,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.dispTotal %}{{value.4.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.0.suitesFeria2}} / D - {{value.4.0.suitesFeria1}}{% else %}{{value.4.0.suitesFeria1}}{% endif %}">{{value.4.0.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.0.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.0.media value.4.0.media_cant 1 %}</h4><hr>
@@ -117,6 +120,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.1.dispTotal %}{{value.4.1.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.1.suitesFeria2}} / D - {{value.4.1.suitesFeria1}}{% else %}{{value.4.1.suitesFeria1}}{% endif %}">{{value.4.1.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.1.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.1.media value.4.1.media_cant 1 %}</h4><hr>
@@ -125,6 +129,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.2.dispTotal %}{{value.4.2.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.2.suitesFeria2}} / D - {{value.4.2.suitesFeria1}}{% else %}{{value.4.2.suitesFeria1}}{% endif %}">{{value.4.2.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.2.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.2.media value.4.2.media_cant 1 %}</h4><hr>
@@ -133,6 +138,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.3.dispTotal %}{{value.4.3.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.3.suitesFeria2}} / D - {{value.4.3.suitesFeria1}}{% else %}{{value.4.3.suitesFeria1}}{% endif %}">{{value.4.3.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.3.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.3.media value.4.3.media_cant 1 %}</h4><hr>
@@ -141,6 +147,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.4.dispTotal %}{{value.4.4.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.4.suitesFeria2}} / D - {{value.4.4.suitesFeria1}}{% else %}{{value.4.4.suitesFeria1}}{% endif %}">{{value.4.4.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.4.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.4.media value.4.4.media_cant 1 %}</h4><hr>
@@ -149,6 +156,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.5.dispTotal %}{{value.4.5.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.5.suitesFeria2}} / D - {{value.4.5.suitesFeria1}}{% else %}{{value.4.5.suitesFeria1}}{% endif %}">{{value.4.5.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.5.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.5.media value.4.5.media_cant 1 %}</h4><hr>
@@ -157,6 +165,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.6.dispTotal %}{{value.4.6.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.6.suitesFeria2}} / D - {{value.4.6.suitesFeria1}}{% else %}{{value.4.6.suitesFeria1}}{% endif %}">{{value.4.6.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.6.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.6.media value.4.6.media_cant 1 %}</h4><hr>
@@ -165,6 +174,7 @@
                           {% endfor %}
                         </td>
                         <td>
+                          <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Total de hoteles">{% if value.4.7.dispTotal %}{{value.4.7.dispTotal}}{% else %}0{% endif %}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid: {% if request.GET.occupancy == '2' %}M - {{value.4.7.suitesFeria2}} / D - {{value.4.7.suitesFeria1}}{% else %}{{value.4.7.suitesFeria1}}{% endif %}">{{value.4.7.suitesFeriaTotal}}</h4><hr>
                           <h4 class="bg-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Hotel Suites Feria de Madrid">€ {{value.4.7.suitesFeriaPrice}}</h4><hr>
                           <h4 class="bg-primary text-white" data-bs-toggle="tooltip" data-bs-placement="right" title="Media">€ {% widthratio value.4.7.media value.4.7.media_cant 1 %}</h4><hr>
@@ -406,6 +416,7 @@
     dataStatMedia = []
     dataStatSF = []
     dataStatAV = []
+    dataStatTH = []
     dataStatName = []
 
     cont = 1;
@@ -436,6 +447,15 @@
       dataStatMedia.push('{% widthratio value.4.5.media value.4.5.media_cant 1 %}');
       dataStatMedia.push('{% widthratio value.4.6.media value.4.6.media_cant 1 %}');
       dataStatMedia.push('{% widthratio value.4.7.media value.4.7.media_cant 1 %}');
+
+      dataStatTH.push('{{value.4.dispTotal}}');
+      dataStatTH.push('{{value.4.1.dispTotal}}');
+      dataStatTH.push('{{value.4.2.dispTotal}}');
+      dataStatTH.push('{{value.4.3.dispTotal}}');
+      dataStatTH.push('{{value.4.4.dispTotal}}');
+      dataStatTH.push('{{value.4.5.dispTotal}}');
+      dataStatTH.push('{{value.4.6.dispTotal}}');
+      dataStatTH.push('{{value.4.7.dispTotal}}');
 
       '{% for price in value.4.0.prices %}'
         dataStat2.push('{{price.price}}');
@@ -479,13 +499,26 @@
       // Guarda el nuevo array resultante
       newArrays.push(tempArray);
     }
+    console.log(newArrays)
 
     new Chart(ctx1, {
       type: "line",
       data: {
         labels: ["Actual", "Dia 1", "Dia 2", "Dia 3", "Dia 4", "Dia 5", "Dia 6", "Dia 7"],
-        datasets: [{
-            label: "Disponibilidad",
+        datasets: [
+          {
+            label: "Total H.",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke,
+            data: dataStatTH,
+            maxBarThickness: 6
+          },{
+            label: "Disp",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -521,7 +554,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 0",
+            label: "Pos-0",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -533,7 +566,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 1",
+            label: "Pos-1",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -545,7 +578,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 2",
+            label: "Pos-2",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -557,7 +590,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 3",
+            label: "Pos-3",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -569,7 +602,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 4",
+            label: "Pos-4",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -581,7 +614,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 5",
+            label: "Pos-5",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -593,7 +626,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 6",
+            label: "Pos-6",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -605,7 +638,7 @@
             maxBarThickness: 6
           },
           {
-            label: "Posicion - 7",
+            label: "Pos-7",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
@@ -616,6 +649,18 @@
             data: newArrays[7],
             maxBarThickness: 6
           },
+          {
+            label: "Pos-8",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#f5365c",
+            borderColor: "#f5365c",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: newArrays[8],
+            maxBarThickness: 6
+          }
         ],
       },
       options: {

@@ -188,6 +188,14 @@ class CopyPriceWithDay(models.Model):
     def __str__(self):
         return self.price
 
+class CopyComplementWithDay(models.Model):
+    total_search = models.CharField(max_length=30)
+    created = models.DateField(null=True, blank=True)
+    complement = models.ForeignKey(Complement, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.total_search
+
 # agregar ocupacion de cada nombre de precio.
 class PriceWithNameHotel(models.Model):
     start = models.CharField(max_length=20)
