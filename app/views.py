@@ -569,7 +569,7 @@ def index(request):
 
                         _price3 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price3 != "":
-                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
 
@@ -585,7 +585,7 @@ def index(request):
                         
                         _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
-                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
                         #---------------------------------
@@ -608,7 +608,7 @@ def index(request):
                                     if _price:
                                         bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
                                         bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
-                                        if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9]:
+                                        if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
                                         bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
@@ -1060,7 +1060,7 @@ def booking_view(request):
                                 bookings["bookings"][str(b.booking.start)][cont]["min"] = int(cp_price)
 
                             if int(b.booking.start) == 4:
-                                if b.position in [0,1,2,3,4,9]:
+                                if b.position in [0,1,2,3,4,9,14,19,24]:
                                     bookings["bookings"][str(b.booking.start)][cont]["media"] += int(cp_price)
                                     bookings["bookings"][str(b.booking.start)][cont]["media_cant"] += 1
                             elif int(b.booking.start) == 3:
