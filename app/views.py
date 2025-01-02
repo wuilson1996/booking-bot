@@ -1051,7 +1051,8 @@ def booking_view(request):
             for st,v in bookings["bookings"].items():#3,4
                 #print(st)
                 for k,v2 in v.items():#0,1,2,3,4,5,...,8
-                    if "list" not in str(k) and "title" not in str(k) and "messageDay" not in str(k):
+                    #print(k)
+                    if "list" not in str(k) and "title" not in str(k) and "messageDay" not in str(k) and "dispTotal" not in str(k):
                         #print(k)
                         v2["prices"] = sorted(v2["prices"], key=lambda x: int(x["position"]))
                     elif "list2" == str(k):

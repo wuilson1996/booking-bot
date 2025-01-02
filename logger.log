@@ -1,2 +1,50 @@
 INFO:root:Esperando 2.36 horas hasta la próxima ejecución
 WARNING:django.request:Not Found: /favicon.ico
+INFO:root:Esperando 11.69 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
+INFO:root:Esperando 11.65 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.95 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.93 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.93 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.92 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.92 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.91 horas hasta la próxima ejecución
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 834, in booking_view
+    bookings["bookings"][str(s)][0]["dispTotal"] = __com.total_search
+KeyError: 0
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.88 horas hasta la próxima ejecución
+ERROR:django.request:Internal Server Error: /booking
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 834, in booking_view
+    bookings["bookings"][str(s)][0]["dispTotal"] = __com.total_search
+KeyError: 0
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.76 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.76 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.75 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.73 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.71 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
+INFO:root:Esperando 10.59 horas hasta la próxima ejecución
