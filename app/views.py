@@ -1018,7 +1018,7 @@ def booking_view(request):
                             bookings["bookings"][str(b.booking.start)][0]["min"] = int(_price)
 
                         if int(b.booking.start) == 4:
-                            if b.position in [0,1,2,3,4,9]:
+                            if b.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings["bookings"][str(b.booking.start)][0]["media"] += int(_price)
                                 bookings["bookings"][str(b.booking.start)][0]["media_cant"] += 1
                         elif int(b.booking.start) == 3:
