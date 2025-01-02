@@ -1157,6 +1157,8 @@
     dataDwo = []
     dataBoston = []
     dataSenator = []
+    dataTor2 = []
+    dataMedia = []
 
     dataStatName = []
     '{% for date, value in bookings.items %}'
@@ -1172,14 +1174,20 @@
       dataDwo.push("{% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}");
       dataBoston.push("{% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}");
       dataSenator.push("{% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}");
+      dataTor2.push("{% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}");
       dataStatName.push('{{value.date_from}}');
+      dataMedia.push('{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %}');
+      //console.log('{{value.2.media_name_hotel}}');
+      //console.log('{{value.2.media_cant_name_hotel}}');
     '{% endfor %}'
 
+    
     new Chart(ctx2, {
       type: "line",
       data: {
         labels: dataStatName,
-        datasets: [{
+        datasets: [
+          {
             label: "Suites Feria",
             tension: 0.4,
             borderWidth: 0,
@@ -1192,12 +1200,24 @@
             maxBarThickness: 6
           },
           {
+            label: "Media",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#f5365c",
+            borderColor: "#f5365c",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataMedia,
+            maxBarThickness: 6
+          },
+          {
             label: "ZENIT",
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#adb5bd",
-            borderColor: "#adb5bd",
+            pointBackgroundColor: "#5e72e4",
+            borderColor: "#5e72e4",
             borderWidth: 3,
             backgroundColor: gradientStroke,
             data: dataZenit,
@@ -1208,11 +1228,23 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#5e72e4",
-            borderColor: "#5e72e4",
+            pointBackgroundColor: "#fb6340",
+            borderColor: "#fb6340",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataOsuna,
+            maxBarThickness: 6
+          },
+          {
+            label: "TRAVEL",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 2,
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: dataTor2,
             maxBarThickness: 6
           },
           {
@@ -1220,8 +1252,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#fb6340",
-            borderColor: "#fb6340",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataIlunion,
@@ -1232,8 +1264,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#5e72e4",
-            borderColor: "#5e72e4",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataEco,
@@ -1244,8 +1276,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#2dce89",
-            borderColor: "#2dce89",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataSilken,
@@ -1268,8 +1300,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#6c757d",
-            borderColor: "#6c757d",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataSercotel,
@@ -1280,8 +1312,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#2dce89",
-            borderColor: "#2dce89",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataAxor,
@@ -1292,8 +1324,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#6c757d",
-            borderColor: "#6c757d",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataDwo,
@@ -1304,8 +1336,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#2dce89",
-            borderColor: "#2dce89",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataBoston,
@@ -1316,8 +1348,8 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 2,
-            pointBackgroundColor: "#fb6340",
-            borderColor: "#fb6340",
+            pointBackgroundColor: "#adb5bd",
+            borderColor: "#adb5bd",
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataSenator,

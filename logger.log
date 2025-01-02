@@ -48,3 +48,43 @@ INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\bookin
 INFO:root:Esperando 10.71 horas hasta la próxima ejecución
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
 INFO:root:Esperando 10.59 horas hasta la próxima ejecución
+INFO:root:Esperando 10.39 horas hasta la próxima ejecución
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 10.13 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 9.65 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 9.65 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 9.64 horas hasta la próxima ejecución
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 649, in index
+    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+KeyError: 'media_name_hotel'
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 9.61 horas hasta la próxima ejecución
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 9.46 horas hasta la próxima ejecución
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
