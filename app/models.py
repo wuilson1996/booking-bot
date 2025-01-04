@@ -112,7 +112,7 @@ class Price(models.Model):
     created = models.DateTimeField(null=True, blank=True)
 
     def __str__(self) -> str:
-        return str(self.price)
+        return str(self.price)+" - "+str(self.occupancy)
 
 class MessageByDay(models.Model):
     date_from = models.CharField(max_length=30)
@@ -234,3 +234,17 @@ class CopyAvailWithDaySF(models.Model):
 
     def __str__(self):
         return str(self.avail_suites_feria)+" | "+ str(self.avail_1)+" | "+ str(self.avail_2)+" | "+ str(self.avail_4)
+    
+class CredentialPlataform(models.Model):
+    TEXT_PLATAFORM = (
+        ("suitesferia", "suitesferia"),
+        ("roomprice", "roomprice"),
+    )
+    plataform_option = models.TextField(choices=TEXT_PLATAFORM, default="suitesferia")
+    username = models.CharField(max_length=256)
+    password = models.CharField(max_length=256)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.plataform_option)

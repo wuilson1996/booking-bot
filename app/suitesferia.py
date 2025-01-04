@@ -1,12 +1,12 @@
 import requests
 
 class SuitesFeria:
-    def __init__(self) -> None:
+    def __init__(self, username, password) -> None:
         self.headers = {
             'Cookie': 'greenhotelcloud_session=eyJpdiI6InlTZjVrQzh3MjNFR25aSWhBRUQ0cWc9PSIsInZhbHVlIjoiMmZBR1VyQ2ZPTW9zbkp3Um1ZZFRHWnA1dEJqN1dVRDcwanY1YjFWUzJDQUtVOVRRRnlaZHY3ai9raFl0K0wyTE0xUXJXTUp4MCtyRG83bWJTL1lHYXhIZkI2WGVyb1JuZEZielB0SnBLcG5ZdnBoQk9nSjhjTC9JUjEvY0RhN0IiLCJtYWMiOiI5YTFjODJmZGI1MzczZmU5YTU0OTIyNWNiN2IzOGI1NTVkOWQ1MmUyMGRiMDU0NzMyZmNlZGI3MWFmZWU2ZjVhIiwidGFnIjoiIn0%3D'
         }
-        self.username = 'karine@hotelsuitesferia.com'
-        self.password = 'APkfBHj77V'
+        self.username = username
+        self.password = password
         self.url = "https://hotelsuitesferia.greenhotel.cloud"
 
     def login(self):

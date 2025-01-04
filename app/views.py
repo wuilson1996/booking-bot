@@ -12,6 +12,7 @@ import subprocess
 from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
+from .fee import FeeTask
 
 def generate_date_with_month(_date:str):
     ___date_from = dt(
@@ -32,46 +33,48 @@ def generate_date_with_month_time(_date:str):
     return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')+" "+_time[:-3]
 
 def active_process_sf():
-    while True:
-        # get data suitesferia.
-        try:
-            suites_feria = SuitesFeria()
-            resp = suites_feria.login()
-            logging.info(f"[+] Login suites feria: {dt.now()} {resp}")
-            if resp["code"] == 200:
-                resp_sf = suites_feria.disponibilidad()
-                resp_sf = suites_feria.format_avail(resp_sf)
-                for dsf in resp_sf:
-                    avail_sf = AvailSuitesFeria.objects.filter(date_avail = dsf["date"]).first()
-                    if not avail_sf:
-                        avail_sf = AvailSuitesFeria.objects.create(date_avail = dsf["date"])
-                    for key_sf, value_sf in dsf["avail"].items():
-                        cant_asf = CantAvailSuitesFeria.objects.filter(avail_suites_feria = avail_sf, type_avail = key_sf).first()
-                        if not cant_asf:
-                            cant_asf = CantAvailSuitesFeria.objects.create(
-                                type_avail = key_sf,
-                                avail = value_sf,
-                                avail_suites_feria = avail_sf
-                            )
-                        else:
-                            cant_asf.avail = value_sf
-                            cant_asf.save()
-                resp_l = suites_feria.logout()
-                logging.info(f"[+] Logout suites feria: {dt.now()} {resp_l}")
-            
-            state = False
-            for p in ProcessActive.objects.all():
-                if not p.currenct and not p.active:
-                    state = True
+    _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
+    if _credential:
+        while True:
+            # get data suitesferia.
+            try:
+                suites_feria = SuitesFeria(_credential.username, _credential.password)
+                resp = suites_feria.login()
+                logging.info(f"[+] Login suites feria: {dt.now()} {resp}")
+                if resp["code"] == 200:
+                    resp_sf = suites_feria.disponibilidad()
+                    resp_sf = suites_feria.format_avail(resp_sf)
+                    for dsf in resp_sf:
+                        avail_sf = AvailSuitesFeria.objects.filter(date_avail = dsf["date"]).first()
+                        if not avail_sf:
+                            avail_sf = AvailSuitesFeria.objects.create(date_avail = dsf["date"])
+                        for key_sf, value_sf in dsf["avail"].items():
+                            cant_asf = CantAvailSuitesFeria.objects.filter(avail_suites_feria = avail_sf, type_avail = key_sf).first()
+                            if not cant_asf:
+                                cant_asf = CantAvailSuitesFeria.objects.create(
+                                    type_avail = key_sf,
+                                    avail = value_sf,
+                                    avail_suites_feria = avail_sf
+                                )
+                            else:
+                                cant_asf.avail = value_sf
+                                cant_asf.save()
+                    resp_l = suites_feria.logout()
+                    logging.info(f"[+] Logout suites feria: {dt.now()} {resp_l}")
+                
+                state = False
+                for p in ProcessActive.objects.all():
+                    if not p.currenct and not p.active:
+                        state = True
 
-            if state:
-                break
-            time.sleep(30)
-        except Exception as er:
-            logging.info(f"[+] {dt.now()} Error Get Suites feria: "+str(er))
-            time.sleep(30)
+                if state:
+                    break
+                time.sleep(30)
+            except Exception as er:
+                logging.info(f"[+] {dt.now()} Error Get Suites feria: "+str(er))
+                time.sleep(30)
 
-    logging.info(f"[+] {dt.now()} Finalizando process suites feria...")
+        logging.info(f"[+] {dt.now()} Finalizando process suites feria...")
 
 def active_process():
     for a in AvailableBooking.objects.all():
@@ -287,6 +290,15 @@ def save_message(request):
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_message_by_day.updated))}
     return Response(result)
 
+def task_save_fee(price, tipo, _date):
+    _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
+    if _credential:
+        fee = FeeTask()
+        _driver = fee._driver()
+        fee.controller(_driver, price, tipo, _date, _credential.username, _credential.password)
+        sleep(5)
+        fee.close(_driver)
+
 @api_view(["POST"])
 def save_price(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
@@ -307,6 +319,23 @@ def save_price(request):
             _price.price = request.data["text"]
             _price.updated = dt.now()
             _price.save()
+        
+        try:
+            task_save_fee(
+                request.data["text"],
+                int(request.data["occupancy"]),
+                request.data["date"]
+            )
+            # threading.Thread(
+            #     target=task_save_fee, 
+            #     args=(
+            #         request.data["text"],
+            #         int(request.data["occupancy"]),
+            #         request.data["date"]
+            #     )
+            # ).start()
+        except Exception as e:
+            print(f"Error price: {e}")
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
     return Response(result)
 
@@ -451,7 +480,27 @@ def index(request):
                         "price":__price.price, 
                         "updated": generate_date_with_month_time(str(__price.updated))
                     }
-
+                    if int(ocp) == 2:
+                        __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=1).last()
+                        if __price:
+                            bookings[str(_date_from.date())][int(ocp)]["tarifa1"] = {
+                                "price":__price.price, 
+                                "updated": generate_date_with_month_time(str(__price.updated))
+                            }
+                    if int(ocp) == 3:
+                        __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=4).last()
+                        if __price:
+                            bookings[str(_date_from.date())][int(ocp)]["tarifa1"] = {
+                                "price":__price.price, 
+                                "updated": generate_date_with_month_time(str(__price.updated))
+                            }
+                    if int(ocp) == 5:
+                        __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=6).last()
+                        if __price:
+                            bookings[str(_date_from.date())][int(ocp)]["tarifa1"] = {
+                                "price":__price.price, 
+                                "updated": generate_date_with_month_time(str(__price.updated))
+                            }
                 # get message
                 __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __message_by_day:

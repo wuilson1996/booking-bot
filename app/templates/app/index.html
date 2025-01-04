@@ -212,11 +212,18 @@
                           <h5 class="text-white">{{value.2.total_search_192}}%</h5>
                         </td>
                         <td class="text-sm">
+                          <!---->
+                          <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
+                          </div>
                           <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
                           </div>
+                          <!---->
                           <h4 class="text-white text-center">
                             <table class="table table-flush text-white table-sm">
                               <tbody>
@@ -376,6 +383,11 @@
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
                           </div>
+                          <span class="text-white text-lg" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
+                          </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
                             {% if "priceSuitesFeriaRest1" in value.3 %}{{value.3.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
@@ -502,6 +514,11 @@
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                          </div>
+                          <span class="text-white text-lg" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
@@ -689,7 +706,6 @@
 	</a>
 </div>
 
-
 {% include 'includes/scripts.html' %}
 
 <script>
@@ -872,6 +888,7 @@
     }
     function savePrice(_date, occupancy, inputId){
       inputText = document.getElementById("price"+inputId).value;
+      showLoader(inputId);
       $.ajax({
           url: '/save/price',
           type: 'POST',
@@ -892,6 +909,15 @@
             console.log("Ocurrio un error");
           }
       });
+    }
+    function showLoader(inputId){
+      console.log("Loader");
+      $("#priceDate"+inputId).text("");
+      $("#priceDate"+inputId).append(
+        '<div class="spinner-grow text-dark text-center" role="status">'+
+          '<span class="sr-only">Loading...</span>'+
+        '</div>'
+      );
     }
     function tempOption(_date){
       numTemp = document.getElementById("temp"+_date).value;

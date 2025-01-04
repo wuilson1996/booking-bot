@@ -106,3 +106,66 @@ INFO:root:Esperando 5.95 horas hasta la próxima ejecución
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
 INFO:root:Esperando 5.45 horas hasta la próxima ejecución
+INFO:root:Esperando 7.69 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
+INFO:root:Esperando 7.69 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 7.62 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 7.36 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:Esperando 7.34 horas hasta la próxima ejecución
+INFO:root:Esperando 6.39 horas hasta la próxima ejecución
+INFO:root:Esperando 6.39 horas hasta la próxima ejecución
+WARNING:django.request:Not Found: /adin
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:Esperando 6.34 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:Esperando 6.28 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 6.14 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 6.13 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 6.12 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 6.10 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 5.89 horas hasta la próxima ejecución
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:Esperando 5.25 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:Esperando 4.50 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:Esperando 4.50 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 4.50 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:Esperando 4.46 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:Esperando 4.44 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:Esperando 4.44 horas hasta la próxima ejecución
+INFO:root:Esperando 4.43 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\admin.py changed, reloading.
+INFO:root:Esperando 4.42 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 4.40 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\suitesferia.py changed, reloading.
+INFO:root:Esperando 4.38 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 4.34 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 4.33 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 4.30 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:Esperando 4.27 horas hasta la próxima ejecución
