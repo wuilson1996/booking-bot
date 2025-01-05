@@ -67,6 +67,7 @@ class FeeTask:
 
             while True:
                 status = False
+                logging.info(f"[+] search buttons calendar...")
                 for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         logging.info(f"[+] Fecha: {str(b.get_attribute('data-testid'))}...")
@@ -115,6 +116,7 @@ class FeeTask:
                     logging.info("[+] Aumenta calendario...")
                     driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']").click()
                     sleep(3)
+                    logging.info(f"[+] Click button next calendar success...")
         
         except Exception as e:
             logging.info("Error: "+str(e))
