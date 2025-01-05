@@ -321,19 +321,19 @@ def save_price(request):
             _price.save()
         
         try:
-            task_save_fee(
-                request.data["text"],
-                int(request.data["occupancy"]),
-                request.data["date"]
-            )
-            # threading.Thread(
-            #     target=task_save_fee, 
-            #     args=(
-            #         request.data["text"],
-            #         int(request.data["occupancy"]),
-            #         request.data["date"]
-            #     )
-            # ).start()
+            # task_save_fee(
+            #     request.data["text"],
+            #     int(request.data["occupancy"]),
+            #     request.data["date"]
+            # )
+            threading.Thread(
+                target=task_save_fee, 
+                args=(
+                    request.data["text"],
+                    int(request.data["occupancy"]),
+                    request.data["date"]
+                )
+            ).start()
         except Exception as e:
             print(f"Error price: {e}")
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
