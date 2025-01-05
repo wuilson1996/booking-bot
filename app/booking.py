@@ -148,7 +148,7 @@ class BookingSearch:
                                     except ElementClickInterceptedException:
                                         driver.execute_script("arguments[0].click();", check_start)
                                         sleep(2)
-                                    logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
+                                    #logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
                                     break
                                     
                         except NoSuchElementException as e:
@@ -167,7 +167,7 @@ class BookingSearch:
                                         except ElementClickInterceptedException:
                                             driver.execute_script("arguments[0].click();", check_start)
                                             sleep(2)
-                                        logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                                        #logging.info(f"[+] {dt.now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                         break
                                         
                             except NoSuchElementException as e:
@@ -187,7 +187,7 @@ class BookingSearch:
                             for s in elements:
                                 #logging.info(f"{s}")
                                 if "Hoteles" == str(s.get('aria-label')).split(":")[0].strip() or "Hotels" == str(s.get('aria-label')).split(":")[0].strip():
-                                    logging.info(f"{s}")
+                                    #logging.info(f"{s}")
                                     check_hotel = driver.find_element_by_xpath("//input[@id='"+str(s.get("id"))+"']")
                                     try:
                                         driver.execute_script("arguments[0].scrollIntoView(true);", check_hotel)
@@ -201,7 +201,7 @@ class BookingSearch:
                                         driver.execute_script("arguments[0].click();", check_hotel)
                                         sleep(2)
                                         
-                                    logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                                    #logging.info(f"[+] {dt.now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                     break
                         except Exception as e:
                             logging.info(f"[-] {dt.now()} Error in Hoteles button general: "+str(e))
@@ -229,7 +229,7 @@ class BookingSearch:
                             except ElementClickInterceptedException as e2:
                                 driver.execute_script("arguments[0].click();", check_price)
                                 sleep(2)
-                            logging.info(f"[+] {dt.now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                            #logging.info(f"[+] {dt.now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                         except NoSuchElementException as e:
                             logging.info(f"[-] {dt.now()} Error in button price, not fount")
                         except ElementClickInterceptedException as e:
@@ -240,11 +240,11 @@ class BookingSearch:
                     sleep(3)
                     # Items booking search
                     items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
-                    logging.info(f"[+] {dt.now()} Elementos encontrados: {len(items)} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                    #logging.info(f"[+] {dt.now()} Elementos encontrados: {len(items)} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                     total_search = 0
                     try:
                         total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
-                        logging.info(f"[+] {dt.now()} Total search success: {total_search} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
+                        #logging.info(f"[+] {dt.now()} Total search success: {total_search} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                         total_search = total_search.replace(",", "").replace(".", "")
                     except NoSuchElementException as e:
                         logging.info(f"[-] {dt.now()} Error in get total_search, not fount")
@@ -275,7 +275,7 @@ class BookingSearch:
                             logging.info(f"[-] {dt.now()} Error 228: "+str(er2))
 
                     try:
-                        logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
+                        #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
                         for position in process.position:
                             cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process)
                     except Exception as e:
@@ -513,7 +513,7 @@ class BookingSearch:
                         #_available.occupancy = occupancy
                         _available.booking = bg
                         _available.save()
-                    logging.info(item_dict)
+                    #logging.info(item_dict)
                 else:
                     logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
             else:
@@ -538,7 +538,7 @@ class BookingSearch:
                     price_with_name_hotel.price = item_dict["price"]
                     price_with_name_hotel.save()
                 
-                logging.info(f"[+] Data Start success: {item_dict}")
+                #logging.info(f"[+] Data Start success: {item_dict}")
 
         except Exception as e:
             logging.info(f"[-] {dt.now()} Error General data: "+str(e))

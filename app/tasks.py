@@ -32,7 +32,7 @@ def ejecutar_funcion():
     
     while _date_from.date() <= _date_to.date():
         try:
-            logging.info("[+] Copy price.")
+            #logging.info("[+] Copy price.")
             # copy price with booking
             for ocp in occupancys:
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
@@ -48,7 +48,7 @@ def ejecutar_funcion():
             logging.info(f"Error copy price. {e}")
             
         try:
-            logging.info("[+] Copy price suites feria.")
+            #logging.info("[+] Copy price suites feria.")
             # copy price with suites feria.
             price_with_names = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()))
             for price_with_name in price_with_names:
@@ -61,7 +61,7 @@ def ejecutar_funcion():
             logging.info(f"Error copy price suites feria. {e}")
 
         try:
-            logging.info("[+] Copy avail suites feria.")
+            #logging.info("[+] Copy avail suites feria.")
             # copy avail with suites feria.
             asf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).first()
             if asf:
@@ -98,7 +98,7 @@ def ejecutar_funcion():
 
 
         try:
-            logging.info("[+] Copy complement total search.")
+            #logging.info("[+] Copy complement total search.")
             for c in Complement.objects.filter(date_from = str(_date_from.date()), start = 4):
                 CopyComplementWithDay.objects.create(
                     total_search = c.total_search,
