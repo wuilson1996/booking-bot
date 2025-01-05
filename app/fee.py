@@ -78,7 +78,7 @@ class FeeTask:
                 logging.info(f"[+] search buttons calendar...")
                 for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
-                        logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
+                        #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
                         if _date == str(b.get_attribute("data-testid")):
                             logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
                             status = True

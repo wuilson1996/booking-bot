@@ -102,9 +102,12 @@ class AvailWithDate(models.Model):
 class Price(models.Model):
     date_from = models.CharField(max_length=30)
     OCCUPANCYS = (
+        (1, "1 Personas"),
         (2, "2 Personas"),
         (3, "3 Personas"),
-        (5, "5 Personas")
+        (4, "4 Personas"),
+        (5, "5 Personas"),
+        (6, "6 Personas")
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     price = models.CharField(max_length=50)
