@@ -31,7 +31,7 @@ class FeeTask:
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
 
-        options.set_preference("browser.privatebrowsing.autostart", True)
+        #options.set_preference("browser.privatebrowsing.autostart", True)
 
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
@@ -65,6 +65,12 @@ class FeeTask:
                     break
                 sleep(1)
 
+            try:
+                button_update = driver.find_element_by_xpath("//button[@id='headlessui-popover-button-:r3j:']")
+                logging.info(button_update.text)
+            except Exception as e1:
+                logging.info(f"Error button update: {e1}")
+
             while True:
                 status = False
                 logging.info(f"[+] search buttons calendar...")
@@ -75,17 +81,20 @@ class FeeTask:
                             logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
                             status = True
                             b.click()
+                            logging.info(f"[+] Click fecha success...")
                             sleep(3)
                             driver.find_element_by_xpath("//button[@data-testid='editPricesTab']").click()
+                            logging.info(f"[+] Click button edit price tab success...")
                             sleep(1)
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
                                     b2.click()
+                                    logging.info(f"[+] Precios fijos click success...")
                                     sleep(2)
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
                                         bs.click()
-
+                                    logging.info(f"[+] Button switch success...")
                                     if tipo == 1:
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
                                         input_price.clear()
