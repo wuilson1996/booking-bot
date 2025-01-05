@@ -68,7 +68,8 @@ class FeeTask:
             logging.info(f"[+] Login success...")
             try:
                 for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
-                    logging.info(button_update.text)
+                    if "Actualizar tarifas" in button_update.text:
+                        logging.info(button_update.text)
             except Exception as e1:
                 logging.info(f"Error button update: {e1}")
 
