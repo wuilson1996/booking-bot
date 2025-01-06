@@ -95,6 +95,7 @@ class FeeTask:
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
                                         bs.click()
+                                    sleep(1)
                                     logging.info(f"[+] Button switch success...")
                                     if tipo == 1:
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
@@ -153,7 +154,7 @@ class FeeTask:
                     logging.info(f"[+] Click button next calendar success...")
         
         except Exception as e:
-            logging.info("Error: "+str(e))
+            logging.info("Error Fee: "+str(e))
     
     @classmethod
     def close(cls, driver):
