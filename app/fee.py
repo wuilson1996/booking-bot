@@ -66,12 +66,11 @@ class FeeTask:
                 sleep(1)
 
             logging.info(f"[+] Login success...")
-            try:
-                for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
-                    if "Actualizar tarifas" in button_update.text:
-                        logging.info(button_update.text)
-            except Exception as e1:
-                logging.info(f"Error button update: {e1}")
+            # try:
+            #     for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
+            #         logging.info(button_update.text)
+            # except Exception as e1:
+            #     logging.info(f"Error button update: {e1}")
 
             while True:
                 status = False
@@ -122,11 +121,35 @@ class FeeTask:
                             break
                 if status:
                     logging.info("[+] Encontrada...")
+                    sleep(3)
+                    try:
+                        for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
+                            if "Actualizar tarifas" in button_update.text:
+                                logging.info(button_update.text)
+                                #button_update.click()
+                                driver.execute_script("arguments[0].click();", button_update)
+                                sleep(1)
+                                for b in driver.find_elements_by_xpath("//div[@role='radio']"):
+                                    if "Próximos 3 meses" in b.text:
+                                        logging.info(b.text)
+                                        driver.execute_script("arguments[0].click();", b)
+                                        sleep(1)
+                                        for btt in driver.find_elements_by_xpath("//button[@type='button']"):
+                                            if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML"):
+                                                logging.info(btt.text)
+                                                #logging.info(btt.get_attribute("innerHTML"))
+                                                btt.click()
+                                                sleep(10)
+                                                break
+                                        break
+                                break
+                    except Exception as e1:
+                        logging.info(f"Error button update: {e1}")
                     break
                 else:
                     logging.info("[+] Aumenta calendario...")
                     driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']").click()
-                    sleep(5)
+                    sleep(3)
                     logging.info(f"[+] Click button next calendar success...")
         
         except Exception as e:

@@ -56,6 +56,9 @@ class CopyComplementWithDayAdmin(admin.ModelAdmin):
 class CredentialPlataformAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class CronActiveAdmin(admin.ModelAdmin):
+    search_fields = ["id"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
@@ -74,3 +77,4 @@ admin.site.register(CopyPriceWithNameFromDay, CopyPriceWithNameFromDayAdmin)
 admin.site.register(CopyAvailWithDaySF, CopyAvailWithDaySFAdmin)
 admin.site.register(CopyComplementWithDay, CopyComplementWithDayAdmin)
 admin.site.register(CredentialPlataform, CredentialPlataformAdmin)
+admin.site.register(CronActive, CronActiveAdmin)

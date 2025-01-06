@@ -7,12 +7,22 @@ from rest_framework.response import Response
 import locale
 import threading
 from datetime import datetime as dt
+from django.utils.timezone import now
 import time
 import subprocess
 from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
 from .fee import FeeTask
+
+def reset_task():
+    logging.info("[+] Check cron active...")
+    for t in CronActive.objects.filter(active=True):
+        t.active = False
+        t.save()
+    logging.info("[+] Check cron active finish...")
+
+threading.Thread(target=reset_task).start()
 
 def generate_date_with_month(_date:str):
     ___date_from = dt(
@@ -291,13 +301,39 @@ def save_message(request):
     return Response(result)
 
 def task_save_fee(price, tipo, _date):
-    _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
-    if _credential:
-        fee = FeeTask()
-        _driver = fee._driver()
-        fee.controller(_driver, price, tipo, _date, _credential.username, _credential.password)
-        sleep(5)
-        fee.close(_driver)
+    try:
+        _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
+        if _credential:
+            cron_active = CronActive.objects.last()
+            #print(cron_active)
+            if cron_active:
+                if cron_active.active:
+                    cron = CronActive.objects.create(
+                        active = True,
+                        current_date = cron_active.current_date + datetime.timedelta(minutes=1)
+                    )
+                else:
+                    cron = CronActive.objects.create(
+                        active = True,
+                        current_date = now()
+                    )
+            else:
+                cron = CronActive.objects.create(
+                    active = True,
+                    current_date = now()
+                )
+            while cron.current_date > now():
+                pass
+
+            fee = FeeTask()
+            _driver = fee._driver()
+            fee.controller(_driver, price, tipo, _date, _credential.username, _credential.password)
+            sleep(5)
+            fee.close(_driver)
+            cron.active = False
+            cron.save()
+    except Exception as e:
+        logging.info(f"Error task fee: {e}")
 
 @api_view(["POST"])
 def save_price(request):

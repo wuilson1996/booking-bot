@@ -251,3 +251,10 @@ class CredentialPlataform(models.Model):
 
     def __str__(self) -> str:
         return str(self.plataform_option)
+    
+class CronActive(models.Model):
+    active = models.BooleanField(default=False)
+    current_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.active)+" | "+str(self.current_date)
