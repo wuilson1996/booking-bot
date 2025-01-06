@@ -310,7 +310,7 @@ def task_save_fee(price, tipo, _date):
                 if cron_active.active:
                     cron = CronActive.objects.create(
                         active = True,
-                        current_date = cron_active.current_date + datetime.timedelta(minutes=1)
+                        current_date = cron_active.current_date + datetime.timedelta(minutes=1, seconds=30)
                     )
                 else:
                     cron = CronActive.objects.create(
