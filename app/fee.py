@@ -43,7 +43,7 @@ class FeeTask:
             return cls._driver_firefox()
 
     @classmethod
-    def controller(cls, driver, price, tipo, _date, username, password):
+    def controller(cls, driver, price, _date, username, password):
         try:
             driver.get(cls._url)
             driver.implicitly_wait(15)
@@ -97,23 +97,33 @@ class FeeTask:
                                         bs.click()
                                     sleep(1)
                                     logging.info(f"[+] Button switch success...")
-                                    if tipo == 1:
+                                    if "1" in price.keys():
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
                                         input_price.clear()
-                                        input_price.send_keys(str(price))
+                                        input_price.send_keys(str(price["1"]))
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.4.id']")
-                                    elif tipo == 2:
+                                        input_price.clear()
+                                        input_price.send_keys(str(price["1"]))
+                                    if "2" in price.keys():
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.0.id']")
-                                    elif tipo == 3:
+                                        input_price.clear()
+                                        input_price.send_keys(str(price["2"]))
+                                    if "3" in price.keys():
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.1.id']")
-                                    elif tipo == 4:
+                                        input_price.clear()
+                                        input_price.send_keys(str(price["3"]))
+                                    if "4" in price.keys():
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.2.id']")
-                                    elif tipo == 5:
+                                        input_price.clear()
+                                        input_price.send_keys(str(price["4"]))
+                                    if "5" in price.keys():
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.5.id']")
-                                    elif tipo == 6:
+                                        input_price.clear()
+                                        input_price.send_keys(str(price["5"]))
+                                    if "6" in price.keys():
                                         input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.6.id']")
-                                    input_price.clear()
-                                    input_price.send_keys(str(price))
+                                        input_price.clear()
+                                        input_price.send_keys(str(price["6"]))
 
                                     sleep(1)
                                     driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']").click()

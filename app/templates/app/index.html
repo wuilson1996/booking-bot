@@ -153,7 +153,9 @@
               {% for date, value in bookings.items %}
               <tr>
                 <td id="temp-bg{{date}}" class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                  
+                  <button class="btn btn-white btn-xs" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
+                  </br>
+                  <hr>
                   <h4 class="text-white my-4">{{value.date_from}}</h4>
                   </br>
                   </br>
@@ -896,6 +898,26 @@
             date: _date,
             occupancy: occupancy,
             text: inputText
+          },
+          headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+          success: function(json) {
+            console.log(json);
+            if (json.code == 200){
+              $("#priceDate"+inputId).text("");
+              $("#priceDate"+inputId).append(json.updated);
+            }
+          },
+          error: function(error) {
+            console.log("Ocurrio un error");
+          }
+      });
+    }
+    function upgradeFee(_date){
+      $.ajax({
+          url: '/upgrade/fee',
+          type: 'POST',
+          data:{
+            date: _date
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {

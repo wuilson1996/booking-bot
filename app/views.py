@@ -300,7 +300,7 @@ def save_message(request):
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_message_by_day.updated))}
     return Response(result)
 
-def task_save_fee(price, tipo, _date):
+def task_save_fee(price, _date):
     try:
         _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
         if _credential:
@@ -327,13 +327,34 @@ def task_save_fee(price, tipo, _date):
 
             fee = FeeTask()
             _driver = fee._driver()
-            fee.controller(_driver, price, tipo, _date, _credential.username, _credential.password)
+            fee.controller(_driver, price, _date, _credential.username, _credential.password)
             sleep(5)
             fee.close(_driver)
             cron.active = False
             cron.save()
     except Exception as e:
         logging.info(f"Error task fee: {e}")
+
+@api_view(["POST"])
+def upgrade_fee(request):
+    result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
+    if request.user.is_authenticated:
+        try:
+            _prices = {}
+            for p in Price.objects.filter(date_from = request.data["date"]):
+                _prices[str(p.occupancy)] = p.price
+            threading.Thread(
+                target=task_save_fee, 
+                args=(
+                    _prices,
+                    request.data["date"]
+                )
+            ).start()
+        except Exception as e:
+            print(f"Error price: {e}")
+
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+    return Response(result)
 
 @api_view(["POST"])
 def save_price(request):
@@ -356,22 +377,6 @@ def save_price(request):
             _price.updated = dt.now()
             _price.save()
         
-        try:
-            # task_save_fee(
-            #     request.data["text"],
-            #     int(request.data["occupancy"]),
-            #     request.data["date"]
-            # )
-            threading.Thread(
-                target=task_save_fee, 
-                args=(
-                    request.data["text"],
-                    int(request.data["occupancy"]),
-                    request.data["date"]
-                )
-            ).start()
-        except Exception as e:
-            print(f"Error price: {e}")
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
     return Response(result)
 
