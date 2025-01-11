@@ -97,7 +97,7 @@ class FeeTask:
                                         bs.click()
                                     sleep(1)
                                     logging.info(f"[+] Button switch success...")
-                                    
+
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
                                     input_price.clear()
                                     input_price2 = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.4.id']")
@@ -150,7 +150,7 @@ class FeeTask:
                                     if "Próximos 3 meses" in b.text:
                                         logging.info(b.text)
                                         driver.execute_script("arguments[0].click();", b)
-                                        sleep(1)
+                                        sleep(3)
                                         for btt in driver.find_elements_by_xpath("//button[@type='button']"):
                                             if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML"):
                                                 logging.info(btt.text)

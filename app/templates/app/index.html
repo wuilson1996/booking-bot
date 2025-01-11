@@ -153,6 +153,7 @@
               {% for date, value in bookings.items %}
               <tr>
                 <td id="temp-bg{{date}}" class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                  <h4 class="text-white my-4" id="buttonFeeUpgrade">...</h4>
                   <button class="btn btn-white" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
                   </br>
                   <hr>
@@ -890,7 +891,7 @@
     }
     function savePrice(_date, occupancy, inputId){
       inputText = document.getElementById("price"+inputId).value;
-      showLoader(inputId);
+      showLoader("priceDate"+inputId);
       $.ajax({
           url: '/save/price',
           type: 'POST',
@@ -913,6 +914,7 @@
       });
     }
     function upgradeFee(_date){
+      showLoader("buttonFeeUpgrade");
       $.ajax({
           url: '/upgrade/fee',
           type: 'POST',
@@ -923,8 +925,9 @@
           success: function(json) {
             console.log(json);
             if (json.code == 200){
-              $("#priceDate"+inputId).text("");
-              $("#priceDate"+inputId).append(json.updated);
+              setTimeout(function(){
+                $("#buttonFeeUpgrade").text("...");
+              },90000);
             }
           },
           error: function(error) {
@@ -934,8 +937,8 @@
     }
     function showLoader(inputId){
       console.log("Loader");
-      $("#priceDate"+inputId).text("");
-      $("#priceDate"+inputId).append(
+      $("#"+inputId).text("");
+      $("#"+inputId).append(
         '<div class="spinner-grow text-dark text-center" role="status">'+
           '<span class="sr-only">Loading...</span>'+
         '</div>'
