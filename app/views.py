@@ -342,7 +342,8 @@ def upgrade_fee(request):
         try:
             _prices = {}
             for p in Price.objects.filter(date_from = request.data["date"]):
-                _prices[str(p.occupancy)] = p.price
+                if p.price != None and p.price != "":
+                    _prices[str(p.occupancy)] = p.price
             threading.Thread(
                 target=task_save_fee, 
                 args=(
