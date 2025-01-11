@@ -277,7 +277,7 @@ class BookingSearch:
                     try:
                         #logging.info(f"[-] {dt.now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
                         for position in process.position:
-                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process)
+                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name)
                     except Exception as e:
                         logging.info(f"[-] {dt.now()} Error 170: "+str(e))
                     sleep(1)
@@ -389,7 +389,7 @@ class BookingSearch:
         driver.implicitly_wait(15)
 
     @classmethod
-    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive):
+    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive, search_name):
         try:
             item_dict = {
                 "start": 0,
@@ -517,25 +517,29 @@ class BookingSearch:
                 else:
                     logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
             else:
-                price_with_name_hotel = PriceWithNameHotel.objects.filter(title = item_dict["title"], date_from = item_dict["date_from"], occupancy = occupancy).first()
-                if not price_with_name_hotel:
-                    price_with_name_hotel = PriceWithNameHotel.objects.create(
-                        start = item_dict["start"],
-                        title = item_dict["title"],
-                        link = item_dict["link"],
-                        address = item_dict["address"],
-                        distance = item_dict["distance"],
-                        description = item_dict["description"],
-                        img = item_dict["img"],
-                        updated = dt.now(),
-                        created = dt.now(),
-                        date_from = item_dict["date_from"],
-                        date_to = item_dict["date_to"],
-                        price = item_dict["price"],
-                        occupancy = occupancy
-                    )
+                price_with_name_hotel = PriceWithNameHotel.objects.filter(title = search_name, date_from = item_dict["date_from"], occupancy = occupancy).first()
+                if search_name == item_dict["title"]:
+                    if not price_with_name_hotel:
+                        price_with_name_hotel = PriceWithNameHotel.objects.create(
+                            start = item_dict["start"],
+                            title = item_dict["title"],
+                            link = item_dict["link"],
+                            address = item_dict["address"],
+                            distance = item_dict["distance"],
+                            description = item_dict["description"],
+                            img = item_dict["img"],
+                            updated = dt.now(),
+                            created = dt.now(),
+                            date_from = item_dict["date_from"],
+                            date_to = item_dict["date_to"],
+                            price = item_dict["price"],
+                            occupancy = occupancy
+                        )
+                    else:
+                        price_with_name_hotel.price = item_dict["price"]
+                        price_with_name_hotel.save()
                 else:
-                    price_with_name_hotel.price = item_dict["price"]
+                    price_with_name_hotel.price = 0
                     price_with_name_hotel.save()
                 
                 #logging.info(f"[+] Data Start success: {item_dict}")
