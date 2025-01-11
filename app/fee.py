@@ -97,32 +97,38 @@ class FeeTask:
                                         bs.click()
                                     sleep(1)
                                     logging.info(f"[+] Button switch success...")
+                                    
+                                    input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
+                                    input_price.clear()
+                                    input_price2 = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.4.id']")
+                                    input_price2.clear()
                                     if "1" in price.keys():
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
-                                        input_price.clear()
                                         input_price.send_keys(str(price["1"]))
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.4.id']")
-                                        input_price.clear()
-                                        input_price.send_keys(str(price["1"]))
+                                        input_price2.send_keys(str(price["1"]))
+                                    
+                                    input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.0.id']")
+                                    input_price.clear()
                                     if "2" in price.keys():
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.0.id']")
-                                        input_price.clear()
                                         input_price.send_keys(str(price["2"]))
+
+                                    input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.1.id']")
+                                    input_price.clear()
                                     if "3" in price.keys():
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.1.id']")
-                                        input_price.clear()
                                         input_price.send_keys(str(price["3"]))
+                                    
+                                    input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.2.id']")
+                                    input_price.clear()
                                     if "4" in price.keys():
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.2.id']")
-                                        input_price.clear()
                                         input_price.send_keys(str(price["4"]))
+                                    
+                                    input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.5.id']")
+                                    input_price.clear()
                                     if "5" in price.keys():
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.5.id']")
-                                        input_price.clear()
                                         input_price.send_keys(str(price["5"]))
+                                    
+                                    input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.6.id']")
+                                    input_price.clear()
                                     if "6" in price.keys():
-                                        input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.6.id']")
-                                        input_price.clear()
                                         input_price.send_keys(str(price["6"]))
 
                                     sleep(1)

@@ -153,7 +153,7 @@
               {% for date, value in bookings.items %}
               <tr>
                 <td id="temp-bg{{date}}" class="w-15 text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                  <button class="btn btn-white btn-xs" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
+                  <button class="btn btn-white" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
                   </br>
                   <hr>
                   <h4 class="text-white my-4">{{value.date_from}}</h4>
@@ -1295,7 +1295,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataTor2,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "ILUNION",
@@ -1307,7 +1308,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataIlunion,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "ECO",
@@ -1319,7 +1321,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataEco,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "SILKEN",
@@ -1331,7 +1334,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataSilken,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "EXE",
@@ -1343,7 +1347,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataExe,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "SERCOTEL",
@@ -1355,7 +1360,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataSercotel,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "AXOR",
@@ -1367,7 +1373,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataAxor,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "DWO",
@@ -1379,7 +1386,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataDwo,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "BOSTON",
@@ -1391,7 +1399,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataBoston,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           },
           {
             label: "SENATOR",
@@ -1403,7 +1412,8 @@
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             data: dataSenator,
-            maxBarThickness: 6
+            maxBarThickness: 6,
+            hidden: true
           }
         ],
       },
