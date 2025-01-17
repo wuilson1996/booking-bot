@@ -300,38 +300,23 @@ def save_message(request):
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_message_by_day.updated))}
     return Response(result)
 
-def task_save_fee(price, _date):
+def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform):
     try:
-        _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
-        if _credential:
-            cron_active = CronActive.objects.last()
-            #print(cron_active)
-            if cron_active:
-                if cron_active.active:
-                    cron = CronActive.objects.create(
-                        active = True,
-                        current_date = cron_active.current_date + datetime.timedelta(minutes=2)
-                    )
-                else:
-                    cron = CronActive.objects.create(
-                        active = True,
-                        current_date = now()
-                    )
-            else:
-                cron = CronActive.objects.create(
-                    active = True,
-                    current_date = now()
-                )
-            while cron.current_date > now():
-                pass
+        while cron.current_date > now():
+            sleep(1)
 
+        cont = 0
+        while True:
             fee = FeeTask()
             _driver = fee._driver()
-            fee.controller(_driver, price, _date, _credential.username, _credential.password)
+            _check = fee.controller(_driver, price, _date, _credential.username, _credential.password)
             sleep(5)
             fee.close(_driver)
-            cron.active = False
-            cron.save()
+            if _check or cont >= 2:
+                break
+            cont += 1
+        cron.active = False
+        cron.save()
     except Exception as e:
         logging.info(f"Error task fee: {e}")
 
@@ -341,20 +326,49 @@ def upgrade_fee(request):
     if request.user.is_authenticated:
         try:
             _prices = {}
+            __time = 60
             for p in Price.objects.filter(date_from = request.data["date"]):
                 if p.price != None and p.price != "":
                     _prices[str(p.occupancy)] = p.price
-            threading.Thread(
-                target=task_save_fee, 
-                args=(
-                    _prices,
-                    request.data["date"]
-                )
-            ).start()
-        except Exception as e:
-            print(f"Error price: {e}")
 
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
+            message = "Proceso activado correctamente."
+            _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
+            if _credential:
+                cron_active = CronActive.objects.last()
+                #print(cron_active)
+                if cron_active:
+                    if cron_active.active:
+                        cron = CronActive.objects.create(
+                            active = True,
+                            current_date = cron_active.current_date + datetime.timedelta(minutes=1)
+                        )
+                    else:
+                        cron = CronActive.objects.create(
+                            active = True,
+                            current_date = now()
+                        )
+                else:
+                    cron = CronActive.objects.create(
+                        active = True,
+                        current_date = now()
+                    )
+                threading.Thread(
+                    target=task_save_fee, 
+                    args=(
+                        _prices,
+                        request.data["date"],
+                        cron,
+                        _credential
+                    )
+                ).start()
+                __time += (cron.current_date - now()).total_seconds()
+            else:
+                message = "No se ha configurado credenciales"
+        except Exception as e:
+            logging.info(f"Error price: {e}")
+            message = f"Error price: {e}"
+
+        result = {"code": 200, "status": "OK", "message":message, "time": int(__time)}
     return Response(result)
 
 @api_view(["POST"])
@@ -747,74 +761,86 @@ def index(request):
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Zenit Conde de Orgaz", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceZEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Best Osuna", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceOSU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
 
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Ilunion Alcala Norte", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceILU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Eco Alcala Suites", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Silken Puerta Madrid", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSIL"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Exe Madrid Norte", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceEXE"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Sercotel Alcala 611", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSER"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Axor Feria", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceAXO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "DWO Colours Alcala", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceDWO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Nuevo Boston", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceBOS"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Senator Barajas", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceTOR2"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 3).first()
             if price_with_name_hotel:
@@ -855,7 +881,7 @@ def index(request):
             range_bt = request.POST["range_bt"]
         if "range_pg" in request.POST:
             range_pg = request.POST["range_pg"]
-        print(time.time() - __time)
+        #print(time.time() - __time)
         return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt, "range_pg": range_pg})
     else:
         return redirect("sign-in")

@@ -45,6 +45,7 @@ class FeeTask:
     @classmethod
     def controller(cls, driver, price, _date, username, password):
         try:
+            check = False
             driver.get(cls._url)
             driver.implicitly_wait(15)
             driver.delete_all_cookies()
@@ -71,7 +72,6 @@ class FeeTask:
             #         logging.info(button_update.text)
             # except Exception as e1:
             #     logging.info(f"Error button update: {e1}")
-
             while True:
                 status = False
                 logging.info(f"[+] search buttons calendar...")
@@ -86,7 +86,7 @@ class FeeTask:
                             sleep(3)
                             driver.find_element_by_xpath("//button[@data-testid='editPricesTab']").click()
                             logging.info(f"[+] Click button edit price tab success...")
-                            sleep(1)
+                            sleep(2)
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
                                     b2.click()
@@ -95,7 +95,7 @@ class FeeTask:
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
                                         bs.click()
-                                    sleep(1)
+                                    sleep(2)
                                     logging.info(f"[+] Button switch success...")
 
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
@@ -131,7 +131,7 @@ class FeeTask:
                                     if "6" in price.keys():
                                         input_price.send_keys(str(price["6"]))
 
-                                    sleep(1)
+                                    sleep(2)
                                     driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']").click()
                                     logging.info(f"[+] Tarifa actualizado correctamente....")
                                     break
@@ -145,17 +145,18 @@ class FeeTask:
                                 logging.info(button_update.text)
                                 #button_update.click()
                                 driver.execute_script("arguments[0].click();", button_update)
-                                sleep(1)
+                                sleep(2)
                                 for b in driver.find_elements_by_xpath("//div[@role='radio']"):
                                     if "Próximos 3 meses" in b.text:
                                         logging.info(b.text)
                                         driver.execute_script("arguments[0].click();", b)
-                                        sleep(3)
+                                        sleep(4)
                                         for btt in driver.find_elements_by_xpath("//button[@type='button']"):
                                             if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML"):
                                                 logging.info(btt.text)
                                                 #logging.info(btt.get_attribute("innerHTML"))
                                                 btt.click()
+                                                check = True
                                                 sleep(10)
                                                 break
                                         break
@@ -171,6 +172,8 @@ class FeeTask:
         
         except Exception as e:
             logging.info("Error Fee: "+str(e))
+
+        return check
     
     @classmethod
     def close(cls, driver):

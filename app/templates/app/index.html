@@ -216,15 +216,15 @@
                         </td>
                         <td class="text-sm">
                           <!---->
-                          <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">Guardar</button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
-                          </div>
                           <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                          </div>
+                          <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">Guardar</button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
                           </div>
                           <!---->
                           <h4 class="text-white text-center">
@@ -384,12 +384,12 @@
                           <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">Guardar</button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
@@ -516,12 +516,12 @@
                           <span class="text-white text-lg" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">Guardar</button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Manual" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
@@ -913,6 +913,7 @@
           }
       });
     }
+    let timeoutHandles = {}
     function upgradeFee(_date){
       showLoader("buttonFeeUpgrade"+_date);
       $.ajax({
@@ -924,10 +925,15 @@
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
             console.log(json);
+            console.log(json.time * 1000);
             if (json.code == 200){
-              setTimeout(function(){
-                $("#buttonFeeUpgrade"+_date).text("...");
-              },90000);
+              if (timeoutHandles[_date]) {
+                clearTimeout(timeoutHandles[_date]);
+              }
+              timeoutHandles[_date] = setTimeout(function(){
+                $("#buttonFeeUpgrade" + _date).text("...");
+                delete timeoutHandles[_date];
+              },json.time * 1000);
             }
           },
           error: function(error) {
