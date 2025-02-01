@@ -136,6 +136,32 @@
               </button>
             </div>
           </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2">
+                <h6>Booking: </h6>
+              </div>
+              <div class="col-md-10">
+                <p id="addLogBooking"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <h6>RoomPrice: </h6>
+              </div>
+              <div class="col-md-10">
+                <p id="addLogRoomPrice"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <h6>SuitesFeria: </h6>
+              </div>
+              <div class="col-md-10">
+                <p id="addLogSuitesFeria"></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="px-0 pb-0 card-body">
@@ -839,6 +865,14 @@
                 activeAlert();
               });
             }
+            $("#addLogBooking").text("");
+            $("#addLogBooking").append(json.botLog?.booking ?? "Historial de proceso no disponible");
+
+            $("#addLogRoomPrice").text("");
+            $("#addLogRoomPrice").append(json.botLog?.roomprice ?? "Historial de proceso no disponible");
+
+            $("#addLogSuitesFeria").text("");
+            $("#addLogSuitesFeria").append(json.botLog?.suitesferia ?? "Historial de proceso no disponible");
           },
           error: function(error) {
             console.log("Ocurrio un error");

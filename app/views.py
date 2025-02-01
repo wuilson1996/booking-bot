@@ -40,7 +40,7 @@ def generate_date_with_month_time(_date:str):
         day=int(_date.split("-")[2])
     )
     return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')+" "+_time[:-3]
-
+    
 def active_process_sf():
     _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
     if _credential:
@@ -50,6 +50,7 @@ def active_process_sf():
                 suites_feria = SuitesFeria(_credential.username, _credential.password)
                 resp = suites_feria.login()
                 logging.info(f"[+] Login suites feria: {now()} {resp}")
+                generate_log("[+] Login suites feria", BotLog.SUITESFERIA)
                 if resp["code"] == 200:
                     resp_sf = suites_feria.disponibilidad()
                     resp_sf = suites_feria.format_avail(resp_sf)
@@ -70,6 +71,7 @@ def active_process_sf():
                                 cant_asf.save()
                     resp_l = suites_feria.logout()
                     logging.info(f"[+] Logout suites feria: {now()} {resp_l}")
+                    generate_log("[+] Logout suites feria", BotLog.SUITESFERIA)
                 
                 state = False
                 for p in ProcessActive.objects.all():
@@ -81,9 +83,11 @@ def active_process_sf():
                 time.sleep(30)
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
+                generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
                 time.sleep(30)
 
         logging.info(f"[+] {now()} Finalizando process suites feria...")
+        generate_log("[+] Finalizando process suites feria...", BotLog.SUITESFERIA)
 
 def active_process():
     for a in AvailableBooking.objects.all():
@@ -108,6 +112,7 @@ def active_process():
         })
 
     logging.info(f"[+] {now()} Activando process...")
+    generate_log("[+] Activando process...", BotLog.BOOKING)
     threading.Thread(target=active_process_sf).start()
     while True:
         try:
@@ -117,6 +122,7 @@ def active_process():
                 if not p.active:
                     try:
                         logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
+                        generate_log("[+] Buscando posiciones...", BotLog.BOOKING)
                         p.active = True
                         p.save()
                         process = threading.Thread(
@@ -132,11 +138,13 @@ def active_process():
                         process.start()
                         threads.append(process)
                     except Exception as ec:
-                        logging.info(f"[+] {now()} Error in Execute controller... {ec}")
+                        logging.info(f"[-] {now()} Error in Execute controller... {ec}")
+                        generate_log("[-] Error in Execute controller...", BotLog.BOOKING)
                 cont += 1
 
             for t in threads:
                 logging.info(f"[+] {now()} Esperando finalizacion de thread...")
+                generate_log("[+] Esperando finalizacion de thread...", BotLog.BOOKING)
                 t.join()
             
             pa_with_name = ProcessActive.objects.filter(type_proces = 2)
@@ -147,6 +155,7 @@ def active_process():
 
             # add process name hotel.
             logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
+            generate_log("[+] Buscando hoteles por nombre...", BotLog.BOOKING)
             for gs in GeneralSearch.objects.filter(type_search = 2):
                 for _pa in gs.proces_active.all():
                     #if gs.proces_active.last().active:
@@ -158,23 +167,28 @@ def active_process():
                             gs.city_and_country
                         )
                     except Exception as ec:
-                        logging.info(f"[+] {now()} Error in Execute controller with name... {ec}")
+                        logging.info(f"[-] {now()} Error in Execute controller with name... {ec}")
+                        generate_log("[-] Error in Execute controller with name...", BotLog.BOOKING)
 
             if general_search:
                 seconds = 60 * general_search.time_sleep_minutes
                 logging.info(f"[+] {now()} Sleep defined {seconds} seconds...")
+                generate_log(f"[+] Sleep defined {seconds} seconds...", BotLog.BOOKING)
             else:
                 seconds = 60 * 3
                 logging.info(f"[+] {now()} Sleep default {seconds} seconds...")
+                generate_log(f"[+] Sleep default {seconds} seconds...", BotLog.BOOKING)
 
             sleep(seconds)
 
             logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
+            generate_log(f"[+] Sleep {seconds} seconds finish...", BotLog.BOOKING)
             for p in ProcessActive.objects.all():
                 p.active = False
                 p.save()
         except Exception as e:
-            logging.info(f"[+] {now()} Error process general: {e}...")
+            logging.info(f"[-] {now()} Error process general: {e}...")
+            generate_log(f"[-] Error process general: {e}...", BotLog.BOOKING)
 
 @api_view(["POST"])
 def get_booking(request):
@@ -268,7 +282,18 @@ def check_booking_process(request):
                 state = True
                 break
         
-        result = {"code": 200, "status": "OK", "active":state}
+        bot_logs = {}
+        bot_log = BotLog.objects.filter(plataform_option = BotLog.BOOKING).last()
+        if bot_log:
+            bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+        bot_log = BotLog.objects.filter(plataform_option = BotLog.ROOMPRICE).last()
+        if bot_log:
+            bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+        bot_log = BotLog.objects.filter(plataform_option = BotLog.SUITESFERIA).last()
+        if bot_log:
+            bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+
+        result = {"code": 200, "status": "OK", "active":state, "botLog": bot_logs}
     return Response(result)
 
 @api_view(["POST"])

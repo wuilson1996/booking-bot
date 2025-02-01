@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .now_date import now
 # Create your models here.
 
 class Booking(models.Model):
@@ -258,3 +259,28 @@ class CronActive(models.Model):
 
     def __str__(self):
         return str(self.active)+" | "+str(self.current_date)
+    
+class BotLog(models.Model):
+    SUITESFERIA = "suitesferia"
+    ROOMPRICE = "roomprice"
+    BOOKING = "booking"
+    TEXT_PLATAFORM = (
+        (SUITESFERIA, SUITESFERIA),
+        (ROOMPRICE, ROOMPRICE),
+        (BOOKING, BOOKING),
+    )
+    plataform_option = models.TextField(choices=TEXT_PLATAFORM, default=BOOKING)
+    description = models.TextField()
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.description)
+    
+def generate_log(description, option):
+    BotLog.objects.create(
+        plataform_option = option,
+        description = description,
+        updated = now(),
+        created = now()
+    )

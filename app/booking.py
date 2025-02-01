@@ -76,6 +76,7 @@ class BookingSearch:
             sleep(1)
             # Escribe el texto en el campo de búsqueda
             logging.info(f"Search name or city: {search_name} {_now}")
+            generate_log(f"[-] Search name or city: {search_name} {_now}", BotLog.BOOKING)
             search.send_keys(search_name)
             sleep(1)
             # Confirma con ENTER
@@ -91,6 +92,7 @@ class BookingSearch:
             try:
                 _current_url = driver.current_url
                 while True:
+                    generate_log(f"[-] Init Search name or city: {search_name} - Date: {_now}", BotLog.BOOKING)
                     process = ProcessActive.objects.filter(pk = process.pk).first()
                     if not process.currenct:
                         break
@@ -290,10 +292,13 @@ class BookingSearch:
                     #if int(total_search) > 0:
                     _date_elem = _now
                     _now += datetime.timedelta(days=1)
+                    generate_log(f"[-] Finish search name or city: {search_name} - Date: {_now}", BotLog.BOOKING)
             except Exception as e2:
                 logging.info(f"[-] {now()} Error 262: "+str(e2))
+                generate_log(f"[-] Error 262: "+str(e2), BotLog.BOOKING)
         except Exception as e02:
             logging.info(f"[-] {now()} Error General 264: "+str(e02))
+            generate_log(f"[-] Error General 264: "+str(e02), BotLog.BOOKING)
 
     @classmethod
     def filter_data(cls, data):
@@ -548,6 +553,7 @@ class BookingSearch:
         except Exception as e:
             logging.info(f"[-] {now()} Error General data: "+str(e))
             logging.info(item_dict)
+            generate_log(f"[-] Error General data: "+str(e), BotLog.BOOKING)
         
         return item_dict
 

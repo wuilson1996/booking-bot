@@ -12,6 +12,7 @@ import datetime
 import re
 import os
 import platform
+from .models import *
 
 class FeeTask:
     _url = "https://app.roompricegenie.com/client/calendar"
@@ -52,21 +53,27 @@ class FeeTask:
 
             driver.find_element_by_xpath("//input[@type='email']").send_keys(username)
             logging.info(f"[+] Add username success...")
+            generate_log(f"[+] Add username success... {_date} | {price}", BotLog.ROOMPRICE)
             driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
             logging.info(f"[+] Add username password...")
+            generate_log(f"[+] Add username password... {_date} | {price}", BotLog.ROOMPRICE)
             driver.find_element_by_xpath("//button[@type='submit']").click()
             logging.info(f"[+] click button login success...")
+            generate_log(f"[+] click button login success... {_date} | {price}", BotLog.ROOMPRICE)
             sleep(5)
             if "Ajustes de la cuenta" in driver.page_source:
                 logging.info(f"[+] Inicio sesion correctamente...")
+                generate_log(f"[+] Inicio sesion correctamente... {_date} | {price}", BotLog.ROOMPRICE)
             __time = time()
             while True:
                 logging.info(f"[+] verificando inicio de sesion...")
+                generate_log(f"[+] verificando inicio de sesion... {_date} | {price}", BotLog.ROOMPRICE)
                 if "Optimizando..." not in driver.page_source or (time() - __time >= 180):
                     break
                 sleep(1)
 
             logging.info(f"[+] Login success...")
+            generate_log(f"[+] Login success... {_date} | {price}", BotLog.ROOMPRICE)
             # try:
             #     for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
             #         logging.info(button_update.text)
@@ -75,28 +82,34 @@ class FeeTask:
             while True:
                 status = False
                 logging.info(f"[+] search buttons calendar...")
+                generate_log(f"[+] search buttons calendar... {_date} | {price}", BotLog.ROOMPRICE)
                 for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
                         if _date == str(b.get_attribute("data-testid")):
                             logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
+                            generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {price}", BotLog.ROOMPRICE)
                             status = True
                             b.click()
                             logging.info(f"[+] Click fecha success...")
+                            generate_log(f"[+] Click fecha success... {_date} | {price}", BotLog.ROOMPRICE)
                             sleep(3)
                             driver.find_element_by_xpath("//button[@data-testid='editPricesTab']").click()
                             logging.info(f"[+] Click button edit price tab success...")
+                            generate_log(f"[+] Click button edit price tab success... {_date} | {price}", BotLog.ROOMPRICE)
                             sleep(2)
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
                                     b2.click()
                                     logging.info(f"[+] Precios fijos click success...")
+                                    generate_log(f"[+] Precios fijos click success... {_date} | {price}", BotLog.ROOMPRICE)
                                     sleep(2)
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
                                         bs.click()
                                     sleep(2)
                                     logging.info(f"[+] Button switch success...")
+                                    generate_log(f"[+] Button switch success... {_date} | {price}", BotLog.ROOMPRICE)
 
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
                                     input_price.clear()
@@ -134,14 +147,17 @@ class FeeTask:
                                     sleep(2)
                                     driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']").click()
                                     logging.info(f"[+] Tarifa actualizado correctamente....")
+                                    generate_log(f"[+] Tarifa actualizado correctamente.... {_date} | {price}", BotLog.ROOMPRICE)
                                     break
                             break
                 if status:
                     logging.info("[+] Encontrada...")
+                    generate_log(f"[+] Encontrada... {_date} | {price}", BotLog.ROOMPRICE)
                     sleep(3)
                     try:
                         for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
                             if "Actualizar tarifas" in button_update.text:
+                                generate_log(f"[+] Actualizando tarifa... {_date} | {price}", BotLog.ROOMPRICE)
                                 logging.info(button_update.text)
                                 #button_update.click()
                                 driver.execute_script("arguments[0].click();", button_update)
@@ -157,21 +173,26 @@ class FeeTask:
                                                 #logging.info(btt.get_attribute("innerHTML"))
                                                 btt.click()
                                                 check = True
+                                                generate_log(f"[+] Tarifa actualizada... {_date} | {price}", BotLog.ROOMPRICE)
                                                 sleep(10)
                                                 break
                                         break
                                 break
                     except Exception as e1:
                         logging.info(f"Error button update: {e1}")
+                        generate_log(f"[+] Error button update {e1}... {_date} | {price}", BotLog.ROOMPRICE)
                     break
                 else:
                     logging.info("[+] Aumenta calendario...")
+                    generate_log(f"[+] Aumenta calendario... {_date} | {price}", BotLog.ROOMPRICE)
                     driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']").click()
                     sleep(3)
                     logging.info(f"[+] Click button next calendar success...")
+                    generate_log(f"[+] Click button next calendar success... {_date} | {price}", BotLog.ROOMPRICE)
         
         except Exception as e:
             logging.info("Error Fee: "+str(e))
+            generate_log(f"[+] Error Fee {e}... {_date} | {price}", BotLog.ROOMPRICE)
 
         return check
     
