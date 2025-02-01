@@ -50,17 +50,15 @@
                           <p class="mb-0 font-weight-bold text-sm">
                             Usuario - {{request.user.username}}
                           </p>
+                          <p class="mb-0 font-weight-bold text-sm">
+                            Email - {{request.user.email}}
+                          </p>
                         </div>
                       </div>
                   </div>
               </div>
-              <div class="col-12 col-sm-1 text-start">
-                  <p>Email:</p>
-                  <p>Telefono:</p>
-              </div>
-              <div class="col-12 col-sm-4 text-start">
-                  <p>{{request.user.email}}</p>
-                  <p></p>
+              <div class="col-12 col-sm-5 text-center">
+                <img src="/static/assets/img/logo.png" style="width: 150px;" alt="Logo">
               </div>
               <div class="col-12 col-sm-3">
                   {% if not user_info.active %}
@@ -670,7 +668,7 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Tarifaz </h5>
+        <h5 class="modal-title" id="ModalLabel">Tarifas </h5>
         <i class="fa fa-bar-chart m-2"></i>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

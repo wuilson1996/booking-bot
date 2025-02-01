@@ -50,7 +50,7 @@ def active_process_sf():
             try:
                 suites_feria = SuitesFeria(_credential.username, _credential.password)
                 resp = suites_feria.login()
-                logging.info(f"[+] Login suites feria: {dt.now()} {resp}")
+                logging.info(f"[+] Login suites feria: {now()} {resp}")
                 if resp["code"] == 200:
                     resp_sf = suites_feria.disponibilidad()
                     resp_sf = suites_feria.format_avail(resp_sf)
@@ -70,7 +70,7 @@ def active_process_sf():
                                 cant_asf.avail = value_sf
                                 cant_asf.save()
                     resp_l = suites_feria.logout()
-                    logging.info(f"[+] Logout suites feria: {dt.now()} {resp_l}")
+                    logging.info(f"[+] Logout suites feria: {now()} {resp_l}")
                 
                 state = False
                 for p in ProcessActive.objects.all():
@@ -81,10 +81,10 @@ def active_process_sf():
                     break
                 time.sleep(30)
             except Exception as er:
-                logging.info(f"[+] {dt.now()} Error Get Suites feria: "+str(er))
+                logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
                 time.sleep(30)
 
-        logging.info(f"[+] {dt.now()} Finalizando process suites feria...")
+        logging.info(f"[+] {now()} Finalizando process suites feria...")
 
 def active_process():
     for a in AvailableBooking.objects.all():
@@ -108,7 +108,7 @@ def active_process():
             "driver": booking._driver(general_search.url)
         })
 
-    logging.info(f"[+] {dt.now()} Activando process...")
+    logging.info(f"[+] {now()} Activando process...")
     threading.Thread(target=active_process_sf).start()
     while True:
         try:
@@ -117,14 +117,14 @@ def active_process():
             for p in ProcessActive.objects.filter(type_proces = 1):
                 if not p.active:
                     try:
-                        logging.info(f"[+] {dt.now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
+                        logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
                         p.active = True
                         p.save()
                         process = threading.Thread(
                             target=instances[cont]["booking"].controller, 
                             args=(
                                 instances[cont]["driver"],
-                                dt.now(),
+                                now(),
                                 p,
                                 general_search.city_and_country
                             )
@@ -133,11 +133,11 @@ def active_process():
                         process.start()
                         threads.append(process)
                     except Exception as ec:
-                        logging.info(f"[+] {dt.now()} Error in Execute controller... {ec}")
+                        logging.info(f"[+] {now()} Error in Execute controller... {ec}")
                 cont += 1
 
             for t in threads:
-                logging.info(f"[+] {dt.now()} Esperando finalizacion de thread...")
+                logging.info(f"[+] {now()} Esperando finalizacion de thread...")
                 t.join()
             
             pa_with_name = ProcessActive.objects.filter(type_proces = 2)
@@ -147,35 +147,35 @@ def active_process():
                 __p.save()
 
             # add process name hotel.
-            logging.info(f"[+] {dt.now()} Process active in while. Search with name browser... {instances[0]['booking']}")
+            logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             for gs in GeneralSearch.objects.filter(type_search = 2):
                 for _pa in gs.proces_active.all():
                     #if gs.proces_active.last().active:
                     try:
                         instances[0]["booking"].controller(
                             instances[0]["driver"],
-                            dt.now(),
+                            now(),
                             _pa,
                             gs.city_and_country
                         )
                     except Exception as ec:
-                        logging.info(f"[+] {dt.now()} Error in Execute controller with name... {ec}")
+                        logging.info(f"[+] {now()} Error in Execute controller with name... {ec}")
 
             if general_search:
                 seconds = 60 * general_search.time_sleep_minutes
-                logging.info(f"[+] {dt.now()} Sleep defined {seconds} seconds...")
+                logging.info(f"[+] {now()} Sleep defined {seconds} seconds...")
             else:
                 seconds = 60 * 3
-                logging.info(f"[+] {dt.now()} Sleep default {seconds} seconds...")
+                logging.info(f"[+] {now()} Sleep default {seconds} seconds...")
 
             sleep(seconds)
 
-            logging.info(f"[+] {dt.now()} Sleep {seconds} seconds finish...")
+            logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
             for p in ProcessActive.objects.all():
                 p.active = False
                 p.save()
         except Exception as e:
-            logging.info(f"[+] {dt.now()} Error process general: {e}...")
+            logging.info(f"[+] {now()} Error process general: {e}...")
 
 @api_view(["POST"])
 def get_booking(request):
@@ -285,8 +285,8 @@ def save_message(request):
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
                 text = request.data["text"],
-                updated = dt.now(),
-                created = dt.now()
+                updated = now(),
+                created = now()
             )
         else:
             if _message_by_day.text != request.data["text"]:
@@ -294,8 +294,8 @@ def save_message(request):
                     date_from = request.data["date"],
                     occupancy = request.data["occupancy"],
                     text = request.data["text"],
-                    updated = dt.now(),
-                    created = dt.now()
+                    updated = now(),
+                    created = now()
                 )
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_message_by_day.updated))}
     return Response(result)
@@ -384,12 +384,12 @@ def save_price(request):
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
                 price = request.data["text"],
-                updated = dt.now(),
-                created = dt.now()
+                updated = now(),
+                created = now()
             )
         else:
             _price.price = request.data["text"]
-            _price.updated = dt.now()
+            _price.updated = now()
             _price.save()
         
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
@@ -410,13 +410,13 @@ def save_temp(request):
                     bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])][0],
                     text_color = "text-white",
                     number = request.data["numTemp"],
-                    updated = dt.now(),
-                    created = dt.now()
+                    updated = now(),
+                    created = now()
                 )
             else:
                 _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])][0]
                 _temp_by_day.number = request.data["numTemp"]
-                _temp_by_day.updated = dt.now()
+                _temp_by_day.updated = now()
                 _temp_by_day.save()
             bg_color = _temp_by_day.bg_color
         else:
@@ -439,14 +439,14 @@ def save_event(request):
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
                 text = request.data["text"],
-                updated = dt.now(),
-                created = dt.now()
+                updated = now(),
+                created = now()
             )
         else:
             _event_by_day.date_from = request.data["date"]
             _event_by_day.occupancy = request.data["occupancy"]
             _event_by_day.text = request.data["text"]
-            _event_by_day.updated = dt.now()
+            _event_by_day.updated = now()
             _event_by_day.save()
 
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
@@ -463,12 +463,12 @@ def save_avail_with_date(request):
             _event_by_day = AvailWithDate.objects.create(
                 date_from = request.data["date"],
                 avail = request.data["avail"],
-                updated = dt.now(),
-                created = dt.now()
+                updated = now(),
+                created = now()
             )
         else:
             _event_by_day.avail = request.data["avail"]
-            _event_by_day.updated = dt.now()
+            _event_by_day.updated = now()
             _event_by_day.save()
 
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
@@ -478,8 +478,8 @@ def index(request):
     if request.user.is_authenticated:
         cant_default = 30
         __time = time.time()
-        __date_from = str(dt.now().date())
-        __date_to = str(dt.now().date() + datetime.timedelta(days=cant_default))
+        __date_from = str(now().date())
+        __date_to = str(now().date() + datetime.timedelta(days=cant_default))
             
         if "date_from" in request.POST:
             __date_from = str(request.POST["date_from"])
@@ -606,7 +606,7 @@ def index(request):
                     cpwd.avail_2 = 0
                     cpwd.avail_3 = 0
                     cpwd.avail_4 = 0
-                    cpwd.created = str(dt.now())
+                    cpwd.created = str(now())
 
                 if "totalFeria1" not in bookings[str(_date_from.date())][int(ocp)].keys():
                     bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] = 0
@@ -633,7 +633,7 @@ def index(request):
                     cpwd.avail_2 = 0
                     cpwd.avail_3 = 0
                     cpwd.avail_4 = 0
-                    cpwd.created = str(dt.now())
+                    cpwd.created = str(now())
 
                 if "totalFeria7" not in bookings[str(_date_from.date())][int(ocp)].keys():
                     bookings[str(_date_from.date())][int(ocp)]["totalFeria7"] = 0
@@ -950,7 +950,7 @@ def booking_view(request):
             month=int(request.GET["date"].split("-")[1]),
             day=int(request.GET["date"].split("-")[2])
         )
-        _date_from_current = dt.now()
+        _date_from_current = now()
         bookings = {}
         if int(request.GET["occupancy"]) in [2, 3]:
             if int(request.GET["occupancy"]) == 2:
@@ -1060,7 +1060,7 @@ def booking_view(request):
                             cpwd.avail_1 = 0
                             cpwd.avail_2 = 0
                             cpwd.avail_4 = 0
-                            cpwd.created = str(dt.now())
+                            cpwd.created = str(now())
                         
                         if int(request.GET["occupancy"]) == 2:
                             bookings["bookings"][str(s)][i]["suitesFeria2"] = cpwd.avail_1
@@ -1078,7 +1078,7 @@ def booking_view(request):
                             except Exception as ecom:
                                 __com2 = CopyComplementWithDay()
                                 __com2.total_search = 0
-                                __com2.created = str(dt.now())
+                                __com2.created = str(now())
 
                             bookings["bookings"][str(s)][i]["dispTotal"] = __com2.total_search
 
@@ -1098,7 +1098,7 @@ def booking_view(request):
                         except Exception as ecpwd:
                             cpwd = CopyPriceWithNameFromDay()
                             cpwd.price = "0"
-                            cpwd.created = str(dt.now())
+                            cpwd.created = str(now())
                         
                         cp_price = cpwd.price.replace("€ ", "").replace(".", "").replace(",", "")
                         bookings["bookings"][str(s)][cont]["suitesFeriaPrice"] = cp_price
@@ -1160,7 +1160,7 @@ def booking_view(request):
                             except Exception as ecpwd:
                                 cpwd = CopyPriceWithDay()
                                 cpwd.price = "0"
-                                cpwd.created = str(dt.now())
+                                cpwd.created = str(now())
 
                             #print(_price, cpwd.price, b.booking.start, cont, cpwd.created)
 
