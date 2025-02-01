@@ -8,7 +8,7 @@ import pandas as pd
 import logging
 import json
 from datetime import datetime as dt
-from django.utils.timezone import now
+from .now_date import now
 import datetime
 import re
 from .models import *

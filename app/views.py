@@ -7,7 +7,6 @@ from rest_framework.response import Response
 import locale
 import threading
 from datetime import datetime as dt
-from django.utils.timezone import now
 import time
 import subprocess
 from .booking import *
