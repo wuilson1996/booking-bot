@@ -59,6 +59,9 @@ class CredentialPlataformAdmin(admin.ModelAdmin):
 class CronActiveAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
+class BotLogAdmin(admin.ModelAdmin):
+    search_fields = ["id", "description", "plataform_option", "created"]
+
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
 admin.site.register(ProcessActive, ProcessActiveAdmin)
@@ -78,3 +81,4 @@ admin.site.register(CopyAvailWithDaySF, CopyAvailWithDaySFAdmin)
 admin.site.register(CopyComplementWithDay, CopyComplementWithDayAdmin)
 admin.site.register(CredentialPlataform, CredentialPlataformAdmin)
 admin.site.register(CronActive, CronActiveAdmin)
+admin.site.register(BotLog, BotLogAdmin)
