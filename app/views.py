@@ -390,6 +390,7 @@ def save_price(request):
         else:
             _price.price = request.data["text"]
             _price.updated = now()
+            _price.created = now()
             _price.save()
         
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
@@ -417,6 +418,7 @@ def save_temp(request):
                 _temp_by_day.bg_color = TemporadaByDay.COLORS[int(request.data["numTemp"])][0]
                 _temp_by_day.number = request.data["numTemp"]
                 _temp_by_day.updated = now()
+                _temp_by_day.created = now()
                 _temp_by_day.save()
             bg_color = _temp_by_day.bg_color
         else:
@@ -447,6 +449,7 @@ def save_event(request):
             _event_by_day.occupancy = request.data["occupancy"]
             _event_by_day.text = request.data["text"]
             _event_by_day.updated = now()
+            _event_by_day.created = now()
             _event_by_day.save()
 
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
@@ -469,6 +472,7 @@ def save_avail_with_date(request):
         else:
             _event_by_day.avail = request.data["avail"]
             _event_by_day.updated = now()
+            _event_by_day.created = now()
             _event_by_day.save()
 
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
