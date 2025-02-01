@@ -73,13 +73,13 @@ def active_process_sf():
                     logging.info(f"[+] Logout suites feria: {now()} {resp_l}")
                     generate_log("[+] Logout suites feria", BotLog.SUITESFERIA)
                 
-                state = False
-                for p in ProcessActive.objects.all():
-                    if not p.currenct and not p.active:
-                        state = True
+                # state = False
+                # for p in ProcessActive.objects.all():
+                #     if not p.currenct and not p.active:
+                #         state = True
 
-                if state:
-                    break
+                # if state:
+                #     break
                 time.sleep(30)
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
