@@ -80,11 +80,11 @@ def active_process_sf():
 
                 # if state:
                 #     break
-                time.sleep(30)
+                time.sleep(60)
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
                 generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
-                time.sleep(30)
+                time.sleep(60)
 
         logging.info(f"[+] {now()} Finalizando process suites feria...")
         generate_log("[+] Finalizando process suites feria...", BotLog.SUITESFERIA)
