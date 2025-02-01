@@ -11,22 +11,50 @@
   <div class="col-12">
     <div class="card">
       <div class="pb-4 card-body">
-          <div class="d-lg-flex">
-            <div>
+          <div class="row">
+            <div class="col-md-2">
               <img src="/static/assets/img/logo.png" style="width: 100px;" alt="Logo">
             </div>
-            <div class="my-auto mt-4 ms-auto mt-lg-0">
-              <div class="my-auto ms-auto">
+            <div class="col-md-10">
+              <form action="" method="post">{% csrf_token %}
                 <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
+                  <div class="col-md-2">
+                    <input type="date" class="form-control" value="{{date_from}}" name="date_from">
                   </div>
-                  <div class="col-12 col-sm-6">
-                    <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
-                      <i class="fas fa-key me-1"></i>
-                      Activar extraccion
-                    </button>
+                  <!--<div class="col-md-2">
+                    <input type="date" class="form-control" value="{{date_to}}" name="date_to">
+                  </div>-->
+                  <div class="col-md-3">
+                    <select name="range_bt" id="range_bt" class="form-control">
+                      <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
+                      <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
+                      <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
+                    </select>
                   </div>
+                  <div class="col-md-3">
+                    <select name="range_pg" id="range_pg" class="form-control">
+                      <option value="30" {% if range_pg == '30' %}selected{% endif %}>30 Dias</option>
+                      <option value="60" {% if range_pg == '60' %}selected{% endif %}>60 Dias</option>
+                      <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
+                      <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-info">Filtrar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-2">
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                  <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
+                </div>
+                <div class="col-12 col-sm-6">
+                  <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
+                    <i class="fas fa-key me-1"></i>
+                    Activar extraccion
+                  </button>
                 </div>
               </div>
             </div>
@@ -108,36 +136,7 @@
               
             </p>
           </div>
-          <div class="col-md-8">
-            <form action="" method="post">{% csrf_token %}
-              <div class="row">
-                <div class="col-md-2">
-                  <input type="date" class="form-control" value="{{date_from}}" name="date_from">
-                </div>
-                <!--<div class="col-md-2">
-                  <input type="date" class="form-control" value="{{date_to}}" name="date_to">
-                </div>-->
-                <div class="col-md-3">
-                  <select name="range_bt" id="range_bt" class="form-control">
-                    <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
-                    <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
-                    <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <select name="range_pg" id="range_pg" class="form-control">
-                    <option value="30" {% if range_pg == '30' %}selected{% endif %}>30 Dias</option>
-                    <option value="60" {% if range_pg == '60' %}selected{% endif %}>60 Dias</option>
-                    <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
-                    <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-info">Filtrar</button>
-                </div>
-              </div>
-            </form>
-          </div>
+          
           <div class="col-md-2 my-auto mt-4 ms-auto mt-lg-0 text-end">
             <div class="my-auto ms-auto">
               <!-- <button class="me-2 mb-0 btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#userAdd" onclick="clearModal()">
