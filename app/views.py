@@ -49,8 +49,8 @@ def active_process_sf():
             try:
                 suites_feria = SuitesFeria(_credential.username, _credential.password)
                 resp = suites_feria.login()
-                logging.info(f"[+] Login suites feria: {now()} {resp}")
-                generate_log("[+] Login suites feria", BotLog.SUITESFERIA)
+                logging.info(f"[+] Actualizando suites feria: {now()} {resp}")
+                generate_log("[+] Actualizando Dispo suites feria", BotLog.SUITESFERIA)
                 if resp["code"] == 200:
                     resp_sf = suites_feria.disponibilidad()
                     resp_sf = suites_feria.format_avail(resp_sf)
@@ -70,17 +70,11 @@ def active_process_sf():
                                 cant_asf.avail = value_sf
                                 cant_asf.save()
                     resp_l = suites_feria.logout()
-                    logging.info(f"[+] Logout suites feria: {now()} {resp_l}")
-                    generate_log("[+] Logout suites feria", BotLog.SUITESFERIA)
-                
-                # state = False
-                # for p in ProcessActive.objects.all():
-                #     if not p.currenct and not p.active:
-                #         state = True
-
-                # if state:
-                #     break
-                time.sleep(60)
+                    time.sleep(60)
+                    logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
+                    generate_log("[+] Dispo Suites feria actualizado", BotLog.SUITESFERIA)
+            
+                time.sleep(30)
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
                 generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
