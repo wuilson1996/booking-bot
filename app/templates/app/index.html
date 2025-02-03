@@ -258,19 +258,6 @@
                             </table>
                           </h4>
                         </td>
-                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="table table-flush text-white table-sm">
-                            <tbody>
-                              <tr>
-                                <td class="text-sm">
-                                  ZEN<h3>{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</h3>
-                                  OSU<h3>{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</h3>
-                                  <!--<h5>0</h5>-->
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} | </span>
@@ -287,6 +274,19 @@
                             {% if "media_total1" in value.5 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %} | 
                             {% if "media_total7" in value.5 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}
                           </h4>
+                        </td>
+                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm">
+                                  ZEN<h3>{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</h3>
+                                  OSU<h3>{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</h3>
+                                  <!--<h5>0</h5>-->
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <table class="table table-flush text-white table-sm">
@@ -406,18 +406,6 @@
                             {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
                           </h4> -->
                         </td>
-                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <table class="table table-flush text-white table-sm">
-                            <tbody>
-                              <tr>
-                                <td class="text-sm">
-                                  TOR<h3>{% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</h3>
-                                  BAR<h3>{% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</h3>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "totalFeria" in value.3 %}{{value.3.totalFeria}}{% else %}0{% endif %} | </span>
@@ -434,6 +422,18 @@
                             {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
                             {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
                           </h4>
+                        </td>
+                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm">
+                                  TOR<h3>{% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</h3>
+                                  BAR<h3>{% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</h3>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                           <table class="table table-flush text-white table-sm">
@@ -538,18 +538,6 @@
                             {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
                           </h4> -->
                         </td>
-                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <table class="table table-flush text-white table-sm">
-                            <tbody>
-                              <tr>
-                                <td class="text-sm">
-                                  AZA<h3>{% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</h3>
-                                  ECO<h3>{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</h3></br>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "totalFeria" in value.5 %}{{value.5.totalFeria}}{% else %}0{% endif %} | </span>
@@ -566,6 +554,18 @@
                             {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
                             {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
                           </h4>
+                        </td>
+                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <table class="table table-flush text-white table-sm">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm">
+                                  AZA<h3>{% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</h3>
+                                  ECO<h3>{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</h3></br>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                           <table class="table table-flush text-white table-sm">
