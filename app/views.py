@@ -21,6 +21,13 @@ def reset_task():
         t.save()
     logging.info("[+] Check cron active finish...")
 
+    logging.info("[+] Reset data price status...")
+    for t in Price.objects.all():
+        t.plataform_sync = True
+        t.save()
+    logging.info("[+] Reset data price status finish...")
+    
+
 threading.Thread(target=reset_task).start()
 
 def generate_date_with_month(_date:str):
@@ -286,8 +293,27 @@ def check_booking_process(request):
         bot_log = BotLog.objects.filter(plataform_option = BotLog.SUITESFERIA).last()
         if bot_log:
             bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+        
+        _date_from = dt(
+            year=int(request.POST["date"].split("-")[0]),
+            month=int(request.POST["date"].split("-")[1]),
+            day=int(request.POST["date"].split("-")[2])
+        )
+        __date_to = str(_date_from.date() + datetime.timedelta(days=int(request.POST["days"])))
+        _date_to = dt(
+            year=int(__date_to.split("-")[0]),
+            month=int(__date_to.split("-")[1]),
+            day=int(__date_to.split("-")[2])
+        )
+        status_price = []
+        while _date_from.date() <= _date_to.date():
+            prices = []
+            for _price in Price.objects.filter(date_from = str(_date_from.date())):
+                prices.append({"price": _price.price, "pSync": _price.plataform_sync, "date_from": _price.date_from, "occupancy": _price.occupancy})
+            status_price.append(prices)
+            _date_from += datetime.timedelta(days=1)
 
-        result = {"code": 200, "status": "OK", "active":state, "botLog": bot_logs}
+        result = {"code": 200, "status": "OK", "active":state, "botLog": bot_logs, "status_price": status_price}
     return Response(result)
 
 @api_view(["POST"])
@@ -347,7 +373,7 @@ def upgrade_fee(request):
             __time = 60
             for p in Price.objects.filter(date_from = request.data["date"]):
                 if p.price != None and p.price != "":
-                    _prices[str(p.occupancy)] = p.price
+                    _prices[str(p.occupancy)] = p
 
             message = "Proceso activado correctamente."
             _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
@@ -407,10 +433,11 @@ def save_price(request):
             )
         else:
             _price.price = request.data["text"]
+            _price.plataform_sync = False
             _price.updated = now()
             _price.save()
         
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated))}
+        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated)), "pSync": _price.plataform_sync}
     return Response(result)
 
 @api_view(["POST"])
@@ -552,28 +579,32 @@ def index(request):
                 if __price:
                     bookings[str(_date_from.date())][int(ocp)]["tarifa"] = {
                         "price":__price.price, 
-                        "updated": generate_date_with_month_time(str(__price.updated))
+                        "updated": generate_date_with_month_time(str(__price.updated)),
+                        "pSync": __price.plataform_sync
                     }
                     if int(ocp) == 2:
                         __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=1).last()
                         if __price:
                             bookings[str(_date_from.date())][int(ocp)]["tarifa1"] = {
                                 "price":__price.price, 
-                                "updated": generate_date_with_month_time(str(__price.updated))
+                                "updated": generate_date_with_month_time(str(__price.updated)),
+                                "pSync": __price.plataform_sync
                             }
                     if int(ocp) == 3:
                         __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=4).last()
                         if __price:
                             bookings[str(_date_from.date())][int(ocp)]["tarifa1"] = {
                                 "price":__price.price, 
-                                "updated": generate_date_with_month_time(str(__price.updated))
+                                "updated": generate_date_with_month_time(str(__price.updated)),
+                                "pSync": __price.plataform_sync
                             }
                     if int(ocp) == 5:
                         __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=6).last()
                         if __price:
                             bookings[str(_date_from.date())][int(ocp)]["tarifa1"] = {
                                 "price":__price.price, 
-                                "updated": generate_date_with_month_time(str(__price.updated))
+                                "updated": generate_date_with_month_time(str(__price.updated)),
+                                "pSync": __price.plataform_sync
                             }
                 # get message
                 __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()

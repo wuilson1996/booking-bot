@@ -114,6 +114,7 @@ class Price(models.Model):
     price = models.CharField(max_length=50)
     updated = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(null=True, blank=True)
+    plataform_sync = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return str(self.price)+" - "+str(self.occupancy)

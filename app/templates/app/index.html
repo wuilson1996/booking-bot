@@ -19,7 +19,7 @@
               <form action="" method="post">{% csrf_token %}
                 <div class="row">
                   <div class="col-md-2">
-                    <input type="date" class="form-control" value="{{date_from}}" name="date_from">
+                    <input type="date" class="form-control" value="{{date_from}}" name="date_from" id="date_from">
                   </div>
                   <!--<div class="col-md-2">
                     <input type="date" class="form-control" value="{{date_to}}" name="date_to">
@@ -269,11 +269,17 @@
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                            <span class="input-group-text">
+                              <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                            </span>
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
+                            <span class="input-group-text">
+                              <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                            </span>
                           </div>
                           <!---->
                         </td>
@@ -444,11 +450,17 @@
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
+                            <span class="input-group-text">
+                              <i id="iconStatus{{date}}3" class="{% if not value.3.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                            </span>
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
+                            <span class="input-group-text">
+                              <i id="iconStatus{{date}}4" class="{% if not value.3.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                            </span>
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
@@ -580,11 +592,17 @@
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                            <span class="input-group-text">
+                              <i id="iconStatus{{date}}5" class="{% if not value.5.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                            </span>
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">Guardar</button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
+                            <span class="input-group-text">
+                              <i id="iconStatus{{date}}6" class="{% if not value.5.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                            </span>
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
@@ -884,7 +902,10 @@
       $.ajax({
           url: '/check/booking/process',
           type: 'POST',
-          data:{},
+          data:{
+            date:document.getElementById("date_from").value,
+            days:document.getElementById("range_pg").value
+          },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
             if (json.active){
@@ -921,6 +942,13 @@
             } else {
               $("#addLogSuitesFeria").append("Historial de proceso no disponible");
             }
+            //console.log(json.status_price);
+            json.status_price.map(function(value, index){
+              value.map(function(value2, index2){
+                //console.log(value2);
+                changeStatusPRice(value2.date_from+""+value2.occupancy, value2.pSync);
+              });
+            });
           },
           error: function(error) {
             console.log("Ocurrio un error");
@@ -986,12 +1014,24 @@
             if (json.code == 200){
               $("#priceDate"+inputId).text("");
               $("#priceDate"+inputId).append(json.updated);
+
+              changeStatusPRice(inputId, json.pSync);
             }
           },
           error: function(error) {
             console.log("Ocurrio un error");
           }
       });
+    }
+    function changeStatusPRice(inputId, status){
+      let icon = document.getElementById("iconStatus"+inputId);
+      if (status == true) {
+          icon.classList.remove("fa-exclamation-triangle", "text-warning");
+          icon.classList.add("fa-check", "text-success");
+      } else {
+          icon.classList.remove("fa-check", "text-success");
+          icon.classList.add("fa-exclamation-triangle", "text-warning");
+      }
     }
     let timeoutHandles = {}
     function upgradeFee(_date){

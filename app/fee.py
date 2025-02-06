@@ -50,30 +50,30 @@ class FeeTask:
             driver.get(cls._url)
             driver.implicitly_wait(15)
             driver.delete_all_cookies()
-            generate_log(f"[+] Iniciando sesion... {_date} | {price}", BotLog.ROOMPRICE)
+            generate_log(f"[+] Iniciando sesion... {_date} | {str(price)}", BotLog.ROOMPRICE)
             driver.find_element_by_xpath("//input[@type='email']").send_keys(username)
             #logging.info(f"[+] Add username success...")
-            #generate_log(f"[+] Add username success... {_date} | {price}", BotLog.ROOMPRICE)
+            #generate_log(f"[+] Add username success... {_date} | {str(price)}", BotLog.ROOMPRICE)
             driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
             #logging.info(f"[+] Add username password...")
-            #generate_log(f"[+] Add username password... {_date} | {price}", BotLog.ROOMPRICE)
+            #generate_log(f"[+] Add username password... {_date} | {str(price)}", BotLog.ROOMPRICE)
             driver.find_element_by_xpath("//button[@type='submit']").click()
             #logging.info(f"[+] click button login success...")
-            #generate_log(f"[+] click button login success... {_date} | {price}", BotLog.ROOMPRICE)
+            #generate_log(f"[+] click button login success... {_date} | {str(price)}", BotLog.ROOMPRICE)
             sleep(5)
             if "Ajustes de la cuenta" in driver.page_source:
                 logging.info(f"[+] Inicio sesion correctamente...")
-                generate_log(f"[+] Inicio sesion correctamente... {_date} | {price}", BotLog.ROOMPRICE)
+                generate_log(f"[+] Inicio sesion correctamente... {_date} | {str(price)}", BotLog.ROOMPRICE)
             __time = time()
             while True:
                 logging.info(f"[+] verificando inicio de sesion...")
-                generate_log(f"[+] verificando inicio de sesion... {_date} | {price}", BotLog.ROOMPRICE)
+                generate_log(f"[+] verificando inicio de sesion... {_date} | {str(price)}", BotLog.ROOMPRICE)
                 if "Optimizando..." not in driver.page_source or (time() - __time >= 180):
                     break
                 sleep(1)
 
             #logging.info(f"[+] Login success...")
-            #generate_log(f"[+] Login success... {_date} | {price}", BotLog.ROOMPRICE)
+            #generate_log(f"[+] Login success... {_date} | {str(price)}", BotLog.ROOMPRICE)
             # try:
             #     for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
             #         logging.info(button_update.text)
@@ -82,82 +82,82 @@ class FeeTask:
             while True:
                 status = False
                 logging.info(f"[+] search buttons calendar...")
-                generate_log(f"[+] Buscando fecha en calendario... {_date} | {price}", BotLog.ROOMPRICE)
+                generate_log(f"[+] Buscando fecha en calendario... {_date} | {str(price)}", BotLog.ROOMPRICE)
                 for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
                         if _date == str(b.get_attribute("data-testid")):
                             logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
-                            generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {price}", BotLog.ROOMPRICE)
+                            generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {str(price)}", BotLog.ROOMPRICE)
                             status = True
                             b.click()
                             logging.info(f"[+] Click fecha success...")
-                            generate_log(f"[+] Abriendo fecha... {_date} | {price}", BotLog.ROOMPRICE)
+                            generate_log(f"[+] Abriendo fecha... {_date} | {str(price)}", BotLog.ROOMPRICE)
                             sleep(3)
                             driver.find_element_by_xpath("//button[@data-testid='editPricesTab']").click()
                             logging.info(f"[+] Click button edit price tab success...")
-                            generate_log(f"[+] Abriendo edicion de precios... {_date} | {price}", BotLog.ROOMPRICE)
+                            generate_log(f"[+] Abriendo edicion de precios... {_date} | {str(price)}", BotLog.ROOMPRICE)
                             sleep(2)
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
                                     b2.click()
                                     logging.info(f"[+] Precios fijos click success...")
-                                    generate_log(f"[+] Edicion de precios fijos... {_date} | {price}", BotLog.ROOMPRICE)
+                                    generate_log(f"[+] Edicion de precios fijos... {_date} | {str(price)}", BotLog.ROOMPRICE)
                                     sleep(2)
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
                                         bs.click()
                                     sleep(2)
                                     logging.info(f"[+] Button switch success...")
-                                    generate_log(f"[+] Cambiando precios... {_date} | {price}", BotLog.ROOMPRICE)
+                                    generate_log(f"[+] Cambiando precios... {_date} | {str(price)}", BotLog.ROOMPRICE)
 
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.3.id']")
                                     input_price.clear()
                                     input_price2 = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.4.id']")
                                     input_price2.clear()
                                     if "1" in price.keys():
-                                        input_price.send_keys(str(price["1"]))
-                                        input_price2.send_keys(str(price["1"]))
+                                        input_price.send_keys(str(price["1"].price))
+                                        input_price2.send_keys(str(price["1"].price))
                                     
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.0.id']")
                                     input_price.clear()
                                     if "2" in price.keys():
-                                        input_price.send_keys(str(price["2"]))
+                                        input_price.send_keys(str(price["2"].price))
 
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.1.id']")
                                     input_price.clear()
                                     if "3" in price.keys():
-                                        input_price.send_keys(str(price["3"]))
+                                        input_price.send_keys(str(price["3"].price))
                                     
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.2.id']")
                                     input_price.clear()
                                     if "4" in price.keys():
-                                        input_price.send_keys(str(price["4"]))
+                                        input_price.send_keys(str(price["4"].price))
                                     
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.5.id']")
                                     input_price.clear()
                                     if "5" in price.keys():
-                                        input_price.send_keys(str(price["5"]))
+                                        input_price.send_keys(str(price["5"].price))
                                     
                                     input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.6.id']")
                                     input_price.clear()
                                     if "6" in price.keys():
-                                        input_price.send_keys(str(price["6"]))
+                                        input_price.send_keys(str(price["6"].price))
 
                                     sleep(2)
                                     driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']").click()
                                     logging.info(f"[+] Tarifa actualizado correctamente....")
-                                    generate_log(f"[+] Tarifa actualizado correctamente.... {_date} | {price}", BotLog.ROOMPRICE)
+                                    generate_log(f"[+] Tarifa actualizado correctamente.... {_date} | {str(price)}", BotLog.ROOMPRICE)
                                     break
                             break
                 if status:
                     logging.info("[+] Encontrada...")
-                    generate_log(f"[+] Actualizacion general... {_date} | {price}", BotLog.ROOMPRICE)
+                    generate_log(f"[+] Actualizacion general... {_date} | {str(price)}", BotLog.ROOMPRICE)
                     sleep(3)
                     try:
                         for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
                             if "Actualizar tarifas" in button_update.text:
-                                generate_log(f"[+] Actualizando tarifa... {_date} | {price}", BotLog.ROOMPRICE)
+                                generate_log(f"[+] Actualizando tarifa... {_date} | {str(price)}", BotLog.ROOMPRICE)
                                 logging.info(button_update.text)
                                 #button_update.click()
                                 driver.execute_script("arguments[0].click();", button_update)
@@ -173,29 +173,36 @@ class FeeTask:
                                                 #logging.info(btt.get_attribute("innerHTML"))
                                                 btt.click()
                                                 check = True
-                                                generate_log(f"[+] Tarifa actualizada... {_date} | {price}", BotLog.ROOMPRICE)
+                                                generate_log(f"[+] Tarifa actualizada... {_date} | {str(price)}", BotLog.ROOMPRICE)
+                                                cls.change_status_price(price, True)
                                                 sleep(10)
                                                 break
                                         break
                                 break
                     except Exception as e1:
                         logging.info(f"Error button update: {e1}")
-                        generate_log(f"[+] Error button update {e1}... {_date} | {price}", BotLog.ROOMPRICE)
+                        generate_log(f"[+] Error button update {e1}... {_date} | {str(price)}", BotLog.ROOMPRICE)
                     break
                 else:
                     logging.info("[+] Buscando calendario...")
-                    generate_log(f"[+] Buscando calendario... {_date} | {price}", BotLog.ROOMPRICE)
+                    generate_log(f"[+] Buscando calendario... {_date} | {str(price)}", BotLog.ROOMPRICE)
                     driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']").click()
                     sleep(3)
                     logging.info(f"[+] Click button next calendar success...")
-                    generate_log(f"[+] Siguiente calendario... {_date} | {price}", BotLog.ROOMPRICE)
+                    generate_log(f"[+] Siguiente calendario... {_date} | {str(price)}", BotLog.ROOMPRICE)
         
         except Exception as e:
             logging.info("Error Fee: "+str(e))
-            generate_log(f"[+] Error Fee {e}... {_date} | {price}", BotLog.ROOMPRICE)
+            generate_log(f"[+] Error Fee {e}... {_date} | {str(price)}", BotLog.ROOMPRICE)
 
         return check
     
     @classmethod
     def close(cls, driver):
         driver.close()
+    
+    @classmethod
+    def change_status_price(cls, price, status):
+        for key, value in price.items():
+            value.plataform_sync = status
+            value.save()
