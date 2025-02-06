@@ -266,18 +266,18 @@
                         <td class="text-sm">
                           <!---->
                           <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
+                          <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                            <button class="btn btn-white btn-xs mb-0  w-100" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
                               Guardar <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" style="width: 50px;" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
+                          <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
+                            <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
                               Guardar <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" style="width: 50px;" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
                           </div>
                           <!---->
                         </td>
@@ -445,18 +445,18 @@
                         </td>
                         <td class="text-sm">
                           <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">
+                          <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
+                            <button class="btn btn-white btn-xs mb-0  w-100" style="font-size: 14px;" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">
                               Guardar <i id="iconStatus{{date}}3" class="{% if not value.3.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" style="width: 50px;" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">
+                          <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
+                            <button class="btn btn-white btn-xs mb-0  w-100" style="font-size: 14px;" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">
                               Guardar <i id="iconStatus{{date}}4" class="{% if not value.3.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" style="width: 50px;" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
@@ -585,18 +585,18 @@
                         </td>
                         <td class="text-sm">
                           <span class="text-white text-lg" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">
+                          <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                            <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">
                               Guardar<i id="iconStatus{{date}}5" class="{% if not value.5.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" style="width: 50px;" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">
+                          <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
+                            <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">
                               Guardar <i id="iconStatus{{date}}6" class="{% if not value.5.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" style="width: 50px;" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
