@@ -432,6 +432,7 @@ def save_price(request):
                 created = now()
             )
         else:
+            #if _price.price != request.data["text"]:
             _price.price = request.data["text"]
             _price.plataform_sync = False
             _price.updated = now()
