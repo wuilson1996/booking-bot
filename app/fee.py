@@ -55,6 +55,7 @@ class FeeTask:
         try:
             check = False
             driver.get(cls._url)
+            driver.maximize_window()
             driver.implicitly_wait(15)
             driver.delete_all_cookies()
             generate_log(f"[+] Iniciando sesion... {_date} | {cls.organice_price(price)}", BotLog.ROOMPRICE)
@@ -97,22 +98,31 @@ class FeeTask:
                             logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
                             generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             status = True
+                            driver.execute_script("arguments[0].scrollIntoView();", b)
+                            sleep(1)
                             b.click()
                             logging.info(f"[+] Click fecha success...")
                             generate_log(f"[+] Abriendo fecha... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             sleep(3)
-                            driver.find_element_by_xpath("//button[@data-testid='editPricesTab']").click()
+                            bt_edit_price = driver.find_element_by_xpath("//button[@data-testid='editPricesTab']")
+                            driver.execute_script("arguments[0].scrollIntoView();", bt_edit_price)
+                            sleep(1)
+                            bt_edit_price.click()
                             logging.info(f"[+] Click button edit price tab success...")
                             generate_log(f"[+] Abriendo edicion de precios... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             sleep(2)
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
+                                    driver.execute_script("arguments[0].scrollIntoView();", b2)
+                                    sleep(1)
                                     b2.click()
                                     logging.info(f"[+] Precios fijos click success...")
                                     generate_log(f"[+] Edicion de precios fijos... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                                     sleep(2)
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
+                                        driver.execute_script("arguments[0].scrollIntoView();", bs)
+                                        sleep(1)
                                         bs.click()
                                     sleep(2)
                                     logging.info(f"[+] Button switch success...")
@@ -152,7 +162,10 @@ class FeeTask:
                                         input_price.send_keys(str(price["6"].price))
 
                                     sleep(2)
-                                    driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']").click()
+                                    btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']")
+                                    driver.execute_script("arguments[0].scrollIntoView();", btn_update)
+                                    sleep(1)
+                                    btn_update.click()
                                     logging.info(f"[+] Tarifa actualizado correctamente....")
                                     generate_log(f"[+] Tarifa actualizado correctamente.... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                                     break
@@ -167,17 +180,23 @@ class FeeTask:
                                 generate_log(f"[+] Actualizando tarifa... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                                 logging.info(button_update.text)
                                 #button_update.click()
+                                driver.execute_script("arguments[0].scrollIntoView();", button_update)
+                                sleep(1)
                                 driver.execute_script("arguments[0].click();", button_update)
                                 sleep(2)
                                 for b in driver.find_elements_by_xpath("//div[@role='radio']"):
                                     if "Próximos 3 meses" in b.text:
                                         logging.info(b.text)
+                                        driver.execute_script("arguments[0].scrollIntoView();", b)
+                                        sleep(1)
                                         driver.execute_script("arguments[0].click();", b)
                                         sleep(4)
                                         for btt in driver.find_elements_by_xpath("//button[@type='button']"):
                                             if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML"):
                                                 logging.info(btt.text)
                                                 #logging.info(btt.get_attribute("innerHTML"))
+                                                driver.execute_script("arguments[0].scrollIntoView();", btt)
+                                                sleep(1)
                                                 btt.click()
                                                 check = True
                                                 generate_log(f"[+] Tarifa actualizada... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
@@ -193,7 +212,10 @@ class FeeTask:
                 else:
                     logging.info("[+] Buscando calendario...")
                     generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                    driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']").click()
+                    bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
+                    driver.execute_script("arguments[0].scrollIntoView();", bt_next)
+                    sleep(1)
+                    bt_next.click()
                     sleep(3)
                     logging.info(f"[+] Click button next calendar success...")
                     generate_log(f"[+] Siguiente calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
