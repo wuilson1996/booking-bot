@@ -156,7 +156,7 @@ class TemporadaByDay(models.Model):
         ("bg-danger", "bg-danger"),
         ("bg-warning", "bg-warning"),
         ("bg-success", "bg-success"),
-        ("bg-secondary", "bg-secondary"),
+        ("bg-info", "bg-info"),
         ("bg-dark", "bg-dark"),
     )
     TEXT_COLORS = (

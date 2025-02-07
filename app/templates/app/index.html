@@ -165,6 +165,20 @@
                   <h4 class="text-white my-4">{{value.date_from}}</h4>
                   </br>
                   <h4 class="text-white my-4">{{value.day}}</h4>
+                  <hr>
+                  <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
+                  <div class="input-group mb-3">
+                    <select id="temp{{date}}" class="form-control form-control-sm" value="{{value.temporadaByDay.number}}">
+                      <option value="">Seleccionar</option>
+                      <option value="0" {% if value.temporadaByDay.number == '0' %}selected{% endif %}>Temporada 0</option>
+                      <option value="1" {% if value.temporadaByDay.number == '1' %}selected{% endif %}>Temporada 1</option>
+                      <option value="2" {% if value.temporadaByDay.number == '2' %}selected{% endif %}>Temporada 2</option>
+                      <option value="3" {% if value.temporadaByDay.number == '3' %}selected{% endif %}>Temporada 3</option>
+                      <option value="4" {% if value.temporadaByDay.number == '4' %}selected{% endif %}>Temporada 4</option>
+                      <option value="5" {% if value.temporadaByDay.number == '5' %}selected{% endif %}>Temporada 5</option>
+                    </select>
+                    <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
+                  </div>
                   </br>
                   </br>
                   </br>
@@ -182,20 +196,6 @@
                   <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
                   <hr>
                   <span id="temp-update{{date}}">{{value.updated}}</span>
-                  <hr>
-                  <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
-                  <div class="input-group mb-3">
-                    <select id="temp{{date}}" class="form-control form-control-sm" value="{{value.temporadaByDay.number}}">
-                      <option value="">Seleccionar</option>
-                      <option value="0" {% if value.temporadaByDay.number == '0' %}selected{% endif %}>Temporada 0</option>
-                      <option value="1" {% if value.temporadaByDay.number == '1' %}selected{% endif %}>Temporada 1</option>
-                      <option value="2" {% if value.temporadaByDay.number == '2' %}selected{% endif %}>Temporada 2</option>
-                      <option value="3" {% if value.temporadaByDay.number == '3' %}selected{% endif %}>Temporada 3</option>
-                      <option value="4" {% if value.temporadaByDay.number == '4' %}selected{% endif %}>Temporada 4</option>
-                      <option value="5" {% if value.temporadaByDay.number == '5' %}selected{% endif %}>Temporada 5</option>
-                    </select>
-                    <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
-                  </div>
                   </br>
                   </br>
                   </br>
@@ -221,7 +221,7 @@
                       <tr>
                         <td colspan="6">
                           <div class="row">
-                            <div class="col-md-2 bg-danger">
+                            <div class="col-md-2 bg-danger" style="width: 200px;">
                               <span class="bg-danger text-start">
                                 <span class="h2 text-bold text-white">{{value.2.total_search}}</span> | 
                                 <span class="h4 text-bold text-white">{{value.2.total_search1}}</span> | 
@@ -246,13 +246,13 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                    <h2 class="text-white bg-success text-center">200</h2>
+                                    <h2 class="text-white bg-success text-center">0</h2>
                                     <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
                                     {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
                                     {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
                                     <br>
                                     <span class="bg-dark">
-                                    <span class="h3 text-bold text-white text-start">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} |
+                                    <span class="h2 text-bold text-white text-start">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} |
                                     {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %} | 
                                     {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}</span>
                                     <br>
@@ -297,17 +297,18 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm">
-                                  <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span><br>
-                                  <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">SIL: {% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span><br>
                                   <span style="font-size: 32px; color: black; font-weight: bold;">
                                     <span class="h3 text-bold text-black">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %} | 
                                       0 | 
                                       0
                                     </span>
                                   </span><br>
-                                  <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span><br>
-                                  <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span><br>
-                                  <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">TOR: {% if 'priceTOR' in value.2 %}{{value.2.priceTOR}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">TOR: {% if 'priceTOR' in value.2 %}{{value.2.priceTOR}}{% else %}0{% endif %}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -445,7 +446,7 @@
                       </tr> -->
                       <tr>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <h2 class="text-white bg-success text-center">200</h2>
+                          <h2 class="text-white bg-success text-center">0</h2>
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %} | </span>
                             {% if "priceSuitesFeria1" in value.3 %}{{value.3.priceSuitesFeria1}}{% else %}0{% endif %} | 
@@ -483,14 +484,14 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm">
-                                  TOR: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</span><br>
-                                  BAR: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white">TOR: {% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">BAR: {% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</span>
                                   <h4 class="text-white text-start bg-danger">
-                                    <span class="h2 text-bold text-white">{{value.3.total_search}} | </span>
-                                    <span class="h4 text-bold text-white">{{value.3.total_search1}}</span> |
-                                    <span class="h4 text-bold text-white">{{value.3.total_search7}}</span>
+                                    <span class="h5 text-bold text-white">{{value.3.total_search}} | </span>
+                                    <span class="h5 text-bold text-white">{{value.3.total_search1}}</span> |
+                                    <span class="h5 text-bold text-white">{{value.3.total_search7}}</span>
                                   </h4>
-                                  <h5 class="h4 text-bold text-white bg-danger">{{value.3.total_search_192}}%</h5>
+                                  <h5 class="h5 text-bold text-white bg-danger">{{value.3.total_search_192}}%</h5>
                                 </td>
                               </tr>
                             </tbody>
@@ -592,7 +593,7 @@
                       </tr> -->
                       <tr>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <h2 class="text-white bg-success text-center">200</h2>
+                          <h2 class="text-white bg-success text-center">0</h2>
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %} | </span>
                             {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %} | 
@@ -632,15 +633,15 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm">
-                                  AZA: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</span><br>
-                                  ECO: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white">AZA: {% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</span><br>
+                                  <span class="h4 text-bold text-white">ECO: {% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</span>
                                   <br>
                                   <h4 class="text-white text-start bg-danger">
-                                    <span class="h2 text-bold text-white">{{value.5.total_search}}</span> | 
-                                    <span class="h4 text-bold text-white">{{value.3.total_search1}}</span> |
-                                    <span class="h4 text-bold text-white">{{value.3.total_search7}}</span>
+                                    <span class="h5 text-bold text-white">{{value.5.total_search}}</span> | 
+                                    <span class="h5 text-bold text-white">{{value.3.total_search1}}</span> |
+                                    <span class="h5 text-bold text-white">{{value.3.total_search7}}</span>
                                   </h4>
-                                  <h5 class="h4 text-bold text-white bg-danger">{{value.5.total_search_192}}%</h5>
+                                  <h5 class="h5 text-bold text-white bg-danger">{{value.5.total_search_192}}%</h5>
                                 </td>
                               </tr>
                             </tbody>
