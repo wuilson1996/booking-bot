@@ -452,11 +452,6 @@
                             {% if "priceSuitesFeria7" in value.3 %}{{value.3.priceSuitesFeria7}}{% else %}0{% endif %}
                           </h4>
                           <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %} | </span>
-                            {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
-                            {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
-                          </h4>
-                          <h4 class="text-white text-start">
                             <span class="h2 text-bold text-white bg-dark">{% if "totalFeria" in value.3 %}{{value.3.totalFeria}}{% else %}0{% endif %} | 
                             {% if "totalFeria1" in value.3 %}{{value.3.totalFeria1}}{% else %}0{% endif %} | 
                             {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}</span>
@@ -502,6 +497,19 @@
                           </table>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <h4 class="text-white text-start">
+                                    <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %} | </span>
+                                    {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
+                                    {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
+                                  </h4>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                           <table class="table table-flush text-white table-sm">
                             <tbody>
                               <tr>
@@ -590,11 +598,7 @@
                             {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %} | 
                             {% if "priceSuitesFeria7" in value.5 %}{{value.5.priceSuitesFeria7}}{% else %}0{% endif %} 
                           </h4>
-                          <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
-                            {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
-                            {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
-                          </h4>
+                          
                           <h4 class="text-white text-start">
                             <span class="h2 text-bold text-white bg-dark">{% if "totalFeria" in value.5 %}{{value.5.totalFeria}}{% else %}0{% endif %} | 
                             {% if "totalFeria1" in value.5 %}{{value.5.totalFeria1}}{% else %}0{% endif %} | 
@@ -643,6 +647,19 @@
                           </table>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <h4 class="text-white text-start">
+                                    <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
+                                    {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
+                                    {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
+                                  </h4>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                           <table class="table table-flush text-white table-sm">
                             <tbody>
                               <tr>
