@@ -349,16 +349,13 @@ def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform
         while cron.current_date > now():
             sleep(1)
 
-        cont = 0
-        while True:
+        for i in range(2):
             fee = FeeTask()
             _driver = fee._driver()
-            _check = fee.controller(_driver, price, _date, _credential.username, _credential.password)
+            fee.controller(_driver, price, _date, _credential.username, _credential.password)
             sleep(5)
             fee.close(_driver)
-            if _check or cont >= 2:
-                break
-            cont += 1
+
         cron.active = False
         cron.save()
     except Exception as e:
@@ -370,7 +367,7 @@ def upgrade_fee(request):
     if request.user.is_authenticated:
         try:
             _prices = {}
-            __time = 60
+            __time = 90
             for p in Price.objects.filter(date_from = request.data["date"]):
                 if p.price != None and p.price != "":
                     _prices[str(p.occupancy)] = p
@@ -384,7 +381,7 @@ def upgrade_fee(request):
                     if cron_active.active:
                         cron = CronActive.objects.create(
                             active = True,
-                            current_date = cron_active.current_date + datetime.timedelta(minutes=1)
+                            current_date = cron_active.current_date + datetime.timedelta(minutes=1.5)
                         )
                     else:
                         cron = CronActive.objects.create(
