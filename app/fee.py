@@ -121,7 +121,7 @@ class FeeTask:
                                     sleep(2)
                                     bs = driver.find_element_by_xpath("//button[@role='switch']")
                                     if str(bs.get_attribute("data-headlessui-state")) == "checked":
-                                        driver.execute_script("arguments[0].scrollIntoView();", bs)
+                                        #driver.execute_script("arguments[0].scrollIntoView();", bs)
                                         sleep(1)
                                         bs.click()
                                     sleep(2)
@@ -163,7 +163,7 @@ class FeeTask:
 
                                     sleep(2)
                                     btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']")
-                                    driver.execute_script("arguments[0].scrollIntoView();", btn_update)
+                                    #driver.execute_script("arguments[0].scrollIntoView();", btn_update)
                                     sleep(1)
                                     btn_update.click()
                                     logging.info(f"[+] Tarifa actualizado correctamente....")
@@ -180,14 +180,14 @@ class FeeTask:
                                 generate_log(f"[+] Actualizando tarifa... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                                 logging.info(button_update.text)
                                 #button_update.click()
-                                driver.execute_script("arguments[0].scrollIntoView();", button_update)
+                                #driver.execute_script("arguments[0].scrollIntoView();", button_update)
                                 sleep(1)
                                 driver.execute_script("arguments[0].click();", button_update)
                                 sleep(2)
                                 for b in driver.find_elements_by_xpath("//div[@role='radio']"):
                                     if "Próximos 3 meses" in b.text:
                                         logging.info(b.text)
-                                        driver.execute_script("arguments[0].scrollIntoView();", b)
+                                        #driver.execute_script("arguments[0].scrollIntoView();", b)
                                         sleep(1)
                                         driver.execute_script("arguments[0].click();", b)
                                         sleep(4)
@@ -195,7 +195,7 @@ class FeeTask:
                                             if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML"):
                                                 logging.info(btt.text)
                                                 #logging.info(btt.get_attribute("innerHTML"))
-                                                driver.execute_script("arguments[0].scrollIntoView();", btt)
+                                                #driver.execute_script("arguments[0].scrollIntoView();", btt)
                                                 sleep(1)
                                                 btt.click()
                                                 check = True
@@ -213,7 +213,7 @@ class FeeTask:
                     logging.info("[+] Buscando calendario...")
                     generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                     bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
-                    driver.execute_script("arguments[0].scrollIntoView();", bt_next)
+                    #driver.execute_script("arguments[0].scrollIntoView();", bt_next)
                     sleep(1)
                     bt_next.click()
                     sleep(3)
