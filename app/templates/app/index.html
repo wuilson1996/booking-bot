@@ -220,9 +220,22 @@
                     <tbody>
                       <tr>
                         <td colspan="6">
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
-                            <textarea class="form-control form-control-lg text-lg" placeholder="Fijar evento" rows="2" aria-describedby="button-addon7" id="textEvent{{date}}2">{{value.2.eventByDay.text}}</textarea>
+                          <div class="row">
+                            <div class="col-md-2 bg-danger">
+                              <span class="bg-danger text-start">
+                                <span class="h2 text-bold text-white">{{value.2.total_search}}</span> | 
+                                <span class="h4 text-bold text-white">{{value.2.total_search1}}</span> | 
+                                <span class="h4 text-bold text-white">{{value.2.total_search7}}</span>
+                                <br>
+                                <h5 class="h4 text-bold text-white bg-danger w-50">{{value.2.total_search_192}}%</h5>
+                              </span>
+                            </div>
+                            <div class="col-md-10">
+                              <div class="input-group mb-3">
+                                <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
+                                <textarea class="form-control form-control-lg text-lg" placeholder="Fijar evento" rows="2" aria-describedby="button-addon7" id="textEvent{{date}}2">{{value.2.eventByDay.text}}</textarea>
+                              </div>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -233,17 +246,15 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                    <span class="bg-danger text-start">
-                                    <h5 class="h3 text-bold text-white bg-danger">{{value.2.total_search_192}}%</h5>
-                                    <span class="h3 text-bold text-white">{{value.2.total_search}}</span> | 
-                                    0 | 
-                                    0 
-                                    </span>
+                                    <h2 class="text-white bg-success text-center">200</h2>
+                                    <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                                    {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                                    {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
                                     <br>
                                     <span class="bg-dark">
-                                    <span class="text-bold text-start" style="font-size: 28px;">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %}</span> |
+                                    <span class="h3 text-bold text-white text-start">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} |
                                     {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %} | 
-                                    {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}
+                                    {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}</span>
                                     <br>
                                     M: <span style="font-size: 28px;">{% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %}</span> | 
                                     <span style="font-size: 28px;">{% if "totalFeriaM1" in value.2 %}{{value.2.totalFeriaM1}}{% else %}0{% endif %}</span> | 
@@ -281,24 +292,6 @@
                           </div>
                           <!---->
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <h2 class="text-white bg-success text-center">200</h2>
-                          <h4 class="text-white text-center">
-                            <span>
-                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                            {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                            {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
-                            <br>
-                            <span class="h3 text-bold text-black">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %} | 
-                            0 | 
-                            0</span>
-                            <br>
-                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %} | 
-                            {% if "media_total1" in value.5 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %} | 
-                            {% if "media_total7" in value.5 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</span>
-                          </span>
-                          </h4>
-                        </td>
                         <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <table class="table table-flush text-white table-sm">
                             <tbody>
@@ -306,7 +299,12 @@
                                 <td class="text-sm">
                                   <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span><br>
                                   <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span><br>
-                                  <span style="font-size: 32px; color: black; font-weight: bold;">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %}</span><br>
+                                  <span style="font-size: 32px; color: black; font-weight: bold;">
+                                    <span class="h3 text-bold text-black">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %} | 
+                                      0 | 
+                                      0
+                                    </span>
+                                  </span><br>
                                   <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span><br>
                                   <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span><br>
                                   <span class="text-bold" style="font-size: 26px; color: white; font-weight: bold;">TOR: {% if 'priceTOR' in value.2 %}{{value.2.priceTOR}}{% else %}0{% endif %}</span>
@@ -316,6 +314,22 @@
                           </table>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <h4 class="text-white text-center">
+                                    <span>
+                                      <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %} | 
+                                      {% if "media_total1" in value.5 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %} | 
+                                      {% if "media_total7" in value.5 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}
+                                      </span>
+                                    </span>
+                                  </h4>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                           <table class="table table-flush text-white table-sm">
                             <tbody>
                               <tr>
@@ -431,17 +445,22 @@
                       </tr> -->
                       <tr>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <h5 class="h3 text-bold text-white bg-danger">{{value.3.total_search_192}}%</h5>
-                          <h4 class="text-white text-start bg-danger">
-                            <span class="h3 text-bold text-white">{{value.3.total_search}} | </span>
-                            0 |
-                            0
+                          <h2 class="text-white bg-success text-center">200</h2>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                            {% if "priceSuitesFeria1" in value.3 %}{{value.3.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeria7" in value.3 %}{{value.3.priceSuitesFeria7}}{% else %}0{% endif %}
                           </h4>
                           <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white bg-dark">{% if "totalFeria" in value.3 %}{{value.3.totalFeria}}{% else %}0{% endif %} | 
+                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %} | </span>
+                            {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
+                            {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h2 text-bold text-white bg-dark">{% if "totalFeria" in value.3 %}{{value.3.totalFeria}}{% else %}0{% endif %} | 
                             {% if "totalFeria1" in value.3 %}{{value.3.totalFeria1}}{% else %}0{% endif %} | 
-                            {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}
-                          </h4></span>
+                            {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}</span>
+                          </h4>
                         </td>
                         <td class="text-sm">
                           <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
@@ -464,19 +483,6 @@
                             {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
                           </h4> -->
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <h2 class="text-white bg-success text-center">200</h2>
-                          <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                            {% if "priceSuitesFeria1" in value.3 %}{{value.3.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                            {% if "priceSuitesFeria7" in value.3 %}{{value.3.priceSuitesFeria7}}{% else %}0{% endif %}
-                          </h4>
-                          <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %} | </span>
-                            {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %} | 
-                            {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
-                          </h4>
-                        </td>
                         <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                           <table class="table table-flush text-white table-sm">
                             <tbody>
@@ -484,6 +490,12 @@
                                 <td class="text-sm">
                                   TOR: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</span><br>
                                   BAR: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</span>
+                                  <h4 class="text-white text-start bg-danger">
+                                    <span class="h2 text-bold text-white">{{value.3.total_search}} | </span>
+                                    <span class="h4 text-bold text-white">{{value.3.total_search1}}</span> |
+                                    <span class="h4 text-bold text-white">{{value.3.total_search7}}</span>
+                                  </h4>
+                                  <h5 class="h4 text-bold text-white bg-danger">{{value.3.total_search_192}}%</h5>
                                 </td>
                               </tr>
                             </tbody>
@@ -572,12 +584,19 @@
                       </tr> -->
                       <tr>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <h2 class="text-white bg-success text-center">200</h2>
                           <h4 class="text-white text-start">
-                            <h5 class="h3 text-bold text-white bg-danger">{{value.5.total_search_192}}%</h5>
-                            <span class="h3 text-bold text-white bg-danger">{{value.5.total_search}} | 
-                            0 |
-                            0 </span><br>
-                            <span class="h3 text-bold text-white bg-dark">{% if "totalFeria" in value.5 %}{{value.5.totalFeria}}{% else %}0{% endif %} | 
+                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                            {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeria7" in value.5 %}{{value.5.priceSuitesFeria7}}{% else %}0{% endif %} 
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
+                            {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
+                            {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
+                          </h4>
+                          <h4 class="text-white text-start">
+                            <span class="h2 text-bold text-white bg-dark">{% if "totalFeria" in value.5 %}{{value.5.totalFeria}}{% else %}0{% endif %} | 
                             {% if "totalFeria1" in value.5 %}{{value.5.totalFeria1}}{% else %}0{% endif %} | 
                             {% if "totalFeria7" in value.5 %}{{value.5.totalFeria7}}{% else %}0{% endif %}</span>
                           </h4>
@@ -604,19 +623,6 @@
                             {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
                           </h4> -->
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <h2 class="text-white bg-success text-center">200</h2>
-                          <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                            {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                            {% if "priceSuitesFeria7" in value.5 %}{{value.5.priceSuitesFeria7}}{% else %}0{% endif %} 
-                          </h4>
-                          <h4 class="text-white text-start">
-                            <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
-                            {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
-                            {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
-                          </h4>
-                        </td>
                         <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                           <table class="table table-flush text-white table-sm">
                             <tbody>
@@ -624,6 +630,13 @@
                                 <td class="text-sm">
                                   AZA: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</span><br>
                                   ECO: <span class="text-bold" style="font-size: 26px; color: black; font-weight: bold;">{% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</span>
+                                  <br>
+                                  <h4 class="text-white text-start bg-danger">
+                                    <span class="h2 text-bold text-white">{{value.5.total_search}}</span> | 
+                                    <span class="h4 text-bold text-white">{{value.3.total_search1}}</span> |
+                                    <span class="h4 text-bold text-white">{{value.3.total_search7}}</span>
+                                  </h4>
+                                  <h5 class="h4 text-bold text-white bg-danger">{{value.5.total_search_192}}%</h5>
                                 </td>
                               </tr>
                             </tbody>

@@ -7661,3 +7661,257 @@ INFO:root:[+] Reset data price status finish...
 INFO:root:Esperando 11.08 horas hasta la próxima ejecución
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
 INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 10.56 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 9.90 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 9.77 horas hasta la próxima ejecución
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 9.74 horas hasta la próxima ejecución
+ERROR:django.request:Internal Server Error: /check/booking/process
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\base.py", line 233, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 193, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1049, "Unknown database 'booking_bot'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\functional.py", line 246, in inner
+    self._setup()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\functional.py", line 382, in _setup
+    self._wrapped = self._setupfunc()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\base.py", line 65, in __getitem__
+    return self._session[key]
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\base.py", line 238, in _get_session
+    self._session_cache = self.load()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 193, in __init__
+    super().__init__(*args, **kwargs2)
+django.db.utils.OperationalError: (1049, "Unknown database 'booking_bot'")
+ERROR:django.request:Internal Server Error: /check/booking/process
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\base.py", line 233, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 193, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1049, "Unknown database 'booking_bot'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\functional.py", line 246, in inner
+    self._setup()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\functional.py", line 382, in _setup
+    self._wrapped = self._setupfunc()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\base.py", line 65, in __getitem__
+    return self._session[key]
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\base.py", line 238, in _get_session
+    self._session_cache = self.load()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 193, in __init__
+    super().__init__(*args, **kwargs2)
+django.db.utils.OperationalError: (1049, "Unknown database 'booking_bot'")
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 9.65 horas hasta la próxima ejecución

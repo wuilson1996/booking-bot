@@ -707,6 +707,23 @@ def index(request):
                         bookings[str(_date_from.date())]["updated"] = generate_date_with_month_time(str(comp.updated))
                         bookings[str(_date_from.date())][int(ocp)]["total_search"] = comp.total_search
                         bookings[str(_date_from.date())][int(ocp)]["total_search_192"] = "{:.2f}".format(comp.total_search / 192 * 100)
+                
+                        __com_ht = CopyComplementWithDay.objects.filter(complement = comp).order_by("-id")[:7]
+                        try:
+                            __com2 = __com_ht[0]
+                        except Exception as ecom:
+                            __com2 = CopyComplementWithDay()
+                            __com2.total_search = 0
+                            __com2.created = str(now())
+                        bookings[str(_date_from.date())][int(ocp)]["total_search1"] = __com2.total_search
+                        try:
+                            __com2 = __com_ht[6]
+                        except Exception as ecom:
+                            __com2 = CopyComplementWithDay()
+                            __com2.total_search = 0
+                            __com2.created = str(now())
+                        bookings[str(_date_from.date())][int(ocp)]["total_search7"] = __com2.total_search
+
                 #----------------
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
@@ -742,7 +759,7 @@ def index(request):
                         if _price4 != "":
                             if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1  
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1
                         #---------------------------------
 
                         if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
