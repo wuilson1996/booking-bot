@@ -113,7 +113,7 @@ class FeeTask:
                             sleep(2)
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
-                                    driver.execute_script("arguments[0].scrollIntoView();", b2)
+                                    #driver.execute_script("arguments[0].scrollIntoView();", b2)
                                     sleep(1)
                                     b2.click()
                                     logging.info(f"[+] Precios fijos click success...")
