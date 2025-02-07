@@ -349,7 +349,7 @@ def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform
         while cron.current_date > now():
             sleep(1)
 
-        for i in range(2):
+        for _ in range(2):
             fee = FeeTask()
             _driver = fee._driver()
             fee.controller(_driver, price, _date, _credential.username, _credential.password)
