@@ -351,17 +351,20 @@ def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform
 
         cont = 0
         while True:
-            for _ in range(2):
+            try:
+                #for _ in range(2):
                 fee = FeeTask()
                 _driver = fee._driver()
                 _check = fee.controller(_driver, price, _date, _credential.username, _credential.password)
                 sleep(5)
                 fee.close(_driver)
-                if not _check:
+                # if not _check:
+                #     break
+                if _check or cont >= 3:
                     break
-            if _check or cont >= 3:
-                break
-            cont += 1
+                cont += 1
+            except Exception as e:
+                logging.info(f"Error general Fee: {e}")
 
         cron.active = False
         cron.save()

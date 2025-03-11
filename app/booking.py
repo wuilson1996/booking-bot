@@ -91,6 +91,7 @@ class BookingSearch:
 
             try:
                 _current_url = driver.current_url
+                _url_performance = _current_url  # Inicialización
                 while True:
                     generate_log(f"[+] Actualizando Datos: {search_name} - Date: {_now}", BotLog.BOOKING)
                     process = ProcessActive.objects.filter(pk = process.pk).first()
