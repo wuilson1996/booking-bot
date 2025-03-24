@@ -282,11 +282,17 @@ class BookingSearch:
                     try:
                         #logging.info(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
                         for position in process.position:
-                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name, general_search_to_name=general_search_to_name)
+                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name)
                     except Exception as e:
                         logging.info(f"[-] {now()} Error 170: "+str(e))
                     sleep(1)
-                        
+
+                    if process.type_proces == 1:
+                        for __item in items:
+                            try:
+                                cls.check_name_calling(__item, _date_elem, _now, process.occupancy, general_search_to_name)
+                            except Exception as e:
+                                logging.info(f"[-] {now()} Error 295: "+str(e))
                     if _date_elem.date() >= _date_end.date():
                         break
                     cont += 1
@@ -397,47 +403,51 @@ class BookingSearch:
         driver.implicitly_wait(15)
 
     @classmethod
-    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive, search_name, general_search_to_name):
+    def convert_to_json(cls, occupancy, item, _date_elem, _now):
+        item_dict = {
+            "start": 0,
+            "price": "0",
+            "occupancy": occupancy,
+            "date_from": str(_date_elem.date()),
+            "date_to":  str(_now.date()),
+            "title": "",
+            "address": "",
+            "distance": "",
+            "description": "",
+            "img": "",
+            "link": ""
+        }
+        html = item.get_attribute("innerHTML")
         try:
-            item_dict = {
-                "start": 0,
-                "price": "0",
-                "occupancy": occupancy,
-                "date_from": str(_date_elem.date()),
-                "date_to":  str(_now.date()),
-                "title": "",
-                "address": "",
-                "distance": "",
-                "description": "",
-                "img": "",
-                "link": ""
-            }
-            html = item.get_attribute("innerHTML")
-            try:
-                item_dict["start"] = cls.search_start(html)
-            except Exception as e0:
-                logging.info(f"[-] {now()} Error in Get start")
-            try:
-                item_dict["title"], item_dict["link"] = cls.search_title(html)
-            except Exception as e3:
-                logging.info(f"[-] {now()} Error in Get title and link")
-            try:
-                item_dict["address"], item_dict["distance"] = cls.search_address(html)
-            except Exception as e4:
-                logging.info(f"[-] {now()} Error in Get address")
-            try:
-                item_dict["description"] = cls.search_description(html)
-            except Exception as _e2:
-                logging.info(f"[-] {now()} Error in Get description")
-            try:
-                item_dict["img"] = cls.search_img(html)
-            except Exception as e5:
-                logging.info(f"[-] {now()} Error in Get img")
-            try:
-                item_dict["price"] = cls.search_price(html)
-            except Exception as e6:
-                logging.info(f"[-] {now()} Error in Get price")
+            item_dict["start"] = cls.search_start(html)
+        except Exception as e0:
+            logging.info(f"[-] {now()} Error in Get start")
+        try:
+            item_dict["title"], item_dict["link"] = cls.search_title(html)
+        except Exception as e3:
+            logging.info(f"[-] {now()} Error in Get title and link")
+        try:
+            item_dict["address"], item_dict["distance"] = cls.search_address(html)
+        except Exception as e4:
+            logging.info(f"[-] {now()} Error in Get address")
+        try:
+            item_dict["description"] = cls.search_description(html)
+        except Exception as _e2:
+            logging.info(f"[-] {now()} Error in Get description")
+        try:
+            item_dict["img"] = cls.search_img(html)
+        except Exception as e5:
+            logging.info(f"[-] {now()} Error in Get img")
+        try:
+            item_dict["price"] = cls.search_price(html)
+        except Exception as e6:
+            logging.info(f"[-] {now()} Error in Get price")
+        return item_dict
 
+    @classmethod
+    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive, search_name):
+        try:
+            item_dict = cls.convert_to_json(occupancy, item, _date_elem, _now)
             if process.type_proces == 1:
                 if item_dict["start"] != 0:
                     bg = Booking.objects.filter(
@@ -467,29 +477,6 @@ class BookingSearch:
                         bg.updated = now()
                         bg.save()
 
-                    # _complement = Complement.objects.filter(
-                    #     date_from=item_dict["date_from"], 
-                    #     date_to=item_dict["date_to"], 
-                    #     occupancy=occupancy, 
-                    #     start=item_dict["start"]
-                    # ).first()
-                    # if not _complement:
-                    #     _complement = Complement.objects.create(
-                    #         total_search=total_search,
-                    #         date_from=item_dict["date_from"], 
-                    #         date_to=item_dict["date_to"], 
-                    #         occupancy=occupancy, 
-                    #         start=item_dict["start"]
-                    #     )
-                    # else:
-                    #     _complement.total_search = total_search
-                    #     _complement.save()
-                        
-                    # _available = AvailableBooking.objects.filter(
-                    #     position=position,
-                    #     complement=_complement
-                    # ).first()
-
                     _available = AvailableBooking.objects.filter(
                         date_from=item_dict["date_from"], 
                         date_to=item_dict["date_to"], 
@@ -511,21 +498,13 @@ class BookingSearch:
                             start = item_dict["start"]
                         )
                     else:
-                        #_available.date_from = item_dict["date_from"]
-                        #_available.date_to = item_dict["date_to"]
-                        #_available.position = position
                         _available.total_search = int(total_search)
                         _available.active = True
                         _available.updated = now()
                         _available.price = item_dict["price"]
-                        #_available.occupancy = occupancy
                         _available.booking = bg
                         _available.save()
-                    logging.info(item_dict)
-                    if general_search_to_name:
-                        logging.info(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}")
-                        generate_log(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}", BotLog.BOOKING)
-                        cls.check_name_in_position(general_search_to_name, item_dict, occupancy)
+                    #logging.info(item_dict)
                 else:
                     logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
             else:
@@ -539,6 +518,18 @@ class BookingSearch:
             generate_log(f"[-] Error General data 539: "+str(e), BotLog.BOOKING)
         
         return item_dict
+
+    @classmethod
+    def check_name_calling(cls, item, _date_elem, _now, occupancy, general_search_to_name):
+        try:
+            if general_search_to_name:
+                item_dict = cls.convert_to_json(occupancy, item, _date_elem, _now)
+                logging.info(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}")
+                generate_log(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}", BotLog.BOOKING)
+                cls.check_name_in_position(general_search_to_name, item_dict, occupancy)
+        except Exception as e:
+            logging.info(f"[-] {now()} Error check name General data 528: "+str(e))
+            generate_log(f"[-] Error check name General data 528: "+str(e), BotLog.BOOKING)
 
     @classmethod
     def check_name_in_position(cls, general_search_to_name, item_dict, occupancy):
