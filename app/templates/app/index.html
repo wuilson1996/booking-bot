@@ -15,53 +15,66 @@
             <div class="col-md-2">
               <img src="/static/assets/img/logo.png" style="width: 100px;" alt="Logo">
             </div>
-            <div class="col-md-7">
-              <form action="" method="post">{% csrf_token %}
-                <div class="row">
-                  <div class="col-md-2">
-                    <input type="date" class="form-control" value="{{date_from}}" name="date_from" id="date_from">
+            <div class="col-md-5">
+              <div class="card p-3 bg-secondary m-1">
+                <form action="" method="post">{% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-3">
+                      <input type="date" class="form-control" value="{{date_from}}" name="date_from" id="date_from">
+                    </div>
+                    <!--<div class="col-md-2">
+                      <input type="date" class="form-control" value="{{date_to}}" name="date_to">
+                    </div>-->
+                    <div class="col-md-3">
+                      <select name="range_bt" id="range_bt" class="form-control">
+                        <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
+                        <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
+                        <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <select name="range_pg" id="range_pg" class="form-control">
+                        <option value="30" {% if range_pg == '30' %}selected{% endif %}>30 Dias</option>
+                        <option value="60" {% if range_pg == '60' %}selected{% endif %}>60 Dias</option>
+                        <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
+                        <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="submit" class="btn btn-info">Filtrar</button>
+                    </div>
                   </div>
-                  <!--<div class="col-md-2">
-                    <input type="date" class="form-control" value="{{date_to}}" name="date_to">
-                  </div>-->
-                  <div class="col-md-3">
-                    <select name="range_bt" id="range_bt" class="form-control">
-                      <option value="1" {% if range_bt == '1' %}selected{% endif %}>Todo</option>
-                      <option value="2" {% if range_bt == '2' %}selected{% endif %}>Igual a cero</option>
-                      <option value="3" {% if range_bt == '3' %}selected{% endif %}>Distinto de cero</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <select name="range_pg" id="range_pg" class="form-control">
-                      <option value="30" {% if range_pg == '30' %}selected{% endif %}>30 Dias</option>
-                      <option value="60" {% if range_pg == '60' %}selected{% endif %}>60 Dias</option>
-                      <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
-                      <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-info">Filtrar</button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-12 col-sm-6">
-                  <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
-                </div>
-                <div class="col-12 col-sm-6">
-                  <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
-                    <i class="fas fa-key me-1"></i>
-                    Activar extraccion
-                  </button>
+            <div class="col-md-5">
+              <div class="card p-3 bg-secondary m-1">
+                <div class="row">
+                  <div class="col-12 col-sm-4">
+                    <div class="input-group">
+                      <label for="" class="text-white">Desde</label>
+                      <input type="date" class="form-control" value="{{date_process_from}}" name="date_process_from" id="date_process_from">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="input-group">
+                      <label for="" class="text-white">Hasta</label>
+                      <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
+                      <i class="fas fa-key me-1"></i>
+                      Activar extraccion
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
               <div class="col-12 col-sm-12">
-                  <div class="row gx-4">
+                  <div class="row gx-4 card bg-secondary m-1 p-3">
                       <!--<div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
                           <img src="/static/assets/img/logo.png" style="width: 100px;" alt="Logo">
@@ -83,26 +96,26 @@
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-2">
-                            <h6>Booking: </h6>
+                            <h6 class="text-white">Booking: </h6>
                           </div>
                           <div class="col-md-10">
-                            <p id="addLogBooking"></p>
+                            <p id="addLogBooking" class="text-white"></p>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-2">
-                            <h6>RoomPrice: </h6>
+                            <h6 class="text-white">RoomPrice: </h6>
                           </div>
                           <div class="col-md-10">
-                            <p id="addLogRoomPrice"></p>
+                            <p id="addLogRoomPrice" class="text-white"></p>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-2">
-                            <h6>SuitesFeria: </h6>
+                            <h6 class="text-white">SuitesFeria: </h6>
                           </div>
                           <div class="col-md-10">
-                            <p id="addLogSuitesFeria"></p>
+                            <p id="addLogSuitesFeria" class="text-white"></p>
                           </div>
                         </div>
                       </div>
@@ -878,6 +891,7 @@
           url: '/get/booking',
           type: 'POST',
           data:{
+            dateFrom: document.getElementById("date_process_from").value,
             date: document.getElementById("date_process").value
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
@@ -903,6 +917,7 @@
           url: '/finish/get/booking',
           type: 'POST',
           data:{
+            dateFrom: document.getElementById("date_process_from").value,
             date: document.getElementById("date_process").value
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},

@@ -97,10 +97,11 @@ def active_process():
             month=int(a.date_from.split("-")[1]),
             day=int(a.date_from.split("-")[2]),
         )
-        if _date.date() < (dt.now().date() - datetime.timedelta(days=10)):
+        if _date.date() < (dt.now().date() - datetime.timedelta(days=16)):
             a.delete()
     
     general_search = GeneralSearch.objects.filter(type_search = 1).last()
+    general_search_to_name = GeneralSearch.objects.filter(type_search = 2)
     instances = []
     for p in general_search.proces_active.all():
         p.currenct = True
@@ -130,9 +131,9 @@ def active_process():
                             target=instances[cont]["booking"].controller, 
                             args=(
                                 instances[cont]["driver"],
-                                now(),
                                 p,
-                                general_search.city_and_country
+                                general_search.city_and_country,
+                                general_search_to_name
                             )
                         )
                         process.daemon = True
@@ -157,13 +158,12 @@ def active_process():
             # add process name hotel.
             logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             generate_log("[+] Buscando hoteles por nombre...", BotLog.BOOKING)
-            for gs in GeneralSearch.objects.filter(type_search = 2):
+            for gs in general_search_to_name:
                 for _pa in gs.proces_active.all():
                     #if gs.proces_active.last().active:
                     try:
                         instances[0]["booking"].controller(
                             instances[0]["driver"],
-                            now(),
                             _pa,
                             gs.city_and_country
                         )
@@ -205,6 +205,7 @@ def get_booking(request):
             for p in ProcessActive.objects.all():
                 p.active = False
                 p.date_end = request.data["date"]
+                p.date_from = request.data["dateFrom"]
                 p.save()
             threading.Thread(target=active_process).start()
         else:
@@ -649,9 +650,9 @@ def index(request):
                             type_avail = 4,
                             avail_suites_feria = avail_sf
                         ).last()
-                        bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail
-                        bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail
-                        bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail
+                        bookings[str(_date_from.date())][int(ocp)]["suiteFeria"] = avail_sf_cant.avail if avail_sf_cant else 0
+                        bookings[str(_date_from.date())][int(ocp)]["totalFeria"] += avail_sf_cant.avail if avail_sf_cant else 0
+                        bookings[str(_date_from.date())]["totalFeria"] += avail_sf_cant.avail if avail_sf_cant else 0
                 
                 #Disponibilidad 1 dia atras
                 copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
@@ -956,7 +957,20 @@ def index(request):
         if "range_pg" in request.POST:
             range_pg = request.POST["range_pg"]
         #print(time.time() - __time)
-        return render(request, "app/index.html", {"bookings":bookings, "segment": "index", "date_from": __date_from, "date_to": __date_to, "date_process": str(_date_process.date_end), "range_bt":range_bt, "range_pg": range_pg})
+        return render(
+            request, 
+            "app/index.html", 
+            {
+                "bookings":bookings,
+                "segment": "index",
+                "date_from": __date_from,
+                "date_to": __date_to,
+                "date_process_from": str(_date_process.date_from),
+                "date_process": str(_date_process.date_end),
+                "range_bt":range_bt,
+                "range_pg": range_pg
+            }
+        )
     else:
         return redirect("sign-in")
     

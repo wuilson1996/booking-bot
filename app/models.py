@@ -47,6 +47,7 @@ class AvailableBooking(models.Model):
         return str(self.booking)+" | "+str(self.date_from)+" - "+str(self.date_to)+" | Price: "+str(self.price)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)
     
 class ProcessActive(models.Model):
+    date_from = models.DateField(null=True, blank=True)
     date_end = models.DateField()
     occupancy = models.CharField(max_length=30, default=2)
     start = models.CharField(max_length=30, default=4)

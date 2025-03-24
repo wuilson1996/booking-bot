@@ -52,8 +52,11 @@ class BookingSearch:
             return cls._driver_firefox(url)
 
     @classmethod
-    def controller(cls, driver, _now:now=now(), process:ProcessActive=None, search_name=""):
+    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None):
         try:
+            _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
+            _now = dt(int(str(process.date_from).split("-")[0]), int(str(process.date_from).split("-")[1]), int(str(process.date_from).split("-")[2]))
+
             driver.get(cls._url)
             driver.implicitly_wait(15)
             driver.delete_all_cookies()
@@ -82,8 +85,6 @@ class BookingSearch:
             # Confirma con ENTER
             search.send_keys(Keys.RETURN)
             sleep(1)
-            
-            _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
             cont = 0
 
             _date_elem = _now
@@ -281,7 +282,7 @@ class BookingSearch:
                     try:
                         #logging.info(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
                         for position in process.position:
-                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name)
+                            cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name, general_search_to_name=general_search_to_name)
                     except Exception as e:
                         logging.info(f"[-] {now()} Error 170: "+str(e))
                     sleep(1)
@@ -396,7 +397,7 @@ class BookingSearch:
         driver.implicitly_wait(15)
 
     @classmethod
-    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive, search_name):
+    def get_data_to_text(cls, item, _date_elem, _now, occupancy, position, total_search, process:ProcessActive, search_name, general_search_to_name):
         try:
             item_dict = {
                 "start": 0,
@@ -520,43 +521,70 @@ class BookingSearch:
                         #_available.occupancy = occupancy
                         _available.booking = bg
                         _available.save()
-                    #logging.info(item_dict)
+                    logging.info(item_dict)
+                    if general_search_to_name:
+                        logging.info(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}")
+                        generate_log(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}", BotLog.BOOKING)
+                        cls.check_name_in_position(general_search_to_name, item_dict, occupancy)
                 else:
                     logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
             else:
-                price_with_name_hotel = PriceWithNameHotel.objects.filter(title = search_name, date_from = item_dict["date_from"], occupancy = occupancy).first()
-                if search_name == item_dict["title"]:
-                    if not price_with_name_hotel:
-                        price_with_name_hotel = PriceWithNameHotel.objects.create(
-                            start = item_dict["start"],
-                            title = item_dict["title"],
-                            link = item_dict["link"],
-                            address = item_dict["address"],
-                            distance = item_dict["distance"],
-                            description = item_dict["description"],
-                            img = item_dict["img"],
-                            updated = now(),
-                            created = now(),
-                            date_from = item_dict["date_from"],
-                            date_to = item_dict["date_to"],
-                            price = item_dict["price"],
-                            occupancy = occupancy
-                        )
-                    else:
-                        price_with_name_hotel.price = item_dict["price"]
-                        price_with_name_hotel.save()
-                else:
-                    price_with_name_hotel.price = 0
-                    price_with_name_hotel.save()
+                cls.save_name_hotel(item_dict, occupancy, search_name)
                 
                 #logging.info(f"[+] Data Start success: {item_dict}")
 
         except Exception as e:
-            logging.info(f"[-] {now()} Error General data: "+str(e))
+            logging.info(f"[-] {now()} Error General data 537: "+str(e))
             logging.info(item_dict)
-            generate_log(f"[-] Error General data: "+str(e), BotLog.BOOKING)
+            generate_log(f"[-] Error General data 539: "+str(e), BotLog.BOOKING)
         
         return item_dict
+
+    @classmethod
+    def check_name_in_position(cls, general_search_to_name, item_dict, occupancy):
+        try:
+            for gs in general_search_to_name:
+                if item_dict["title"] == gs.city_and_country:
+                    status = False
+                    for p in gs.proces_active.all():
+                        if occupancy == p.occupancy:
+                            status = True
+                            break
+                    if status:
+                        logging.info(f"[+] Save |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']} from Name hotel")
+                        generate_log(f"[+] Guardado |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']} - para nombre de hotel", BotLog.BOOKING)
+                        cls.save_name_hotel(item_dict, occupancy, gs.city_and_country)
+                    break
+        except Exception as e:
+            logging.info(f"[-] {now()} Error General data Check name 557: "+str(e))
+            generate_log(f"[-] {now()} Error General data Check name 557: "+str(e), BotLog.BOOKING)
+
+    @classmethod
+    def save_name_hotel(cls, item_dict, occupancy, search_name):
+        price_with_name_hotel = PriceWithNameHotel.objects.filter(title = search_name, date_from = item_dict["date_from"], occupancy = occupancy).first()
+        if search_name == item_dict["title"]:
+            if not price_with_name_hotel:
+                price_with_name_hotel = PriceWithNameHotel.objects.create(
+                    start = item_dict["start"],
+                    title = item_dict["title"],
+                    link = item_dict["link"],
+                    address = item_dict["address"],
+                    distance = item_dict["distance"],
+                    description = item_dict["description"],
+                    img = item_dict["img"],
+                    updated = now(),
+                    created = now(),
+                    date_from = item_dict["date_from"],
+                    date_to = item_dict["date_to"],
+                    price = item_dict["price"],
+                    occupancy = occupancy
+                )
+            else:
+                price_with_name_hotel.price = item_dict["price"]
+                price_with_name_hotel.save()
+        else:
+            price_with_name_hotel.price = 0
+            price_with_name_hotel.save()
 
 if __name__ == "__main__":
     booking = BookingSearch()
