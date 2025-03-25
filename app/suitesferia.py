@@ -29,8 +29,8 @@ class SuitesFeria:
             }
         return result
 
-    def disponibilidad(self):
-        response = requests.request("GET", self.url+"/api/planning/avail/data/2024-08-05/365", headers=self.headers, data={})
+    def disponibilidad(self, _date):
+        response = requests.request("GET", self.url+f"/api/planning/avail/data/{_date}/365", headers=self.headers, data={})
         try:
             data = response.json()
             result = {
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     resp = suites_feria.login()
     print(resp)
     if resp["code"] == 200:
-        resp_sf = suites_feria.disponibilidad()
+        resp_sf = suites_feria.disponibilidad("2025-03-25")
         resp_sf = suites_feria.format_avail(resp_sf)
         print(resp_sf)
         resp_l = suites_feria.logout()
