@@ -22,9 +22,9 @@ def reset_task():
     logging.info("[+] Check cron active finish...")
 
     logging.info("[+] Reset data price status...")
-    for t in Price.objects.all():
-        t.plataform_sync = True
-        t.save()
+    #for t in Price.objects.all():
+    #    t.plataform_sync = True
+    #    t.save()
     logging.info("[+] Reset data price status finish...")
     
 
