@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import random
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from time import sleep, time
 import pandas as pd
@@ -99,7 +102,8 @@ class FeeTask:
                             generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             driver.execute_script("arguments[0].scrollIntoView();", b)
                             sleep(1)
-                            b.click()
+                            #b.click()
+                            driver.execute_script("arguments[0].click();", b) # Upgrade change button for javascript.
                             logging.info(f"[+] Click fecha success...")
                             generate_log(f"[+] Abriendo fecha... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             sleep(3)
@@ -214,6 +218,10 @@ class FeeTask:
                                         sleep(1)
                                         driver.execute_script("arguments[0].click();", b)
                                         sleep(4)
+                                        checkbox = WebDriverWait(driver, 10).until(
+                                            EC.element_to_be_clickable((By.CSS_SELECTOR, "input[type='checkbox'].mantine-Checkbox-input"))
+                                        )
+                                        checkbox.click()
                                         for btt in driver.find_elements_by_xpath("//button[@type='button']"):
                                             if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML") and "style" not in btt.get_attribute("innerHTML"):
                                                 logging.info(btt.text)
