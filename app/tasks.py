@@ -141,34 +141,32 @@ def ejecutar_funcion():
 def iniciar_tarea_diaria():
     def tarea_en_thread():
         time.sleep(5)
+
+        # Solo un worker puede entrar a esta sección
+        if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=24 * 60):  # 24 horas
+            logging.info("Otro worker está encargado de la espera. Este se detiene.")
+            return
+
         while True:
-            # Hora actual
             ahora = datetime.now()
-            
-            # Próxima ejecución a las 10:00 p.m. de hoy o mañana
             proxima_ejecucion = ahora.replace(hour=22, minute=11, second=0, microsecond=0)
             if ahora > proxima_ejecucion:
                 proxima_ejecucion += timedelta(days=1)
-            
-            # Calcula el tiempo hasta la próxima ejecución
+
             tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
             logging.info(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución")
 
-            # Espera hasta las 10:00 p.m.
             time.sleep(tiempo_espera)
-            
-            # Revisa si el archivo de bloqueo existe
-            if not acquire_lock():
-                logging.info("Otro worker ya está ejecutando la tarea (lock en base de datos).")
+
+            if not acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
+                logging.info("Otro worker ya está ejecutando la función principal.")
                 continue
-            
+
             try:
-                # Ejecuta la función
                 ejecutar_funcion()
             except Exception as e:
-                logging.error("Error ejecutar funcion")
+                logging.error(f"Error al ejecutar la función: {e}")
 
-    # Iniciar el thread
     thread = threading.Thread(target=tarea_en_thread)
-    thread.daemon = True  # El hilo se cerrará cuando el proceso principal se detenga
+    thread.daemon = True
     thread.start()
