@@ -142,8 +142,8 @@ def iniciar_tarea_diaria():
     def tarea_en_thread():
         time.sleep(5)
 
-        # Solo un worker puede entrar a esta sección
-        if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=24 * 60):  # 24 horas
+        # Solo un worker entra aquí gracias al lock de 30 segundos
+        if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=0.5):  # 30 segundos
             logging.info("Otro worker está encargado de la espera. Este se detiene.")
             return
 
