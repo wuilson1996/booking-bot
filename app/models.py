@@ -278,7 +278,15 @@ class BotLog(models.Model):
 
     def __str__(self):
         return str(self.description)
-    
+
+class TaskLock(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    acquired_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+
+    def is_expired(self):
+        return now() > self.expires_at
+
 def generate_log(description, option):
     BotLog.objects.create(
         plataform_option = option,

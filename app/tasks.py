@@ -6,8 +6,34 @@ from datetime import datetime, timedelta
 from .models import *
 from pathlib import Path
 import logging
+from django.db import transaction
 
-LOCK_FILE_PATH = "/tmp/ejecutar_funcion.lock"
+def acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
+    try:
+        with transaction.atomic():
+            current_time = now()
+            expires = current_time + timedelta(minutes=ttl_minutes)
+
+            lock, created = TaskLock.objects.select_for_update().get_or_create(
+                name=name,
+                defaults={
+                    "acquired_at": current_time,
+                    "expires_at": expires,
+                }
+            )
+
+            if not created:
+                if lock.expires_at > current_time:
+                    return False  # Ya existe y no ha expirado
+                # Si expiró, actualizarlo
+                lock.acquired_at = current_time
+                lock.expires_at = expires
+                lock.save()
+
+            return True
+    except Exception as e:
+        logging.error(f"No se pudo adquirir el lock en base de datos: {e}")
+        return False
 
 def ejecutar_funcion():
     logging.info("¡init copy 10:00 p.m!")
@@ -120,7 +146,7 @@ def iniciar_tarea_diaria():
             ahora = datetime.now()
             
             # Próxima ejecución a las 10:00 p.m. de hoy o mañana
-            proxima_ejecucion = ahora.replace(hour=22, minute=0, second=0, microsecond=0)
+            proxima_ejecucion = ahora.replace(hour=22, minute=11, second=0, microsecond=0)
             if ahora > proxima_ejecucion:
                 proxima_ejecucion += timedelta(days=1)
             
@@ -132,22 +158,15 @@ def iniciar_tarea_diaria():
             time.sleep(tiempo_espera)
             
             # Revisa si el archivo de bloqueo existe
-            lock_file = Path(LOCK_FILE_PATH)
-            if lock_file.exists():
-                logging.info("Otro worker ya está ejecutando la tarea.")
+            if not acquire_lock():
+                logging.info("Otro worker ya está ejecutando la tarea (lock en base de datos).")
                 continue
             
             try:
-                # Crea el archivo de bloqueo
-                lock_file.touch()
-
                 # Ejecuta la función
                 ejecutar_funcion()
-            
-            finally:
-                # Elimina el archivo de bloqueo
-                if lock_file.exists():
-                    lock_file.unlink()
+            except Exception as e:
+                logging.error("Error ejecutar funcion")
 
     # Iniciar el thread
     thread = threading.Thread(target=tarea_en_thread)
