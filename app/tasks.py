@@ -32,11 +32,11 @@ def acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
 
             return True
     except Exception as e:
-        generate_log(f"No se pudo adquirir el lock en base de datos: {e}", BotLog.SUITESFERIA)
+        generate_log(f"No se pudo adquirir el lock en base de datos: {e}", BotLog.BOOKING)
         return False
 
 def ejecutar_funcion():
-    generate_log("¡init copy 10:00 p.m!", BotLog.SUITESFERIA)
+    generate_log("¡init copy 10:00 p.m!", BotLog.BOOKING)
     # 60 dias
     __date_from = str(datetime.now().date())
     __date_to = str(datetime.now().date() + timedelta(days=365))
@@ -71,7 +71,7 @@ def ejecutar_funcion():
                             avail_booking = avail_book
                         )
         except Exception as e:
-            generate_log(f"Error copy price. {e}", BotLog.SUITESFERIA)
+            generate_log(f"Error copy price. {e}", BotLog.BOOKING)
             
         try:
             #logging.info("[+] Copy price suites feria.")
@@ -84,7 +84,7 @@ def ejecutar_funcion():
                     avail = price_with_name
                 )
         except Exception as e:
-            generate_log(f"Error copy price suites feria. {e}", BotLog.SUITESFERIA)
+            generate_log(f"Error copy price suites feria. {e}", BotLog.BOOKING)
 
         try:
             #logging.info("[+] Copy avail suites feria.")
@@ -120,7 +120,7 @@ def ejecutar_funcion():
                     avail_suites_feria = asf
                 )
         except Exception as e:
-            generate_log(f"Error copy avail suites feria. {e}", BotLog.SUITESFERIA)
+            generate_log(f"Error copy avail suites feria. {e}", BotLog.BOOKING)
 
 
         try:
@@ -132,11 +132,11 @@ def ejecutar_funcion():
                     complement = c
                 )
         except Exception as e:
-            generate_log(f"Error complement total search. {e}", BotLog.SUITESFERIA)
+            generate_log(f"Error complement total search. {e}", BotLog.BOOKING)
 
         _date_from += timedelta(days=1)
 
-    generate_log("[+] finish Copy", BotLog.SUITESFERIA)
+    generate_log("[+] finish Copy", BotLog.BOOKING)
 
 def iniciar_tarea_diaria():
     def tarea_en_thread():
@@ -144,7 +144,7 @@ def iniciar_tarea_diaria():
 
         # Solo un worker entra aquí gracias al lock de 30 segundos
         if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=0.5):  # 30 segundos
-            generate_log("Otro worker está encargado de la espera. Este se detiene.", BotLog.SUITESFERIA)
+            generate_log("Otro worker está encargado de la espera. Este se detiene.", BotLog.BOOKING)
             return
 
         while True:
@@ -154,20 +154,20 @@ def iniciar_tarea_diaria():
                 proxima_ejecucion += timedelta(days=1)
 
             tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
-            generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución", BotLog.SUITESFERIA)
+            generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución", BotLog.BOOKING)
 
             time.sleep(tiempo_espera)
 
             if not acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
-                generate_log("Otro worker ya está ejecutando la función principal.", BotLog.SUITESFERIA)
+                generate_log("Otro worker ya está ejecutando la función principal.", BotLog.BOOKING)
                 continue
 
             try:
                 ejecutar_funcion()
             except Exception as e:
-                generate_log(f"Error al ejecutar la función: {e}", BotLog.SUITESFERIA)
+                generate_log(f"Error al ejecutar la función: {e}", BotLog.BOOKING)
 
-    generate_log(f"Worker ejecutado: {now()}", BotLog.SUITESFERIA)
+    generate_log(f"Worker ejecutado: {now()}", BotLog.BOOKING)
     thread = threading.Thread(target=tarea_en_thread)
     thread.daemon = True
     thread.start()
