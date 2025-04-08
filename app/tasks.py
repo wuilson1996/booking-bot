@@ -154,7 +154,7 @@ def iniciar_tarea_diaria():
 
         while True:
             ahora = datetime.now()
-            proxima_ejecucion = ahora.replace(hour=5, minute=25, second=0, microsecond=0)
+            proxima_ejecucion = ahora.replace(hour=5, minute=45, second=0, microsecond=0)
             if ahora > proxima_ejecucion:
                 proxima_ejecucion += timedelta(days=1)
 
