@@ -157,7 +157,7 @@ def active_process():
                 generate_log("[+] Esperando finalizacion de thread...", BotLog.BOOKING)
                 t.join()
             
-            if not check_booking_process():
+            if not check_finish_process():
                 logging.info(f"[+] {now()} Finish process, despues de posiciones...")
                 generate_log(f"[+] Finalizando proceso, despues de posiciones...", BotLog.BOOKING)
                 break
@@ -184,7 +184,7 @@ def active_process():
                         logging.info(f"[-] {now()} Error in Execute controller with name... {ec}")
                         generate_log("[-] Error in Execute controller with name...", BotLog.BOOKING)
 
-            if not check_booking_process():
+            if not check_finish_process():
                 logging.info(f"[+] {now()} Finish process, despues de nombres...")
                 generate_log(f"[+] Finalizando proceso, despues de nombres...", BotLog.BOOKING)
                 break
@@ -200,7 +200,7 @@ def active_process():
 
             sleep(seconds)
 
-            if not check_booking_process():
+            if not check_finish_process():
                 logging.info(f"[+] {now()} Finish process, proceso final...")
                 generate_log(f"[+] Finalizando proceso, proceso final...", BotLog.BOOKING)
                 break
