@@ -266,10 +266,12 @@ class BotLog(models.Model):
     SUITESFERIA = "suitesferia"
     ROOMPRICE = "roomprice"
     BOOKING = "booking"
+    HISTORY = "history"
     TEXT_PLATAFORM = (
         (SUITESFERIA, SUITESFERIA),
         (ROOMPRICE, ROOMPRICE),
         (BOOKING, BOOKING),
+        (HISTORY, HISTORY),
     )
     plataform_option = models.TextField(choices=TEXT_PLATAFORM, default=BOOKING)
     description = models.TextField()
