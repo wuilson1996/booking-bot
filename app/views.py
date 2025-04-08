@@ -77,11 +77,21 @@ def active_process_sf():
                                 cant_asf.avail = value_sf
                                 cant_asf.save()
                     resp_l = suites_feria.logout()
-                    time.sleep(60)
+                    
+                    if not check_finish_process():
+                        logging.info(f"[+] {now()} Finish process, proceso suites feria...")
+                        generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
+                        break
+
                     logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
                     generate_log("[+] Dispo Suites feria actualizado", BotLog.SUITESFERIA)
-            
-                time.sleep(30)
+                
+                time.sleep(60)
+
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
+                    break
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
                 generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
@@ -238,6 +248,7 @@ def get_booking(request):
 
 def reset_service_with_task():
     reset_service()
+    generate_log(f"Reset process: {now()}", BotLog.HISTORY)
     threading.Thread(target=active_process).start()
 
 def reset_service():
@@ -389,11 +400,13 @@ def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform
                 cont += 1
             except Exception as e:
                 logging.info(f"Error general Fee: {e}")
+                generate_log(f"Error general Fee: {now()}: {e}", BotLog.ROOMPRICE)
 
         cron.active = False
         cron.save()
     except Exception as e:
         logging.info(f"Error task fee: {e}")
+        generate_log(f"Error task fee: {now()}: {e}", BotLog.ROOMPRICE)
 
 @api_view(["POST"])
 def upgrade_fee(request):
@@ -441,6 +454,7 @@ def upgrade_fee(request):
                 message = "No se ha configurado credenciales"
         except Exception as e:
             logging.info(f"Error price: {e}")
+            generate_log(f"Error price: {now()}: {e}", BotLog.ROOMPRICE)
             message = f"Error price: {e}"
 
         result = {"code": 200, "status": "OK", "message":message, "time": int(__time)}
