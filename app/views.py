@@ -90,6 +90,14 @@ def active_process_sf():
         logging.info(f"[+] {now()} Finalizando process suites feria...")
         generate_log("[+] Finalizando process suites feria...", BotLog.SUITESFERIA)
 
+def check_finish_process()-> bool:
+    status = True
+    for p in ProcessActive.objects.filter(type_proces = 1):
+        if not p.active:
+            status = False
+            break
+    return status
+
 def active_process():
     for a in AvailableBooking.objects.all():
         _date = dt(
@@ -140,8 +148,8 @@ def active_process():
                         process.start()
                         threads.append(process)
                     except Exception as ec:
-                        logging.info(f"[-] {now()} Error in Execute controller... {ec}")
-                        generate_log("[-] Error in Execute controller...", BotLog.BOOKING)
+                        logging.info(f"[-] {now()} Error in Execute controller positions... {ec}")
+                        generate_log("[-] Error in Execute controller positions...", BotLog.BOOKING)
                 cont += 1
 
             for t in threads:
@@ -149,6 +157,11 @@ def active_process():
                 generate_log("[+] Esperando finalizacion de thread...", BotLog.BOOKING)
                 t.join()
             
+            if not check_booking_process():
+                logging.info(f"[+] {now()} Finish process, despues de posiciones...")
+                generate_log(f"[+] Finalizando proceso, despues de posiciones...", BotLog.BOOKING)
+                break
+
             pa_with_name = ProcessActive.objects.filter(type_proces = 2)
             for __p in pa_with_name:
                 __p.active = True
@@ -171,6 +184,11 @@ def active_process():
                         logging.info(f"[-] {now()} Error in Execute controller with name... {ec}")
                         generate_log("[-] Error in Execute controller with name...", BotLog.BOOKING)
 
+            if not check_booking_process():
+                logging.info(f"[+] {now()} Finish process, despues de nombres...")
+                generate_log(f"[+] Finalizando proceso, despues de nombres...", BotLog.BOOKING)
+                break
+
             if general_search:
                 seconds = 60 * general_search.time_sleep_minutes
                 logging.info(f"[+] {now()} Sleep defined {seconds} seconds...")
@@ -181,6 +199,11 @@ def active_process():
                 generate_log(f"[+] Sleep default {seconds} seconds...", BotLog.BOOKING)
 
             sleep(seconds)
+
+            if not check_booking_process():
+                logging.info(f"[+] {now()} Finish process, proceso final...")
+                generate_log(f"[+] Finalizando proceso, proceso final...", BotLog.BOOKING)
+                break
 
             logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
             generate_log(f"[+] Sleep {seconds} seconds finish...", BotLog.BOOKING)
