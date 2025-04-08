@@ -138,6 +138,11 @@ def ejecutar_funcion():
 
     generate_log(f"[+] finish Copy: {datetime.now()}", BotLog.HISTORY)
 
+def delete_old_logs(days=5):
+    cutoff_date = datetime.now() - timedelta(days=days)
+    deleted_count, _ = BotLog.objects.filter(created__lt=cutoff_date).delete()
+    return deleted_count
+
 def iniciar_tarea_diaria():
     def tarea_en_thread():
         time.sleep(5)
@@ -155,7 +160,8 @@ def iniciar_tarea_diaria():
 
             tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
             generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {datetime.now()}", BotLog.HISTORY)
-
+            deleted = delete_old_logs()
+            generate_log(f"Se eliminaron {deleted} registros antiguos de logs: {datetime.now()}", BotLog.HISTORY)
             time.sleep(tiempo_espera)
 
             if not acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
