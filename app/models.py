@@ -45,38 +45,6 @@ class AvailableBooking(models.Model):
 
     def __str__(self) -> str:
         return str(self.booking)+" | "+str(self.date_from)+" - "+str(self.date_to)+" | Price: "+str(self.price)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)
-    
-class ProcessActive(models.Model):
-    date_from = models.DateField(null=True, blank=True)
-    date_end = models.DateField()
-    occupancy = models.CharField(max_length=30, default=2)
-    start = models.CharField(max_length=30, default=4)
-    active = models.BooleanField(default=False)
-    position = models.JSONField(default={})
-    currenct = models.BooleanField(default=False)
-
-    TYPE_PROCES = (
-        (1, "City"),
-        (2, "Name")
-    )
-    type_proces = models.IntegerField(choices=TYPE_PROCES, default=1)
-
-    def __str__(self) -> str:
-        return str(self.date_end)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | "+str(self.active)+" | "+str(self.currenct)+" | "+str(self.type_proces)
-
-class GeneralSearch(models.Model):
-    url = models.TextField(default="https://www.booking.com")
-    city_and_country = models.TextField(default="Madrid, Comunidad de Madrid, España")
-    time_sleep_minutes = models.IntegerField(default=1)
-    TYPE_SEARCH = (
-        (1, "City"),
-        (2, "Name")
-    )
-    type_search = models.IntegerField(choices=TYPE_SEARCH, default=1)
-    proces_active = models.ManyToManyField(ProcessActive, null=True, blank=True)
-
-    def __str__(self) -> str:
-        return str(self.url)+" | "+str(self.city_and_country)+" | "+str(self.time_sleep_minutes)+" | "+str(self.type_search)
 
 class AvailSuitesFeria(models.Model):
     date_avail = models.CharField(max_length=50)
@@ -288,6 +256,80 @@ class TaskLock(models.Model):
 
     def is_expired(self):
         return now() > self.expires_at
+
+class TaskExecute(models.Model):
+    hour = models.IntegerField(default=22)
+    minute = models.IntegerField(default=0)
+    second = models.IntegerField(default=0)
+    time_sleep = models.FloatField(default=0.5)
+    time_execute = models.FloatField(default=90)
+
+    def __str__(self):
+        return str(self.hour)+" "+str(self.minute)+" "+str(self.second)
+
+class ProcessActive(models.Model):
+    occupancy = models.CharField(max_length=30, default=2)
+    start = models.CharField(max_length=30, default=4)
+    position = models.JSONField(default={})
+
+    TYPE_PROCES = (
+        (1, "City"),
+        (2, "Name")
+    )
+    type_proces = models.IntegerField(choices=TYPE_PROCES, default=1)
+
+    def __str__(self) -> str:
+        return "Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | Positions: "+str(self.position)+" | tipo: "+str(self.type_proces)
+
+class GeneralSearch(models.Model):
+    url = models.TextField(default="https://www.booking.com/searchresults.es.html?")
+    city_and_country = models.TextField(default="Madrid, España")
+    time_sleep_minutes = models.IntegerField(default=1)
+    TYPE_SEARCH = (
+        (1, "City"),
+        (2, "Name")
+    )
+    type_search = models.IntegerField(choices=TYPE_SEARCH, default=1)
+    proces_active = models.ManyToManyField(ProcessActive, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.url)+" | "+str(self.city_and_country)+" | "+str(self.time_sleep_minutes)+" | "+str(self.type_search)
+
+class BotSetting(models.Model): # Configurations bots default and automatics.
+    BOT_AUTO = "bot_auto"
+    BOT_DEFAULT = "bot_default"
+    TEXT_NAME = (
+        (BOT_AUTO, BOT_AUTO),
+        (BOT_DEFAULT, BOT_DEFAULT),
+    )
+    name = models.TextField(choices=TEXT_NAME, default=BOT_DEFAULT)
+    number_from = models.IntegerField(default=1)
+    number_end = models.IntegerField(default=1)
+    def __str__(self):
+        return "Nombre: "+str(self.name)
+    
+class BotAutomatization(models.Model):
+    active = models.BooleanField(default=False)
+    currenct = models.BooleanField(default=False)
+    automatic = models.BooleanField(default=False)
+    bot_auto = models.ForeignKey(BotSetting, related_name="bot_auto", on_delete=models.SET_NULL, null=True) # bot automatizado en horarios
+    bot_default = models.ForeignKey(BotSetting, related_name="bot_default", on_delete=models.SET_NULL, null=True) # bot default en fecha configurada.
+
+    def __str__(self):
+        bot = getattr(self, "bot_default", "N/A")
+        if getattr(self, "automatic", False):
+            bot = getattr(self, "bot_auto", "N/A")
+        return f"{self.automatic} | {bot}"
+
+class BotRange(models.Model):
+    number = models.IntegerField(default=1)
+    days = models.IntegerField(default=30)
+    date_from = models.DateField(null=True, blank=True)
+    date_end = models.DateField(null=True, blank=True)
+    bot_setting = models.ForeignKey(BotSetting, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return str(self.number)+" | "+str(self.days)+" | Desde: "+str(self.date_from)+" | Hasta: "+str(self.date_end)+" | "+str(self.bot_setting)
 
 def generate_log(description, option):
     BotLog.objects.create(

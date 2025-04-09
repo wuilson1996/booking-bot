@@ -100,31 +100,17 @@ def active_process_sf():
         logging.info(f"[+] {now()} Finalizando process suites feria...")
         generate_log("[+] Finalizando process suites feria...", BotLog.SUITESFERIA)
 
-def check_finish_process()-> bool:
-    status = True
-    for p in ProcessActive.objects.filter(type_proces = 1):
-        if not p.active:
-            status = False
-            break
-    return status
-
-def active_process():
-    for a in AvailableBooking.objects.all():
-        _date = dt(
-            year=int(a.date_from.split("-")[0]),
-            month=int(a.date_from.split("-")[1]),
-            day=int(a.date_from.split("-")[2]),
-        )
-        if _date.date() < (dt.now().date() - datetime.timedelta(days=16)):
-            a.delete()
-    
+def active_process(bot_setting:BotSetting):
     general_search = GeneralSearch.objects.filter(type_search = 1).last()
     general_search_to_name = GeneralSearch.objects.filter(type_search = 2)
     instances = []
-    for p in general_search.proces_active.all():
-        p.currenct = True
-        p.save()
 
+    # active bot
+    bot_auto = BotAutomatization.objects.last()
+    bot_auto.active = True
+    bot_auto.save()
+
+    for p in general_search.proces_active.all():
         booking = BookingSearch()
         instances.append({
             "booking": booking,
@@ -134,32 +120,53 @@ def active_process():
     logging.info(f"[+] {now()} Activando process...")
     generate_log("[+] Activando process...", BotLog.BOOKING)
     threading.Thread(target=active_process_sf).start()
+    cont_range = bot_setting.number_from
+
     while True:
         try:
+            if bot_auto.automatic:
+                number_end = bot_setting.number_end
+
+                # Reiniciar si el contador pasa el tope
+                if cont_range > number_end:
+                    cont_range = 1
+            else:
+                cont_range = 1  # Siempre el mismo número en modo manual
+            # Obtener el rango correspondiente al número actual
+            bot_range = BotRange.objects.filter(
+                bot_setting=bot_setting,
+                number=cont_range
+            ).last()
+
+            if bot_auto.automatic:
+                bot_range.date_from = now().date()
+                bot_range.date_end = now().date() + datetime.timedelta(days=bot_range.days)
+                generate_log(f"Buscar Datos Automaticos: {bot_range.date_from} - {bot_range.date_end} - {bot_range.days}", BotLog.BOOKING)
+
             threads = []
             cont = 0
             for p in ProcessActive.objects.filter(type_proces = 1):
-                if not p.active:
-                    try:
-                        logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
-                        generate_log("[+] Buscando posiciones...", BotLog.BOOKING)
-                        p.active = True
-                        p.save()
-                        process = threading.Thread(
-                            target=instances[cont]["booking"].controller, 
-                            args=(
-                                instances[cont]["driver"],
-                                p,
-                                general_search.city_and_country,
-                                general_search_to_name
-                            )
+                try:
+                    logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
+                    generate_log("[+] Buscando posiciones...", BotLog.BOOKING)
+
+                    process = threading.Thread(
+                        target=instances[cont]["booking"].controller, 
+                        args=(
+                            instances[cont]["driver"],
+                            p,
+                            general_search.city_and_country,
+                            general_search_to_name,
+                            bot_range.date_from,
+                            bot_range.date_end
                         )
-                        process.daemon = True
-                        process.start()
-                        threads.append(process)
-                    except Exception as ec:
-                        logging.info(f"[-] {now()} Error in Execute controller positions... {ec}")
-                        generate_log("[-] Error in Execute controller positions...", BotLog.BOOKING)
+                    )
+                    process.daemon = True
+                    process.start()
+                    threads.append(process)
+                except Exception as ec:
+                    logging.info(f"[-] {now()} Error in Execute controller positions... {ec}")
+                    generate_log(f"[-] Error in Execute controller positions... {ec}", BotLog.BOOKING)
                 cont += 1
 
             for t in threads:
@@ -172,12 +179,6 @@ def active_process():
                 generate_log(f"[+] Finalizando proceso, despues de posiciones...", BotLog.BOOKING)
                 break
 
-            pa_with_name = ProcessActive.objects.filter(type_proces = 2)
-            for __p in pa_with_name:
-                __p.active = True
-                __p.currenct = True
-                __p.save()
-
             # add process name hotel.
             logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             generate_log("[+] Buscando hoteles por nombre...", BotLog.BOOKING)
@@ -188,11 +189,14 @@ def active_process():
                         instances[0]["booking"].controller(
                             instances[0]["driver"],
                             _pa,
-                            gs.city_and_country
+                            gs.city_and_country,
+                            None,
+                            bot_range.date_from,
+                            bot_range.date_end
                         )
                     except Exception as ec:
                         logging.info(f"[-] {now()} Error in Execute controller with name... {ec}")
-                        generate_log("[-] Error in Execute controller with name...", BotLog.BOOKING)
+                        generate_log(f"[-] Error in Execute controller with name... {ec}", BotLog.BOOKING)
 
             if not check_finish_process():
                 logging.info(f"[+] {now()} Finish process, despues de nombres...")
@@ -217,9 +221,9 @@ def active_process():
 
             logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
             generate_log(f"[+] Sleep {seconds} seconds finish...", BotLog.BOOKING)
-            for p in ProcessActive.objects.all():
-                p.active = False
-                p.save()
+
+            cont_range += 1
+
         except Exception as e:
             logging.info(f"[-] {now()} Error process general: {e}...")
             generate_log(f"[-] Error process general: {e}...", BotLog.BOOKING)
@@ -228,19 +232,30 @@ def active_process():
 def get_booking(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
-        state = False
-        for p in ProcessActive.objects.all():
-            if p.currenct or p.active:
-                state = True
-                break
+        bot_auto = BotAutomatization.objects.last()
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
-        if not state:
-            for p in ProcessActive.objects.all():
-                p.active = False
-                p.date_end = request.data["date"]
-                p.date_from = request.data["dateFrom"]
-                p.save()
-            threading.Thread(target=active_process).start()
+        if not bot_auto.active:
+            bot_auto.active = False
+            bot_auto.automatic = True if request.data["automatic"] == "true" else False
+            bot_auto.save()
+
+            if bot_auto.automatic:
+                # configuracion de bot automatico
+                bot_setting = bot_auto.bot_auto
+                bot_ranges = BotRange.objects.filter(bot_setting = bot_setting)
+                _bot_range = BotRange.objects.filter(pk = request.data["bot_range"]).first()
+                bot_setting.number_from = _bot_range.number
+                bot_setting.number_end = len(bot_ranges)
+                bot_setting.save()
+            else:
+                # configuracion de bot default.
+                bot_setting = bot_auto.bot_default
+                bot_gange = BotRange.objects.filter(bot_setting = bot_setting).last()
+                bot_gange.date_end = request.data["date"]
+                bot_gange.date_from = request.data["dateFrom"]
+                bot_gange.save()
+
+            threading.Thread(target=active_process, args=(bot_setting,)).start()
         else:
             result["message"] = "Proceso ya se encuentra activado."
             result["code"] = 400
@@ -285,18 +300,9 @@ def reset_service():
     except Exception as ex:
         logging.info(f"Se produjo un error in cleal memory3: {ex}")
 
-    try:
-        subprocess.run('sudo sync; echo 4 | sudo tee /proc/sys/vm/drop_caches', shell=True)
-        logging.info("Clear memory4.")
-    except subprocess.CalledProcessError as e:
-        logging.info(f"Error clear memory4: {e}")
-    except Exception as ex:
-        logging.info(f"Se produjo un error in cleal memory4: {ex}")
-
-    for p in ProcessActive.objects.all():
-        p.currenct = False
-        p.active = False
-        p.save()
+    bot_auto = BotAutomatization.objects.last()
+    bot_auto.active = False
+    bot_auto.save()
 
 @api_view(["POST"])
 def finish_get_booking(request):
@@ -312,11 +318,7 @@ def finish_get_booking(request):
 def check_booking_process(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
-        state = False
-        for p in ProcessActive.objects.all():
-            if p.currenct or p.active:
-                state = True
-                break
+        state = BotAutomatization.objects.last().active
         
         bot_logs = {}
         bot_log = BotLog.objects.filter(plataform_option = BotLog.BOOKING).last()
@@ -986,7 +988,10 @@ def index(request):
 
             _date_from += datetime.timedelta(days=1)
 
-        _date_process = ProcessActive.objects.all().last()
+        _date_process =  BotRange.objects.filter(bot_setting=BotSetting.objects.filter(name = BotSetting.BOT_DEFAULT).last()).first()
+        bot_auto = BotAutomatization.objects.last()
+        _bot_setting = BotSetting.objects.filter(name = BotSetting.BOT_AUTO).last()
+        bot_range = BotRange.objects.filter(bot_setting=_bot_setting)
         range_bt = "1"
         range_pg = str(cant_default)
         if "range_bt" in request.POST:
@@ -1005,7 +1010,10 @@ def index(request):
                 "date_process_from": str(_date_process.date_from),
                 "date_process": str(_date_process.date_end),
                 "range_bt":range_bt,
-                "range_pg": range_pg
+                "range_pg": range_pg,
+                "bot_auto": bot_auto,
+                "bot_range": bot_range,
+                "bot_setting": _bot_setting
             }
         )
     else:
@@ -1332,7 +1340,7 @@ def booking_view(request):
                     elif "list2" == str(k):
                         v["list2"] = sorted(v2, key=lambda x: int(x["position"]))
         except Exception as eSort:
-            print(f"Error in Sorted: {eSort}")
+            generate_log(f"Error in Sorted: {eSort}", BotLog.HISTORY)
 
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')

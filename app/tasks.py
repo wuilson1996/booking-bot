@@ -139,9 +139,22 @@ def ejecutar_funcion():
     generate_log(f"[+] finish Copy: {datetime.now()}", BotLog.HISTORY)
 
 def delete_old_logs(days=5):
-    cutoff_date = datetime.now() - timedelta(days=days)
+    __now = datetime.now()
+    cutoff_date = __now - timedelta(days=days)
     deleted_count, _ = BotLog.objects.filter(created__lt=cutoff_date).delete()
-    return deleted_count
+
+    count_avail = 0
+    for a in AvailableBooking.objects.all():
+        _date = datetime(
+            year=int(a.date_from.split("-")[0]),
+            month=int(a.date_from.split("-")[1]),
+            day=int(a.date_from.split("-")[2]),
+        )
+        if _date.date() < (__now.date() - timedelta(days=16)):
+            a.delete()
+            count_avail += 1
+
+    return deleted_count, count_avail
 
 def iniciar_tarea_diaria():
     def tarea_en_thread():
@@ -161,7 +174,7 @@ def iniciar_tarea_diaria():
             tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
             generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {datetime.now()}", BotLog.HISTORY)
             deleted = delete_old_logs()
-            generate_log(f"Se eliminaron {deleted} registros antiguos de logs: {datetime.now()}", BotLog.HISTORY)
+            generate_log(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {datetime.now()}", BotLog.HISTORY)
             time.sleep(tiempo_espera)
 
             if not acquire_lock(name="ejecutar_funcion", ttl_minutes=90):

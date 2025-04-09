@@ -21,6 +21,9 @@ pattern = r"\b(19\d\d|20\d\d)[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])\b"
 def search_date(text):
     return re.findall(pattern, text)
 
+def check_finish_process()-> bool:
+    return BotAutomatization.objects.last().active
+
 class BookingSearch:
     @classmethod
     def _driver_chrome(cls, url) -> None:
@@ -52,10 +55,10 @@ class BookingSearch:
             return cls._driver_firefox(url)
 
     @classmethod
-    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None):
+    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None, date_from="", date_end=""):
         try:
-            _date_end = dt(int(str(process.date_end).split("-")[0]), int(str(process.date_end).split("-")[1]), int(str(process.date_end).split("-")[2]))
-            _now = dt(int(str(process.date_from).split("-")[0]), int(str(process.date_from).split("-")[1]), int(str(process.date_from).split("-")[2]))
+            _date_end = dt(int(str(date_end).split("-")[0]), int(str(date_end).split("-")[1]), int(str(date_end).split("-")[2]))
+            _now = dt(int(str(date_from).split("-")[0]), int(str(date_from).split("-")[1]), int(str(date_from).split("-")[2]))
 
             driver.get(cls._url)
             driver.implicitly_wait(15)
@@ -95,8 +98,9 @@ class BookingSearch:
                 _url_performance = _current_url  # Inicialización
                 while True:
                     generate_log(f"[+] Actualizando Datos: {search_name} - Date: {_now}", BotLog.BOOKING)
-                    process = ProcessActive.objects.filter(pk = process.pk).first()
-                    if not process.currenct:
+                    if not check_finish_process():
+                        logging.info(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...")
+                        generate_log(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
                         break
                     
                     if "ss" not in _current_url:

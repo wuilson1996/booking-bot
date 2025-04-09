@@ -12,7 +12,7 @@
     <div class="card">
       <div class="pb-4 card-body">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
               <img src="/static/assets/img/logo.png" style="width: 100px;" alt="Logo">
             </div>
             <div class="col-md-5">
@@ -47,23 +47,35 @@
                 </form>
               </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
               <div class="card p-3 bg-secondary m-1">
                 <div class="row">
-                  <div class="col-12 col-sm-4">
-                    <div class="input-group">
-                      <label for="" class="text-white">Desde</label>
-                      <input type="date" class="form-control" value="{{date_process_from}}" name="date_process_from" id="date_process_from">
+                  <div class="col-12 col-sm-1 mt-2">
+                    <div class="d-flex mt-4">
+                      <label for="" class="text-white m-1">Auto:</label>
+                      <div class="my-auto form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="bot_auto" {% if bot_auto.automatic %}checked{% endif %}>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-4">
-                    <div class="input-group">
-                      <label for="" class="text-white">Hasta</label>
-                      <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
-                    </div>
+                  <div class="col-12 col-sm-2">
+                    <label for="" class="text-white">Rango</label>
+                    <select name="bot_range" id="bot_range" class="form-control">
+                      {% for r in bot_range %}
+                        <option value="{{r.pk}}" {% if bot_setting.number_from == r.number %}selected{% endif %}>{{r.days}} Dias</option>
+                      {% endfor %}
+                    </select>
                   </div>
-                  <div class="col-12 col-sm-4">
-                    <button class="me-2 mb-0 btn btn-dark" id="buttonActive" type="button">
+                  <div class="col-12 col-sm-3">
+                    <label for="" class="text-white">Desde</label>
+                    <input type="date" class="form-control" value="{{date_process_from}}" name="date_process_from" id="date_process_from">
+                  </div>
+                  <div class="col-12 col-sm-3">
+                    <label for="" class="text-white">Hasta</label>
+                    <input type="date" class="form-control" value="{{date_process}}" name="date_process" id="date_process" min="{{date_from}}">
+                  </div>
+                  <div class="col-12 col-sm-3 mt-2">
+                    <button class="mt-4 btn w-100 btn-dark" id="buttonActive" type="button">
                       <i class="fas fa-key me-1"></i>
                       Activar extraccion
                     </button>
@@ -887,12 +899,17 @@
     }
 
     function activeProcess(){
-      $.ajax({
+      var _dateFrom = document.getElementById("date_process_from").value;
+      var _dateTo = document.getElementById("date_process").value;
+      if (_dateFrom != "" && _dateTo != ""){
+        $.ajax({
           url: '/get/booking',
           type: 'POST',
           data:{
-            dateFrom: document.getElementById("date_process_from").value,
-            date: document.getElementById("date_process").value
+            dateFrom: _dateFrom,
+            date: _dateTo,
+            automatic: $("#bot_auto").prop("checked"),
+            bot_range: document.getElementById("bot_range").value
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
@@ -910,7 +927,10 @@
           error: function(error) {
             console.log("Ocurrio un error");
           }
-      });
+        });
+      }else{
+        alert("Por favor agregue una fecha: Desde - Hasta")
+      }
     }
     function finishactiveProcess(){
       $.ajax({
@@ -949,14 +969,14 @@
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
             if (json.active){
-              $("#buttonActive").text("Desactivar extraccion");
-              $("#buttonActive").prop("class", "me-2 mb-0 btn btn-success");
+              $("#buttonActive").text("Desactivar Bot");
+              $("#buttonActive").prop("class", "mt-4 btn w-100 btn-success");
               $("#buttonActive").off("click").on("click", function() {
                 finishactiveAlert();
               });
             }else{
-              $("#buttonActive").text("Activar extraccion");
-              $("#buttonActive").prop("class", "me-2 mb-0 btn btn-danger");
+              $("#buttonActive").text("Activar Bot");
+              $("#buttonActive").prop("class", "mt-4 btn w-100 btn-danger");
               $("#buttonActive").off("click").on("click", function() {
                 activeAlert();
               });
@@ -1665,7 +1685,22 @@
         },
       },
     });
-
+    $("#bot_auto").change(function(){
+      console.log("bot_auto");
+      botAutoCheck();
+    });
+    function botAutoCheck(){
+      if ($("#bot_auto").prop("checked")){
+        $("#date_process_from").prop("disabled", true);
+        $("#date_process").prop("disabled", true);
+        $("#bot_range").prop("disabled", false);
+      } else {
+        $("#date_process_from").prop("disabled", false);
+        $("#date_process").prop("disabled", false);
+        $("#bot_range").prop("disabled", true);
+      }
+    }
+    botAutoCheck();
   </script>
 
 
