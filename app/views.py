@@ -26,7 +26,8 @@ def reset_task():
     #    t.plataform_sync = True
     #    t.save()
     logging.info("[+] Reset data price status finish...")
-    
+    for t in TaskLock.objects.all():
+        t.delete()
 
 threading.Thread(target=reset_task).start()
 

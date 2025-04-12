@@ -32,14 +32,14 @@ def acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
 
             return True
     except Exception as e:
-        generate_log(f"No se pudo adquirir el lock en base de datos: {datetime.now()}: {e}", BotLog.HISTORY)
+        generate_log(f"No se pudo adquirir el lock en base de datos: {now()}: {e}", BotLog.HISTORY)
         return False
 
 def ejecutar_funcion():
-    generate_log(f"¡init copy: {datetime.now()}", BotLog.HISTORY)
+    generate_log(f"¡init copy: {now()}", BotLog.HISTORY)
     # 60 dias
-    __date_from = str(datetime.now().date())
-    __date_to = str(datetime.now().date() + timedelta(days=365))
+    __date_from = str(now().date())
+    __date_to = str(now().date() + timedelta(days=365))
     _date_from = datetime(
         year=int(__date_from.split("-")[0]),
         month=int(__date_from.split("-")[1]),
@@ -67,11 +67,11 @@ def ejecutar_funcion():
                         #print(f"Price: {avail_book.price}, Ocupancy:{ocp}, Position:{avail_book.position} Start: {avail_book.start}")
                         CopyPriceWithDay.objects.create(
                             price = avail_book.price,
-                            created = str(datetime.now().date()),
+                            created = str(now().date()),
                             avail_booking = avail_book
                         )
         except Exception as e:
-            generate_log(f"Error copy price: {datetime.now()}. {e}", BotLog.HISTORY)
+            generate_log(f"Error copy price: {now()}. {e}", BotLog.HISTORY)
             
         try:
             #logging.info("[+] Copy price suites feria.")
@@ -80,11 +80,11 @@ def ejecutar_funcion():
             for price_with_name in price_with_names:
                 CopyPriceWithNameFromDay.objects.create(
                     price = price_with_name.price,
-                    created = str(datetime.now().date()),
+                    created = str(now().date()),
                     avail = price_with_name
                 )
         except Exception as e:
-            generate_log(f"Error copy price suites feria: {datetime.now()}. {e}", BotLog.HISTORY)
+            generate_log(f"Error copy price suites feria: {now()}. {e}", BotLog.HISTORY)
 
         try:
             #logging.info("[+] Copy avail suites feria.")
@@ -116,11 +116,11 @@ def ejecutar_funcion():
                     avail_2 = str(casf2_avail),
                     avail_3 = str(casf3_avail),
                     avail_4 = str(casf4_avail),
-                    created = str(datetime.now().date()),
+                    created = str(now().date()),
                     avail_suites_feria = asf
                 )
         except Exception as e:
-            generate_log(f"Error copy avail suites feria: {datetime.now()}. {e}", BotLog.HISTORY)
+            generate_log(f"Error copy avail suites feria: {now()}. {e}", BotLog.HISTORY)
 
 
         try:
@@ -128,18 +128,18 @@ def ejecutar_funcion():
             for c in Complement.objects.filter(date_from = str(_date_from.date()), start = 4):
                 CopyComplementWithDay.objects.create(
                     total_search = c.total_search,
-                    created = str(datetime.now().date()),
+                    created = str(now().date()),
                     complement = c
                 )
         except Exception as e:
-            generate_log(f"Error complement total search: {datetime.now()}. {e}", BotLog.HISTORY)
+            generate_log(f"Error complement total search: {now()}. {e}", BotLog.HISTORY)
 
         _date_from += timedelta(days=1)
 
-    generate_log(f"[+] finish Copy: {datetime.now()}", BotLog.HISTORY)
+    generate_log(f"[+] finish Copy: {now()}", BotLog.HISTORY)
 
 def delete_old_logs(days=5):
-    __now = datetime.now()
+    __now = now()
     cutoff_date = __now - timedelta(days=days)
     deleted_count, _ = BotLog.objects.filter(created__lt=cutoff_date).delete()
 
@@ -159,34 +159,41 @@ def delete_old_logs(days=5):
 def iniciar_tarea_diaria():
     def tarea_en_thread():
         time.sleep(5)
-
+        task_execute = TaskExecute.objects.all().last()
         # Solo un worker entra aquí gracias al lock de 30 segundos
-        if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=0.5):  # 30 segundos
-            generate_log(f"Otro worker está encargado de la espera. Este se detiene: {datetime.now()}", BotLog.HISTORY)
+        if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):  # 30 segundos
+            generate_log(f"Otro worker está encargado de la espera. Este se detiene: {now()}", BotLog.HISTORY)
             return
 
         while True:
-            ahora = datetime.now()
-            proxima_ejecucion = ahora.replace(hour=22, minute=0, second=0, microsecond=0)
-            if ahora > proxima_ejecucion:
-                proxima_ejecucion += timedelta(days=1)
-
-            tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
-            generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {datetime.now()}", BotLog.HISTORY)
-            deleted = delete_old_logs()
-            generate_log(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {datetime.now()}", BotLog.HISTORY)
-            time.sleep(tiempo_espera)
-
-            if not acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
-                generate_log(f"Otro worker ya está ejecutando la función principal: {datetime.now()}", BotLog.HISTORY)
-                continue
-
             try:
-                ejecutar_funcion()
-            except Exception as e:
-                generate_log(f"Error al ejecutar la función: {datetime.now()}: {e}", BotLog.HISTORY)
+                ahora = now()
+                proxima_ejecucion = ahora.replace(hour=task_execute.hour, minute=task_execute.minute, second=task_execute.second, microsecond=0)
+                if ahora > proxima_ejecucion:
+                    proxima_ejecucion += timedelta(days=1)
 
-    generate_log(f"Worker ejecutado: {datetime.now()}", BotLog.HISTORY)
+                tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
+                generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {now()}", BotLog.HISTORY)
+                deleted = delete_old_logs()
+                generate_log(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {now()}", BotLog.HISTORY)
+                time.sleep(tiempo_espera)
+
+                if not acquire_lock(name="ejecutar_funcion", ttl_minutes=task_execute.time_execute):
+                    generate_log(f"Otro worker ya está ejecutando la función principal: {now()}", BotLog.HISTORY)
+                    continue
+
+                try:
+                    ejecutar_funcion()
+                except Exception as e:
+                    generate_log(f"Error al ejecutar la función: {now()}: {e}", BotLog.HISTORY)
+                
+                task_execute = TaskExecute.objects.all().last()
+            except Exception as e:
+                generate_log(f"Error: en la espera de worker. Este se detiene: {now()}: {e}", BotLog.HISTORY)
+                break
+        generate_log(f"Worker terminado: {now()}", BotLog.HISTORY)
+
+    generate_log(f"Worker ejecutado: {now()}", BotLog.HISTORY)
     thread = threading.Thread(target=tarea_en_thread)
     thread.daemon = True
     thread.start()

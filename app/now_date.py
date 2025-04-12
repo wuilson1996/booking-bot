@@ -1,5 +1,6 @@
-import datetime
-from django.utils.timezone import now as nw
+#import datetime
+#from django.utils.timezone import now as nw
+from datetime import timedelta, datetime
 
 def now():
-    return nw() + datetime.timedelta(hours=1)
+    return (datetime.now() + timedelta(hours=0)).astimezone()

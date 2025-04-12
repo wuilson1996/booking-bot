@@ -178,24 +178,9 @@ class FeeTask:
                                     btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
                                     #driver.execute_script("arguments[0].scrollIntoView();", btn_update)
                                     sleep(1)
-                                    btn_update.click()
+                                    driver.execute_script("arguments[0].click();", btn_update)
+                                    #btn_update.click()
                                     status = True
-
-                                    # start_time = time()  # Guarda el tiempo de inicio
-                                    # timeout = 60  # Tiempo máximo en segundos
-                                    # while True:
-                                    #     if "Data Updated Successfully" in driver.page_source:
-                                    #         logging.info(f"[+] Tarifa actualizado correctamente, Data Updated Successfully....")
-                                    #         generate_log(f"[+] Tarifa actualizado correctamente, Data Updated Successfully.... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                                    #         status = True
-                                    #         break
-                                        
-                                    #     if time() - start_time > timeout:  # Verifica si han pasado 60 segundos
-                                    #         logging.error("[!] Tarifa: Tiempo de espera agotado. No se detectó la actualización de tarifas.")
-                                    #         generate_log(f"[!] Tarifa: Tiempo de espera agotado. No se detectó la actualización de tarifas... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                                    #         status = False
-                                    #         break
-                                    #     sleep(1)
                                     break
                             break
                 if status:
@@ -204,7 +189,7 @@ class FeeTask:
                     sleep(3)
                     try:
                         start_time1 = time()  # Guarda el tiempo de inicio
-                        timeout1 = 120  # Tiempo máximo en segundos
+                        timeout1 = 180  # Tiempo máximo en segundos
                         while True:
                             generate_log(f"[+] Buscando boton: Confirmar y Enviar al Channel Manager... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             logging.info("[+] Buscando boton: Confirmar y Enviar al Channel Manager...")
@@ -219,7 +204,8 @@ class FeeTask:
                                     generate_log(f"[+] Enviando a Channels Manager... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                                     logging.info(button_update.text)
                                     logging.info(button_update.get_attribute("innerHTML"))
-                                    button_update.click()
+                                    #button_update.click()
+                                    driver.execute_script("arguments[0].click();", button_update)
                                     #driver.execute_script("arguments[0].scrollIntoView();", button_update)
                                     
                                     start_time = time()  # Guarda el tiempo de inicio
@@ -272,9 +258,9 @@ class FeeTask:
                     logging.info("[+] Buscando calendario...")
                     generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                     bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
-                    #driver.execute_script("arguments[0].scrollIntoView();", bt_next)
+                    driver.execute_script("arguments[0].scrollIntoView();", bt_next)
                     sleep(1)
-                    bt_next.click()
+                    #bt_next.click()
                     sleep(3)
                     logging.info(f"[+] Click button next calendar success...")
                     generate_log(f"[+] Siguiente calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
