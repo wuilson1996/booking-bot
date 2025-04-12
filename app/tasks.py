@@ -14,24 +14,23 @@ def acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
             current_time = now()
             expires = current_time + timedelta(minutes=ttl_minutes)
 
-            # Intenta obtener el lock sin bloquear si ya está tomado
-            lock = TaskLock.objects.select_for_update(skip_locked=True).filter(name=name).first()
+            lock, created = TaskLock.objects.get_or_create(
+                name=name,
+                defaults={
+                    "acquired_at": current_time,
+                    "expires_at": expires,
+                }
+            )
 
-            if lock:
+            if not created:
                 if lock.expires_at > current_time:
-                    # Lock ya adquirido por otro worker y no ha expirado
-                    return False
-                # Si expiró, lo renovamos
+                    generate_log(f"No ha expirado el lock: {now()}", BotLog.HISTORY)
+                    return False  # Ya existe y no ha expirado
+                # Si expiró, actualizarlo
                 lock.acquired_at = current_time
                 lock.expires_at = expires
                 lock.save()
-            else:
-                # Si no existe, lo creamos
-                TaskLock.objects.create(
-                    name=name,
-                    acquired_at=current_time,
-                    expires_at=expires,
-                )
+                generate_log(f"Se ha actualizado el lock: {now()}", BotLog.HISTORY)
 
             return True
     except Exception as e:
