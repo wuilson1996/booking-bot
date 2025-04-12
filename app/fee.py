@@ -176,10 +176,15 @@ class FeeTask:
                                         input_price.send_keys(str(price["6"].price))
 
                                     sleep(2)
-                                    btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
+                                    for b in driver.find_elements_by_xpath("//button[@type='button']"):
+                                        generate_log(f"[+] Button: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
+                                        if b.text == "Actualizar tarifas" and "currentColor" not in str(b.get_attribute("innerHTML")):
+                                            b.click()
+                                            break
+                                    #btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
                                     #driver.execute_script("arguments[0].scrollIntoView();", btn_update)
                                     sleep(1)
-                                    driver.execute_script("arguments[0].click();", btn_update)
+                                    #driver.execute_script("arguments[0].click();", btn_update)
                                     #btn_update.click()
                                     status = True
                                     break
