@@ -260,6 +260,7 @@ class FeeTask:
                     generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                     bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
                     driver.execute_script("arguments[0].scrollIntoView();", bt_next)
+                    driver.execute_script("arguments[0].click();", bt_next)
                     sleep(1)
                     #bt_next.click()
                     sleep(3)
