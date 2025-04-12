@@ -23,8 +23,8 @@ class Complement(models.Model):
     start = models.CharField(max_length=20)
     date_from = models.CharField(max_length=30)
     date_to = models.CharField(max_length=30)
-    updated = models.DateTimeField(null=True, blank=True)
-    created = models.DateTimeField(null=True, blank=True)
+    updated = models.CharField(null=True, blank=True, max_length=50)
+    created = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self) -> str:
         return str(self.total_search)+" | Occupancy: "+str(self.occupancy)+" | Start: "+str(self.start)+" | From: "+str(self.date_from)+" | To: "+str(self.date_to)    
@@ -81,12 +81,12 @@ class Price(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     price = models.CharField(max_length=50)
-    updated = models.DateTimeField(null=True, blank=True)
-    created = models.DateTimeField(null=True, blank=True)
+    updated = models.CharField(null=True, blank=True, max_length=50)
+    created = models.CharField(null=True, blank=True, max_length=50)
     plataform_sync = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return str(self.price)+" - "+str(self.occupancy)
+        return "Price: "+str(self.price)+" - O: "+str(self.occupancy)+" - Date: "+str(self.date_from)+" - Updated: "+str(self.updated)+" - Created: "+str(self.created)
 
 class MessageByDay(models.Model):
     date_from = models.CharField(max_length=30)
@@ -97,8 +97,8 @@ class MessageByDay(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     text = models.CharField(max_length=512)
-    updated = models.DateTimeField(null=True, blank=True)
-    created = models.DateTimeField(null=True, blank=True)
+    updated = models.CharField(null=True, blank=True, max_length=50)
+    created = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self) -> str:
         return str(self.text)
@@ -112,8 +112,8 @@ class EventByDay(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     text = models.CharField(max_length=512)
-    updated = models.DateTimeField(null=True, blank=True)
-    created = models.DateTimeField(null=True, blank=True)
+    updated = models.CharField(null=True, blank=True, max_length=50)
+    created = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self) -> str:
         return str(self.text)

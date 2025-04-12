@@ -24,7 +24,7 @@ class CantAvailSuitesFeriaAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
 class PriceAdmin(admin.ModelAdmin):
-    search_fields = ["id"]
+    search_fields = ["id", "price", "date_from"]
 
 class MessageByDayAdmin(admin.ModelAdmin):
     search_fields = ["id"]

@@ -13,6 +13,7 @@ from .booking import *
 from .models import *
 from .suitesferia import SuitesFeria
 from .fee import FeeTask
+from django.utils.timezone import localtime
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -42,12 +43,16 @@ def generate_date_with_month(_date:str):
 def generate_date_with_month_time(_date:str):
     _time = _date.split(" ")[1].split(".")[0]
     _date = _date.split(" ")[0]
+    meses = [
+        "enero", "febrero", "marzo", "abril", "mayo", "junio",
+        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+    ]
     ___date_from = dt(
         year=int(_date.split("-")[0]),
         month=int(_date.split("-")[1]),
         day=int(_date.split("-")[2])
     )
-    return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')+" "+_time[:-3]
+    return f"{___date_from.day}-{meses[___date_from.month - 1]} {_time[:-3]}"
     
 def active_process_sf():
     _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
@@ -485,7 +490,6 @@ def save_price(request):
             _price.plataform_sync = False
             _price.updated = now()
             _price.save()
-        
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated)), "pSync": _price.plataform_sync}
     return Response(result)
 
