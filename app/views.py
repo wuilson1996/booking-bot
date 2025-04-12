@@ -373,7 +373,7 @@ def check_booking_process(request):
         if in_range:
             _message = "Generando copia de hoy."
         elif current > __now:
-            _message = "No se ha generado la copia de hoy."
+            _message = "No se ha generado aún la copia de hoy."
 
         result = {
             "code": 200, 
