@@ -130,6 +130,14 @@
                             <p id="addLogSuitesFeria" class="text-white"></p>
                           </div>
                         </div>
+                        <div class="row">
+                          <div class="col-md-2">
+                            <h6 class="text-white">Copia de precios: </h6>
+                          </div>
+                          <div class="col-md-10">
+                            <p id="addLogCopyPrice" class="text-white"></p>
+                          </div>
+                        </div>
                       </div>
                   </div>
               </div>
@@ -984,6 +992,7 @@
             $("#addLogBooking").text("");
             $("#addLogRoomPrice").text("");
             $("#addLogSuitesFeria").text("");
+            $("#addLogCopyPrice").text("");
 
             if (json.botLog && json.botLog?.booking !== undefined) {
               $("#addLogBooking").append(json.botLog.booking.description+" | "+json.botLog.booking.created);
@@ -1002,7 +1011,13 @@
             } else {
               $("#addLogSuitesFeria").append("Historial de proceso no disponible");
             }
-            //console.log(json.status_price);
+            //console.log(json.task);
+            $("#buttonActive").prop("disabled", json.task.status);
+            if (json.task && json.task?.current !== undefined) {
+              $("#addLogCopyPrice").append("[+] Proxima copia: "+json.task.next+" | Copia actual: "+json.task.current+" | Horario: "+json.task.now+" | "+json.task.copy);
+            } else {
+              $("#addLogCopyPrice").append("Horario de copia de precio no disponible");
+            }
             json.status_price.map(function(value, index){
               value.map(function(value2, index2){
                 //console.log(value2);

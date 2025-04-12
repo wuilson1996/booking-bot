@@ -356,7 +356,41 @@ def check_booking_process(request):
             status_price.append(prices)
             _date_from += datetime.timedelta(days=1)
 
-        result = {"code": 200, "status": "OK", "active":state, "botLog": bot_logs, "status_price": status_price}
+        # obtener horario de ejecucion
+        task_execute = TaskExecute.objects.all().last()
+        __now = now()
+        current = __now.replace(hour=task_execute.hour, minute=task_execute.minute, second=task_execute.second, microsecond=0)
+        _next = current + datetime.timedelta(days=1)
+
+        # Calcula la ventana de 10 minutos antes y después
+        inicio_ventana = current - datetime.timedelta(minutes=10)
+        fin_ventana = current + datetime.timedelta(minutes=10)
+        #print(inicio_ventana, current, fin_ventana, __now)
+
+        # Verifica si el momento actual está dentro de esa ventana
+        in_range = inicio_ventana <= __now <= fin_ventana
+        _message = "Se ha generado la copia de hoy."
+        if in_range:
+            _message = "Generando copia de hoy."
+        elif current > __now:
+            _message = "No se ha generado la copia de hoy."
+
+        result = {
+            "code": 200, 
+            "status": "OK", 
+            "active":state, 
+            "botLog": bot_logs, 
+            "status_price": status_price, 
+            "task": {
+                "status": in_range, 
+                "now": generate_date_with_month_time(str(__now)), 
+                "current": generate_date_with_month_time(str(current)), 
+                "next": generate_date_with_month_time(str(_next)),
+                "from_task": generate_date_with_month_time(str(inicio_ventana)),
+                "to_task": generate_date_with_month_time(str(fin_ventana)),
+                "copy": _message
+            }
+        }
     return Response(result)
 
 @api_view(["POST"])
