@@ -243,8 +243,8 @@ class BotLog(models.Model):
     )
     plataform_option = models.TextField(choices=TEXT_PLATAFORM, default=BOOKING)
     description = models.TextField()
-    updated = models.DateTimeField(null=True, blank=True)
-    created = models.DateTimeField(null=True, blank=True)
+    updated = models.CharField(null=True, blank=True, max_length=50)
+    created = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self):
         return str(self.description)
