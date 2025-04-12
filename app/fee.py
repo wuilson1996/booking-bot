@@ -97,6 +97,7 @@ class FeeTask:
                 for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
+                        generate_log(f"[+] Buscando fecha en calendario: {_date} | {str(b.get_attribute('data-testid'))}", BotLog.ROOMPRICE)
                         if _date == str(b.get_attribute("data-testid")):
                             logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
                             generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
