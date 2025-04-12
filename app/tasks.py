@@ -31,7 +31,8 @@ def acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
                 lock.expires_at = expires
                 lock.save()
                 generate_log(f"Se ha actualizado el lock: {now()}", BotLog.HISTORY)
-
+            else:
+                generate_log(f"Se ha creado el lock: {now()}", BotLog.HISTORY)
             return True
     except Exception as e:
         generate_log(f"No se pudo adquirir el lock en base de datos: {now()}: {e}", BotLog.HISTORY)
