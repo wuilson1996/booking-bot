@@ -179,8 +179,13 @@ class FeeTask:
                                     for b in driver.find_elements_by_xpath("//button[@type='button']"):
                                         generate_log(f"[+] Button: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
                                         if b.text == "Actualizar tarifas" and "currentColor" not in str(b.get_attribute("innerHTML")):
-                                            b.click()
+                                            #b.click()
                                             break
+                                    wait = WebDriverWait(driver, 120)  # espera hasta 20 segundos
+                                    button = wait.until(EC.presence_of_element_located(
+                                        (By.XPATH, "//button[@data-userflow-id='price-drawer-upload-prices-button']")
+                                    ))
+                                    button.click()
                                     #btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
                                     #driver.execute_script("arguments[0].scrollIntoView();", btn_update)
                                     sleep(1)
