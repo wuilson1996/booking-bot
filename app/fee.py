@@ -174,18 +174,28 @@ class FeeTask:
                                     input_price.clear()
                                     if "6" in price.keys():
                                         input_price.send_keys(str(price["6"].price))
-
-                                    sleep(2)
-                                    for b in driver.find_elements_by_xpath("//button[@type='button']"):
-                                        generate_log(f"[+] Button: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
-                                        if b.text == "Actualizar tarifas" and "currentColor" not in str(b.get_attribute("innerHTML")):
-                                            #b.click()
+                                    
+                                    start_time2 = time()  # Guarda el tiempo de inicio
+                                    timeout2 = 180  # Tiempo máximo en segundos
+                                    while True:
+                                        sleep(2)
+                                        cls.guardar_captura(driver, descripcion="pagina_cargada")
+                                        for b in driver.find_elements_by_xpath("//button[@type='button']"):
+                                            generate_log(f"[+] Button: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
+                                            if b.text == "Actualizar tarifas" and "currentColor" not in str(b.get_attribute("innerHTML")):
+                                                generate_log(f"[+] Button Encontrado: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
+                                                b.click()
+                                                break
+                                        
+                                        if time() - start_time2 > timeout2:  # Verifica si han pasado 120 segundos
+                                            logging.error("[!] Button Actualizar tarifa: Tiempo de espera agotado. No se detectó el boton.")
+                                            generate_log(f"[!] Button Actualizar tarifa: Tiempo de espera agotado. No se detectó el boton... {_date}", BotLog.ROOMPRICE)
                                             break
-                                    wait = WebDriverWait(driver, 120)  # espera hasta 20 segundos
-                                    button = wait.until(EC.presence_of_element_located(
-                                        (By.XPATH, "//button[@data-userflow-id='price-drawer-upload-prices-button']")
-                                    ))
-                                    button.click()
+                                    # wait = WebDriverWait(driver, 120)  # espera hasta 20 segundos
+                                    # button = wait.until(EC.presence_of_element_located(
+                                    #     (By.XPATH, "//button[@data-userflow-id='price-drawer-upload-prices-button']")
+                                    # ))
+                                    # button.click()
                                     #btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
                                     #driver.execute_script("arguments[0].scrollIntoView();", btn_update)
                                     sleep(1)
@@ -292,3 +302,18 @@ class FeeTask:
         for key, value in price.items():
             value.plataform_sync = status
             value.save()
+
+    @classmethod
+    def guardar_captura(cls, driver, carpeta="capturas", descripcion=""):
+        # Crear carpeta si no existe
+        if not os.path.exists(carpeta):
+            os.makedirs(carpeta)
+
+        # Generar nombre con timestamp
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        nombre_archivo = f"{descripcion}_{timestamp}.png" if descripcion else f"captura_{timestamp}.png"
+        ruta_completa = os.path.join(carpeta, nombre_archivo)
+
+        # Guardar captura
+        driver.save_screenshot(ruta_completa)
+        generate_log(f"[✓] Captura guardada en: {ruta_completa}", BotLog.ROOMPRICE)
