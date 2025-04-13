@@ -180,11 +180,12 @@ class FeeTask:
                                     while True:
                                         sleep(2)
                                         cls.guardar_captura(driver, descripcion="pagina_cargada")
-                                        for b in driver.find_elements_by_xpath("//button[@type='button']"):
-                                            generate_log(f"[+] Button: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
-                                            if b.text == "Actualizar tarifas" and "currentColor" not in str(b.get_attribute("innerHTML")):
-                                                generate_log(f"[+] Button Encontrado: {b.text} - {_date} | {b.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
-                                                b.click()
+                                        for btn_update in driver.find_elements_by_xpath("//button[@type='button']"):
+                                            generate_log(f"[+] Button: {btn_update.text} - {_date} | {btn_update.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
+                                            if btn_update.text == "Actualizar tarifas" and "currentColor" not in str(btn_update.get_attribute("innerHTML")):
+                                                generate_log(f"[+] Button Encontrado: {btn_update.text} - {_date} | {btn_update.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
+                                                #b.click()
+                                                driver.execute_script("arguments[0].click();", btn_update)
                                                 break
                                         
                                         if time() - start_time2 > timeout2:  # Verifica si han pasado 120 segundos
@@ -304,7 +305,7 @@ class FeeTask:
             value.save()
 
     @classmethod
-    def guardar_captura(cls, driver, carpeta="capturas", descripcion=""):
+    def guardar_captura(cls, driver, carpeta="media/capturas", descripcion=""):
         # Crear carpeta si no existe
         if not os.path.exists(carpeta):
             os.makedirs(carpeta)
