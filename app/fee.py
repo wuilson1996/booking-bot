@@ -321,3 +321,8 @@ class FeeTask:
         # Guardar captura
         driver.save_screenshot(ruta_completa)
         generate_log(f"[✓] Captura guardada en: {ruta_completa}", BotLog.ROOMPRICE)
+
+        ScreenshotLog.objects.create(
+            descripcion = descripcion,
+            imagen = "capturas/"+nombre_archivo
+        )
