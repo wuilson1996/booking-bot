@@ -177,6 +177,7 @@ class FeeTask:
                                     
                                     start_time2 = time()  # Guarda el tiempo de inicio
                                     timeout2 = 180  # Tiempo máximo en segundos
+                                    status_button_update = False
                                     while True:
                                         sleep(2)
                                         cls.guardar_captura(driver, descripcion="pagina_cargada")
@@ -186,8 +187,10 @@ class FeeTask:
                                                 generate_log(f"[+] Button Encontrado: {btn_update.text} - {_date} | {btn_update.get_attribute('innerHTML')}", BotLog.ROOMPRICE)
                                                 #b.click()
                                                 driver.execute_script("arguments[0].click();", btn_update)
+                                                status_button_update = True
                                                 break
-                                        
+                                        if status_button_update:
+                                            break
                                         if time() - start_time2 > timeout2:  # Verifica si han pasado 120 segundos
                                             logging.error("[!] Button Actualizar tarifa: Tiempo de espera agotado. No se detectó el boton.")
                                             generate_log(f"[!] Button Actualizar tarifa: Tiempo de espera agotado. No se detectó el boton... {_date}", BotLog.ROOMPRICE)
