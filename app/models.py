@@ -334,10 +334,11 @@ class BotRange(models.Model):
 class ScreenshotLog(models.Model):
     descripcion = models.CharField(max_length=255, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    created = models.CharField(default="", max_length=128)
     imagen = models.ImageField(upload_to='capturas/')
 
     def __str__(self):
-        return f"{self.descripcion or 'Captura'} - {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
+        return f"{self.descripcion or 'Captura'} - {self.created}"
 
 def generate_log(description, option):
     BotLog.objects.create(

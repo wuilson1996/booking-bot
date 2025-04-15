@@ -177,12 +177,14 @@ class FeeTask:
                                         input_price.send_keys(str(price["6"].price))
                                     
                                     try:
+                                        cls.guardar_captura(driver, descripcion="por_fecha")
                                         btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
                                         btn_update.click()
                                         logging.info("[+] Actualizacion por fecha...")
                                         generate_log(f"[+] Actualizacion por fecha activada... {_date}", BotLog.ROOMPRICE)
                                         save_type = True
                                     except Exception as e:
+                                        cls.guardar_captura(driver, descripcion="por_rango")
                                         btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']")
                                         btn_update.click()
                                         logging.info("[+] Actualizacion general...")
@@ -212,6 +214,7 @@ class FeeTask:
         except Exception as e:
             logging.info("Error Fee: "+str(e))
             generate_log(f"[+] Error Fee {e}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+            cls.guardar_captura(driver, descripcion="error_general")
 
         return check
 
@@ -286,6 +289,7 @@ class FeeTask:
         except Exception as e1:
             logging.info(f"Error button update: {e1}")
             generate_log(f"[+] Error button update {e1}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+            cls.guardar_captura(driver, descripcion="error_with_date")
 
         return check
 
@@ -362,6 +366,7 @@ class FeeTask:
         except Exception as e1:
             logging.info(f"Error button update: {e1}")
             generate_log(f"[+] Error button update {e1}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+            cls.guardar_captura(driver, descripcion="error_with_range")
 
         return check
     
@@ -392,5 +397,6 @@ class FeeTask:
 
         ScreenshotLog.objects.create(
             descripcion = descripcion,
-            imagen = "capturas/"+nombre_archivo
+            created = now(),
+            imagen = "capturas/"+nombre_archivo,
         )
