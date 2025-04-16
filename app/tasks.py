@@ -125,7 +125,6 @@ def ejecutar_funcion():
         except Exception as e:
             generate_log(f"Error copy avail suites feria: {now()}. {e}", BotLog.HISTORY)
 
-
         try:
             #logging.info("[+] Copy complement total search.")
             for c in Complement.objects.filter(date_from = str(_date_from.date()), start = 4):
@@ -167,7 +166,7 @@ def iniciar_tarea_diaria():
         if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):  # 30 segundos
             generate_log(f"Otro worker está encargado de la espera. Este se detiene: {now()}", BotLog.HISTORY)
             return
-
+        time.sleep(5)
         while True:
             try:
                 ahora = now()
@@ -184,16 +183,18 @@ def iniciar_tarea_diaria():
                 if not acquire_lock(name="ejecutar_funcion", ttl_minutes=task_execute.time_execute):
                     generate_log(f"Otro worker ya está ejecutando la función principal: {now()}", BotLog.HISTORY)
                     continue
-
+                generate_log(f"¡Ejecutando tarea de copia: {now()}", BotLog.HISTORY)
                 try:
                     ejecutar_funcion()
                 except Exception as e:
                     generate_log(f"Error al ejecutar la función: {now()}: {e}", BotLog.HISTORY)
+                generate_log(f"¡Finalizando tarea de copia: {now()}", BotLog.HISTORY)
                 
                 task_execute = TaskExecute.objects.all().last()
             except Exception as e:
                 generate_log(f"Error: en la espera de worker. Este se detiene: {now()}: {e}", BotLog.HISTORY)
-                break
+                time.sleep(60)  # Esperar 1 minuto antes de intentar de nuevo
+                continue
         generate_log(f"Worker terminado: {now()}", BotLog.HISTORY)
 
     generate_log(f"Worker ejecutado: {now()}", BotLog.HISTORY)
