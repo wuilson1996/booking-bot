@@ -241,6 +241,7 @@ class FeeTask:
                         logging.info(button_update.text)
                         logging.info(button_update.get_attribute("innerHTML"))
                         #button_update.click()
+                        cls.guardar_captura(driver, descripcion="check_setting_with_date")
                         driver.execute_script("arguments[0].click();", button_update)
                         #driver.execute_script("arguments[0].scrollIntoView();", button_update)
                         
@@ -328,6 +329,7 @@ class FeeTask:
                                     #logging.info(btt.get_attribute("innerHTML"))
                                     #driver.execute_script("arguments[0].scrollIntoView();", btt)
                                     sleep(1)
+                                    cls.guardar_captura(driver, descripcion="check_settings_with_range")
                                     btt.click()
                                     start_time = time()  # Guarda el tiempo de inicio
                                     timeout = 120  # Tiempo máximo en segundos
