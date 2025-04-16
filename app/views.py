@@ -181,7 +181,7 @@ def active_process(bot_setting:BotSetting):
             if bot_auto.automatic:
                 bot_range.date_from = now().date() + datetime.timedelta(days=bot_range.days_from)
                 bot_range.date_end = now().date() + datetime.timedelta(days=bot_range.days)
-                generate_log(f"Buscar Datos Automaticos: {bot_range.date_from} - {bot_range.date_end} - {bot_range.days}", BotLog.BOOKING)
+                generate_log(f"Buscar Datos Automaticos: {bot_range.date_from} - {bot_range.date_end} - {bot_range.days_from} - {bot_range.days}", BotLog.BOOKING)
 
             threads = []
             cont = 0
