@@ -532,8 +532,8 @@ class BookingSearch:
         try:
             if general_search_to_name:
                 item_dict = cls.convert_to_json(occupancy, item, _date_elem, _now)
-                logging.info(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}")
-                generate_log(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}", BotLog.BOOKING)
+                #logging.info(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}")
+                #generate_log(f"[+] Check |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']}", BotLog.BOOKING)
                 cls.check_name_in_position(general_search_to_name, item_dict, occupancy)
         except Exception as e:
             logging.info(f"[-] {now()} Error check name General data 528: "+str(e))
