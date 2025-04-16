@@ -218,7 +218,9 @@ def active_process(bot_setting:BotSetting):
             for hr in bot_range.hour_range.all():
                 if hr.hour_to:
                     now_time = now().time()
-                    cutoff_time = (datetime.combine(datetime.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
+                    cutoff_time = (dt.combine(dt.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
+                    logging.info(f"[!] Check hours: {cutoff_time} - Now: {now_time}")
+                    generate_log(f"[!] Check hours: {cutoff_time} - Now: {now_time}", BotLog.BOOKING)
                     if now_time >= cutoff_time:
                         logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
                         generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
