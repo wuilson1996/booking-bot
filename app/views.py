@@ -106,6 +106,42 @@ def active_process_sf():
         logging.info(f"[+] {now()} Finalizando process suites feria...")
         generate_log("[+] Finalizando process suites feria...", BotLog.SUITESFERIA)
 
+def get_current_bot_range(bot_setting):
+    """
+    Retorna el primer BotRange válido para el bot_setting actual,
+    que coincida con el día actual y hora actual.
+    """
+
+    # Día y hora actuales
+    current_time = now().time()
+    current_day = now().strftime('%A').lower()
+
+    # Mapeo de inglés a español si tus días están almacenados así
+    dias_map = {
+        'monday': 'lunes',
+        'tuesday': 'martes',
+        'wednesday': 'miércoles',
+        'thursday': 'jueves',
+        'friday': 'viernes',
+        'saturday': 'sábado',
+        'sunday': 'domingo'
+    }
+    dia_actual = dias_map.get(current_day)
+
+    # Buscar todos los rangos del bot
+    bots_range = BotRange.objects.filter(bot_setting=bot_setting)
+
+    for btr in bots_range:
+        # Comprobar si el día aplica
+        if btr.day_name.filter(name__iexact=dia_actual).exists():
+            # Comprobar si la hora está en algún rango válido
+            for hr in btr.hour_range.all():
+                if hr.hour_from and hr.hour_to:
+                    if hr.hour_from <= current_time <= hr.hour_to:
+                        return btr  # ✅ Retornar el primer válido encontrado
+
+    return None  # ❌ Si no se encontró ningún rango válido
+
 def active_process(bot_setting:BotSetting):
     general_search = GeneralSearch.objects.filter(type_search = 1).last()
     general_search_to_name = GeneralSearch.objects.filter(type_search = 2)
@@ -126,31 +162,33 @@ def active_process(bot_setting:BotSetting):
     logging.info(f"[+] {now()} Activando process...")
     generate_log("[+] Activando process...", BotLog.BOOKING)
     threading.Thread(target=active_process_sf).start()
-    cont_range = bot_setting.number_from
+
+    stop_event = threading.Event()
 
     while True:
         try:
             if bot_auto.automatic:
-                number_end = bot_setting.number_end
-
-                # Reiniciar si el contador pasa el tope
-                if cont_range > number_end:
-                    cont_range = 1
+                bot_range = get_current_bot_range(bot_setting)
             else:
-                cont_range = 1  # Siempre el mismo número en modo manual
-            # Obtener el rango correspondiente al número actual
-            bot_range = BotRange.objects.filter(
-                bot_setting=bot_setting,
-                number=cont_range
-            ).last()
+                bot_range = BotRange.objects.filter(bot_setting=bot_setting, number=1).last()
+
+            if not bot_range:
+                generate_log("[-] No hay rango válido actualmente.", BotLog.BOOKING)
+                logging.info("[-] No hay rango válido actualmente.")
+                time.sleep(60)
+                continue
 
             if bot_auto.automatic:
-                bot_range.date_from = now().date()
+                bot_range.date_from = now().date() + datetime.timedelta(days=bot_range.days_from)
                 bot_range.date_end = now().date() + datetime.timedelta(days=bot_range.days)
                 generate_log(f"Buscar Datos Automaticos: {bot_range.date_from} - {bot_range.date_end} - {bot_range.days}", BotLog.BOOKING)
 
             threads = []
             cont = 0
+            if not check_finish_process():
+                logging.info(f"[+] {now()} Finish process...")
+                generate_log(f"[+] Finalizando proceso...", BotLog.BOOKING)
+                break
             for p in ProcessActive.objects.filter(type_proces = 1):
                 try:
                     logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
@@ -164,7 +202,8 @@ def active_process(bot_setting:BotSetting):
                             general_search.city_and_country,
                             general_search_to_name,
                             bot_range.date_from,
-                            bot_range.date_end
+                            bot_range.date_end,
+                            stop_event
                         )
                     )
                     process.daemon = True
@@ -174,6 +213,20 @@ def active_process(bot_setting:BotSetting):
                     logging.info(f"[-] {now()} Error in Execute controller positions... {ec}")
                     generate_log(f"[-] Error in Execute controller positions... {ec}", BotLog.BOOKING)
                 cont += 1
+
+            # Verificar si faltan 5 minutos para el fin de rango
+            for hr in bot_range.hour_range.all():
+                if hr.hour_to:
+                    now_time = now().time()
+                    cutoff_time = (datetime.combine(datetime.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
+                    if now_time >= cutoff_time:
+                        logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
+                        generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
+                        stop_event.set()
+                        logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
+                        generate_log("[+] Reiniciando con siguiente rango tras esperar 5 minutos.", BotLog.BOOKING)
+                        sleep(300)
+                        break
 
             for t in threads:
                 logging.info(f"[+] {now()} Esperando finalizacion de thread...")
@@ -198,7 +251,8 @@ def active_process(bot_setting:BotSetting):
                             gs.city_and_country,
                             None,
                             bot_range.date_from,
-                            bot_range.date_end
+                            bot_range.date_end,
+                            stop_event
                         )
                     except Exception as ec:
                         logging.info(f"[-] {now()} Error in Execute controller with name... {ec}")
@@ -209,15 +263,9 @@ def active_process(bot_setting:BotSetting):
                 generate_log(f"[+] Finalizando proceso, despues de nombres...", BotLog.BOOKING)
                 break
 
-            if general_search:
-                seconds = 60 * general_search.time_sleep_minutes
-                logging.info(f"[+] {now()} Sleep defined {seconds} seconds...")
-                generate_log(f"[+] Sleep defined {seconds} seconds...", BotLog.BOOKING)
-            else:
-                seconds = 60 * 3
-                logging.info(f"[+] {now()} Sleep default {seconds} seconds...")
-                generate_log(f"[+] Sleep default {seconds} seconds...", BotLog.BOOKING)
-
+            seconds = 60 * (general_search.time_sleep_minutes if general_search else 3)
+            logging.info(f"[+] {now()} Sleep {seconds} seconds...")
+            generate_log(f"[+] Sleep {seconds} seconds...", BotLog.BOOKING)
             sleep(seconds)
 
             if not check_finish_process():
@@ -227,8 +275,6 @@ def active_process(bot_setting:BotSetting):
 
             logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
             generate_log(f"[+] Sleep {seconds} seconds finish...", BotLog.BOOKING)
-
-            cont_range += 1
 
         except Exception as e:
             logging.info(f"[-] {now()} Error process general: {e}...")
@@ -248,11 +294,11 @@ def get_booking(request):
             if bot_auto.automatic:
                 # configuracion de bot automatico
                 bot_setting = bot_auto.bot_auto
-                bot_ranges = BotRange.objects.filter(bot_setting = bot_setting)
-                _bot_range = BotRange.objects.filter(pk = request.data["bot_range"]).first()
-                bot_setting.number_from = _bot_range.number
-                bot_setting.number_end = len(bot_ranges)
-                bot_setting.save()
+                #bot_ranges = BotRange.objects.filter(bot_setting = bot_setting)
+                #_bot_range = BotRange.objects.filter(pk = request.data["bot_range"]).first()
+                #bot_setting.number_from = _bot_range.number
+                #bot_setting.number_end = len(bot_ranges)
+                #bot_setting.save()
             else:
                 # configuracion de bot default.
                 bot_setting = bot_auto.bot_default
@@ -273,14 +319,14 @@ def reset_service_with_task():
     threading.Thread(target=active_process).start()
 
 def reset_service():
-    try:
-        subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
-        subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
-        logging.info("Servicio booking y nginx reiniciado correctamente.")
-    except subprocess.CalledProcessError as e:
-        logging.info(f"Error al reiniciar el servicio booking: {e}")
-    except Exception as ex:
-        logging.info(f"Se produjo un error: {ex}")
+    # try:
+    #     subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
+    #     subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
+    #     logging.info("Servicio booking y nginx reiniciado correctamente.")
+    # except subprocess.CalledProcessError as e:
+    #     logging.info(f"Error al reiniciar el servicio booking: {e}")
+    # except Exception as ex:
+    #     logging.info(f"Se produjo un error: {ex}")
     
     try:
         subprocess.run('sudo sync; echo 1 | sudo tee /proc/sys/vm/drop_caches', shell=True)

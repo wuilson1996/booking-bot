@@ -321,16 +321,34 @@ class BotAutomatization(models.Model):
             bot = getattr(self, "bot_auto", "N/A")
         return f"{self.automatic} | {bot}"
 
+class HourRange(models.Model):
+    hour_from = models.TimeField(null=True, blank=True)
+    hour_to = models.TimeField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.hour_from)+" - "+str(self.hour_to)
+
+class Day(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return str(self.name)
+
 class BotRange(models.Model):
     number = models.IntegerField(default=1)
+    days_from  = models.IntegerField(default=1)
     days = models.IntegerField(default=30)
     date_from = models.DateField(null=True, blank=True)
     date_end = models.DateField(null=True, blank=True)
     bot_setting = models.ForeignKey(BotSetting, on_delete=models.SET_NULL, null=True)
+    hour_range = models.ManyToManyField(HourRange, null=True, blank=True)
+    day_name = models.ManyToManyField(Day, null=True, blank=True)
 
     def __str__(self):
-        return str(self.number)+" | "+str(self.days)+" | Desde: "+str(self.date_from)+" | Hasta: "+str(self.date_end)+" | "+str(self.bot_setting)
-
+        hour_ranges = ', '.join([str(hr) for hr in self.hour_range.all()])
+        day_names = ', '.join([str(dn) for dn in self.day_name.all()])
+        return f"Number: {self.number} | {self.days_from}-{self.days} | Desde: {self.date_from} | Hasta: {self.date_end} | {self.bot_setting} | Hours: [{hour_ranges}] | Days: [{day_names}]"
+    
 class ScreenshotLog(models.Model):
     descripcion = models.CharField(max_length=255, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)

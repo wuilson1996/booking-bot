@@ -50,7 +50,7 @@
             <div class="col-md-6">
               <div class="card p-3 bg-secondary m-1">
                 <div class="row">
-                  <!--<div class="col-12 col-sm-1 mt-2">
+                  <div class="col-12 col-sm-1 mt-2">
                     <div class="d-flex mt-4">
                       <label for="" class="text-white m-1">Auto:</label>
                       <div class="my-auto form-check">
@@ -58,14 +58,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-2">
+                  <!-- <div class="col-12 col-sm-2">
                     <label for="" class="text-white">Rango</label>
                     <select name="bot_range" id="bot_range" class="form-control">
                       {% for r in bot_range %}
                         <option value="{{r.pk}}" {% if bot_setting.number_from == r.number %}selected{% endif %}>{{r.days}} Dias</option>
                       {% endfor %}
                     </select>
-                  </div>-->
+                  </div> -->
                   <div class="col-12 col-sm-3">
                     <label for="" class="text-white">Desde</label>
                     <input type="date" class="form-control" value="{{date_process_from}}" name="date_process_from" id="date_process_from">
@@ -916,8 +916,8 @@
           data:{
             dateFrom: _dateFrom,
             date: _dateTo,
-            automatic: false,//$("#bot_auto").prop("checked"),
-            bot_range: 0//document.getElementById("bot_range").value
+            automatic: $("#bot_auto").prop("checked")
+            //bot_range: document.getElementById("bot_range").value
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
@@ -1700,7 +1700,7 @@
         },
       },
     });
-    /*$("#bot_auto").change(function(){
+    $("#bot_auto").change(function(){
       console.log("bot_auto");
       botAutoCheck();
     });
@@ -1708,14 +1708,14 @@
       if ($("#bot_auto").prop("checked")){
         $("#date_process_from").prop("disabled", true);
         $("#date_process").prop("disabled", true);
-        $("#bot_range").prop("disabled", false);
+        //$("#bot_range").prop("disabled", false);
       } else {
         $("#date_process_from").prop("disabled", false);
         $("#date_process").prop("disabled", false);
-        $("#bot_range").prop("disabled", true);
+        //$("#bot_range").prop("disabled", true);
       }
     }
-    botAutoCheck();*/
+    botAutoCheck();
   </script>
 
 

@@ -55,7 +55,7 @@ class BookingSearch:
             return cls._driver_firefox(url)
 
     @classmethod
-    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None, date_from="", date_end=""):
+    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None, date_from="", date_end="", stop_event=None):
         try:
             _date_end = dt(int(str(date_end).split("-")[0]), int(str(date_end).split("-")[1]), int(str(date_end).split("-")[2]))
             _now = dt(int(str(date_from).split("-")[0]), int(str(date_from).split("-")[1]), int(str(date_from).split("-")[2]))
@@ -101,6 +101,10 @@ class BookingSearch:
                     if not check_finish_process():
                         logging.info(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...")
                         generate_log(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
+                        break
+                    if stop_event and stop_event.is_set():
+                        logging.info(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...")
+                        generate_log(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
                         break
                     
                     if "ss" not in _current_url:
