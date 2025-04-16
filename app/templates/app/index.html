@@ -976,9 +976,8 @@
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
-            console.log(json.active, json.current)
             if (json.active){
-              $("#buttonActive").prop("disabled", false);
+              $("#buttonActive").prop("disabled", json.task.status);
               $("#buttonActive").text("Desactivar Bot");
               $("#buttonActive").prop("class", "mt-4 btn w-100 btn-success");
               $("#buttonActive").off("click").on("click", function() {
@@ -1014,8 +1013,7 @@
             } else {
               $("#addLogSuitesFeria").append("Historial de proceso no disponible");
             }
-            //console.log(json.task);
-            $("#buttonActive").prop("disabled", json.task.status);
+
             if (json.task && json.task?.current !== undefined) {
               $("#addLogCopyPrice").append("[+] Proxima copia: "+json.task.next+" | Copia actual: "+json.task.current+" | Horario: "+json.task.now+" | "+json.task.copy);
             } else {
