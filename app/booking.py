@@ -22,7 +22,15 @@ def search_date(text):
     return re.findall(pattern, text)
 
 def check_finish_process()-> bool:
-    return BotAutomatization.objects.last().active
+    status = False
+    try:
+        status = BotAutomatization.objects.last().active
+    except Exception as e:
+        try:
+            status = BotAutomatization.objects.last().active
+        except Exception as e:
+            pass
+    return status
 
 class BookingSearch:
     @classmethod
