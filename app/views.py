@@ -283,8 +283,15 @@ def active_process(bot_setting:BotSetting):
             logging.info(f"[-] {now()} Error process general: {e}...")
             generate_log(f"[-] Error process general: {e}...", BotLog.BOOKING)
 
+    for c in instances:
+        try:
+            c["booking"].close(c["driver"])
+        except Exception as e:
+            logging.info(f"[+] {now()} Error Finalizar Booking...")
+            generate_log(f"[+] Error al Finalizar Bot Booking: {e}...", BotLog.BOOKING)
+
     logging.info(f"[+] {now()} Process Booking Finalizando...")
-    generate_log("[+] Process Booking Finalizando...", BotLog.BOOKING)
+    generate_log("[+] Process Bot Booking Finalizando...", BotLog.BOOKING)
 
 @api_view(["POST"])
 def get_booking(request):

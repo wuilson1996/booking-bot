@@ -585,6 +585,10 @@ class BookingSearch:
             price_with_name_hotel.price = 0
             price_with_name_hotel.save()
 
+    @classmethod
+    def close(cls, driver):
+        driver.close()
+
 if __name__ == "__main__":
     booking = BookingSearch()
     _driver = booking._driver()
