@@ -341,9 +341,22 @@ class ScreenshotLog(models.Model):
         return f"{self.descripcion or 'Captura'} - {self.created}"
 
 def generate_log(description, option):
-    BotLog.objects.create(
-        plataform_option = option,
-        description = description,
-        updated = now(),
-        created = now()
-    )
+    try:
+        BotLog.objects.create(
+            plataform_option = option,
+            description = description,
+            updated = now(),
+            created = now()
+        )
+    except Exception as e:
+        print(f"[-] Error create BotLog: {e}")
+        try:
+            BotLog.objects.create(
+                plataform_option = option,
+                description = description,
+                updated = now(),
+                created = now()
+            )
+        except Exception as e:
+            print(f"[-] Error create BotLog: {e}")
+

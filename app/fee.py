@@ -397,8 +397,19 @@ class FeeTask:
         driver.save_screenshot(ruta_completa)
         generate_log(f"[✓] Captura guardada en: {ruta_completa}", BotLog.ROOMPRICE)
 
-        ScreenshotLog.objects.create(
-            descripcion = descripcion,
-            created = now(),
-            imagen = "capturas/"+nombre_archivo,
-        )
+        try:
+            ScreenshotLog.objects.create(
+                descripcion = descripcion,
+                created = now(),
+                imagen = "capturas/"+nombre_archivo,
+            )
+        except Exception as e:
+            logging.info(f"[-] Error create Screen: {e}")
+            try:
+                ScreenshotLog.objects.create(
+                    descripcion = descripcion,
+                    created = now(),
+                    imagen = "capturas/"+nombre_archivo,
+                )
+            except Exception as e:
+                logging.info(f"[-] Error create Screen: {e}")
