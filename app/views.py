@@ -214,21 +214,22 @@ def active_process(bot_setting:BotSetting):
                     generate_log(f"[-] Error in Execute controller positions... {ec}", BotLog.BOOKING)
                 cont += 1
 
-            # Verificar si faltan 5 minutos para el fin de rango
-            for hr in bot_range.hour_range.all():
-                if hr.hour_to:
-                    now_time = now().time()
-                    cutoff_time = (dt.combine(dt.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
-                    logging.info(f"[!] Check hours: {cutoff_time} - Now: {now_time}")
-                    generate_log(f"[!] Check hours: {cutoff_time} - Now: {now_time}", BotLog.BOOKING)
-                    if now_time >= cutoff_time:
-                        logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
-                        generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
-                        stop_event.set()
-                        logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
-                        generate_log("[+] Reiniciando con siguiente rango tras esperar 5 minutos.", BotLog.BOOKING)
-                        sleep(300)
-                        break
+            if bot_auto.automatic:
+                # Verificar si faltan 5 minutos para el fin de rango
+                for hr in bot_range.hour_range.all():
+                    if hr.hour_to:
+                        now_time = now().time()
+                        cutoff_time = (dt.combine(dt.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
+                        logging.info(f"[!] Check hours: {cutoff_time} - Now: {now_time}")
+                        generate_log(f"[!] Check hours: {cutoff_time} - Now: {now_time}", BotLog.BOOKING)
+                        if now_time >= cutoff_time:
+                            logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
+                            generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
+                            stop_event.set()
+                            logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
+                            generate_log("[+] Reiniciando con siguiente rango tras esperar 5 minutos.", BotLog.BOOKING)
+                            sleep(300)
+                            break
 
             for t in threads:
                 logging.info(f"[+] {now()} Esperando finalizacion de thread...")
