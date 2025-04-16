@@ -171,6 +171,11 @@ def active_process(bot_setting:BotSetting):
 
     while True:
         try:
+            if not check_finish_process():
+                logging.info(f"[+] {now()} Finish process...")
+                generate_log(f"[+] Finalizando proceso...", BotLog.BOOKING)
+                break
+            
             if bot_auto.automatic:
                 bot_range = get_current_bot_range(bot_setting)
             else:
@@ -189,10 +194,6 @@ def active_process(bot_setting:BotSetting):
 
             threads = []
             cont = 0
-            if not check_finish_process():
-                logging.info(f"[+] {now()} Finish process...")
-                generate_log(f"[+] Finalizando proceso...", BotLog.BOOKING)
-                break
             for p in ProcessActive.objects.filter(type_proces = 1):
                 try:
                     logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
