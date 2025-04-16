@@ -985,6 +985,7 @@
             }else{
               $("#buttonActive").text("Activar Bot");
               $("#buttonActive").prop("class", "mt-4 btn w-100 btn-danger");
+              $("#buttonActive").prop("disabled", json.current);// deshabilitamos el boton si aun sigue activo el bot, hasta que termine.
               $("#buttonActive").off("click").on("click", function() {
                 activeAlert();
               });

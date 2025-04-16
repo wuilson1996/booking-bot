@@ -177,6 +177,7 @@ def active_process(bot_setting:BotSetting):
     # active bot
     bot_auto = BotAutomatization.objects.last()
     bot_auto.active = True
+    bot_auto.currenct = True
     bot_auto.save()
 
     for p in general_search.proces_active.all():
@@ -320,6 +321,10 @@ def active_process(bot_setting:BotSetting):
     logging.info(f"[+] {now()} Process Booking Finalizando...")
     generate_log("[+] Process Bot Booking Finalizando...", BotLog.BOOKING)
 
+    bot_auto = BotAutomatization.objects.last()
+    bot_auto.currenct = False
+    bot_auto.save()
+
 @api_view(["POST"])
 def get_booking(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
@@ -410,7 +415,7 @@ def finish_get_booking(request):
 def check_booking_process(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
-        state = BotAutomatization.objects.last().active
+        bot_auto = BotAutomatization.objects.last()
         
         bot_logs = {}
         bot_log = BotLog.objects.filter(plataform_option = BotLog.BOOKING).last()
@@ -464,7 +469,8 @@ def check_booking_process(request):
         result = {
             "code": 200, 
             "status": "OK", 
-            "active":state, 
+            "active":bot_auto.active, 
+            "current":bot_auto.currenct, 
             "botLog": bot_logs, 
             "status_price": status_price, 
             "task": {
