@@ -148,25 +148,28 @@ def get_current_bot_range(bot_setting):
 
 def check_change_range(hr, stop_event, stop_event_check):
     while True:
-        if not check_finish_process():
-            logging.info(f"[+] {now()} Finish process, Check range...")
-            generate_log(f"[+] Finalizando proceso, Check range...", BotLog.BOOKING)
-            break
-        if stop_event_check and stop_event_check.is_set():
-            logging.info(f"[+] {now()} Deteniendo ejecución de verificacion")
-            generate_log(f"[+] {now()} Deteniendo ejecución de verificacion", BotLog.BOOKING)
-            break
-        if hr.hour_to:
-            now_time = now().time()
-            cutoff_time = (dt.combine(dt.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
-            logging.info(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}")
-            generate_log(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}", BotLog.BOOKING)
-            if now_time >= cutoff_time:
-                logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
-                generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
-                stop_event.set()
-                logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
-                generate_log("[+] Reiniciando con siguiente rango tras esperar 5 minutos.", BotLog.BOOKING)
+        try:
+            if not check_finish_process():
+                logging.info(f"[+] {now()} Finish process, Check range...")
+                generate_log(f"[+] Finalizando proceso, Check range...", BotLog.BOOKING)
+                break
+            if stop_event_check and stop_event_check.is_set():
+                logging.info(f"[+] {now()} Deteniendo ejecución de verificacion")
+                generate_log(f"[+] {now()} Deteniendo ejecución de verificacion", BotLog.BOOKING)
+                break
+            if hr.hour_to:
+                now_time = now().time()
+                cutoff_time = (dt.combine(dt.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
+                logging.info(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}")
+                generate_log(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}", BotLog.BOOKING)
+                if now_time >= cutoff_time:
+                    logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
+                    generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
+                    stop_event.set()
+                    logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
+                    generate_log("[+] Reiniciando con siguiente rango tras esperar 5 minutos.", BotLog.BOOKING)
+        except Exception as e:
+            generate_log(f"[+] Error Check change range: {e}...", BotLog.BOOKING)
         sleep(60)
 
 def active_process(bot_setting:BotSetting):
@@ -303,10 +306,12 @@ def active_process(bot_setting:BotSetting):
             generate_log(f"[+] Sleep {seconds} seconds finish...", BotLog.BOOKING)
 
             if bot_auto.automatic:
-                stop_event_check.set()
-                if check_finish_process():
-                    sleep(300)
-
+                try:
+                    stop_event_check.set()
+                    if check_finish_process():
+                        sleep(300)
+                except Exception as e:
+                    generate_log(f"[+] Error Stop Event: {e}...", BotLog.BOOKING)
         except Exception as e:
             logging.info(f"[-] {now()} Error process general: {e}...")
             generate_log(f"[-] Error process general: {e}...", BotLog.BOOKING)
@@ -320,7 +325,10 @@ def active_process(bot_setting:BotSetting):
 
     logging.info(f"[+] {now()} Process Booking Finalizando...")
     generate_log("[+] Process Bot Booking Finalizando...", BotLog.BOOKING)
-
+    try:
+        stop_event_check.set()
+    except Exception as e:
+        generate_log(f"[+] Error Stop Event, General: {e}...", BotLog.BOOKING)
     bot_auto = BotAutomatization.objects.last()
     bot_auto.currenct = False
     bot_auto.save()
