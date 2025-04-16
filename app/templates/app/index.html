@@ -977,6 +977,7 @@
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
             if (json.active){
+              $("#buttonActive").prop("disabled", false);
               $("#buttonActive").text("Desactivar Bot");
               $("#buttonActive").prop("class", "mt-4 btn w-100 btn-success");
               $("#buttonActive").off("click").on("click", function() {
