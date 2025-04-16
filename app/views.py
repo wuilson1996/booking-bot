@@ -283,6 +283,9 @@ def active_process(bot_setting:BotSetting):
             logging.info(f"[-] {now()} Error process general: {e}...")
             generate_log(f"[-] Error process general: {e}...", BotLog.BOOKING)
 
+    logging.info(f"[+] {now()} Finalizando process Booking...")
+    generate_log("[+] Finalizando process Booking...", BotLog.BOOKING)
+
 @api_view(["POST"])
 def get_booking(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
