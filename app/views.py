@@ -114,17 +114,17 @@ def get_current_bot_range(bot_setting):
 
     # Día y hora actuales
     current_time = now().time()
-    current_day = now().strftime('%A').lower()
+    current_day = now().weekday()
 
     # Mapeo de inglés a español si tus días están almacenados así
     dias_map = {
-        'monday': 'lunes',
-        'tuesday': 'martes',
-        'wednesday': 'miércoles',
-        'thursday': 'jueves',
-        'friday': 'viernes',
-        'saturday': 'sábado',
-        'sunday': 'domingo'
+        0: 'lunes',
+        1: 'martes',
+        2: 'miércoles',
+        3: 'jueves',
+        4: 'viernes',
+        5: 'sábado',
+        6: 'domingo'
     }
     dia_actual = dias_map.get(current_day)
 
