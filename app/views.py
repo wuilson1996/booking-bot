@@ -133,11 +133,15 @@ def get_current_bot_range(bot_setting):
 
     for btr in bots_range:
         # Comprobar si el día aplica
-        if btr.day_name.filter(name__iexact=dia_actual).exists():
+        day_filter = btr.day_name.filter(name=dia_actual)
+        generate_log(f"[-] Day: {dia_actual} - {day_filter}", BotLog.BOOKING)
+        if day_filter:
             # Comprobar si la hora está en algún rango válido
             for hr in btr.hour_range.all():
                 if hr.hour_from and hr.hour_to:
+                    generate_log(f"[-] Day: {hr.hour_from} <= {current_time} <= {hr.hour_to} ", BotLog.BOOKING)
                     if hr.hour_from <= current_time <= hr.hour_to:
+                        generate_log(f"[-] Day: {hr.hour_from} <= {current_time} <= {hr.hour_to} - Valido: {btr}", BotLog.BOOKING)
                         return btr  # ✅ Retornar el primer válido encontrado
 
     return None  # ❌ Si no se encontró ningún rango válido
@@ -173,7 +177,7 @@ def active_process(bot_setting:BotSetting):
                 bot_range = BotRange.objects.filter(bot_setting=bot_setting, number=1).last()
 
             if not bot_range:
-                generate_log("[-] No hay rango válido actualmente.", BotLog.BOOKING)
+                generate_log(f"[-] No hay rango válido actualmente. {now()}", BotLog.BOOKING)
                 logging.info("[-] No hay rango válido actualmente.")
                 time.sleep(60)
                 continue
