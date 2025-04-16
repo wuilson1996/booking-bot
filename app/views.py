@@ -103,8 +103,8 @@ def active_process_sf():
                 generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
                 time.sleep(60)
 
-        logging.info(f"[+] {now()} Finalizando process suites feria...")
-        generate_log("[+] Finalizando process suites feria...", BotLog.SUITESFERIA)
+        logging.info(f"[+] {now()} Proceso suites feria Finalizando...")
+        generate_log("[+] Proceso suites feria Finalizando...", BotLog.SUITESFERIA)
 
 def get_current_bot_range(bot_setting):
     """
@@ -283,8 +283,8 @@ def active_process(bot_setting:BotSetting):
             logging.info(f"[-] {now()} Error process general: {e}...")
             generate_log(f"[-] Error process general: {e}...", BotLog.BOOKING)
 
-    logging.info(f"[+] {now()} Finalizando process Booking...")
-    generate_log("[+] Finalizando process Booking...", BotLog.BOOKING)
+    logging.info(f"[+] {now()} Process Booking Finalizando...")
+    generate_log("[+] Process Booking Finalizando...", BotLog.BOOKING)
 
 @api_view(["POST"])
 def get_booking(request):
