@@ -194,10 +194,9 @@ def active_process(bot_setting:BotSetting):
     generate_log("[+] Activando process...", BotLog.BOOKING)
     threading.Thread(target=active_process_sf).start()
 
-    stop_event = threading.Event()
-
     while True:
         try:
+            stop_event = threading.Event()
             if not check_finish_process():
                 logging.info(f"[+] {now()} Finish process...")
                 generate_log(f"[+] Finalizando proceso...", BotLog.BOOKING)
