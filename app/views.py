@@ -497,24 +497,26 @@ def check_booking_process(request):
 def save_message(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
+        print(request.data)
         _message_by_day = MessageByDay.objects.filter(
             date_from = request.data["date"],
             occupancy = request.data["occupancy"]
         ).last()
+        __message_name = MessageName.objects.filter(pk = request.data["text"]).first()
         if not _message_by_day:
             _message_by_day = MessageByDay.objects.create(
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
-                text = request.data["text"],
+                text_name = __message_name,
                 updated = now(),
                 created = now()
             )
         else:
-            if _message_by_day.text != request.data["text"]:
+            if _message_by_day.text_name.pk != __message_name:
                 _message_by_day = MessageByDay.objects.create(
                     date_from = request.data["date"],
                     occupancy = request.data["occupancy"],
-                    text = request.data["text"],
+                    text_name = __message_name,
                     updated = now(),
                     created = now()
                 )
@@ -796,7 +798,7 @@ def index(request):
                 # get message
                 __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __message_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"text":__message_by_day.text, "updated":generate_date_with_month_time(str(__message_by_day.updated))}
+                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"pk":__message_by_day.text_name.pk if __message_by_day.text_name else 0,"text":__message_by_day.text_name.name if __message_by_day.text_name else '', "updated":generate_date_with_month_time(str(__message_by_day.updated))}
 
                 # get event by day
                 __event_by_day = EventByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
@@ -1137,6 +1139,10 @@ def index(request):
             range_bt = request.POST["range_bt"]
         if "range_pg" in request.POST:
             range_pg = request.POST["range_pg"]
+
+        __message_name2 = MessageName.objects.filter(occupancy=2)
+        __message_name3 = MessageName.objects.filter(occupancy=3)
+        __message_name5 = MessageName.objects.filter(occupancy=5)
         #print(time.time() - __time)
         return render(
             request, 
@@ -1152,7 +1158,10 @@ def index(request):
                 "range_pg": range_pg,
                 "bot_auto": bot_auto,
                 "bot_range": bot_range,
-                "bot_setting": _bot_setting
+                "bot_setting": _bot_setting,
+                "message_name2": __message_name2,
+                "message_name3": __message_name3,
+                "message_name5": __message_name5
             }
         )
     else:
@@ -1246,7 +1255,7 @@ def booking_view(request):
             if __message_by_day:
                 bookings["bookings"][str(s)]["messageDay"] = []
                 for m in __message_by_day:
-                    bookings["bookings"][str(s)]["messageDay"].append(f"{m.text} ----- {generate_date_with_month_time(str(m.updated))}")
+                    bookings["bookings"][str(s)]["messageDay"].append(f"{m.text_name.name} ----- {generate_date_with_month_time(str(m.updated))}")
             
             __com = None
             avail_sf = None

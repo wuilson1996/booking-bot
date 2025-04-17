@@ -1164,3 +1164,913 @@ INFO:root:[+] Check cron active...
 INFO:root:[+] Check cron active finish...
 INFO:root:[+] Reset data price status...
 INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'app_messagebyday.text' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 797, in index
+    __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1070, in last
+    for obj in queryset[:1]:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'app_messagebyday.text' in 'field list'")
+WARNING:django.request:Not Found: /favicon.ico
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'app_messagebyday.text' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 797, in index
+    __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1070, in last
+    for obj in queryset[:1]:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'app_messagebyday.text' in 'field list'")
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'app_messagebyday.text' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 798, in index
+    __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1070, in last
+    for obj in queryset[:1]:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'app_messagebyday.text' in 'field list'")
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /save/message
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\fields\__init__.py", line 2053, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'Select1'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 504, in save_message
+    __message_name = MessageName.objects.filter(pk = request.data["text"]).first()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1492, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\query.py", line 1319, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\fields\__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'Select1'.
+ERROR:django.request:Internal Server Error: /admin/app/messagename/add/
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 208, in render
+    return template.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 177, in render
+    return self._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1070, in render
+    return render_value_in_context(output, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1047, in render_value_in_context
+    value = str(value)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\utils\html.py", line 475, in <lambda>
+    klass.__str__ = lambda self: mark_safe(klass_str(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\forms\boundfield.py", line 34, in __str__
+    return self.as_widget()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\forms\boundfield.py", line 107, in as_widget
+    return widget.render(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\colorfield\widgets.py", line 37, in render
+    return render_to_string(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: colorfield/color.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: colorfield/color.html
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /save/message
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.IntegrityError: (1364, "Field 'text_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 506, in save_message
+    _message_by_day = MessageByDay.objects.create(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1364, "Field 'text_id' doesn't have a default value")
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /admin/app/messagebyday/
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\options.py", line 681, in get_field
+    return self.fields_map[field_name]
+KeyError: '__str__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\utils.py", line 272, in lookup_field
+    f = _get_non_gfk_field(opts, name)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\utils.py", line 303, in _get_non_gfk_field
+    field = opts.get_field(name)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\options.py", line 683, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: MessageByDay has no field named '__str__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\templatetags\base.py", line 45, in render
+    return super().render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\library.py", line 258, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 336, in result_list
+    "results": list(results(cl)),
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 312, in results
+    yield ResultList(None, items_for_result(cl, res, None))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 303, in __init__
+    super().__init__(*items)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 213, in items_for_result
+    f, attr, value = lookup_field(field_name, result, cl.model_admin)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\contrib\admin\utils.py", line 285, in lookup_field
+    value = attr()
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py", line 137, in __str__
+    return str(self.text)
+AttributeError: 'MessageByDay' object has no attribute 'text'
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'app_messagebyday.text_m_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 799, in index
+    __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1070, in last
+    for obj in queryset[:1]:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'app_messagebyday.text_m_id' in 'field list'")
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'app_messagebyday.text_m_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 799, in index
+    __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1070, in last
+    for obj in queryset[:1]:
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\MySQLdb\connections.py", line 255, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'app_messagebyday.text_m_id' in 'field list'")
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\models.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 801, in index
+    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"pk":__message_by_day.text_m.pk if __message_by_day.text_m else 0,"text":__message_by_day.text_m.name if __message_by_day.text_m else '', "updated":generate_date_with_month_time(str(__message_by_day.updated))}
+AttributeError: 'MessageByDay' object has no attribute 'text_m'
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 801, in index
+    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"pk":__message_by_day.text_m.pk if __message_by_day.text_m else 0,"text":__message_by_day.text_m.name if __message_by_day.text_m else '', "updated":generate_date_with_month_time(str(__message_by_day.updated))}
+AttributeError: 'MessageByDay' object has no attribute 'text_m'
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...

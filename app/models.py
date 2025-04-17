@@ -88,6 +88,39 @@ class Price(models.Model):
     def __str__(self) -> str:
         return "Price: "+str(self.price)+" - O: "+str(self.occupancy)+" - Date: "+str(self.date_from)+" - Updated: "+str(self.updated)+" - Created: "+str(self.created)
 
+class MessageName(models.Model):
+    name = models.CharField(max_length=50)
+    COLORS = (
+        ("#90EE90", "verde"),
+        ("#FF0000", "rojo"),
+        ("#FFD700", "amarillo"),
+        ("#7FD7FF", "azul-claro"),
+        ("#63C5F9", "azul-oscuro")
+    )
+    TEXT_COLORS = (
+        ("text-success", "text-success"),
+        ("text-warning", "text-warning"),
+        ("text-info", "text-info"),
+        ("text-secondary", "text-secondary"),
+        ("text-dark", "text-dark"),
+        ("text-white", "text-white"),
+        ("text-black", "text-black"),
+        ("text-primary", "text-primary"),
+    )
+    bg_color = models.TextField(choices=COLORS, default="rojo")
+    text_color = models.TextField(choices=TEXT_COLORS, default="text-white")
+    OCCUPANCYS = (
+        (2, "2 Personas"),
+        (3, "3 Personas"),
+        (5, "5 Personas")
+    )
+    occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
+    updated = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return "Personas: "+str(self.occupancy)+" | "+str(self.name)+" - "+str(self.text_color)+" - "+str(self.bg_color)
+
 class MessageByDay(models.Model):
     date_from = models.CharField(max_length=30)
     OCCUPANCYS = (
@@ -96,6 +129,7 @@ class MessageByDay(models.Model):
         (5, "5 Personas")
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
+    text_name = models.ForeignKey(MessageName, on_delete=models.CASCADE, null=True, blank=True)
     text = models.CharField(max_length=512)
     updated = models.CharField(null=True, blank=True, max_length=50)
     created = models.CharField(null=True, blank=True, max_length=50)
