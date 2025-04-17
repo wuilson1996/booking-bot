@@ -135,7 +135,7 @@ class MessageByDay(models.Model):
     created = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self) -> str:
-        return str(self.text)
+        return str(self.date_from)+" | "+str(self.text_name)
 
 class EventByDay(models.Model):
     date_from = models.CharField(max_length=30)

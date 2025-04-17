@@ -798,7 +798,13 @@ def index(request):
                 # get message
                 __message_by_day = MessageByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __message_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {"pk":__message_by_day.text_name.pk if __message_by_day.text_name else 0,"text":__message_by_day.text_name.name if __message_by_day.text_name else '', "updated":generate_date_with_month_time(str(__message_by_day.updated))}
+                    bookings[str(_date_from.date())][int(ocp)]["messageDay"] = {
+                        "pk":__message_by_day.text_name.pk if __message_by_day.text_name else 0,
+                        "text":__message_by_day.text_name.name if __message_by_day.text_name else '',
+                        "bg_color": __message_by_day.text_name.bg_color if __message_by_day.text_name else '',
+                        "text_color": __message_by_day.text_name.text_color if __message_by_day.text_name else '',
+                        "updated":generate_date_with_month_time(str(__message_by_day.updated))
+                    }
 
                 # get event by day
                 __event_by_day = EventByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()

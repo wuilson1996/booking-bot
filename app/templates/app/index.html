@@ -288,7 +288,7 @@
                             <span id="textDate{{date}}2" class="text-lg m-2 text-xl">{{value.2.messageDay.updated}}</span>
                             <select type="text" class="form-control form-control-lg text-lg" value="{{value.2.messageDay.pk}}" aria-describedby="button-addon2" id="text{{date}}2">
                              {% for mn in message_name2 %} 
-                              <option value="{{mn.pk}}" {% if value.2.messageDay.pk == mn.pk %}selected{% endif %}>{{mn.name}}</option>
+                              <option value="{{mn.pk}}" {% if value.2.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
                               {% endfor %}
                             </select>
                             <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
@@ -504,7 +504,7 @@
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
                             <select type="text" class="form-control form-control-lg text-lg" value="{{value.3.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}3">
                               {% for mn in message_name3 %} 
-                                <option value="{{mn.pk}}" {% if value.3.messageDay.pk == mn.pk %}selected{% endif %}>{{mn.name}}</option>
+                                <option value="{{mn.pk}}" {% if value.3.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
                               {% endfor %}
                             </select>
                           </div>
@@ -660,7 +660,7 @@
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
                             <select type="text" class="form-control form-control-lg text-lg" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
                               {% for mn in message_name5 %} 
-                                <option value="{{mn.pk}}" {% if value.5.messageDay.pk == mn.pk %}selected{% endif %}>{{mn.name}}</option>
+                                <option value="{{mn.pk}}" {% if value.5.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
                               {% endfor %}
                             </select>
                           </div>
