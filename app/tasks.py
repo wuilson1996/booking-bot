@@ -165,6 +165,7 @@ def iniciar_tarea_diaria():
         # Solo un worker entra aquí gracias al lock de 30 segundos
         if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):  # 30 segundos
             generate_log(f"Otro worker está encargado de la espera. Este se detiene: {now()}", BotLog.HISTORY)
+            logging.info(f"Otro worker está encargado de la espera. Este se detiene: {now()}")
             return
         time.sleep(5)
         while True:
@@ -176,23 +177,29 @@ def iniciar_tarea_diaria():
 
                 tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
                 generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {now()}", BotLog.HISTORY)
+                logging.info(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {now()}")
                 deleted = delete_old_logs()
                 generate_log(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {now()}", BotLog.HISTORY)
+                logging.info(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {now()}")
                 time.sleep(tiempo_espera)
 
-                if not acquire_lock(name="ejecutar_funcion", ttl_minutes=task_execute.time_execute):
-                    generate_log(f"Otro worker ya está ejecutando la función principal: {now()}", BotLog.HISTORY)
-                    continue
+                #if not acquire_lock(name="ejecutar_funcion", ttl_minutes=task_execute.time_execute):
+                #    generate_log(f"Otro worker ya está ejecutando la función principal: {now()}", BotLog.HISTORY)
+                #    continue
                 generate_log(f"¡Ejecutando tarea de copia: {now()}", BotLog.HISTORY)
+                logging.info(f"¡Ejecutando tarea de copia: {now()}")
                 try:
                     ejecutar_funcion()
                 except Exception as e:
                     generate_log(f"Error al ejecutar la función: {now()}: {e}", BotLog.HISTORY)
+                    logging.info(f"Error al ejecutar la función: {now()}: {e}")
                 generate_log(f"¡Finalizando tarea de copia: {now()}", BotLog.HISTORY)
+                logging.info(f"¡Finalizando tarea de copia: {now()}")
                 
                 task_execute = TaskExecute.objects.all().last()
             except Exception as e:
                 generate_log(f"Error: en la espera de worker. Este se detiene: {now()}: {e}", BotLog.HISTORY)
+                logging.info(f"Error: en la espera de worker. Este se detiene: {now()}: {e}")
                 time.sleep(60)  # Esperar 1 minuto antes de intentar de nuevo
                 continue
         generate_log(f"Worker terminado: {now()}", BotLog.HISTORY)

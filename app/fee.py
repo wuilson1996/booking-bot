@@ -73,11 +73,11 @@ class FeeTask:
             #generate_log(f"[+] click button login success... {_date} | {str(price)}", BotLog.ROOMPRICE)
             sleep(5)
             if "Ajustes de la cuenta" in driver.page_source:
-                logging.info(f"[+] Inicio sesion correctamente... {_date} | {str(price)}")
+                #logging.info(f"[+] Inicio sesion correctamente... {_date} | {str(price)}")
                 generate_log(f"[+] Inicio sesion correctamente... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
             __time = time()
             while True:
-                logging.info(f"[+] verificando inicio de sesion...")
+                #logging.info(f"[+] verificando inicio de sesion...")
                 generate_log(f"[+] verificando inicio de sesion... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                 if "Optimizando..." not in driver.page_source or (time() - __time >= 180):
                     break
@@ -93,51 +93,51 @@ class FeeTask:
             while True:
                 status = False
                 save_type = False
-                logging.info(f"[+] search buttons calendar...")
+                #logging.info(f"[+] search buttons calendar...")
                 generate_log(f"[+] Buscando fecha en calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                 for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
                         generate_log(f"[+] Buscando fecha en calendario: {_date} | {str(b.get_attribute('data-testid'))}", BotLog.ROOMPRICE)
                         if _date == str(b.get_attribute("data-testid")):
-                            logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
+                            #logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
                             generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             driver.execute_script("arguments[0].scrollIntoView();", b)
                             sleep(1)
                             #b.click()
                             driver.execute_script("arguments[0].click();", b) # Upgrade change button for javascript.
-                            logging.info(f"[+] Click fecha success...")
+                            #logging.info(f"[+] Click fecha success...")
                             generate_log(f"[+] Abriendo fecha... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             sleep(3)
                             bt_edit_price = driver.find_element_by_xpath("//button[@data-testid='editPricesTab']")
                             driver.execute_script("arguments[0].scrollIntoView();", bt_edit_price)
                             sleep(1)
                             bt_edit_price.click()
-                            logging.info(f"[+] Click button edit price tab success...")
+                            #logging.info(f"[+] Click button edit price tab success...")
                             generate_log(f"[+] Abriendo edicion de precios... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             sleep(2)
-                            if "Sending Prices. Waiting for the Channel Manager to confirm" in driver.page_source:
-                                logging.info(f"[+] Check message Sending Prices....")
-                            if "Prices Uploaded Successfully" in driver.page_source:
-                                logging.info(f"[+] Check message Prices Uploaded....")
-                            if "Data Updated Successfully" in driver.page_source:
-                                logging.info(f"[+] Check message Data Updated....")
+                            #if "Sending Prices. Waiting for the Channel Manager to confirm" in driver.page_source:
+                            #    logging.info(f"[+] Check message Sending Prices....")
+                            #if "Prices Uploaded Successfully" in driver.page_source:
+                            #    logging.info(f"[+] Check message Prices Uploaded....")
+                            #if "Data Updated Successfully" in driver.page_source:
+                            #    logging.info(f"[+] Check message Data Updated....")
 
                             for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
                                 if b2.text == "Precios fijos":
                                     #driver.execute_script("arguments[0].scrollIntoView();", b2)
                                     sleep(1)
                                     b2.click()
-                                    logging.info(f"[+] Precios fijos click success...")
+                                    #logging.info(f"[+] Precios fijos click success...")
                                     generate_log(f"[+] Edicion de precios fijos... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                                     sleep(2)
 
                                     # cambiar boton por cambios en plataforma roomprice. -------- solucionado -----------
                                     bs = driver.find_element_by_xpath("//input[@role='switch']")
-                                    logging.info(f"[+] Button switch check... {bs}")
+                                    #logging.info(f"[+] Button switch check... {bs}")
                                     if bs.get_attribute("checked"):
                                         bs_div = driver.find_element_by_xpath("//input[@role='switch']/following-sibling::div")
-                                        logging.info(f"[+] Button switch success... {bs_div}")
+                                        #logging.info(f"[+] Button switch success... {bs_div}")
                                         driver.execute_script("arguments[0].click();", bs_div)
                                         
                                     sleep(2)
@@ -180,14 +180,14 @@ class FeeTask:
                                         cls.guardar_captura(driver, descripcion="por_fecha")
                                         btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-upload-prices-button']")
                                         btn_update.click()
-                                        logging.info("[+] Actualizacion por fecha...")
+                                        #logging.info("[+] Actualizacion por fecha...")
                                         generate_log(f"[+] Actualizacion por fecha activada... {_date}", BotLog.ROOMPRICE)
                                         save_type = True
                                     except Exception as e:
                                         cls.guardar_captura(driver, descripcion="por_rango")
                                         btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']")
                                         btn_update.click()
-                                        logging.info("[+] Actualizacion general...")
+                                        #logging.info("[+] Actualizacion general...")
                                         generate_log(f"[+] Actualizacion general activada... {_date}", BotLog.ROOMPRICE)
                                         save_type = False
                                     status = True
@@ -200,15 +200,15 @@ class FeeTask:
                         check = cls.update_with_range(driver, _date, price, check)
                     break
                 else:
-                    logging.info("[+] Buscando calendario...")
-                    generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                    #logging.info("[+] Buscando calendario...")
+                    #generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                     bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
                     driver.execute_script("arguments[0].scrollIntoView();", bt_next)
                     driver.execute_script("arguments[0].click();", bt_next)
                     sleep(1)
                     #bt_next.click()
                     sleep(3)
-                    logging.info(f"[+] Click button next calendar success...")
+                    #logging.info(f"[+] Click button next calendar success...")
                     generate_log(f"[+] Siguiente calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
         
         except Exception as e:
@@ -220,7 +220,7 @@ class FeeTask:
 
     @classmethod
     def update_with_date(cls, driver, _date, price, check):
-        logging.info("[+] Abrir modal, actualizar channels manager...")
+        #logging.info("[+] Abrir modal, actualizar channels manager...")
         generate_log(f"[+] Abrir modal, Actualizar channels manager... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
         sleep(3)
         try:
@@ -228,7 +228,7 @@ class FeeTask:
             timeout1 = 180  # Tiempo máximo en segundos
             while True:
                 generate_log(f"[+] Buscando boton: Confirmar y Enviar al Channel Manager... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                logging.info("[+] Buscando boton: Confirmar y Enviar al Channel Manager...")
+                #logging.info("[+] Buscando boton: Confirmar y Enviar al Channel Manager...")
                 if time() - start_time1 > timeout1:  # Verifica si han pasado 120 segundos
                     logging.error("[!] Channel Manager: Tiempo de espera agotado. No se detectó la actualización de tarifas.")
                     generate_log(f"[!] Channel Manager: Tiempo de espera agotado. No se detectó la actualización de tarifas... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
@@ -238,8 +238,8 @@ class FeeTask:
                     if "Confirmar y Enviar al Channel Manager" in button_update.text:
                         status_button = True
                         generate_log(f"[+] Enviando a Channels Manager... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                        logging.info(button_update.text)
-                        logging.info(button_update.get_attribute("innerHTML"))
+                        #logging.info(button_update.text)
+                        #logging.info(button_update.get_attribute("innerHTML"))
                         #button_update.click()
                         cls.guardar_captura(driver, descripcion="check_setting_with_date")
                         driver.execute_script("arguments[0].click();", button_update)
@@ -254,15 +254,15 @@ class FeeTask:
                         while True:
                             if "Sending Prices. Waiting for the Channel Manager to confirm" in driver.page_source:
                                 status1 = True
-                                logging.info("[+] Channel Manager: Sending Prices. Waiting for the Channel Manager to confirm")
+                                #logging.info("[+] Channel Manager: Sending Prices. Waiting for the Channel Manager to confirm")
                                 generate_log(f"[+] Channel Manager: Sending Prices. Waiting for the Channel Manager to confirm... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
                             if "Prices Uploaded Successfully" in driver.page_source:
                                 status2 = True
-                                logging.info("[+] Channel Manager: Prices Uploaded Successfully.")
+                                #logging.info("[+] Channel Manager: Prices Uploaded Successfully.")
                                 generate_log(f"[+] Channel Manager: Prices Uploaded Successfully... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
                             if "Data Updated Successfully" in driver.page_source:
                                 status3 = True
-                                logging.info("[+] Channel Manager: Data Updated Successfully.")
+                                #logging.info("[+] Channel Manager: Data Updated Successfully.")
                                 generate_log(f"[+] Channel Manager: Data Updated Successfully... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
                             
                             if status1 and status2 and status3:
@@ -296,15 +296,15 @@ class FeeTask:
 
     @classmethod
     def update_with_range(cls, driver, _date, price, check):
-        logging.info("[+] Actualizacion por rango...")
+        #logging.info("[+] Actualizacion por rango...")
         generate_log(f"[+] Actualizacion por rango... {_date}", BotLog.ROOMPRICE)
         sleep(3)
         try:
             for button_update in driver.find_elements_by_xpath("//button[@type='button']"):
                 if "Actualizar tarifas" in button_update.text:
                     generate_log(f"[+] Enviando a Channels Manager... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                    logging.info(button_update.text)
-                    logging.info(button_update.get_attribute("innerHTML"))
+                    #logging.info(button_update.text)
+                    #logging.info(button_update.get_attribute("innerHTML"))
                     #button_update.click()
                     #driver.execute_script("arguments[0].scrollIntoView();", button_update)
                     sleep(1)
@@ -312,7 +312,7 @@ class FeeTask:
                     sleep(2)
                     for b in driver.find_elements_by_xpath("//div[@role='radio']"):
                         if "Próximos 3 meses" in b.text:
-                            logging.info(b.text)
+                            #logging.info(b.text)
                             #driver.execute_script("arguments[0].scrollIntoView();", b)
                             sleep(1)
                             driver.execute_script("arguments[0].click();", b)
@@ -323,9 +323,9 @@ class FeeTask:
                             checkbox.click()
                             for btt in driver.find_elements_by_xpath("//button[@type='button']"):
                                 if "Actualizar tarifas" in btt.text and "currentColor" not in btt.get_attribute("innerHTML") and "style" not in btt.get_attribute("innerHTML"):
-                                    logging.info(btt.text)
-                                    logging.info(btt)
-                                    logging.info(btt.get_attribute("innerHTML"))
+                                    #logging.info(btt.text)
+                                    #logging.info(btt)
+                                    #logging.info(btt.get_attribute("innerHTML"))
                                     #logging.info(btt.get_attribute("innerHTML"))
                                     #driver.execute_script("arguments[0].scrollIntoView();", btt)
                                     sleep(1)
@@ -339,11 +339,11 @@ class FeeTask:
                                     while True:
                                         if "Sending Prices. Waiting for the Channel Manager to confirm" in driver.page_source:
                                             status1 = True
-                                            logging.error("[+] Channel Manager: Sending Prices. Waiting for the Channel Manager to confirm")
+                                            #logging.info("[+] Channel Manager: Sending Prices. Waiting for the Channel Manager to confirm")
                                             generate_log(f"[+] Channel Manager: Sending Prices. Waiting for the Channel Manager to confirm... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
                                         if "Prices Uploaded Successfully" in driver.page_source:
                                             status2 = True
-                                            logging.error("[+] Channel Manager: Prices Uploaded Successfully.")
+                                            #logging.info("[+] Channel Manager: Prices Uploaded Successfully.")
                                             generate_log(f"[+] Channel Manager: Prices Uploaded Successfully... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
                                         
                                         if status1 and status2:

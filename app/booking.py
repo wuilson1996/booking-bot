@@ -89,7 +89,7 @@ class BookingSearch:
             search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
             sleep(1)
             # Escribe el texto en el campo de búsqueda
-            logging.info(f"Search name or city: {search_name} {_now}")
+            #logging.info(f"Search name or city: {search_name} {_now}")
             generate_log(f"[+] Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
             search.send_keys(search_name)
             sleep(1)
@@ -107,11 +107,11 @@ class BookingSearch:
                 while True:
                     generate_log(f"[+] Actualizando Datos: {search_name} - Date: {_now}", BotLog.BOOKING)
                     if not check_finish_process():
-                        logging.info(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...")
+                        #logging.info(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...")
                         generate_log(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
                         break
                     if stop_event and stop_event.is_set():
-                        logging.info(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...")
+                        #logging.info(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...")
                         generate_log(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
                         break
                     
@@ -529,8 +529,7 @@ class BookingSearch:
                 #logging.info(f"[+] Data Start success: {item_dict}")
 
         except Exception as e:
-            logging.info(f"[-] {now()} Error General data 537: "+str(e))
-            logging.info(item_dict)
+            logging.info(f"[-] {now()} Error General data 537: {str(e)} | {item_dict}")
             generate_log(f"[-] Error General data 539: "+str(e), BotLog.BOOKING)
         
         return item_dict
@@ -558,7 +557,7 @@ class BookingSearch:
                             status = True
                             break
                     if status:
-                        logging.info(f"[+] Save |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']} from Name hotel")
+                        #logging.info(f"[+] Save |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']} from Name hotel")
                         generate_log(f"[+] Guardado |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']} - para nombre de hotel", BotLog.BOOKING)
                         cls.save_name_hotel(item_dict, occupancy, gs.city_and_country)
                     break

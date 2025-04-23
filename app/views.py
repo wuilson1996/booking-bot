@@ -134,12 +134,12 @@ def get_current_bot_range(bot_setting):
     for btr in bots_range:
         # Comprobar si el día aplica
         day_filter = btr.day_name.filter(name=dia_actual)
-        generate_log(f"[-] Day: {dia_actual} - {day_filter}", BotLog.BOOKING)
+        #generate_log(f"[-] Day: {dia_actual} - {day_filter}", BotLog.BOOKING)
         if day_filter:
             # Comprobar si la hora está en algún rango válido
             for hr in btr.hour_range.all():
                 if hr.hour_from and hr.hour_to:
-                    generate_log(f"[-] Day: {hr.hour_from} <= {current_time} <= {hr.hour_to} ", BotLog.BOOKING)
+                    #generate_log(f"[-] Day: {hr.hour_from} <= {current_time} <= {hr.hour_to} ", BotLog.BOOKING)
                     if hr.hour_from <= current_time <= hr.hour_to:
                         generate_log(f"[-] Day: {hr.hour_from} <= {current_time} <= {hr.hour_to} - Valido: {btr}", BotLog.BOOKING)
                         return btr, hr  # ✅ Retornar el primer válido encontrado
@@ -150,24 +150,24 @@ def check_change_range(hr, stop_event, stop_event_check):
     while True:
         try:
             if not check_finish_process():
-                logging.info(f"[+] {now()} Finish process, Check range...")
-                generate_log(f"[+] Finalizando proceso, Check range...", BotLog.BOOKING)
+                #logging.info(f"[+] {now()} Finish process, Check range...")
+                generate_log(f"[+] Finalizando proceso, Check range | Rango: {hr.hour_from} - {hr.hour_to}...", BotLog.BOOKING)
                 break
             if stop_event_check and stop_event_check.is_set():
-                logging.info(f"[+] {now()} Deteniendo ejecución de verificacion")
-                generate_log(f"[+] {now()} Deteniendo ejecución de verificacion", BotLog.BOOKING)
+                #logging.info(f"[+] {now()} Deteniendo ejecución de verificacion")
+                generate_log(f"[+] {now()} Deteniendo ejecución de verificacion | Rango: {hr.hour_from} - {hr.hour_to}", BotLog.BOOKING)
                 break
             if hr.hour_to:
                 now_time = now().time()
                 cutoff_time = (dt.combine(dt.today(), hr.hour_to) - datetime.timedelta(minutes=5)).time()
-                logging.info(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}")
+                #logging.info(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}")
                 generate_log(f"[!] Verificando Horario, Fin {cutoff_time} - Ahora: {now_time} | Rango: {hr.hour_from} - {hr.hour_to}", BotLog.BOOKING)
                 if now_time >= cutoff_time:
-                    logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
-                    generate_log("[!] Finalizando hilos por cambio de rango horario.", BotLog.BOOKING)
+                    #logging.info("[!] Finalizando hilos antes del cambio de rango horario.")
+                    generate_log(f"[!] Finalizando hilos por cambio de rango horario | Rango: {hr.hour_from} - {hr.hour_to}.", BotLog.BOOKING)
                     stop_event.set()
-                    logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
-                    generate_log("[+] Reiniciando con siguiente rango tras esperar 5 minutos.", BotLog.BOOKING)
+                    #logging.info("[+] Reiniciando con siguiente rango tras esperar 5 minutos.")
+                    generate_log(f"[+] Reiniciando con siguiente rango tras esperar 5 minutos | Rango: {hr.hour_from} - {hr.hour_to}.", BotLog.BOOKING)
         except Exception as e:
             generate_log(f"[+] Error Check change range: {e}...", BotLog.BOOKING)
         sleep(60)
@@ -190,7 +190,7 @@ def active_process(bot_setting:BotSetting):
             "driver": booking._driver(general_search.url)
         })
 
-    logging.info(f"[+] {now()} Activando process...")
+    #logging.info(f"[+] {now()} Activando process...")
     generate_log("[+] Activando process...", BotLog.BOOKING)
     threading.Thread(target=active_process_sf).start()
 
@@ -198,7 +198,7 @@ def active_process(bot_setting:BotSetting):
         try:
             stop_event = threading.Event()
             if not check_finish_process():
-                logging.info(f"[+] {now()} Finish process...")
+                #logging.info(f"[+] {now()} Finish process...")
                 generate_log(f"[+] Finalizando proceso...", BotLog.BOOKING)
                 break
 
@@ -209,7 +209,7 @@ def active_process(bot_setting:BotSetting):
 
             if not bot_range:
                 generate_log(f"[-] No hay rango válido actualmente. {now()}", BotLog.BOOKING)
-                logging.info("[-] No hay rango válido actualmente.")
+                #logging.info("[-] No hay rango válido actualmente.")
                 time.sleep(60)
                 continue
 
@@ -226,7 +226,7 @@ def active_process(bot_setting:BotSetting):
             cont = 0
             for p in ProcessActive.objects.filter(type_proces = 1):
                 try:
-                    logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
+                    #logging.info(f"[+] {now()} Process active in while. Search with city browser... {instances[cont]['booking']}")
                     generate_log("[+] Buscando posiciones...", BotLog.BOOKING)
 
                     process = threading.Thread(
@@ -250,26 +250,26 @@ def active_process(bot_setting:BotSetting):
                 cont += 1
 
             for t in threads:
-                logging.info(f"[+] {now()} Esperando finalizacion de thread...")
+                #logging.info(f"[+] {now()} Esperando finalizacion de thread...")
                 generate_log("[+] Esperando finalizacion de thread...", BotLog.BOOKING)
                 t.join()
             
             if not check_finish_process():
-                logging.info(f"[+] {now()} Finish process, despues de posiciones...")
+                #logging.info(f"[+] {now()} Finish process, despues de posiciones...")
                 generate_log(f"[+] Finalizando proceso, despues de posiciones...", BotLog.BOOKING)
                 break
 
             # add process name hotel.
-            logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
+            #logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             generate_log("[+] Buscando hoteles por nombre...", BotLog.BOOKING)
             for gs in general_search_to_name:
                 if not check_finish_process():
-                    logging.info(f"[+] {now()} Finish process de busqueda por nombre...")
+                    #logging.info(f"[+] {now()} Finish process de busqueda por nombre...")
                     generate_log(f"[+] {now()} Finish process de busqueda por nombre...", BotLog.BOOKING)
                     break
                 for _pa in gs.proces_active.all():
                     if not check_finish_process():
-                        logging.info(f"[+] {now()} Finish process2 de busqueda por nombre...")
+                        #logging.info(f"[+] {now()} Finish process2 de busqueda por nombre...")
                         generate_log(f"[+] {now()} Finish process2 de busqueda por nombre...", BotLog.BOOKING)
                         break
                     try:
@@ -287,21 +287,21 @@ def active_process(bot_setting:BotSetting):
                         generate_log(f"[-] Error in Execute controller with name... {ec}", BotLog.BOOKING)
 
             if not check_finish_process():
-                logging.info(f"[+] {now()} Finish process, despues de nombres...")
+                #logging.info(f"[+] {now()} Finish process, despues de nombres...")
                 generate_log(f"[+] Finalizando proceso, despues de nombres...", BotLog.BOOKING)
                 break
 
             seconds = 60 * (general_search.time_sleep_minutes if general_search else 3)
-            logging.info(f"[+] {now()} Sleep {seconds} seconds...")
+            #logging.info(f"[+] {now()} Sleep {seconds} seconds...")
             generate_log(f"[+] Sleep {seconds} seconds...", BotLog.BOOKING)
             sleep(seconds)
 
             if not check_finish_process():
-                logging.info(f"[+] {now()} Finish process, proceso final...")
+                #logging.info(f"[+] {now()} Finish process, proceso final...")
                 generate_log(f"[+] Finalizando proceso, proceso final...", BotLog.BOOKING)
                 break
 
-            logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
+            #logging.info(f"[+] {now()} Sleep {seconds} seconds finish...")
             generate_log(f"[+] Sleep {seconds} seconds finish...", BotLog.BOOKING)
 
             if bot_auto.automatic:
@@ -322,7 +322,7 @@ def active_process(bot_setting:BotSetting):
             logging.info(f"[+] {now()} Error Finalizar Booking...")
             generate_log(f"[+] Error al Finalizar Bot Booking: {e}...", BotLog.BOOKING)
 
-    logging.info(f"[+] {now()} Process Booking Finalizando...")
+    #logging.info(f"[+] {now()} Process Booking Finalizando...")
     generate_log("[+] Process Bot Booking Finalizando...", BotLog.BOOKING)
     try:
         if bot_auto.automatic:
