@@ -89,13 +89,14 @@ class Price(models.Model):
         return "Price: "+str(self.price)+" - O: "+str(self.occupancy)+" - Date: "+str(self.date_from)+" - Updated: "+str(self.updated)+" - Created: "+str(self.created)
 
 class MessageName(models.Model):
+    number = models.IntegerField(default=1)
     name = models.CharField(max_length=50)
     COLORS = (
         ("#90EE90", "verde"),
         ("#FF0000", "rojo"),
         ("#FFD700", "amarillo"),
-        ("#7FD7FF", "azul-claro"),
-        ("#63C5F9", "azul-oscuro")
+        ("#6cb7fc", "azul-claro"),
+        ("#317ec6", "azul-oscuro")
     )
     TEXT_COLORS = (
         ("text-success", "text-success"),
@@ -119,7 +120,12 @@ class MessageName(models.Model):
     created = models.DateTimeField(null=True, blank=True)
 
     def __str__(self) -> str:
-        return "Personas: "+str(self.occupancy)+" | "+str(self.name)+" - "+str(self.text_color)+" - "+str(self.bg_color)
+        _color = ""
+        for c in self.COLORS:
+            if c[0] == self.bg_color:
+                _color = c[1]
+                break
+        return str(self.number)+" | Personas: "+str(self.occupancy)+" | "+str(self.name)+" - "+str(self.text_color)+" - "+str(_color)
 
 class MessageByDay(models.Model):
     date_from = models.CharField(max_length=30)

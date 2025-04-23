@@ -184,7 +184,7 @@
       </div>-->
       <div class="px-0 pb-0 card-body">
         <div class="table-responsive">
-          <table class="table table-flush table-sm" id="client-list">
+          <table class="table table-flush table-sm m-0 p-0" id="client-list">
             <thead class="thead-light">
               <tr>
                 <th class="text-xs">Fecha</th>
@@ -249,7 +249,7 @@
                   </br>
                 </td>
                 <td>
-                  <table class="table table-flush bg-info text-white table-sm">
+                  <table class="table table-flush text-white table-sm m-0 p-0" id="bgtable{{date}}2" style="background-color: {{value.2.messageDay.bg_color}};"> <!-- Change backgroud -->
                     <!-- <thead class="thead-light">
                       <tr>
                         <th class="text-xs"></th>
@@ -312,19 +312,22 @@
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <h4 class="text-white text-start">
-                            <table class="table table-flush text-white table-sm">
+                            <table class="table table-flush text-white table-sm m-0 p-0">
                               <tbody>
                                 <tr>
                                   <td>
                                     <h2 class="text-white bg-success text-center">0</h2>
-                                    <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                                    {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
-                                    {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
-                                    <br>
+                                    <span class="h3 text-bold text-white">
+                                      {% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
+                                      {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                                      {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
+                                      <br>
                                     <span class="bg-dark">
-                                    <span class="h2 text-bold text-white text-start">{% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} |
-                                    {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %} | 
-                                    {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}</span>
+                                    <span class="h2 text-bold text-white text-start">
+                                      {% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %} |
+                                      {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %} | 
+                                      {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}
+                                    </span>
                                     <br>
                                     M: <span style="font-size: 28px;">{% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %}</span> | 
                                     <span style="font-size: 28px;">{% if "totalFeriaM1" in value.2 %}{{value.2.totalFeriaM1}}{% else %}0{% endif %}</span> | 
@@ -345,7 +348,7 @@
                           </h4>
                         </td>
                         <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table>
+                          <table class="m-0 p-0">
                             <tbody>
                               <tr>
                                 <td>
@@ -361,7 +364,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success">
@@ -394,7 +397,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success">
@@ -425,22 +428,33 @@
                           </table>
                         </td>
                         <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm">
-                                  <span class="h4 text-bold text-white">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span><br>
-                                  <span class="h4 text-bold text-white">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span><br>
-                                  <span class="h4 text-bold text-white">SIL: {% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span><br>
+                                <td class="text-sm m-0 p-0">
                                   <span style="font-size: 32px; color: black; font-weight: bold;">
                                     <span class="h3 text-bold text-black">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %} | 
                                       0 | 
                                       0
                                     </span>
                                   </span><br>
-                                  <span class="h4 text-bold text-white">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span><br>
-                                  <span class="h4 text-bold text-white">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span><br>
-                                  <span class="h4 text-bold text-white">TOR: {% if 'priceTOR' in value.2 %}{{value.2.priceTOR}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">ECO: {% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">SIL: {% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">AXO: {% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">SER: {% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">BOS: {% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">EXE: {% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">DWO: {% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">TOR: {% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -476,7 +490,7 @@
                       </tr> -->
                     </tbody>
                   </table>
-                  <table class="table table-flush bg-success text-white table-sm">
+                  <table class="table table-flush text-white table-sm m-0 p-0" id="bgtable{{date}}3" style="background-color: {{value.3.messageDay.bg_color}};"> <!-- Change backgroud -->
                     <!-- <thead class="thead-light">
                       <tr>
                         <th class="text-xs"></th>
@@ -555,7 +569,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success">
@@ -580,7 +594,7 @@
                             </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success">
@@ -603,7 +617,7 @@
                           </table>
                         </td>
                         <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm">
@@ -633,7 +647,7 @@
                     </tbody>
                   </table>
 
-                  <table class="table table-flush bg-danger text-white table-sm">
+                  <table class="table table-flush text-white table-sm m-0 p-0" id="bgtable{{date}}5" style="background-color: {{value.5.messageDay.bg_color}};"> <!-- Change backgroud -->
                     <!-- <thead class="thead-light">
                       <tr>
                         <th class="text-xs"></th>
@@ -711,7 +725,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success">
@@ -736,7 +750,7 @@
                             </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success">
@@ -759,7 +773,7 @@
                           </table>
                         </td>
                         <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <table class="table table-flush text-white table-sm">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm">
@@ -1083,6 +1097,8 @@
             if (json.code == 200){
               $("#textDate"+inputId).text("");
               $("#textDate"+inputId).append(json.updated);
+
+              $("#bgtable" + inputId).css("background", json.bg_color);
             }
           },
           error: function(error) {

@@ -496,7 +496,7 @@ def check_booking_process(request):
 def save_message(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
-        print(request.data)
+        #print(request.data)
         _message_by_day = MessageByDay.objects.filter(
             date_from = request.data["date"],
             occupancy = request.data["occupancy"]
@@ -511,7 +511,16 @@ def save_message(request):
                 created = now()
             )
         else:
-            if _message_by_day.text_name.pk != __message_name:
+            if _message_by_day.text_name:
+                if _message_by_day.text_name.pk != __message_name:
+                    _message_by_day = MessageByDay.objects.create(
+                        date_from = request.data["date"],
+                        occupancy = request.data["occupancy"],
+                        text_name = __message_name,
+                        updated = now(),
+                        created = now()
+                    )
+            else:
                 _message_by_day = MessageByDay.objects.create(
                     date_from = request.data["date"],
                     occupancy = request.data["occupancy"],
@@ -519,7 +528,14 @@ def save_message(request):
                     updated = now(),
                     created = now()
                 )
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_message_by_day.updated))}
+        result = {
+            "code": 200,
+            "status": "OK",
+            "message":"Proceso activado correctamente.",
+            "updated": generate_date_with_month_time(str(_message_by_day.updated)),
+            "bg_color": __message_name.bg_color,
+            "text_color": __message_name.text_color
+        }
     return Response(result)
 
 def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform):
@@ -1145,9 +1161,9 @@ def index(request):
         if "range_pg" in request.POST:
             range_pg = request.POST["range_pg"]
 
-        __message_name2 = MessageName.objects.filter(occupancy=2)
-        __message_name3 = MessageName.objects.filter(occupancy=3)
-        __message_name5 = MessageName.objects.filter(occupancy=5)
+        __message_name2 = MessageName.objects.filter(occupancy=2).order_by("number")
+        __message_name3 = MessageName.objects.filter(occupancy=3).order_by("number")
+        __message_name5 = MessageName.objects.filter(occupancy=5).order_by("number")
         #print(time.time() - __time)
         return render(
             request, 
