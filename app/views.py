@@ -63,7 +63,7 @@ def active_process_sf():
                 suites_feria = SuitesFeria(_credential.username, _credential.password)
                 resp = suites_feria.login()
                 logging.info(f"[+] Actualizando suites feria: {now().date()} {resp}")
-                generate_log(f"[+] Actualizando Dispo suites feria {now().date()}", BotLog.SUITESFERIA)
+                generate_log(f"[+] Actualizando Dispo suites feria: {resp['message']} {now().date()}", BotLog.SUITESFERIA)
                 if resp["code"] == 200:
                     resp_sf = suites_feria.disponibilidad(now().date())
                     resp_sf = suites_feria.format_avail(resp_sf)
@@ -90,7 +90,7 @@ def active_process_sf():
                         break
 
                     logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
-                    generate_log("[+] Dispo Suites feria actualizado", BotLog.SUITESFERIA)
+                    generate_log(f"[+] Dispo Suites feria actualizado: {resp_l['message']}", BotLog.SUITESFERIA)
                 
                 time.sleep(60)
 
