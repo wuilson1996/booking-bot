@@ -184,7 +184,7 @@
       </div>-->
       <div class="px-0 pb-0 card-body">
         <div class="table-responsive">
-          <table class="table table-flush table-sm m-0 p-0" id="client-list">
+          <table class="table table-flush table-sm m-1 p-1" id="client-list">
             <thead class="thead-light">
               <tr>
                 <th class="text-xs">Fecha</th>
@@ -194,7 +194,7 @@
             <tbody>
               {% for date, value in bookings.items %}
               <tr>
-                <td id="temp-bg{{date}}" style="width: 40px;" class="text-sm {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                <td id="temp-bg{{date}}" style="width: 40px;" class="text-sm m-1 p-1 {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
                   <div class="col-md-2 bg-danger" style="width: 200px;">
                     <span class="bg-danger text-start">
                       <span class="h2 text-bold text-white">{{value.2.total_search}}</span> | 
@@ -204,9 +204,7 @@
                       <h5 class="h4 text-bold text-white bg-danger w-50">{{value.2.total_search_192}}%</h5>
                     </span>
                   </div>
-                  <br>
                   <h4 class="text-white my-4">{{value.date_from}}</h4>
-                  </br>
                   <h4 class="text-white my-4">{{value.day}}</h4>
                   <hr>
                   <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
@@ -222,14 +220,9 @@
                     </select>
                     <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
                   </div>
-                  </br>
-                  </br>
-                  </br>
-                  </br>
                   <hr>
                   <h4 class="text-white my-4" id="buttonFeeUpgrade{{date}}">...</h4>
                   <button class="btn btn-white" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
-                  </br>
                   <hr>
                   <h1 class="text-white my-4" id="temp-t{{date}}">{{value.totalFeria}}</h1>
                   <div class="input-group mb-3">
@@ -241,15 +234,9 @@
                   <span id="temp-update{{date}}">{{value.updated}}</span>
                   </br>
                   </br>
-                  </br>
-                  </br>
-                  </br>
-                  </br>
-                  </br>
-                  </br>
                 </td>
-                <td>
-                  <table class="table table-flush text-white table-sm m-0 p-0" id="bgtable{{date}}2" style="background-color: {{value.2.messageDay.bg_color}};"> <!-- Change backgroud -->
+                <td class="m-1 p-1">
+                  <table class="table table-flush text-white table-sm m-1 p-1" id="bgtable{{date}}2" style="background-color: {{value.2.messageDay.bg_color}};"> <!-- Change backgroud -->
                     <!-- <thead class="thead-light">
                       <tr>
                         <th class="text-xs"></th>
@@ -261,8 +248,8 @@
                       </tr>
                     </thead> -->
                     <tbody>
-                      <tr>
-                        <td colspan="6">
+                      <tr class="m-1 p-1">
+                        <td colspan="6" class="m-0 p-0">
                           <div class="row">
                             <!-- <div class="col-md-2 bg-danger" style="width: 200px;">
                               <span class="bg-danger text-start">
@@ -282,40 +269,40 @@
                           </div>
                         </td>
                       </tr>
-                      <tr>
-                        <td class="text-sm">
-                          <div class="mb-3">
-                            <span id="textDate{{date}}2" class="text-lg m-2 text-xl">{{value.2.messageDay.updated}}</span>
+                      <tr class="m-1 p-1">
+                        <td class="text-sm m-1 p-1">
+                          <span id="textDate{{date}}2" class="text-lg m-2 text-xl">{{value.2.messageDay.updated}}</span>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
                             <select type="text" class="form-control form-control-lg text-lg" value="{{value.2.messageDay.pk}}" aria-describedby="button-addon2" id="text{{date}}2">
                              {% for mn in message_name2 %} 
                               <option value="{{mn.pk}}" {% if value.2.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
                               {% endfor %}
                             </select>
-                            <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
                           </div>
                           <!---->
                           <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
-                          <div class="mb-3">
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
-                            <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
                               Guardar <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
                           </div>
                           <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
-                          <div class="mb-3">
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
-                            <button class="btn btn-white btn-xs mb-0 w-100" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
                               Guardar <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                             </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
                           </div>
                           <!---->
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <h4 class="text-white text-start">
-                            <table class="table table-flush text-white table-sm m-0 p-0">
+                            <table class="table table-flush text-white table-sm m-1 p-1">
                               <tbody>
                                 <tr>
-                                  <td>
+                                  <td class="m-1 p-1">
                                     <h2 class="text-white bg-success text-center">0</h2>
                                     <span class="h3 text-bold text-white">
                                       {% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
@@ -347,11 +334,11 @@
                             </table>
                           </h4>
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="m-0 p-0">
+                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="m-1 p-1">
                             <tbody>
                               <tr>
-                                <td>
+                                <td class="m-1 p-1">
                                   <h4 class="text-white text-center">
                                     <span>
                                       <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %} | 
@@ -364,74 +351,74 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
-                              <tr>
-                                <td class="text-sm bg-success">
-                                  <h3 style="width: 20px;">{{value.2.4.0.price}}</h3>
+                              <tr class="m-1 p-1">
+                                <td class="text-sm bg-success m-1 p-1">
+                                  <h3>{{value.2.4.0.price}}</h3>
                                 </td>
-                                <td class="text-sm bg-secondary">
-                                  <h5 class="text-white" style="width: 20px;">{{value.2.4.1.price}}</h5>
+                                <td class="text-sm bg-secondary m-1 p-1">
+                                  <h5 class="text-white">{{value.2.4.1.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
-                                  <h5 class="text-white" style="width: 20px;">{{value.2.4.2.price}}</h5>
+                                <td class="text-sm bg-secondary m-1 p-1">
+                                  <h5 class="text-white">{{value.2.4.2.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
-                                  <h5 class="text-white" style="width: 20px;">{{value.2.4.3.price}}</h5>
+                                <td class="text-sm bg-secondary m-1 p-1">
+                                  <h5 class="text-white">{{value.2.4.3.price}}</h5>
                                 </td>
-                                <td class="bg-secondary">
-                                  <h3 class="text-white" style="width: 30px;">{{value.2.4.4.price}}</h3>
+                                <td class="bg-secondary m-1 p-1">
+                                  <h3 class="text-white">{{value.2.4.4.price}}</h3>
                                 </td>
-                                <td class="text-sm bg-white">
-                                  <h3 style="width: 30px;">{{value.2.4.9.price}}</h3>
+                                <td class="text-sm bg-white m-1 p-1">
+                                  <h3>{{value.2.4.9.price}}</h3>
                                 </td>
-                                <td class="bg-primary">
-                                  <h3 class="text-white" style="width: 30px;">{{value.2.4.14.price}}</h3>
+                                <td class="bg-primary m-1 p-1">
+                                  <h3 class="text-white">{{value.2.4.14.price}}</h3>
                                 </td>
-                                <td class="bg-warning">
-                                  <h3 class="text-white" style="width: 30px;">{{value.2.4.19.price}}</h3>
+                                <td class="bg-warning m-1 p-1">
+                                  <h3 class="text-white">{{value.2.4.19.price}}</h3>
                                 </td>
-                                <td class="bg-danger">
-                                  <h3 class="text-white" style="width: 30px;">{{value.2.4.24.price}}</h3>
+                                <td class="bg-danger m-1 p-1">
+                                  <h3 class="text-white">{{value.2.4.24.price}}</h3>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm bg-success">
+                                <td class="text-sm bg-success m-1 p-1">
                                   <h2>
                                     {{value.2.3.0.price}}
                                   </h2>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">
                                     {{value.2.3.1.price}}
                                   </h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">
                                     {{value.2.3.2.price}}
                                   </h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">
                                     {{value.2.3.3.price}}
                                   </h5>
                                 </td>
-                                <td class="text-lg bg-white">
+                                <td class="text-lg bg-white m-1 p-1">
                                   <h3>{{value.2.3.4.price}}</h3>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                         </td>
-                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                        <td class="text-sm bg-warning text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0">
+                                <td class="text-sm m-1 p-1">
                                   <span style="font-size: 32px; color: black; font-weight: bold;">
                                     <span class="h3 text-bold text-black">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %} | 
                                       0 | 
@@ -490,7 +477,7 @@
                       </tr> -->
                     </tbody>
                   </table>
-                  <table class="table table-flush text-white table-sm m-0 p-0" id="bgtable{{date}}3" style="background-color: {{value.3.messageDay.bg_color}};"> <!-- Change backgroud -->
+                  <table class="table table-flush text-white table-sm m-1 p-1" id="bgtable{{date}}3" style="background-color: {{value.3.messageDay.bg_color}};"> <!-- Change backgroud -->
                     <!-- <thead class="thead-light">
                       <tr>
                         <th class="text-xs"></th>
@@ -511,8 +498,8 @@
                         </td>
                       </tr> -->
                       
-                      <tr>
-                        <td class="text-sm">
+                      <tr class="m-1 p-1">
+                        <td class="text-sm m-1 p-1">
                           <span id="textDate{{date}}3" class="text-lg m-2">{{value.3.messageDay.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
@@ -542,7 +529,7 @@
                             {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
                           </h4> -->
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                           <h2 class="text-white bg-success text-center">0</h2>
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %} | </span>
@@ -555,7 +542,7 @@
                             {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}</span>
                           </h4>
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                           <table>
                             <tbody>
                               <tr>
@@ -569,58 +556,58 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm bg-success">
+                                <td class="text-sm bg-success m-1 p-1">
                                   <h3>{{value.3.4.0.price}}</h3>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.3.4.1.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.3.4.2.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.3.4.3.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h3 class="text-white">{{value.3.4.4.price}}</h3>
                                 </td>
-                                <td class="text-sm bg-white">
+                                <td class="text-sm bg-white m-1 p-1">
                                   <h3>{{value.3.4.9.price}}</h3>
                                 </td>
                               </tr>
                             </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm bg-success">
+                                <td class="text-sm bg-success m-1 p-1">
                                   <h2>{{value.3.3.0.price}}</h2>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.3.3.1.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.3.3.2.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.3.3.3.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-white">
+                                <td class="text-sm bg-white m-1 p-1">
                                   <h3>{{value.3.3.4.price}}</h3>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                         </td>
-                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                        <td class="text-sm bg-warning text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm">
+                                <td class="text-sm m-1 p-1">
                                   <span class="h4 text-bold text-white">TOR: {% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</span><br>
                                   <span class="h4 text-bold text-white">BAR: {% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</span>
                                   <h4 class="text-white text-start bg-danger">
@@ -647,7 +634,7 @@
                     </tbody>
                   </table>
 
-                  <table class="table table-flush text-white table-sm m-0 p-0" id="bgtable{{date}}5" style="background-color: {{value.5.messageDay.bg_color}};"> <!-- Change backgroud -->
+                  <table class="table table-flush text-white table-sm m-1 p-1" id="bgtable{{date}}5" style="background-color: {{value.5.messageDay.bg_color}};"> <!-- Change backgroud -->
                     <!-- <thead class="thead-light">
                       <tr>
                         <th class="text-xs"></th>
@@ -668,7 +655,7 @@
                         </td>
                       </tr> -->
                       <tr>
-                        <td class="text-sm">
+                        <td class="text-sm m-1 p-1">
                           <span id="textDate{{date}}5" class="text-lg m-2">{{value.5.messageDay.updated}}</span>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
@@ -698,7 +685,7 @@
                             {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
                           </h4> -->
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                           <h2 class="text-white bg-success text-center">0</h2>
                           <h4 class="text-white text-start">
                             <span class="h3 text-bold text-white">{% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %} | </span>
@@ -711,11 +698,11 @@
                             {% if "totalFeria7" in value.5 %}{{value.5.totalFeria7}}{% else %}0{% endif %}</span>
                           </h4>
                         </td>
-                        <td class="text-sm tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <table>
+                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <table class="m-1 p-1">
                             <tbody>
                               <tr>
-                                <td>
+                                <td class="m-1 p-1">
                                   <h4 class="text-white text-start">
                                     <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %} | </span>
                                     {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %} | 
@@ -725,58 +712,58 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm bg-success">
+                                <td class="text-sm bg-success m-1 p-1">
                                   <h3>{{value.5.4.0.price}}</h3>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.5.4.1.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.5.4.2.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.5.4.3.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h3 class="text-white">{{value.5.4.4.price}}</h3>
                                 </td>
-                                <td class="text-sm bg-white">
+                                <td class="text-sm bg-white m-1 p-1">
                                   <h3>{{value.5.4.9.price}}</h3>
                                 </td>
                               </tr>
                             </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm bg-success">
+                                <td class="text-sm bg-success m-1 p-1">
                                   <h2>{{value.5.3.0.price}}</h2>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.5.3.1.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.5.3.2.price}}</h5>
                                 </td>
-                                <td class="text-sm bg-secondary">
+                                <td class="text-sm bg-secondary m-1 p-1">
                                   <h5 class="text-white">{{value.5.3.3.price}}</h5>
                                 </td>
-                                <td class="text-sm  bg-white">
+                                <td class="text-sm  bg-white m-1 p-1">
                                   <h3>{{value.5.3.4.price}}</h3>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                         </td>
-                        <td class="text-sm bg-warning text-white tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                        <td class="text-sm bg-warning text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm">
+                                <td class="text-sm m-1 p-1">
                                   <span class="h4 text-bold text-white">AZA: {% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</span><br>
                                   <span class="h4 text-bold text-white">ECO: {% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</span>
                                   <br>
