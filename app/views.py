@@ -1277,7 +1277,7 @@ def booking_view(request):
             if __message_by_day:
                 bookings["bookings"][str(s)]["messageDay"] = []
                 for m in __message_by_day:
-                    bookings["bookings"][str(s)]["messageDay"].append(f"{m.text_name.name} ----- {generate_date_with_month_time(str(m.updated))}")
+                    bookings["bookings"][str(s)]["messageDay"].append(f"{m.text_name.name if m.text_name else ''} ----- {generate_date_with_month_time(str(m.updated))}")
             
             __com = None
             avail_sf = None
