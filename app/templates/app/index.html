@@ -6,7 +6,24 @@
 {% endblock stylesheets %}
 
 {% block content %}
+<style>
+  .dataTable-dropdown {
+    display: none !important;
+  }
+  #client-list_wrapper {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 
+.dataTable-container {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.dataTable-top {
+  display: none !important; /* Si es un contenedor del buscador u opciones arriba */
+}
+</style>
 <div class="m-4 row">
   <div class="col-12">
     <div class="card">
@@ -34,10 +51,12 @@
                     </div>
                     <div class="col-md-3">
                       <select name="range_pg" id="range_pg" class="form-control">
+                        <option value="7" {% if range_pg == '7' %}selected{% endif %}>7 Dias</option>
+                        <option value="15" {% if range_pg == '15' %}selected{% endif %}>15 Dias</option>
                         <option value="30" {% if range_pg == '30' %}selected{% endif %}>30 Dias</option>
                         <option value="60" {% if range_pg == '60' %}selected{% endif %}>60 Dias</option>
                         <option value="90" {% if range_pg == '90' %}selected{% endif %}>90 Dias</option>
-                        <option value="365" {% if range_pg == '365' %}selected{% endif %}>365 Dias</option>
+                        <option value="180" {% if range_pg == '180' %}selected{% endif %}>180 Dias</option>
                       </select>
                     </div>
                     <div class="col-md-2">
@@ -157,7 +176,7 @@
   </div>
 </div>
 
-<div class="m-4 row">
+<div class="m-0 row">
   <div class="col-12">
     <div class="card">
       <!-- Card header -->
@@ -184,7 +203,7 @@
       </div>-->
       <div class="px-0 pb-0 card-body">
         <div class="table-responsive">
-          <table class="table table-flush table-sm m-1 p-1" id="client-list">
+          <table class="table table-flush table-sm m-0 p-0" id="client-list">
             <thead class="thead-light">
               <tr>
                 <th class="text-xs">Fecha</th>
@@ -195,13 +214,13 @@
               {% for date, value in bookings.items %}
               <tr>
                 <td id="temp-bg{{date}}" style="width: 40px;" class="text-sm m-1 p-1 {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
-                  <div class="col-md-2 bg-danger" style="width: 200px;">
-                    <span class="bg-danger text-start">
+                  <div class="col-md-2 bg-secondary" style="width: 200px;">
+                    <span class="bg-secondary text-start">
                       <span class="h2 text-bold text-white">{{value.2.total_search}}</span> | 
                       <span class="h4 text-bold text-white">{{value.2.total_search1}}</span> | 
                       <span class="h4 text-bold text-white">{{value.2.total_search7}}</span>
                       <br>
-                      <h5 class="h4 text-bold text-white bg-danger w-50">{{value.2.total_search_192}}%</h5>
+                      <h5 class="h5 text-bold text-white bg-secondary w-50">{{value.2.total_search_192}}% | <span class="bg-success h4 text-white ps-1 pe-1">00</span></h5>
                     </span>
                   </div>
                   <h4 class="text-white my-4">{{value.date_from}}</h4>
@@ -305,8 +324,9 @@
                                   <td class="m-1 p-1">
                                     <h2 class="text-white bg-success text-center">0</h2>
                                     <span class="h3 text-bold text-white">
-                                      {% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %} | </span>
-                                      {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %} | 
+                                      {% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %}|</span>
+                                      {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %}|
+                                      {% if "priceSuitesFeria4" in value.2 %}{{value.2.priceSuitesFeria4}}{% else %}0{% endif %}|
                                       {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
                                       <br>
                                     <span class="bg-dark">
@@ -338,15 +358,65 @@
                           <table class="m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="m-1 p-1">
-                                  <h4 class="text-white text-center">
-                                    <span>
-                                      <span class="h3 text-bold text-white">{% if "media_total" in value.5 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %} | 
-                                      {% if "media_total1" in value.5 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %} | 
-                                      {% if "media_total7" in value.5 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}
-                                      </span>
+                                <td class="text-sm m-1 p-1 w-10">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{% if "media_total03" in value.2 %}{% widthratio value.2.media_total03 value.2.media_cant03 1 %}{% else %}0{% endif %}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 15px; font-size: 10px;">
+                                      PM3*
                                     </span>
-                                  </h4>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 w-10">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{% if "media_total" in value.2 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 15px; font-size: 10px;">
+                                      PM4*
+                                    </span>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 w-10">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{% if "media_total1" in value.2 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 15px; font-size: 10px;">
+                                      PM4*-1D
+                                    </span>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 w-10">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{% if "media_total4" in value.2 %}{% widthratio value.2.media_total4 value.2.media_cant4 1 %}{% else %}0{% endif %}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 15px; font-size: 10px;">
+                                      PM4*-4D
+                                    </span>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 w-10">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{% if "media_total7" in value.2 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 15px; font-size: 10px;">
+                                      PM4*-7D
+                                    </span>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 w-10">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{% if "media_general" in value.2 %}{{value.2.media_general}}{% else %}0{% endif %}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 15px; font-size: 10px;">
+                                      PM4*MIX
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
@@ -354,32 +424,95 @@
                           <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr class="m-1 p-1">
-                                <td class="text-sm bg-success m-1 p-1">
-                                  <h3>{{value.2.4.0.price}}</h3>
+                                <td class="text-sm bg-success m-0 p-0">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{ value.2.4.0.price }}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      1
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.2.4.1.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.2.4.1.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      2
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.2.4.2.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.2.4.2.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      3
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.2.4.3.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.2.4.3.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      4
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="bg-secondary m-1 p-1">
-                                  <h3 class="text-white">{{value.2.4.4.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{{value.2.4.4.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      5
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-white m-1 p-1">
-                                  <h3>{{value.2.4.9.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.2.4.9.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      10
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="bg-primary m-1 p-1">
-                                  <h3 class="text-white">{{value.2.4.14.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{{value.2.4.14.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      15
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="bg-warning m-1 p-1">
-                                  <h3 class="text-white">{{value.2.4.19.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{{value.2.4.19.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      20
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="bg-danger m-1 p-1">
-                                  <h3 class="text-white">{{value.2.4.24.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{{value.2.4.24.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      25
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
@@ -388,27 +521,54 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success m-1 p-1">
-                                  <h2>
-                                    {{value.2.3.0.price}}
-                                  </h2>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h2 class="m-0">{{value.2.3.0.price}}</h2>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      I
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">
-                                    {{value.2.3.1.price}}
-                                  </h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.2.3.1.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      II
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">
-                                    {{value.2.3.2.price}}
-                                  </h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.2.3.2.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      III
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">
-                                    {{value.2.3.3.price}}
-                                  </h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.2.3.3.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      IV
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-lg bg-white m-1 p-1">
-                                  <h3>{{value.2.3.4.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.2.3.4.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      V
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
@@ -420,28 +580,64 @@
                               <tr>
                                 <td class="text-sm m-1 p-1">
                                   <span style="font-size: 32px; color: black; font-weight: bold;">
-                                    <span class="h3 text-bold text-black">{% if "media_name_hotel" in value.2 %}{% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}{% else %}0{% endif %} | 
+                                    <span class="h3 text-bold text-black">
+                                      {% if "media_name_hotel" in value.2 %}
+                                        {% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}
+                                      {% else %}0{% endif %} | 
                                       0 | 
                                       0
                                     </span>
                                   </span><br>
-                                  <span class="h4 text-bold text-white m-2">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span>
-                                  <span class="h4 text-bold text-white m-2">ECO: {% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span>
+                          
+                                  <div class="d-flex justify-content-between">
+                                    <span class="h4 text-bold text-white m-0">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span>
+                                    <span class="h4 text-bold text-white m-0">ECO: {% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span>
+                                  </div>
+                          
+                                  <div class="d-flex justify-content-between">
+                                    <span class="h4 text-bold text-white m-0">SIL: {% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span>
+                                    <span class="h4 text-bold text-white m-0">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span>
+                                  </div>
+                          
+                                  <div class="d-flex justify-content-between">
+                                    <span class="h4 text-bold text-white m-0">AXO: {% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span>
+                                    <span class="h4 text-bold text-white m-0">SER: {% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span>
+                                  </div>
+                          
+                                  <div class="d-flex justify-content-between">
+                                    <span class="h4 text-bold text-white m-0">BOS: {% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span>
+                                    <span class="h4 text-bold text-white m-0">EXE: {% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span>
+                                  </div>
+                          
+                                  <div class="d-flex justify-content-between">
+                                    <span class="h4 text-bold text-white m-0">DWO: {% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span>
+                                    <span class="h4 text-bold text-white m-0">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span>
+                                  </div>
+                          
+                                  <div class="d-flex justify-content-between">
+                                    <span class="h4 text-bold text-white m-0">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span>
+                                    <span class="h4 text-bold text-white m-0">TOR: {% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span>
+                                  </div>
+                          
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm bg-danger text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-1 p-1">
+                                  <span class="h4 text-bold text-white m-2">PM+50%: {{value.2.media_name_50}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">SIL: {% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span>
-                                  <span class="h4 text-bold text-white m-2">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">PM+40%: {{value.2.media_name_40}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">AXO: {% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span>
-                                  <span class="h4 text-bold text-white m-2">SER: {% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">PM+30%: {{value.2.media_name_30}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">BOS: {% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span>
-                                  <span class="h4 text-bold text-white m-2">EXE: {% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">PM+20%: {{value.2.media_name_20}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">DWO: {% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span>
-                                  <span class="h4 text-bold text-white m-2">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span>
-                                  <br>
-                                  <span class="h4 text-bold text-white m-2">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span>
-                                  <span class="h4 text-bold text-white m-2">TOR: {% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span>
+                                  <span class="h4 text-bold text-white m-2">PM+10%: {{value.2.media_name_10}}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -560,22 +756,74 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success m-1 p-1">
-                                  <h3>{{value.3.4.0.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.3.4.0.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      1
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.3.4.1.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.3.4.1.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      2
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.3.4.2.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.3.4.2.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      3
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.3.4.3.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.3.4.3.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      4
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h3 class="text-white">{{value.3.4.4.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{{value.3.4.4.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      5
+                                    </span>
+                                  </div>
+                                </td>
+                                <td class="text-sm bg-secondary m-1 p-1">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">00</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 12px; font-size: 10px;">
+                                      5D-10D
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-white m-1 p-1">
-                                  <h3>{{value.3.4.9.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.3.4.9.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      10
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tr>
@@ -585,19 +833,54 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success m-1 p-1">
-                                  <h2>{{value.3.3.0.price}}</h2>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h2 class="m-0">{{value.3.3.0.price}}</h2>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      I
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.3.3.1.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.3.3.1.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      II
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.3.3.2.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.3.3.2.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      III
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.3.3.3.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.3.3.3.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      IV
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-white m-1 p-1">
-                                  <h3>{{value.3.3.4.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.3.3.4.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      V
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
@@ -616,6 +899,21 @@
                                     <span class="h5 text-bold text-white">{{value.3.total_search7}}</span>
                                   </h4>
                                   <h5 class="h5 text-bold text-white bg-danger">{{value.3.total_search_192}}%</h5>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm bg-danger text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-1 p-1">
+                                  <span class="h4 text-bold text-white m-2">PM+50%: 0</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">PM+40%: 0</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">PM+30%: 0</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -716,22 +1014,74 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success m-1 p-1">
-                                  <h3>{{value.5.4.0.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.5.4.0.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      1
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.5.4.1.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.5.4.1.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      2
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.5.4.2.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.5.4.2.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      3
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.5.4.3.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.5.4.3.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      4
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h3 class="text-white">{{value.5.4.4.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">{{value.5.4.4.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      5
+                                    </span>
+                                  </div>
+                                </td>
+                                <td class="text-sm bg-secondary m-1 p-1">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">00</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 12px; font-size: 10px;">
+                                      5D-10D
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-white m-1 p-1">
-                                  <h3>{{value.5.4.9.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.5.4.9.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      10
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tr>
@@ -741,19 +1091,54 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm bg-success m-1 p-1">
-                                  <h2>{{value.5.3.0.price}}</h2>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h2 class="m-0">{{value.5.3.0.price}}</h2>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      I
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.5.3.1.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.5.3.1.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      II
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.5.3.2.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.5.3.2.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      III
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm bg-secondary m-1 p-1">
-                                  <h5 class="text-white">{{value.5.3.3.price}}</h5>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white">{{value.5.3.3.price}}</h5>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      IV
+                                    </span>
+                                  </div>
                                 </td>
                                 <td class="text-sm  bg-white m-1 p-1">
-                                  <h3>{{value.5.3.4.price}}</h3>
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0">{{value.5.3.4.price}}</h3>
+                                    <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 12px; font-size: 10px;">
+                                      V
+                                    </span>
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
@@ -773,6 +1158,23 @@
                                     <span class="h5 text-bold text-white">{{value.3.total_search7}}</span>
                                   </h4>
                                   <h5 class="h5 text-bold text-white bg-danger">{{value.5.total_search_192}}%</h5>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm bg-danger text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm m-1 p-1">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-1 p-1">
+                                  <span class="h4 text-bold text-white m-2">PM+60%: 0</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">PM+50%: 0</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">PM+40%: 0</span>
+                                  <br>
+                                  <span class="h4 text-bold text-white m-2">PM+30%: 0</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -889,6 +1291,7 @@
       const dataTableSearch = new simpleDatatables.DataTable("#client-list", {
         searchable: false,
         fixedHeight: false,
+        lengthChange: false,
         perPage: parseInt('{{range_pg}}') + 1
       });
 

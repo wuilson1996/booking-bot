@@ -939,7 +939,6 @@ def index(request):
                 for avail_book in available_booking:
                     if int(avail_book.booking.start) != 0:
                         #----------------------------------
-                        #available_booking2 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=1)), occupancy=int(ocp))
                         try:
                             copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[0]
                         except Exception as e:
@@ -955,7 +954,21 @@ def index(request):
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
 
-                        #available_booking3 = AvailableBooking.objects.filter(date_from=str(_date_from_current.date() - datetime.timedelta(days=7)), occupancy=int(ocp))
+                        try:
+                            copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[3]
+                        except Exception as e:
+                            copy_prices1 = CopyPriceWithDay()
+                            copy_prices1.price = "0"
+                        if "media_total4" not in bookings[str(_date_from.date())][avail_book.occupancy]:
+                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total4"] = 0
+                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant4"] = 0
+                        
+                        _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        if _price4 != "":
+                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total4"] += int(_price4)
+                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant4"] += 1
+
                         try:
                             copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
                         except Exception as e:
@@ -980,6 +993,9 @@ def index(request):
                             if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
                                 bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
                                 bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] = 0
+                            if "media_total03" not in bookings[avail_book.date_from][avail_book.occupancy]:
+                                bookings[avail_book.date_from][avail_book.occupancy]["media_total03"] = 0
+                                bookings[avail_book.date_from][avail_book.occupancy]["media_cant03"] = 0
 
                             #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
                             #    print(_price, b.booking.start, b.position)
@@ -993,6 +1009,9 @@ def index(request):
                                         if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
+                                        elif int(avail_book.booking.start) == 3 and avail_book.position in [0,1,2,3,4]:
+                                            bookings[avail_book.date_from][avail_book.occupancy]["media_total03"] += int(_price)
+                                            bookings[avail_book.date_from][avail_book.occupancy]["media_cant03"] += 1
                                         bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
                                 except Exception as e:
                                     logging.info(f"[-] Error price: {e}")
@@ -1013,6 +1032,17 @@ def index(request):
                         bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeria1"] = int(_price1)
                         bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[price_with_name_hotel.date_from][int(ocp)] else 0
                     
+                    try:
+                        available_booking4 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[3]
+                    except Exception as e:
+                        available_booking4 = CopyPriceWithNameFromDay()
+                        available_booking4.price = "0"
+
+                    if available_booking4:
+                        _price4 = available_booking4.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeria4"] = int(_price4)
+                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeriaRest4"] = int(_price4) - int(_price) if "priceSuitesFeria" in bookings[price_with_name_hotel.date_from][int(ocp)] else 0
+
                     try:
                         available_booking7 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[6]
                     except Exception as e:
@@ -1135,6 +1165,23 @@ def index(request):
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][5]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
             
+            # media + %
+            if "media_name_50" not in bookings[avail_book.date_from][2].keys():
+                bookings[avail_book.date_from][2]["media_name_50"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.5)
+            if "media_name_40" not in bookings[avail_book.date_from][2].keys():
+                bookings[avail_book.date_from][2]["media_name_40"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.4)
+            if "media_name_30" not in bookings[avail_book.date_from][2].keys():
+                bookings[avail_book.date_from][2]["media_name_30"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.3)
+            if "media_name_20" not in bookings[avail_book.date_from][2].keys():
+                bookings[avail_book.date_from][2]["media_name_20"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.2)
+            if "media_name_10" not in bookings[avail_book.date_from][2].keys():
+                bookings[avail_book.date_from][2]["media_name_10"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.1)
+
+            # media entre la zona y actual.
+            if "media_name_hotel" in bookings[avail_book.date_from][2].keys() and "media_total" in bookings[avail_book.date_from][2].keys():
+                if "media_general" not in bookings[avail_book.date_from][2].keys():
+                    bookings[avail_book.date_from][2]["media_general"] = round((round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"])) + round((bookings[avail_book.date_from][2]["media_total"] / bookings[avail_book.date_from][2]["media_cant"]))) / 2)
+
             avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
             bookings[str(_date_from.date())]["availWithDate"] = 0
             if avail_with_date:
