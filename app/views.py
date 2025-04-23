@@ -325,7 +325,8 @@ def active_process(bot_setting:BotSetting):
     logging.info(f"[+] {now()} Process Booking Finalizando...")
     generate_log("[+] Process Bot Booking Finalizando...", BotLog.BOOKING)
     try:
-        stop_event_check.set()
+        if bot_auto.automatic:
+            stop_event_check.set()
     except Exception as e:
         generate_log(f"[+] Error Stop Event, General: {e}...", BotLog.BOOKING)
     bot_auto = BotAutomatization.objects.last()
