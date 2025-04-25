@@ -1826,7 +1826,7 @@
 
             if (json.botLog && json.botLog?.booking !== undefined) {
               $("#addLogBooking").append(json.botLog.booking.description+" | "+json.botLog.booking.created);
-              $("#currentAutoRange").append(json.botLog.booking.range);
+              //$("#currentAutoRange").append(json.botLog.booking.range);
               $("#currentAutoRangeLog").append(json.botLog.booking.log_range);
             } else {
               $("#addLogBooking").append("Historial de proceso no disponible");
