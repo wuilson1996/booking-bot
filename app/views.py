@@ -1055,99 +1055,99 @@ def index(request):
                         bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[price_with_name_hotel.date_from][int(ocp)] else 0
                 
             # change price with nameprice hotel.
-            if "media_name_hotel" not in bookings[avail_book.date_from][2].keys():
-                bookings[avail_book.date_from][2]["media_name_hotel"] = 0
-                bookings[avail_book.date_from][2]["media_cant_name_hotel"] = 0
+            if "media_name_hotel" not in bookings[str(_date_from.date())][2].keys():
+                bookings[str(_date_from.date())][2]["media_name_hotel"] = 0
+                bookings[str(_date_from.date())][2]["media_cant_name_hotel"] = 0
 
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSF"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                #bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                #bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                #bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                #bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
 
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Zenit Conde de Orgaz", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceZEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Best Osuna", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceOSU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
 
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Ilunion Alcala Norte", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceILU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Eco Alcala Suites", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Silken Puerta Madrid", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSIL"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Exe Madrid Norte", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceEXE"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Sercotel Alcala 611", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSER"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Axor Feria", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceAXO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "DWO Colours Alcala", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceDWO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Nuevo Boston", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceBOS"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Senator Barajas", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceSEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 2).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][2]["priceTOR2"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                 if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[avail_book.date_from][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[avail_book.date_from][2]["media_cant_name_hotel"] += 1
+                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
             
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 3).first()
             if price_with_name_hotel:
@@ -1166,21 +1166,30 @@ def index(request):
                 bookings[price_with_name_hotel.date_from][5]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
             
             # media + %
-            if "media_name_50" not in bookings[avail_book.date_from][2].keys():
-                bookings[avail_book.date_from][2]["media_name_50"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.5)
-            if "media_name_40" not in bookings[avail_book.date_from][2].keys():
-                bookings[avail_book.date_from][2]["media_name_40"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.4)
-            if "media_name_30" not in bookings[avail_book.date_from][2].keys():
-                bookings[avail_book.date_from][2]["media_name_30"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.3)
-            if "media_name_20" not in bookings[avail_book.date_from][2].keys():
-                bookings[avail_book.date_from][2]["media_name_20"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.2)
-            if "media_name_10" not in bookings[avail_book.date_from][2].keys():
-                bookings[avail_book.date_from][2]["media_name_10"] = round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"]) * 1.1)
+            if bookings[str(_date_from.date())][2]["media_cant_name_hotel"] > 0:
+                if "media_name_50" not in bookings[str(_date_from.date())][2].keys():
+                    bookings[str(_date_from.date())][2]["media_name_50"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.5)
+                if "media_name_40" not in bookings[str(_date_from.date())][2].keys():
+                    bookings[str(_date_from.date())][2]["media_name_40"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.4)
+                if "media_name_30" not in bookings[str(_date_from.date())][2].keys():
+                    bookings[str(_date_from.date())][2]["media_name_30"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.3)
+                if "media_name_20" not in bookings[str(_date_from.date())][2].keys():
+                    bookings[str(_date_from.date())][2]["media_name_20"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.2)
+                if "media_name_10" not in bookings[str(_date_from.date())][2].keys():
+                    bookings[str(_date_from.date())][2]["media_name_10"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.1)
 
             # media entre la zona y actual.
-            if "media_name_hotel" in bookings[avail_book.date_from][2].keys() and "media_total" in bookings[avail_book.date_from][2].keys():
-                if "media_general" not in bookings[avail_book.date_from][2].keys():
-                    bookings[avail_book.date_from][2]["media_general"] = round((round((bookings[avail_book.date_from][2]["media_name_hotel"] / bookings[avail_book.date_from][2]["media_cant_name_hotel"])) + round((bookings[avail_book.date_from][2]["media_total"] / bookings[avail_book.date_from][2]["media_cant"]))) / 2)
+            if "media_name_hotel" in bookings[str(_date_from.date())][2].keys() and "media_total" in bookings[str(_date_from.date())][2].keys():
+                if "media_general" not in bookings[str(_date_from.date())][2].keys():
+                    bookings[str(_date_from.date())][2]["media_general"] = round((round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"])) + round((bookings[str(_date_from.date())][2]["media_total"] / bookings[str(_date_from.date())][2]["media_cant"]))) / 2)
+
+            # calculo de precio 5 y 10 posicion de triples y suites
+            if '4' in bookings[str(_date_from.date())][3].keys() and '4' in bookings[str(_date_from.date())][5].keys():
+                bookings[str(_date_from.date())][3]['4']["5_10"] = round((float(bookings[str(_date_from.date())][3]['4'][4]["price"]) + float(bookings[str(_date_from.date())][3]['4'][9]["price"])) / 2)
+                bookings[str(_date_from.date())][5]['4']["5_10"] = round((float(bookings[str(_date_from.date())][5]['4'][4]["price"]) + float(bookings[str(_date_from.date())][5]['4'][9]["price"])) / 2)
+
+            if "total_search" in bookings[str(_date_from.date())][2].keys() and "total_search7" in bookings[str(_date_from.date())][2].keys():
+                bookings[str(_date_from.date())][2]["total_search_rest"] = int(float(bookings[str(_date_from.date())][2]["total_search"]) - float(bookings[str(_date_from.date())][2]["total_search7"]))
 
             avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
             bookings[str(_date_from.date())]["availWithDate"] = 0
