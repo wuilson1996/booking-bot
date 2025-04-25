@@ -20,12 +20,14 @@ class SuitesFeria:
         if "Usuario logueado: " in resp:
             result = {
                 "message": "Usuario logueado",
-                "code": 200
+                "code": 200,
+                "resp": str(resp)
             }
         else:
             result =  {
                 "message": "Fallo el inicio de sesion.",
-                "code": 400
+                "code": 400,
+                "resp": str(resp)
             }
         return result
 

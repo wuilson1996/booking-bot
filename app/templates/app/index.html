@@ -283,7 +283,7 @@
                   <h4 class="text-white my-4" id="buttonFeeUpgrade{{date}}">...</h4>
                   <button class="btn btn-white" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
                   <hr>
-                  <h1 class="text-white my-4" id="temp-t{{date}}">{{value.totalFeria}}</h1>
+                  <h1 class="text-white my-4 bg-dark" id="temp-t{{date}}">{{value.totalFeria}}</h1>
                   <div class="input-group mb-3">
                     <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
                     <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
@@ -328,43 +328,20 @@
                         </td>
                       </tr>
                       <tr class="m-1 p-1">
-                        <td class="text-sm m-1 p-1">
-                          <span id="textDate{{date}}2" class="text-lg m-2 text-xl">{{value.2.messageDay.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">Guardar</button>
-                            <select type="text" class="form-control form-control-lg text-lg" value="{{value.2.messageDay.pk}}" aria-describedby="button-addon2" id="text{{date}}2">
-                             {% for mn in message_name2 %} 
-                              <option value="{{mn.pk}}" {% if value.2.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
-                              {% endfor %}
-                            </select>
-                          </div>
-                          <!---->
-                          <span class="text-white text-lg" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
-                              Guardar <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
-                            </button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
-                          </div>
-                          <span class="text-white text-lg" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
-                              Guardar <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
-                            </button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
-                          </div>
-                          <!---->
-                        </td>
+                        
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="table table-flush text-white table-sm m-1 p-0">
+                          <!-- <table class="table table-flush text-white table-sm m-1 p-0">
                             <tbody>
                               <tr>
                                 <td class="m-0 p-0 bg-success">
                                   <h2 class="text-white bg-success text-center">0</h2>
                                 </td>
+                                <td class="m-0 p-0 bg-success">
+                                  <h2 class="text-white bg-success text-center">0</h2>
+                                </td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
                           <table class="table table-flush text-white table-sm m-1 p-0">
                             <tbody>
                               <tr>
@@ -426,40 +403,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-0">
-                            <tbody>
-                              <tr>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
-                                  <div class="d-flex flex-column align-items-start">
-                                    <h3 class="m-0 text-white text-bold">
-                                      M:
-                                    </h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">
-                                      {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %}
-                                    </h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">
-                                      {% if "totalFeriaM1" in value.2 %}{{value.2.totalFeriaM1}}{% else %}0{% endif %}
-                                    </h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">
-                                      {% if "totalFeriaM7" in value.2 %}{{value.2.totalFeriaM7}}{% else %}0{% endif %}
-                                    </h3>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          
                           <table class="table table-flush text-white table-sm m-1 p-0">
                             <tbody>
                               <tr>
@@ -494,6 +438,71 @@
                               </tr>
                             </tbody>
                           </table>
+                          <table class="table table-flush text-white table-sm m-1 p-0">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                  <div class="d-flex flex-column align-items-start">
+                                    <h3 class="m-0 text-white text-bold">
+                                      M:
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaM1" in value.2 %}{{value.2.totalFeriaM1}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaM7" in value.2 %}{{value.2.totalFeriaM7}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="text-sm m-1 p-1">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">
+                              Guardar
+                              <br><span id="textDate{{date}}2" class="text-black text-lg m-2 text-xs">{{value.2.messageDay.updated}}</span>
+                            </button>
+                            <select type="text" class="form-control form-control-lg text-lg" value="{{value.2.messageDay.pk}}" aria-describedby="button-addon2" id="text{{date}}2">
+                             {% for mn in message_name2 %} 
+                              <option value="{{mn.pk}}" {% if value.2.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <!---->
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
+                              Guardar <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                            <h2 class="m-0 text-white bg-success text-center p-1">999</h2>
+                          </div>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
+                              Guardar <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
+                            <h2 class="m-0 text-white bg-success text-center p-1">999</h2>
+                          </div>
+                          <!---->
                         </td>
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <table class="table table-flush text-white table-sm m-1 p-1">
@@ -514,38 +523,38 @@
                                     <h3 class="m-0 text-white">{% if "media_total" in value.2 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %}</h3>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
-                                      style="width: 40px; height: 15px; font-size: 10px;">
+                                      style="width: 30px; height: 15px; font-size: 10px;">
                                       PM4*
                                     </span>
                                   </div>
                                 </td>
                                 <td class="text-sm m-1 p-1 border border-white">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">{% if "media_total1" in value.2 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %}</h3>
+                                    <h4 class="m-0 text-white">{% if "media_total1" in value.2 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %}</h4>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
-                                      style="width: 60px; height: 15px; font-size: 10px;">
-                                      PM4*-1D
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -1D
                                     </span>
                                   </div>
                                 </td>
                                 <td class="text-sm m-1 p-1 border border-white">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">{% if "media_total4" in value.2 %}{% widthratio value.2.media_total4 value.2.media_cant4 1 %}{% else %}0{% endif %}</h3>
+                                    <h4 class="m-0 text-white">{% if "media_total4" in value.2 %}{% widthratio value.2.media_total4 value.2.media_cant4 1 %}{% else %}0{% endif %}</h4>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
-                                      style="width: 60px; height: 15px; font-size: 10px;">
-                                      PM4*-4D
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -4D
                                     </span>
                                   </div>
                                 </td>
                                 <td class="text-sm m-1 p-1 border border-white">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">{% if "media_total7" in value.2 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</h3>
+                                    <h4 class="m-0 text-white">{% if "media_total7" in value.2 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</h4>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
-                                      style="width: 60px; height: 15px; font-size: 10px;">
-                                      PM4*-7D
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -7D
                                     </span>
                                   </div>
                                 </td>
@@ -855,38 +864,9 @@
                       </tr> -->
                       
                       <tr class="m-1 p-1">
-                        <td class="text-sm m-1 p-1">
-                          <span id="textDate{{date}}3" class="text-lg m-2">{{value.3.messageDay.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 3, '{{date}}3')">Guardar</button>
-                            <select type="text" class="form-control form-control-lg text-lg" value="{{value.3.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}3">
-                              {% for mn in message_name3 %} 
-                                <option value="{{mn.pk}}" {% if value.3.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
-                              {% endfor %}
-                            </select>
-                          </div>
-                          <span class="text-white text-lg" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">
-                              Guardar <i id="iconStatus{{date}}3" class="{% if not value.3.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
-                            </button>
-                            <input type="text" class="form-control form-control-lg text-lg w-15" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
-                          </div>
-                          <span class="text-white text-lg" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">
-                              Guardar <i id="iconStatus{{date}}4" class="{% if not value.3.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
-                            </button>
-                            <input type="text" class="form-control form-control-lg text-lg w-15" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
-                          </div>
-                          <!-- <h4 class="text-white text-center">
-                            {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
-                            {% if "priceSuitesFeriaRest1" in value.3 %}{{value.3.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
-                            {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                          </h4> -->
-                        </td>
+                        
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <!-- <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-success">
@@ -896,7 +876,7 @@
                                 </td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
@@ -951,6 +931,40 @@
                               </tr>
                             </tbody>
                           </table>
+                        </td>
+                        <td class="text-sm m-1 p-1">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 3, '{{date}}3')">
+                              Guardar
+                              <br><span id="textDate{{date}}3" class="text-xs text-black m-2">{{value.3.messageDay.updated}}</span>
+                            </button>
+                            <select type="text" class="form-control form-control-lg text-lg" value="{{value.3.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}3">
+                              {% for mn in message_name3 %} 
+                                <option value="{{mn.pk}}" {% if value.3.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">
+                              Guardar <i id="iconStatus{{date}}3" class="{% if not value.3.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
+                            <h2 class="m-0 text-white bg-success p-1">999</h2>
+                          </div>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">
+                              Guardar <i id="iconStatus{{date}}4" class="{% if not value.3.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
+                            <h2 class="m-0 text-white bg-success p-1">999</h2>
+                          </div>
+                          <!-- <h4 class="text-white text-center">
+                            {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
+                            {% if "priceSuitesFeriaRest1" in value.3 %}{{value.3.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeriaRest7" in value.3 %}{{value.3.priceSuitesFeriaRest7}}{% else %}0{% endif %}
+                          </h4> -->
                         </td>
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
                           <table class="m-1 p-1">
@@ -1215,38 +1229,9 @@
                         </td>
                       </tr> -->
                       <tr>
-                        <td class="text-sm m-1 p-1">
-                          <span id="textDate{{date}}5" class="text-lg m-2">{{value.5.messageDay.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">Guardar</button>
-                            <select type="text" class="form-control form-control-lg text-lg" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
-                              {% for mn in message_name5 %} 
-                                <option value="{{mn.pk}}" {% if value.5.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
-                              {% endfor %}
-                            </select>
-                          </div>
-                          <span class="text-white text-lg" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">
-                              Guardar<i id="iconStatus{{date}}5" class="{% if not value.5.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
-                            </button>
-                            <input type="text" class="form-control form-control-lg text-lg 1-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
-                          </div>
-                          <span class="text-white text-lg" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
-                          <div class="input-group mb-3">
-                            <button class="btn btn-white btn-xs mb-0" style="font-size: 14px;" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">
-                              Guardar <i id="iconStatus{{date}}6" class="{% if not value.5.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
-                            </button>
-                            <input type="text" class="form-control form-control-lg text-lg w-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
-                          </div>
-                          <!-- <h4 class="text-white text-center">
-                            {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
-                            {% if "priceSuitesFeriaRest1" in value.5 %}{{value.5.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
-                            {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
-                          </h4> -->
-                        </td>
+                        
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <table class="table table-flush text-white table-sm m-0 p-0">
+                          <!-- <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-success">
@@ -1256,7 +1241,7 @@
                                 </td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
@@ -1311,6 +1296,40 @@
                               </tr>
                             </tbody>
                           </table>
+                        </td>
+                        <td class="text-sm m-1 p-1">
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">
+                              Guardar
+                              <br><span id="textDate{{date}}5" class="text-xs m-2 text-black">{{value.5.messageDay.updated}}</span>
+                            </button>
+                            <select type="text" class="form-control form-control-lg text-lg" value="{{value.5.messageDay.text}}" aria-describedby="button-addon6" id="text{{date}}5">
+                              {% for mn in message_name5 %} 
+                                <option value="{{mn.pk}}" {% if value.5.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">
+                              Guardar<i id="iconStatus{{date}}5" class="{% if not value.5.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg 1-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
+                            <h2 class="m-0 text-white bg-success p-1">999</h2>
+                          </div>
+                          <div class="input-group mb-3">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">
+                              Guardar <i id="iconStatus{{date}}6" class="{% if not value.5.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg w-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
+                            <h2 class="m-0 text-white bg-success p-1">999</h2>
+                          </div>
+                          <!-- <h4 class="text-white text-center">
+                            {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeriaRest1" in value.5 %}{{value.5.priceSuitesFeriaRest1}}{% else %}0{% endif %} | 
+                            {% if "priceSuitesFeriaRest7" in value.5 %}{{value.5.priceSuitesFeriaRest7}}{% else %}0{% endif %}
+                          </h4> -->
                         </td>
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
                           <table class="m-1 p-1">
