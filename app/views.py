@@ -92,7 +92,7 @@ def active_process_sf():
                     logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
                     generate_log(f"[+] Dispo Suites feria actualizado: {resp_l['message']}", BotLog.SUITESFERIA)
                 else:
-                    generate_log(f"[+] Informacion de respuesta: {now()} {resp}", BotLog.SUITESFERIA)
+                    generate_log(f"[+] Informacion de respuesta: {now()} {resp['resp']}", BotLog.SUITESFERIA)
                 
                 time.sleep(120)
 

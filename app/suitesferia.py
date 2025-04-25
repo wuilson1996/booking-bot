@@ -38,7 +38,8 @@ class SuitesFeria:
             result = {
                 "message": "Fallo el inicio de sesion.",
                 "code": 400,
-                "resp": str(resp)
+                "resp": "Inicio de sesión" if "Inicio de sesión" in resp else "Verificar en logs.",
+                "data": str(resp)
             }
 
         return result
