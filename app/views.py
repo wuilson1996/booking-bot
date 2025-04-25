@@ -430,13 +430,25 @@ def check_booking_process(request):
         bot_logs = {}
         bot_log = BotLog.objects.filter(plataform_option = BotLog.BOOKING).last()
         if bot_log:
-            bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+            bot_log_range = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="[!] Verificando Horario").last()
+            bot_logs[bot_log.plataform_option] = {
+                "description": bot_log.description,
+                "created": generate_date_with_month_time(str(bot_log.created)),
+                "range": bot_log_range.description.split("|")[1] if bot_log_range else "No hay rango disponible",
+                "log_range": bot_log_range.description if bot_log_range else "No hay rango disponible"
+            }
         bot_log = BotLog.objects.filter(plataform_option = BotLog.ROOMPRICE).last()
         if bot_log:
-            bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+            bot_logs[bot_log.plataform_option] = {
+                "description": bot_log.description, 
+                "created": generate_date_with_month_time(str(bot_log.created))
+            }
         bot_log = BotLog.objects.filter(plataform_option = BotLog.SUITESFERIA).last()
         if bot_log:
-            bot_logs[bot_log.plataform_option] = {"description": bot_log.description, "created": generate_date_with_month_time(str(bot_log.created))}
+            bot_logs[bot_log.plataform_option] = {
+                "description": bot_log.description, 
+                "created": generate_date_with_month_time(str(bot_log.created))
+            }
         
         _date_from = dt(
             year=int(request.POST["date"].split("-")[0]),

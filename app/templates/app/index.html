@@ -100,6 +100,10 @@
                     </button>
                   </div>
                 </div>
+                <div class="row">
+                  <p id="currentAutoRange"></p>
+                  <p id="currentAutoRangeLog"></p>
+                </div>
               </div>
             </div>
           </div>
@@ -1817,9 +1821,13 @@
             $("#addLogRoomPrice").text("");
             $("#addLogSuitesFeria").text("");
             $("#addLogCopyPrice").text("");
+            $("#currentAutoRange").text("");
+            $("#currentAutoRangeLog").text("");
 
             if (json.botLog && json.botLog?.booking !== undefined) {
               $("#addLogBooking").append(json.botLog.booking.description+" | "+json.botLog.booking.created);
+              $("#currentAutoRange").append(json.botLog.booking.range);
+              $("#currentAutoRangeLog").append(json.botLog.booking.log_range);
             } else {
               $("#addLogBooking").append("Historial de proceso no disponible");
             }
