@@ -10,25 +10,37 @@ class SuitesFeria:
         self.url = "https://hotelsuitesferia.greenhotel.cloud"
 
     def login(self):
+        session = requests.Session()
         payload = {
             'login': self.username,
             'password': self.password
         }
-        files=[]
-        response = requests.request("POST", self.url+"/auth/login", headers=self.headers, data=payload, files=files)
+
+        headers = self.headers.copy()
+        headers['Content-Type'] = 'application/x-www-form-urlencoded'
+
+        response = session.post(f"{self.url}/auth/login", headers=headers, data=payload, allow_redirects=True)
         resp = response.text
+
         if "Usuario logueado: " in resp:
             result = {
                 "message": "Usuario logueado",
                 "code": 200,
                 "resp": str(resp)
             }
+        elif "Redirecting to https://hotelsuitesferia.greenhotel.cloud/auth/login" in resp:
+            result = {
+                "message": "Fallo el inicio de sesion.",
+                "code": 400,
+                "resp": "Redirecting to https://hotelsuitesferia.greenhotel.cloud/auth/login"
+            }
         else:
-            result =  {
+            result = {
                 "message": "Fallo el inicio de sesion.",
                 "code": 400,
                 "resp": str(resp)
             }
+
         return result
 
     def disponibilidad(self, _date):
