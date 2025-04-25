@@ -100,10 +100,12 @@
                     </button>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <p id="currentAutoRange"></p> -->
+                <p id="currentAutoRangeLog" class="text-white"></p>
+                <!-- <div class="row">
                   <p id="currentAutoRange"></p>
                   <p id="currentAutoRangeLog"></p>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -1821,7 +1823,7 @@
             $("#addLogRoomPrice").text("");
             $("#addLogSuitesFeria").text("");
             $("#addLogCopyPrice").text("");
-            $("#currentAutoRange").text("");
+            //$("#currentAutoRange").text("");
             $("#currentAutoRangeLog").text("");
 
             if (json.botLog && json.botLog?.booking !== undefined) {
