@@ -88,7 +88,7 @@ def active_process_sf():
                     generate_log(f"[+] Dispo Suites feria actualizado: {resp_l['message']}", BotLog.SUITESFERIA)
                 else:
                     generate_log(f"[+] Informacion de respuesta: {now()} {resp['resp']}", BotLog.SUITESFERIA)
-                    
+
                 if not check_finish_process():
                     logging.info(f"[+] {now()} Finish process, proceso suites feria...")
                     generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
@@ -103,6 +103,10 @@ def active_process_sf():
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
                 generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
+                    break
                 time.sleep(60)
 
         logging.info(f"[+] {now()} Proceso suites feria Finalizando...")
