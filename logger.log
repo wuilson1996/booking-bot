@@ -797,3 +797,97 @@ INFO:root:Esperando 20.92 horas hasta la próxima ejecución: 2025-04-26 01:04:57.
 INFO:root:Se eliminaron Logs: 0 | Avails: 0, registros antiguos de logs: 2025-04-26 01:04:57.195206+02:00
 INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
 INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\booking\settings.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 19.83 horas hasta la próxima ejecución: 2025-04-26 02:10:01.498458+02:00
+INFO:root:Se eliminaron Logs: 0 | Avails: 0, registros antiguos de logs: 2025-04-26 02:10:01.610560+02:00
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 19.75 horas hasta la próxima ejecución: 2025-04-26 02:14:42.660678+02:00
+INFO:root:Se eliminaron Logs: 0 | Avails: 0, registros antiguos de logs: 2025-04-26 02:14:42.772549+02:00
+ERROR:django.request:Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py", line 1259, in index
+    return render(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader_tags.py", line 183, in render
+    template = context.template.engine.select_template(template_name)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 174, in select_template
+    return self.get_template(template_name)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\wuilson-desk\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 20: 'static'. Did you forget to register or load this tag?
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Esperando 18.19 horas hasta la próxima ejecución: 2025-04-26 03:48:43.072795+02:00
+INFO:root:Se eliminaron Logs: 0 | Avails: 0, registros antiguos de logs: 2025-04-26 03:48:43.204503+02:00

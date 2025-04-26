@@ -486,7 +486,7 @@
                               <br><span id="textDate{{date}}2" class="text-black text-lg m-2 text-xs">{{value.2.messageDay.updated}}</span>
                             </button>
                             <select type="text" class="form-control form-control-lg text-lg" value="{{value.2.messageDay.pk}}" aria-describedby="button-addon2" id="text{{date}}2">
-                             {% for mn in message_name2 %} 
+                              {% for mn in message_name2 %} 
                               <option value="{{mn.pk}}" {% if value.2.messageDay.pk == mn.pk %}selected{% endif %} style="background-color: {{mn.bg_color}};">{{mn.name}}</option>
                               {% endfor %}
                             </select>
@@ -498,7 +498,7 @@
                               <br><span class="text-black text-xs" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
-                            <h2 class="m-0 text-white bg-success text-center p-1">000</h2>
+                            <h2 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}2">000</h2>
                           </div>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
@@ -506,7 +506,7 @@
                               <br><span class="text-black text-xs" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
-                            <h2 class="m-0 text-white bg-success text-center p-1">000</h2>
+                            <h2 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}1">000</h2>
                           </div>
                           <!---->
                         </td>
@@ -1191,11 +1191,11 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm m-1 p-1">
-                                  <span class="h4 text-bold text-white m-2">PM+50%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+50%: {{value.3.media_name_50}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+40%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+40%: {{value.3.media_name_40}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+30%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+30%: {{value.3.media_name_30}}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -1556,13 +1556,13 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm m-1 p-1">
-                                  <span class="h4 text-bold text-white m-2">PM+60%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+60%: {{value.5.media_name_60}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+50%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+50%: {{value.5.media_name_50}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+40%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+40%: {{value.5.media_name_40}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+30%: 0</span>
+                                  <span class="h4 text-bold text-white m-2">PM+30%: {{value.5.media_name_30}}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -1881,6 +1881,7 @@
               $("#textDate"+inputId).append(json.updated);
 
               $("#bgtable" + inputId).css("background", json.bg_color);
+              changePriceRecom(_date, inputText, occupancy);
             }
           },
           error: function(error) {
@@ -2551,6 +2552,22 @@
       }
     }
     botAutoCheck();
+
+    var bookings = textToJson('{{bookings_text}}');
+    function changePriceRecom(itemDate, pkItem, itemType){
+      var itemBooking = bookings[itemDate];
+      console.log(itemBooking)
+      if (parseInt(itemType) == 2) {
+        console.log("Recomendacion para dobles.");
+
+      } else if (parseInt(itemType) == 3) {
+        console.log("Recomendacion para triples.");
+
+      } else if (parseInt(itemType) == 5) {
+        console.log("Recomendacion para suites.");
+
+      }
+    }
   </script>
 
 

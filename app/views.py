@@ -84,15 +84,15 @@ def active_process_sf():
                                 cant_asf.save()
                     resp_l = suites_feria.logout()
                     
-                    if not check_finish_process():
-                        logging.info(f"[+] {now()} Finish process, proceso suites feria...")
-                        generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
-                        break
-
                     logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
                     generate_log(f"[+] Dispo Suites feria actualizado: {resp_l['message']}", BotLog.SUITESFERIA)
                 else:
                     generate_log(f"[+] Informacion de respuesta: {now()} {resp['resp']}", BotLog.SUITESFERIA)
+                    
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
+                    break
                 
                 time.sleep(120)
 
@@ -1192,6 +1192,26 @@ def index(request):
                 if "media_name_10" not in bookings[str(_date_from.date())][2].keys():
                     bookings[str(_date_from.date())][2]["media_name_10"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.1)
 
+            # media + %
+            if bookings[str(_date_from.date())][3]["media_total"] > 0:
+                if "media_name_50" not in bookings[str(_date_from.date())][3].keys():
+                    bookings[str(_date_from.date())][3]["media_name_50"] = round((bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"]) * 1.5)
+                if "media_name_40" not in bookings[str(_date_from.date())][3].keys():
+                    bookings[str(_date_from.date())][3]["media_name_40"] = round((bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"]) * 1.4)
+                if "media_name_30" not in bookings[str(_date_from.date())][3].keys():
+                    bookings[str(_date_from.date())][3]["media_name_30"] = round((bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"]) * 1.3)
+
+            # media + %
+            if bookings[str(_date_from.date())][5]["media_total"] > 0:
+                if "media_name_60" not in bookings[str(_date_from.date())][5].keys():
+                    bookings[str(_date_from.date())][5]["media_name_60"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.6)
+                if "media_name_50" not in bookings[str(_date_from.date())][5].keys():
+                    bookings[str(_date_from.date())][5]["media_name_50"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.5)
+                if "media_name_40" not in bookings[str(_date_from.date())][5].keys():
+                    bookings[str(_date_from.date())][5]["media_name_40"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.4)
+                if "media_name_30" not in bookings[str(_date_from.date())][5].keys():
+                    bookings[str(_date_from.date())][5]["media_name_30"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.3)
+
             # media entre la zona y actual.
             if "media_name_hotel" in bookings[str(_date_from.date())][2].keys() and "media_total" in bookings[str(_date_from.date())][2].keys():
                 if "media_general" not in bookings[str(_date_from.date())][2].keys():
@@ -1241,6 +1261,7 @@ def index(request):
             "app/index.html", 
             {
                 "bookings":bookings,
+                "bookings_text": json.dumps(bookings),
                 "segment": "index",
                 "date_from": __date_from,
                 "date_to": __date_to,
