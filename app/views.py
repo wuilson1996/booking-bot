@@ -14,6 +14,7 @@ from .models import *
 from .suitesferia import SuitesFeria
 from .fee import FeeTask
 from django.utils.timezone import localtime
+from .serializer import *
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -1259,6 +1260,16 @@ def index(request):
         __message_name2 = MessageName.objects.filter(occupancy=2).order_by("number")
         __message_name3 = MessageName.objects.filter(occupancy=3).order_by("number")
         __message_name5 = MessageName.objects.filter(occupancy=5).order_by("number")
+
+        message_name2_serializer = MessageNameSerializer(__message_name2, many=True)
+        __message_name2_serializer = message_name2_serializer.data
+
+        message_name3_serializer = MessageNameSerializer(__message_name3, many=True)
+        __message_name3_serializer = message_name3_serializer.data
+
+        message_name5_serializer = MessageNameSerializer(__message_name5, many=True)
+        __message_name5_serializer = message_name5_serializer.data
+
         #print(time.time() - __time)
         return render(
             request, 
@@ -1278,7 +1289,10 @@ def index(request):
                 "bot_setting": _bot_setting,
                 "message_name2": __message_name2,
                 "message_name3": __message_name3,
-                "message_name5": __message_name5
+                "message_name5": __message_name5,
+                "message_name2_text": json.dumps(__message_name2_serializer),
+                "message_name3_text": json.dumps(__message_name3_serializer),
+                "message_name5_text": json.dumps(__message_name5_serializer)
             }
         )
     else:

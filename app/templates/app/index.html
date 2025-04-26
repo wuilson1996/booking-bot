@@ -24,7 +24,7 @@
   display: none !important; /* Si es un contenedor del buscador u opciones arriba */
 }
 </style>
-<div class="m-4 row">
+<div class="mb-2 ms-2 me-2 row">
   <div class="col-12">
     <div class="card">
       <div class="pb-4 card-body">
@@ -210,15 +210,15 @@
       <div class="px-0 pb-0 card-body">
         <div class="table-responsive">
           <table class="table table-flush table-sm m-0 p-0" id="client-list">
-            <thead class="thead-light">
+            <!-- <thead class="thead-light">
               <tr>
                 <th class="text-xs">Fecha</th>
                 <th class="text-xs">Tipo</th>
               </tr>
-            </thead>
+            </thead> -->
             <tbody>
               {% for date, value in bookings.items %}
-              <tr>
+              <tr class="border border-dark">
                 <td id="temp-bg{{date}}" style="width: 40px;" class="text-sm m-1 p-1 {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
                   <div class="col-md-2 bg-secondary" style="width: 200px;">
                     <table class="table table-flush text-white table-sm m-0 p-0">
@@ -956,7 +956,7 @@
                               <br><span class="text-black text-xs" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
-                            <h2 class="m-0 text-white bg-success p-1">000</h2>
+                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}3">000</h2>
                           </div>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">
@@ -964,7 +964,7 @@
                               <br><span class="text-black text-xs" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
-                            <h2 class="m-0 text-white bg-success p-1">000</h2>
+                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}4">000</h2>
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
@@ -1321,7 +1321,7 @@
                               <br><span class="text-black text-xs" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg 1-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
-                            <h2 class="m-0 text-white bg-success p-1">000</h2>
+                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}5">000</h2>
                           </div>
                           <div class="input-group mb-3">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">
@@ -1329,7 +1329,7 @@
                               <br><span class="text-black text-xs" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg w-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
-                            <h2 class="m-0 text-white bg-success p-1">000</h2>
+                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}6">000</h2>
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
@@ -1675,31 +1675,31 @@
 
 <script>
     
-    if (document.getElementById('client-list')) {
-      const dataTableSearch = new simpleDatatables.DataTable("#client-list", {
-        searchable: false,
-        fixedHeight: false,
-        lengthChange: false,
-        perPage: parseInt('{{range_pg}}') + 1
-      });
+    // if (document.getElementById('client-list')) {
+    //   const dataTableSearch = new simpleDatatables.DataTable("#client-list", {
+    //     searchable: false,
+    //     fixedHeight: false,
+    //     lengthChange: false,
+    //     perPage: parseInt('{{range_pg}}') + 1
+    //   });
 
-      document.querySelectorAll(".export").forEach(function(el) {
-        el.addEventListener("click", function(e) {
-          var type = el.dataset.type;
+    //   document.querySelectorAll(".export").forEach(function(el) {
+    //     el.addEventListener("click", function(e) {
+    //       var type = el.dataset.type;
 
-          var data = {
-            type: type,
-            filename: "soft-ui-" + type,
-          };
+    //       var data = {
+    //         type: type,
+    //         filename: "soft-ui-" + type,
+    //       };
 
-          if (type === "csv") {
-            data.columnDelimiter = "|";
-          }
+    //       if (type === "csv") {
+    //         data.columnDelimiter = "|";
+    //       }
 
-          dataTableSearch.export(data);
-        });
-      });
-    };
+    //       dataTableSearch.export(data);
+    //     });
+    //   });
+    // };
 
     function activeAlert(){
         Swal.fire({
@@ -2554,18 +2554,258 @@
     botAutoCheck();
 
     var bookings = textToJson('{{bookings_text}}');
+    var message_name2 = textToJson('{{message_name2_text}}');
+    var message_name3 = textToJson('{{message_name3_text}}');
+    var message_name5 = textToJson('{{message_name5_text}}');
+    const nameHotel = ["priceAXO", "priceBOS", "priceDWO", "priceECO", "priceEXE", "priceILU", "priceOSU", "priceSEN", "priceSER", "priceSIL", "priceZEN", "priceTOR2"];
+
     function changePriceRecom(itemDate, pkItem, itemType){
       var itemBooking = bookings[itemDate];
-      console.log(itemBooking)
+      //console.log(itemBooking)
       if (parseInt(itemType) == 2) {
         console.log("Recomendacion para dobles.");
-
+        //console.log(message_name2);
+        $("#recomendation"+itemDate+"2").text("");
+        for (i=0; i<message_name2.length; i++) {
+          if (parseInt(message_name2[i].id) == parseInt(pkItem)){
+            // validar si no hay Cama Dobles.
+            // validar si no hay Cama Matrimonial.
+            console.log("Change Recomendacion para dobles: "+message_name2[i].name);
+            switch (message_name2[i].name) {
+              case "Manual":
+                $("#recomendation"+itemDate+"2").append("0");
+                break
+              case "Max":
+                price = 0;
+                nameHotel.map(function(value, index){
+                  if (price < parseInt(itemBooking[2][value])){
+                    price = parseInt(itemBooking[2][value]);
+                  }
+                });
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "&gt;Zen + PM":
+                pmZone = Math.round(parseInt(itemBooking[2].media_name_hotel / itemBooking[2].media_cant_name_hotel));
+                pZen = parseInt(itemBooking[2].priceZEN) - 1;
+                price = pZen;
+                if (pmZone > pZen){
+                  price = pmZone;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "Zenit":
+                price = parseInt(itemBooking[2].priceZEN) - 1;
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM+50%":
+                price = parseInt(itemBooking[2].media_name_50);
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM+40%":
+                price = parseInt(itemBooking[2].media_name_40);
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM+30%":
+                price = parseInt(itemBooking[2].media_name_30);
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM+20%":
+                price = parseInt(itemBooking[2].media_name_20);
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM+10%":
+                price = parseInt(itemBooking[2].media_name_10);
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "25":
+                price20 = parseInt(itemBooking[2]['4'][19].price) - 1;
+                price25 = parseInt(itemBooking[2]['4'][24].price) - 1;
+                price = price25;
+                if (price25 < price20){
+                  price = price20;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "20":
+                price20 = parseInt(itemBooking[2]['4'][19].price) - 1;
+                price15 = parseInt(itemBooking[2]['4'][14].price) - 1;
+                price = price20;
+                if (price20 < price15){
+                  price = price15;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "15":
+                price10 = parseInt(itemBooking[2]['4'][9].price) - 1;
+                price15 = parseInt(itemBooking[2]['4'][14].price) - 1;
+                price = price15;
+                if (price15 < price10){
+                  price = price10;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "10":
+                price10 = parseInt(itemBooking[2]['4'][9].price) - 1;
+                price5 = parseInt(itemBooking[2]['4'][4].price) - 1;
+                price = price10;
+                if (price10 < price5){
+                  price = price5;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "5":
+                price4 = parseInt(itemBooking[2]['4'][3].price) - 1;
+                price5 = parseInt(itemBooking[2]['4'][4].price) - 1;
+                price = price5;
+                if (price5 < price4){
+                  price = price4;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "4":
+                price4 = parseInt(itemBooking[2]['4'][3].price) - 1;
+                price3 = parseInt(itemBooking[2]['4'][2].price) - 1;
+                price = price4;
+                if (price4 < price3){
+                  price = price3;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "3":
+                price2 = parseInt(itemBooking[2]['4'][1].price) - 1;
+                price3 = parseInt(itemBooking[2]['4'][2].price) - 1;
+                price = price3;
+                if (price3 < price2){
+                  price = price2;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "2":
+                price2 = parseInt(itemBooking[2]['4'][1].price) - 1;
+                price1 = parseInt(itemBooking[2]['4'][0].price) - 1;
+                price = price2;
+                if (price2 < price1){
+                  price = price1;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "1":
+                price1 = parseInt(itemBooking[2]['4'][0].price) - 1;
+                priceV = parseInt(itemBooking[2]['3'][4].price) - 1;
+                price = priceV;
+                if (priceV < price1){
+                  price = price1;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "V":
+                priceV = parseInt(itemBooking[2]['3'][4].price) - 1;
+                priceIV = parseInt(itemBooking[2]['3'][3].price) - 1;
+                price = priceV;
+                if (priceV < priceIV){
+                  price = priceIV;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "IV":
+                priceIV = parseInt(itemBooking[2]['3'][3].price) - 1;
+                priceIII = parseInt(itemBooking[2]['3'][2].price) - 1;
+                price = priceIV;
+                if (priceIV < priceIII){
+                  price = priceIII;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "III":
+                priceIII = parseInt(itemBooking[2]['3'][2].price) - 1;
+                priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
+                price = priceIII;
+                if (priceIII < priceII){
+                  price = priceII;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "II":
+                priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
+                priceI = parseInt(itemBooking[2]['3'][0].price) - 1;
+                price = priceII;
+                if (priceII < priceI){
+                  price = priceI;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "I":
+                priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
+                priceI = parseInt(itemBooking[2]['3'][0].price) - 1;
+                price = priceII;
+                if (priceI < priceII){
+                  price = priceI;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM 3*":
+                price = Math.round(parseInt(itemBooking[2].media_total03) / parseInt(itemBooking[2].media_cant03));
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM 4*":
+                price = Math.round(parseInt(itemBooking[2].media_total) / parseInt(itemBooking[2].media_cant));
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM Mixto":
+                price = Math.round(parseInt(itemBooking[2].media_general));
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "PM zona":
+                price = Math.round(parseInt(itemBooking[2].media_name_hotel / itemBooking[2].media_cant_name_hotel));
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "&lt;Zen + PM":
+                pmZone = Math.round(parseInt(itemBooking[2].media_name_hotel / itemBooking[2].media_cant_name_hotel));
+                pZen = parseInt(itemBooking[2].priceZEN) - 1;
+                price = pmZone;
+                if (pZen < pmZone){
+                  price = pZen;
+                }
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+              case "Minzone":
+                price = 99999;
+                nameHotel.map(function(value, index){
+                  if (price > parseInt(itemBooking[2][value]) && parseInt(itemBooking[2][value]) > 0){
+                    price = parseInt(itemBooking[2][value]);
+                  }
+                });
+                $("#recomendation"+itemDate+"2").append(price);
+                break
+            }
+            break;
+          }
+        }
       } else if (parseInt(itemType) == 3) {
         console.log("Recomendacion para triples.");
+        console.log(message_name3);
+        for (i=0; i<message_name3.length; i++) {
+          if (parseInt(message_name3[i].id) == parseInt(pkItem)){
+            console.log("Change Recomendacion para triples: "+message_name3[i].name);
+            break;
+          }
+        }
+        
+        $("#recomendation"+itemDate+"3").text("");
+        $("#recomendation"+itemDate+"3").append("0");
 
       } else if (parseInt(itemType) == 5) {
         console.log("Recomendacion para suites.");
-
+        console.log(message_name5);
+        for (i=0; i<message_name5.length; i++) {
+          if (parseInt(message_name5[i].id) == parseInt(pkItem)){
+            console.log("Change Recomendacion para suites: "+message_name5[i].name);
+            break;
+          }
+        }
+        
+        $("#recomendation"+itemDate+"5").text("");
+        $("#recomendation"+itemDate+"5").append("0");
       }
     }
   </script>
