@@ -978,6 +978,13 @@
                               <tr>
                                 <td class="text-sm m-1 p-2 border border-white">
                                   <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white text-bold">
+                                      {% if "media_total03" in value.5 %}{% widthratio value.3.media_total03 value.3.media_cant03 1 %}{% else %}0{% endif %}
+                                    </h5>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-2 border border-white">
+                                  <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %}
                                     </h3>
@@ -1341,6 +1348,13 @@
                           <table class="m-1 p-1">
                             <tbody>
                               <tr>
+                                <td class="text-sm m-1 p-2 border border-white">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h5 class="m-0 text-white text-bold">
+                                      {% if "media_total03" in value.5 %}{% widthratio value.5.media_total03 value.5.media_cant03 1 %}{% else %}0{% endif %}
+                                    </h5>
+                                  </div>
+                                </td>
                                 <td class="text-sm m-1 p-2 border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
@@ -1925,8 +1939,21 @@
             if (json.code == 200){
               $("#priceDate"+inputId).text("");
               $("#priceDate"+inputId).append(json.updated);
-
+              
               changeStatusPRice(inputId, json.pSync);
+              if (occupancy == 1){
+                bookings[_date][2].tarifa1.price = parseInt(inputText);
+              } else if (occupancy == 2){
+                bookings[_date][2].tarifa.price = parseInt(inputText);
+              }else if (occupancy == 3){
+                bookings[_date][3].tarifa.price = parseInt(inputText);
+              }else if (occupancy == 4){
+                bookings[_date][3].tarifa1.price = parseInt(inputText);
+              }else if (occupancy == 5){
+                bookings[_date][5].tarifa.price = parseInt(inputText);
+              }else if (occupancy == 6){
+                bookings[_date][5].tarifa1.price = parseInt(inputText);
+              }
             }
           },
           error: function(error) {
@@ -2567,7 +2594,7 @@
         //console.log(message_name2);
         $("#recomendation"+itemDate+"2").text("");
         for (i=0; i<message_name2.length; i++) {
-          if (parseInt(message_name2[i].id) == parseInt(pkItem)){
+          if (parseInt(message_name2[i].id) == parseInt(pkItem)){ // precio recomendacion doble
             // validar si no hay Cama Dobles.
             // validar si no hay Cama Matrimonial.
             console.log("Change Recomendacion para dobles: "+message_name2[i].name);
@@ -2781,31 +2808,287 @@
             break;
           }
         }
-      } else if (parseInt(itemType) == 3) {
+      } else if (parseInt(itemType) == 3) { // precio recomendacion triples
         console.log("Recomendacion para triples.");
         console.log(message_name3);
+        $("#recomendation"+itemDate+"3").text("");
         for (i=0; i<message_name3.length; i++) {
           if (parseInt(message_name3[i].id) == parseInt(pkItem)){
             console.log("Change Recomendacion para triples: "+message_name3[i].name);
+            //console.log(itemBooking);
+            switch (message_name3[i].name) {
+              case "Manual":
+                $("#recomendation"+itemDate+"3").append("0");
+                break
+              case "Suites":
+                if (itemBooking[5].tarifa){
+                  price = parseInt(itemBooking[5].tarifa.price) - 6;
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "PM+50%":
+                price = parseInt(itemBooking[3].media_name_50);
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "PM+40%":
+                price = parseInt(itemBooking[3].media_name_40);
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "PM+30%":
+                price = parseInt(itemBooking[3].media_name_30);
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "10":
+                price10 = parseInt(itemBooking[3]['4'][9].price) - 1;
+                price5_10 = parseInt(itemBooking[3]['4']['5_10']);
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  // Obtener el mayor de los tres
+                  price = Math.max(price10, price5_10, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "5":
+                price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
+                price5 = parseInt(itemBooking[3]['4'][4].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price4, price5, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "4":
+                price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
+                price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price4, price3, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "3":
+                price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
+                price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price2, price3, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "2":
+                price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
+                price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price2, price1, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "1":
+                price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
+                priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(priceV, price1, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "V":
+                priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
+                priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(priceV, priceIV, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "IV":
+                priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
+                priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(priceIII, priceIV, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "III":
+                priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
+                priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(priceIII, priceII, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "II":
+                priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
+                priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(priceI, priceII, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "I":
+                priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
+                priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.min(priceI, priceII, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+              case "PM 3*":
+                price = Math.round(parseInt(itemBooking[3].media_total03) / parseInt(itemBooking[3].media_cant03));
+                $("#recomendation"+itemDate+"3").append(price);
+                break
+              case "PM 4*":
+                price = Math.round(parseInt(itemBooking[3].media_total) / parseInt(itemBooking[3].media_cant));
+                $("#recomendation"+itemDate+"3").append(price);
+                break
+              case "PM 5-10":
+                price5_10 = parseInt(itemBooking[3]['4']['5_10']);
+                if (itemBooking[2].tarifa){
+                  tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
+                  price = Math.max(price5_10, tarifa);
+                  $("#recomendation"+itemDate+"3").append(price);
+                }
+                break
+            }
             break;
           }
         }
-        
-        $("#recomendation"+itemDate+"3").text("");
-        $("#recomendation"+itemDate+"3").append("0");
-
-      } else if (parseInt(itemType) == 5) {
+      } else if (parseInt(itemType) == 5) { // precio recomendacion suites
         console.log("Recomendacion para suites.");
         console.log(message_name5);
+        $("#recomendation"+itemDate+"5").text("");
         for (i=0; i<message_name5.length; i++) {
           if (parseInt(message_name5[i].id) == parseInt(pkItem)){
             console.log("Change Recomendacion para suites: "+message_name5[i].name);
+            switch (message_name5[i].name) {
+              case "Manual":
+                $("#recomendation"+itemDate+"5").append("0");
+                break
+              case "PM+60%":
+                price = parseInt(itemBooking[5].media_name_60);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "PM+50%":
+                price = parseInt(itemBooking[5].media_name_50);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "PM+40%":
+                price = parseInt(itemBooking[5].media_name_40);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "PM+30%":
+                price = parseInt(itemBooking[5].media_name_30);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "10":
+                price10 = parseInt(itemBooking[5]['4'][9].price) - 1;
+                price5_10 = parseInt(itemBooking[5]['4']['5_10']) - 1;
+                price = Math.max(price10, price5_10);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "5":
+                price4 = parseInt(itemBooking[5]['4'][3].price) - 1;
+                price5 = parseInt(itemBooking[5]['4'][4].price) - 1;
+                price = Math.max(price4, price5);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "4":
+                price4 = parseInt(itemBooking[5]['4'][3].price) - 1;
+                price3 = parseInt(itemBooking[5]['4'][2].price) - 1;
+                price = Math.max(price4, price3);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "3":
+                price2 = parseInt(itemBooking[5]['4'][1].price) - 1;
+                price3 = parseInt(itemBooking[5]['4'][2].price) - 1;
+                price = Math.max(price2, price3);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "2":
+                price2 = parseInt(itemBooking[5]['4'][1].price) - 1;
+                price1 = parseInt(itemBooking[5]['4'][0].price) - 1;
+                price = Math.max(price2, price1);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "1":
+                price1 = parseInt(itemBooking[5]['4'][0].price) - 1;
+                priceV = parseInt(itemBooking[5]['3'][4].price) - 1;
+                price = Math.max(priceV, price1);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "V":
+                priceV = parseInt(itemBooking[5]['3'][4].price) - 1;
+                priceIV = parseInt(itemBooking[5]['3'][3].price) - 1;
+                price = Math.max(priceV, priceIV);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "IV":
+                priceIV = parseInt(itemBooking[5]['3'][3].price) - 1;
+                priceIII = parseInt(itemBooking[5]['3'][2].price) - 1;
+                price = Math.max(priceIII, priceIV);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "III":
+                priceIII = parseInt(itemBooking[5]['3'][2].price) - 1;
+                priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
+                price = Math.max(priceIII, priceII);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "II":
+                priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
+                priceI = parseInt(itemBooking[5]['3'][0].price) - 1;
+                price = Math.max(priceI, priceII);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "I":
+                priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
+                priceI = parseInt(itemBooking[5]['3'][0].price) - 1;
+                price = Math.min(priceI, priceII);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "PM 3*":
+                price = Math.round(parseInt(itemBooking[5].media_total03) / parseInt(itemBooking[5].media_cant03));
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "4-PM":
+                price = Math.round(parseInt(itemBooking[5].media_total) / parseInt(itemBooking[5].media_cant));
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+              case "PM 5-10":
+                price = parseInt(itemBooking[5]['4']['5_10']);
+                $("#recomendation"+itemDate+"5").append(price);
+                break
+            }
             break;
           }
         }
-        
-        $("#recomendation"+itemDate+"5").text("");
-        $("#recomendation"+itemDate+"5").append("0");
+      }
+    }
+    const keysDate = Object.keys(bookings);
+
+    for (let i = 0; i < keysDate.length; i++) {
+      const itemDt = keysDate[i];
+      if (bookings[itemDt][2].messageDay){
+        changePriceRecom(itemDt, bookings[itemDt][2].messageDay.pk, 2);
+        changePriceRecom(itemDt, bookings[itemDt][3].messageDay.pk, 3);
+        changePriceRecom(itemDt, bookings[itemDt][5].messageDay.pk, 5);
       }
     }
   </script>
