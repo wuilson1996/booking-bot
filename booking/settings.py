@@ -99,26 +99,26 @@ if DB_PROD:
         }
     }
 else:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.mysql',  # Utiliza el backend de MySQL
-    #         'NAME': 'booking_bot',   # Nombre de la base de datos
-    #         'USER': 'root',                   # Usuario de la base de datos
-    #         'PASSWORD': 'XiT5j2Ee',            # Contraseña del usuario
-    #         'HOST': 'localhost',                    # Host, si es local usa 'localhost'
-    #         'PORT': '3306',                         # Puerto de MariaDB, usualmente 3306
-    #     }
-    # } 
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',  # Utiliza el backend de MySQL
             'NAME': 'booking_bot',   # Nombre de la base de datos
             'USER': 'root',                   # Usuario de la base de datos
-            'PASSWORD': '123456789',#'KazYCK5o',            # Contraseña del usuario
+            'PASSWORD': 'XiT5j2Ee',            # Contraseña del usuario
             'HOST': 'localhost',                    # Host, si es local usa 'localhost'
             'PORT': '3306',                         # Puerto de MariaDB, usualmente 3306
         }
-    }
+    } 
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.mysql',  # Utiliza el backend de MySQL
+    #         'NAME': 'booking_bot',   # Nombre de la base de datos
+    #         'USER': 'root',                   # Usuario de la base de datos
+    #         'PASSWORD': '123456789',#'KazYCK5o',            # Contraseña del usuario
+    #         'HOST': 'localhost',                    # Host, si es local usa 'localhost'
+    #         'PORT': '3306',                         # Puerto de MariaDB, usualmente 3306
+    #     }
+    # }
 
 
 # Password validation
