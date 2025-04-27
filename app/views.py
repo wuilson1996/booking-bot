@@ -661,7 +661,14 @@ def save_price(request):
             _price.plataform_sync = False
             _price.updated = now()
             _price.save()
-        result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente.", "updated": generate_date_with_month_time(str(_price.updated)), "pSync": _price.plataform_sync}
+        result = {
+            "code": 200, 
+            "status": "OK", 
+            "message":"Proceso activado correctamente.", 
+            "updated": generate_date_with_month_time(str(_price.updated)), 
+            "pSync": _price.plataform_sync,
+            "pk_price": _price.pk,
+        }
     return Response(result)
 
 @api_view(["POST"])
