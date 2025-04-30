@@ -445,12 +445,22 @@ def check_booking_process(request):
         bot_logs = {}
         bot_log = BotLog.objects.filter(plataform_option = BotLog.BOOKING).last()
         if bot_log:
-            bot_log_range = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="[!] Verificando Horario").last()
+            bot_log_range_vh = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="[!] Verificando Horario").last()
+            bot_log_range = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="Buscar Datos Automaticos").last()
+            ranges = bot_log_range.description.split("|") if bot_log_range else [],
+            _date_task = dt(
+                year=int(str(bot_log.created).split(" ")[0].split("-")[0]),
+                month=int(str(bot_log.created).split(" ")[0].split("-")[1]),
+                day=int(str(bot_log.created).split(" ")[0].split("-")[2])
+            )
             bot_logs[bot_log.plataform_option] = {
                 "description": bot_log.description,
                 "created": generate_date_with_month_time(str(bot_log.created)),
-                "range": bot_log_range.description.split("|")[1] if bot_log_range else "No hay rango disponible",
-                "log_range": bot_log_range.description if bot_log_range else "No hay rango disponible"
+                "range_hour": ranges[2] if ranges else "No hay rango disponible",
+                "range_days": ranges[1] if ranges else "No hay rango disponible",
+                "range_date": ranges[0] if ranges else "No hay rango disponible",
+                "log_range": bot_log_range.description if bot_log_range else "No hay rango disponible",
+                "alarm": True if (_date_task - now()) > datetime.timedelta(minutes=10) else False
             }
         bot_log = BotLog.objects.filter(plataform_option = BotLog.ROOMPRICE).last()
         if bot_log:
@@ -460,9 +470,15 @@ def check_booking_process(request):
             }
         bot_log = BotLog.objects.filter(plataform_option = BotLog.SUITESFERIA).last()
         if bot_log:
+            _date_task = dt(
+                year=int(str(bot_log.created).split(" ")[0].split("-")[0]),
+                month=int(str(bot_log.created).split(" ")[0].split("-")[1]),
+                day=int(str(bot_log.created).split(" ")[0].split("-")[2])
+            )
             bot_logs[bot_log.plataform_option] = {
                 "description": bot_log.description, 
-                "created": generate_date_with_month_time(str(bot_log.created))
+                "created": generate_date_with_month_time(str(bot_log.created)),
+                "alarm": True if (_date_task - now()) > datetime.timedelta(minutes=10) else False
             }
         
         _date_from = dt(

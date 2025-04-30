@@ -176,7 +176,7 @@ def tarea_diaria():
         logging.info(f"¡Ejecutando tarea de copia: {now()}")
         ejecutar_funcion()
         generate_log(f"¡Tarea diaria completada! {now()}", BotLog.HISTORY)
-        generate_log(f"¡Finalizando tarea de copia: {now()}", BotLog.HISTORY)
+        logging.info(f"¡Tarea diaria completada!: {now()}")
     except Exception as e:
         generate_log(f"Error al ejecutar la función: {now()}: {e}", BotLog.HISTORY)
         logging.info(f"Error al ejecutar la función: {now()}: {e}")
