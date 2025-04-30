@@ -176,15 +176,15 @@ def tarea_diaria():
 def iniciar_scheduler():
     if not scheduler.running:
         scheduler.start()
-        generate_log(f"Scheduler iniciado: {now()}", BotLog.HISTORY)
+        generate_log(f"[+]Scheduler iniciado: {now()}", BotLog.HISTORY)
 
     task_execute = TaskExecute.objects.last()
     if not task_execute:
-        generate_log(f"No hay configuración de ejecución para el scheduler", BotLog.HISTORY)
+        generate_log(f"[-]No hay configuración de ejecución para el scheduler", BotLog.HISTORY)
         return
 
     if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
-        generate_log(f"Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
+        generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
         return
 
     scheduler.add_job(
@@ -196,4 +196,4 @@ def iniciar_scheduler():
         id='tarea_diaria_programada',
         replace_existing=True
     )
-    generate_log(f"Tarea programada diaria a las {task_execute.hour}:{task_execute.minute}:{task_execute.second}", BotLog.HISTORY)
+    generate_log(f"[+]Tarea programada diaria a las {task_execute.hour}:{task_execute.minute}:{task_execute.second}", BotLog.HISTORY)
