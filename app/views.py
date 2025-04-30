@@ -336,9 +336,9 @@ def active_process(bot_setting:BotSetting):
             stop_event_check.set()
     except Exception as e:
         generate_log(f"[+] Error Stop Event, General: {e}...", BotLog.BOOKING)
-    bot_auto = BotAutomatization.objects.last()
-    bot_auto.currenct = False
-    bot_auto.save()
+    #bot_auto = BotAutomatization.objects.last()
+    #bot_auto.currenct = False
+    #bot_auto.save()
 
 @api_view(["POST"])
 def get_booking(request):
@@ -379,15 +379,6 @@ def reset_service_with_task():
     threading.Thread(target=active_process).start()
 
 def reset_service():
-    # try:
-    #     subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
-    #     subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
-    #     logging.info("Servicio booking y nginx reiniciado correctamente.")
-    # except subprocess.CalledProcessError as e:
-    #     logging.info(f"Error al reiniciar el servicio booking: {e}")
-    # except Exception as ex:
-    #     logging.info(f"Se produjo un error: {ex}")
-    
     try:
         subprocess.run('sudo sync; echo 1 | sudo tee /proc/sys/vm/drop_caches', shell=True)
         logging.info("Clear memory1.")
@@ -416,11 +407,30 @@ def reset_service():
     bot_auto.active = False
     bot_auto.save()
 
+    # for _ in range(310):
+    #     bot_auto = BotAutomatization.objects.last()
+    #     if not bot_auto.currenct:
+    #         break
+    #     sleep(1)
+    sleep(30)
+    bot_auto.currenct = False
+    bot_auto.save()
+    sleep(1)
+    try:
+        subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
+        #subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
+        logging.info("Servicio booking y nginx reiniciado correctamente.")
+    except subprocess.CalledProcessError as e:
+        logging.info(f"Error al reiniciar el servicio booking: {e}")
+    except Exception as ex:
+        logging.info(f"Se produjo un error: {ex}")
+
 @api_view(["POST"])
 def finish_get_booking(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
-        reset_service()
+        threading.Thread(target=reset_service).start()
+        #reset_service()
         result["code"] = 200
         result["status"] = "OK"
         result["message"] = "Proceso desactivado correctamente."

@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-
+from .tasks import iniciar_scheduler
 
 class AppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -7,5 +7,4 @@ class AppConfig(AppConfig):
     
     def ready(self):
         # Importa e inicia la tarea en background
-        from .tasks import iniciar_tarea_diaria
-        iniciar_tarea_diaria()
+        iniciar_scheduler()

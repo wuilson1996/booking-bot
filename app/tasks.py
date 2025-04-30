@@ -1,12 +1,13 @@
 # myapp/tasks.py
 
-import threading
 import time
 from datetime import datetime, timedelta
+from apscheduler.schedulers.background import BackgroundScheduler
 from .models import *
-from pathlib import Path
-import logging
 from django.db import transaction
+import logging
+
+scheduler = BackgroundScheduler()
 
 def acquire_lock(name="ejecutar_funcion", ttl_minutes=90):
     try:
@@ -158,53 +159,38 @@ def delete_old_logs(days=5):
 
     return deleted_count, count_avail
 
-def iniciar_tarea_diaria():
-    def tarea_en_thread():
-        time.sleep(5)
-        task_execute = TaskExecute.objects.all().last()
-        # Solo un worker entra aquí gracias al lock de 30 segundos
-        if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):  # 30 segundos
-            generate_log(f"Otro worker está encargado de la espera. Este se detiene: {now()}", BotLog.HISTORY)
-            logging.info(f"Otro worker está encargado de la espera. Este se detiene: {now()}")
-            return
-        time.sleep(5)
-        while True:
-            try:
-                ahora = now()
-                proxima_ejecucion = ahora.replace(hour=task_execute.hour, minute=task_execute.minute, second=task_execute.second, microsecond=0)
-                if ahora > proxima_ejecucion:
-                    proxima_ejecucion += timedelta(days=1)
+def tarea_diaria():
+    task_execute = TaskExecute.objects.last()
+    if not task_execute:
+        generate_log(f"No hay configuración de ejecución", BotLog.HISTORY)
+        return
 
-                tiempo_espera = (proxima_ejecucion - ahora).total_seconds()
-                generate_log(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {now()}", BotLog.HISTORY)
-                logging.info(f"Esperando {tiempo_espera / 3600:.2f} horas hasta la próxima ejecución: {now()}")
-                deleted = delete_old_logs()
-                generate_log(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {now()}", BotLog.HISTORY)
-                logging.info(f"Se eliminaron Logs: {deleted[0]} | Avails: {deleted[1]}, registros antiguos de logs: {now()}")
-                time.sleep(tiempo_espera)
+    if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
+        generate_log(f"Otro worker está encargado de la espera. Este se detiene: {now()}", BotLog.HISTORY)
+        return
 
-                #if not acquire_lock(name="ejecutar_funcion", ttl_minutes=task_execute.time_execute):
-                #    generate_log(f"Otro worker ya está ejecutando la función principal: {now()}", BotLog.HISTORY)
-                #    continue
-                generate_log(f"¡Ejecutando tarea de copia: {now()}", BotLog.HISTORY)
-                logging.info(f"¡Ejecutando tarea de copia: {now()}")
-                try:
-                    ejecutar_funcion()
-                except Exception as e:
-                    generate_log(f"Error al ejecutar la función: {now()}: {e}", BotLog.HISTORY)
-                    logging.info(f"Error al ejecutar la función: {now()}: {e}")
-                generate_log(f"¡Finalizando tarea de copia: {now()}", BotLog.HISTORY)
-                logging.info(f"¡Finalizando tarea de copia: {now()}")
-                
-                task_execute = TaskExecute.objects.all().last()
-            except Exception as e:
-                generate_log(f"Error: en la espera de worker. Este se detiene: {now()}: {e}", BotLog.HISTORY)
-                logging.info(f"Error: en la espera de worker. Este se detiene: {now()}: {e}")
-                time.sleep(60)  # Esperar 1 minuto antes de intentar de nuevo
-                continue
-        generate_log(f"Worker terminado: {now()}", BotLog.HISTORY)
+    try:
+        deleted = delete_old_logs()
+        generate_log(f"Logs eliminados: {deleted[0]} | Avails: {deleted[1]}", BotLog.HISTORY)
+        ejecutar_funcion()
+        generate_log(f"¡Tarea diaria completada! {now()}", BotLog.HISTORY)
+    except Exception as e:
+        generate_log(f"Error en tarea diaria: {e} - {now()}", BotLog.HISTORY)
 
-    generate_log(f"Worker ejecutado: {now()}", BotLog.HISTORY)
-    thread = threading.Thread(target=tarea_en_thread)
-    thread.daemon = True
-    thread.start()
+def iniciar_scheduler():
+    if not scheduler.running:
+        scheduler.start()
+        generate_log(f"Scheduler iniciado: {now()}", BotLog.HISTORY)
+
+    task_execute = TaskExecute.objects.last()
+    if task_execute:
+        scheduler.add_job(
+            tarea_diaria,
+            'cron',
+            hour=task_execute.hour,
+            minute=task_execute.minute,
+            second=task_execute.second,
+            id='tarea_diaria_programada',
+            replace_existing=True
+        )
+        generate_log(f"Tarea programada diaria a las {task_execute.hour}:{task_execute.minute}:{task_execute.second}", BotLog.HISTORY)
