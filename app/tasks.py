@@ -168,10 +168,18 @@ def tarea_diaria():
     try:
         deleted = delete_old_logs()
         generate_log(f"Logs eliminados: {deleted[0]} | Avails: {deleted[1]}", BotLog.HISTORY)
+    except Exception as e:
+        generate_log(f"Error en tarea diaria, delete: {e} - {now()}", BotLog.HISTORY)
+
+    try:
+        generate_log(f"Ejecutando tarea de copia: {now()}", BotLog.HISTORY)
+        logging.info(f"¡Ejecutando tarea de copia: {now()}")
         ejecutar_funcion()
         generate_log(f"¡Tarea diaria completada! {now()}", BotLog.HISTORY)
+        generate_log(f"¡Finalizando tarea de copia: {now()}", BotLog.HISTORY)
     except Exception as e:
-        generate_log(f"Error en tarea diaria: {e} - {now()}", BotLog.HISTORY)
+        generate_log(f"Error al ejecutar la función: {now()}: {e}", BotLog.HISTORY)
+        logging.info(f"Error al ejecutar la función: {now()}: {e}")
 
 def iniciar_scheduler():
     if not scheduler.running:
