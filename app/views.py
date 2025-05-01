@@ -448,13 +448,8 @@ def check_booking_process(request):
             bot_log_range_vh = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="[!] Verificando Horario").last()
             bot_log_range = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="Buscar Datos Automaticos").last()
             ranges = list(bot_log_range.description.split("|")) if bot_log_range else []
-            _date_task = localtime(dt(
-                year=int(str(bot_log.created).split(" ")[0].split("-")[0]),
-                month=int(str(bot_log.created).split(" ")[0].split("-")[1]),
-                day=int(str(bot_log.created).split(" ")[0].split("-")[2]),
-                hour=int(str(bot_log.created).split(" ")[1].split(":")[0]),
-                minute=int(str(bot_log.created).split(" ")[1].split(":")[1]),
-            ).astimezone())
+            _date_task = parse_created_to_localtime(bot_log.created)
+            # Parsear el string a datetime naive
             bot_logs[bot_log.plataform_option] = {
                 "description": bot_log.description,
                 "created": generate_date_with_month_time(str(bot_log.created)),
@@ -462,7 +457,7 @@ def check_booking_process(request):
                 "range_days": ranges[1] if ranges else "No hay rango disponible",
                 "range_date": ranges[0] if ranges else "No hay rango disponible",
                 "log_range": bot_log_range.description if bot_log_range else "No hay rango disponible",
-                "alarm": True if (_date_task - now()) > datetime.timedelta(minutes=10) else False
+                "alarm": True if (now() - _date_task) > datetime.timedelta(minutes=10) else False
             }
         bot_log = BotLog.objects.filter(plataform_option = BotLog.ROOMPRICE).last()
         if bot_log:
