@@ -415,7 +415,7 @@ def reset_service():
     sleep(30)
     bot_auto.currenct = False
     bot_auto.save()
-    sleep(1)
+    sleep(10)
     try:
         subprocess.run(['sudo', 'systemctl', 'restart', "booking"], check=True)
         #subprocess.run(['sudo', 'systemctl', 'restart', "nginx"], check=True)
