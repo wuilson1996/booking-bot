@@ -8,4 +8,4 @@ def now():
 
 def parse_created_to_localtime(created_str):
     naive_datetime = datetime.strptime(created_str, "%Y-%m-%d %H:%M:%S")  # Formato esperado: "2025-05-01 12:34:56"
-    return timezone.make_aware(naive_datetime)
+    return timezone.make_naive(naive_datetime)
