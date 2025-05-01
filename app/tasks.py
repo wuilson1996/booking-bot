@@ -182,6 +182,7 @@ def tarea_diaria():
         logging.info(f"Error al ejecutar la función: {now()}: {e}")
 
 def iniciar_scheduler():
+    time.sleep(5)
     if not scheduler.running:
         scheduler.start()
         generate_log(f"[+]Scheduler iniciado: {now()}", BotLog.HISTORY)
