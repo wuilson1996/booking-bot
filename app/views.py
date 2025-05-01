@@ -454,7 +454,7 @@ def check_booking_process(request):
                 day=int(str(bot_log.created).split(" ")[0].split("-")[2]),
                 hour=int(str(bot_log.created).split(" ")[1].split(":")[0]),
                 minute=int(str(bot_log.created).split(" ")[1].split(":")[1]),
-            )).astimezone()
+            ).astimezone())
             bot_logs[bot_log.plataform_option] = {
                 "description": bot_log.description,
                 "created": generate_date_with_month_time(str(bot_log.created)),
