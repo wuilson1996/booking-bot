@@ -1851,6 +1851,7 @@
               if (json.botLog.booking.alarm){
                 $("#addLogBooking").removeClass().addClass("text-white bg-danger");
                 $("#currentAutoRangeLog").removeClass().addClass("text-white bg-danger");
+                $("#addLogBooking").append(" | "+json.botLog.booking.minute+" Minutos inactivo");
               }
             } else {
               $("#addLogBooking").append("Historial de proceso no disponible");
@@ -1866,6 +1867,7 @@
               $("#addLogSuitesFeria").append(json.botLog.suitesferia.description+" | "+json.botLog.suitesferia.created);
               if (json.botLog.suitesferia.alarm){
                 $("#addLogSuitesFeria").removeClass().addClass("text-white bg-danger");
+                $("#addLogSuitesFeria").append(" | "+json.botLog.suitesferia.minute+" Minutos inactivo");
               }
               console.log(json.botLog.suitesferia.alarm);
             } else {
