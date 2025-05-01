@@ -1847,6 +1847,11 @@
               $("#addLogBooking").append(json.botLog.booking.description+" | "+json.botLog.booking.created);
               //$("#currentAutoRange").append(json.botLog.booking.range);
               $("#currentAutoRangeLog").append(json.botLog.booking.log_range);
+              console.log(json.botLog.booking.alarm);
+              if (json.botLog.booking.alarm){
+                $("#addLogBooking").removeClass().addClass("text-white bg-danger");
+                $("#currentAutoRangeLog").removeClass().addClass("text-white bg-danger");
+              }
             } else {
               $("#addLogBooking").append("Historial de proceso no disponible");
             }
@@ -1859,6 +1864,10 @@
 
             if (json.botLog && json.botLog?.suitesferia !== undefined) {
               $("#addLogSuitesFeria").append(json.botLog.suitesferia.description+" | "+json.botLog.suitesferia.created);
+              if (json.botLog.suitesferia.alarm){
+                $("#addLogSuitesFeria").removeClass().addClass("text-white bg-danger");
+              }
+              console.log(json.botLog.suitesferia.alarm);
             } else {
               $("#addLogSuitesFeria").append("Historial de proceso no disponible");
             }
@@ -1874,8 +1883,6 @@
                 changeStatusPRice(value2.date_from+""+value2.occupancy, value2.pSync);
               });
             });
-            console.log(json.botLog.booking.alarm);
-            console.log(json.botLog.suitesferia.alarm);
           },
           error: function(error) {
             console.log("Ocurrio un error");
