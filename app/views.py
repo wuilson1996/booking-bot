@@ -448,7 +448,7 @@ def check_booking_process(request):
             bot_log_range_vh = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="[!] Verificando Horario").last()
             bot_log_range = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="Buscar Datos Automaticos").last()
             ranges = list(bot_log_range.description.split("|")) if bot_log_range else []
-            _date_task = parse_created_to_localtime(bot_log.created)
+            _date_task = parse_created_to_localtime(str(bot_log.created).split(".")[0])
             # Parsear el string a datetime naive
             bot_logs[bot_log.plataform_option] = {
                 "description": bot_log.description,
