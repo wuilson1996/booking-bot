@@ -463,7 +463,8 @@ def check_booking_process(request):
                 hour=int(str(__current_now).split(" ")[1].split(":")[0]),
                 minute=int(str(__current_now).split(" ")[1].split(":")[1]),
             )
-            _date_rest = _date_task_now - _date_task
+            _date_rest = (_date_task_now - _date_task).min
+            generate_log(f"[+] Test Get: {_date_rest} {_date_task} {_date_task_now}", BotLog.HISTORY)
             bot_logs[bot_log.plataform_option] = {
                 "description": bot_log.description,
                 "created": generate_date_with_month_time(str(bot_log.created)),
@@ -471,7 +472,7 @@ def check_booking_process(request):
                 "range_days": ranges[1] if ranges else "No hay rango disponible",
                 "range_date": ranges[0] if ranges else "No hay rango disponible",
                 "log_range": bot_log_range.description if bot_log_range else "No hay rango disponible",
-                "alarm": True if _date_rest > datetime.timedelta(minutes=10) else False
+                "alarm": True if _date_rest > 10 else False
             }
         bot_log = BotLog.objects.filter(plataform_option = BotLog.ROOMPRICE).last()
         if bot_log:
