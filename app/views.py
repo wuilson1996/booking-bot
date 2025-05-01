@@ -766,7 +766,7 @@ def save_event(request):
             _event_by_day = EventByDay.objects.create(
                 date_from = request.data["date"],
                 occupancy = request.data["occupancy"],
-                text = request.data["text"],
+                text = str(request.data["text"]).strip(),
                 updated = now(),
                 created = now()
             )
@@ -903,7 +903,7 @@ def index(request):
                 # get event by day
                 __event_by_day = EventByDay.objects.filter(date_from = str(_date_from.date()), occupancy=int(ocp)).last()
                 if __event_by_day:
-                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = {"text":__event_by_day.text, "updated":generate_date_with_month_time(str(__event_by_day.updated))}
+                    bookings[str(_date_from.date())][int(ocp)]["eventByDay"] = {"text":__event_by_day.text.strip(), "updated":generate_date_with_month_time(str(__event_by_day.updated))}
 
                 # Disponiblidad actual
                 avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
