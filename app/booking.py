@@ -8,7 +8,7 @@ import pandas as pd
 import logging
 import json
 from datetime import datetime as dt
-from .now_date import now, parse_created_to_localtime
+from .now_date import now
 import datetime
 import re
 from .models import *
