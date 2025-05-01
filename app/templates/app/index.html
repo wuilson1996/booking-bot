@@ -1848,9 +1848,11 @@
               //$("#currentAutoRange").append(json.botLog.booking.range);
               $("#currentAutoRangeLog").append(json.botLog.booking.log_range);
               //console.log(json.botLog.booking.alarm);
+              $("#addLogBooking").removeClass().addClass("text-white");
+              $("#currentAutoRangeLog").removeClass().addClass("text-white");
               if (json.botLog.booking.alarm){
-                $("#addLogBooking").removeClass().addClass("text-white bg-danger");
-                $("#currentAutoRangeLog").removeClass().addClass("text-white bg-danger");
+                $("#addLogBooking").removeClass().addClass("bg-danger");
+                $("#currentAutoRangeLog").removeClass().addClass("bg-danger");
                 $("#addLogBooking").append(" | "+json.botLog.booking.minute+" Minutos inactivo");
               }
             } else {
@@ -1865,8 +1867,9 @@
 
             if (json.botLog && json.botLog?.suitesferia !== undefined) {
               $("#addLogSuitesFeria").append(json.botLog.suitesferia.description+" | "+json.botLog.suitesferia.created);
+              $("#addLogSuitesFeria").removeClass().addClass("text-white");
               if (json.botLog.suitesferia.alarm){
-                $("#addLogSuitesFeria").removeClass().addClass("text-white bg-danger");
+                $("#addLogSuitesFeria").removeClass().addClass("bg-danger");
                 $("#addLogSuitesFeria").append(" | "+json.botLog.suitesferia.minute+" Minutos inactivo");
               }
               //console.log(json.botLog.suitesferia.alarm);
