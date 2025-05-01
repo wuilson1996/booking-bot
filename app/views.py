@@ -95,7 +95,7 @@ def active_process_sf():
                     generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
                     break
                 
-                time.sleep(120)
+                time.sleep(180)
 
                 if not check_finish_process():
                     logging.info(f"[+] {now()} Finish process, proceso suites feria...")
