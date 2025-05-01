@@ -448,6 +448,7 @@ def check_booking_process(request):
             bot_log_range_vh = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="[!] Verificando Horario").last()
             bot_log_range = BotLog.objects.filter(plataform_option = BotLog.BOOKING, description__icontains="Buscar Datos Automaticos").last()
             ranges = bot_log_range.description.split("|") if bot_log_range else [],
+            generate_log(f"Ranges: {now()} {ranges}", BotLog.HISTORY)
             _date_task = dt(
                 year=int(str(bot_log.created).split(" ")[0].split("-")[0]),
                 month=int(str(bot_log.created).split(" ")[0].split("-")[1]),
