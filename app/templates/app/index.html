@@ -1847,7 +1847,7 @@
               $("#addLogBooking").append(json.botLog.booking.description+" | "+json.botLog.booking.created);
               //$("#currentAutoRange").append(json.botLog.booking.range);
               $("#currentAutoRangeLog").append(json.botLog.booking.log_range);
-              console.log(json.botLog.booking.alarm);
+              //console.log(json.botLog.booking.alarm);
               if (json.botLog.booking.alarm){
                 $("#addLogBooking").removeClass().addClass("text-white bg-danger");
                 $("#currentAutoRangeLog").removeClass().addClass("text-white bg-danger");
@@ -1869,7 +1869,7 @@
                 $("#addLogSuitesFeria").removeClass().addClass("text-white bg-danger");
                 $("#addLogSuitesFeria").append(" | "+json.botLog.suitesferia.minute+" Minutos inactivo");
               }
-              console.log(json.botLog.suitesferia.alarm);
+              //console.log(json.botLog.suitesferia.alarm);
             } else {
               $("#addLogSuitesFeria").append("Historial de proceso no disponible");
             }
