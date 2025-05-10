@@ -155,10 +155,10 @@ class BookingSearch:
                         logging.info(f"[-] {now()} Error in button Modal general: "+str(e))
                     sleep(3)
                     if process.type_proces == 1:
-                        try:
-                            cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
-                        except Exception as e:
-                            pass
+                        #try:
+                        #    cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
+                        #except Exception as e:
+                        #    pass
                         try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input", {"type": "checkbox"})
@@ -263,10 +263,10 @@ class BookingSearch:
                             logging.info(f"[-] {now()} Error in price button general: "+str(e))
 
                     sleep(3)
-                    try:
-                        cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
-                    except Exception as e:
-                        pass
+                    #try:
+                    #    cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
+                    #except Exception as e:
+                    #    pass
                     # Items booking search
                     items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
                     #logging.info(f"[+] {now()} Elementos encontrados: {len(items)} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
