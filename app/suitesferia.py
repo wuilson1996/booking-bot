@@ -47,8 +47,8 @@ class SuitesFeria:
         if not self.session:
             return {"message": "Sesión no iniciada.", "code": 401}
 
-        response = self.session.get(f"{self.url}/api/planning/avail/data/{_date}/365")
         try:
+            response = self.session.get(f"{self.url}/api/planning/avail/data/{_date}/365")
             data = response.json()
             return {
                 "message": "Datos de disponibilidad obtenidos.",

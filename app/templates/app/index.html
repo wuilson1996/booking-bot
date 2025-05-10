@@ -335,7 +335,7 @@
                       </tr>
                       <tr class="m-1 p-1">
                         
-                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                        <td class="text-sm tr m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <!-- <table class="table table-flush text-white table-sm m-1 p-0">
                             <tbody>
                               <tr>
@@ -348,7 +348,7 @@
                               </tr>
                             </tbody>
                           </table> -->
-                          <table class="table table-flush text-white table-sm m-1 p-0">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 border border-white">
@@ -356,6 +356,11 @@
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %}
                                     </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">0</h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border border-white">
@@ -382,7 +387,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-0">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -390,6 +395,11 @@
                                     <h2 class="m-0 text-white text-bold">
                                       {% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %}
                                     </h2>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h2 class="m-0 text-white text-bold">0</h2>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -410,7 +420,7 @@
                             </tbody>
                           </table>
                           
-                          <table class="table table-flush text-white table-sm m-1 p-0">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -425,6 +435,11 @@
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "suiteFeria" in value.2 %}{{value.2.suiteFeria}}{% else %}0{% endif %}
                                     </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">0</h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -444,7 +459,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-0">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -459,6 +474,11 @@
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "suiteFeria1" in value.2 %}{{value.2.suiteFeria1}}{% else %}0{% endif %}
                                     </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">0</h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -511,21 +531,56 @@
                           </div>
                           <!---->
                         </td>
-                        <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                        <td>
+                          <table class="table table-flush text-white table-sm m-0 p-0 bg-warning">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-0 border border-white">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h5 class="m-0 text-white">{% if "media_total03" in value.2 %}{% widthratio value.2.media_total03 value.2.media_cant03 1 %}{% else %}0{% endif %}</h5>
-                                    <span 
-                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
-                                      style="width: 40px; height: 15px; font-size: 10px;">
-                                      PM3*
-                                    </span>
+                                    <h3 class="m-0 text-bold">
+                                      {% if "media_name_hotel" in value.2 %}
+                                        {% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}
+                                      {% else %}0{% endif %}
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-0 border border-white">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-bold">
+                                      0
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-bold">
+                                      0
+                                    </h3>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table class="table table-flush text-white table-sm m-0 p-0">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #FFD700;">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h6 class="m-0">
+                                      <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 60px; height: 12px; font-size: 8px;">
+                                      PM4*MIX
+                                    </span>{% if "media_general" in value.2 %}{{value.2.media_general}}{% else %}0{% endif %}</h6>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table class="table table-flush text-white table-sm m-0 p-0">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{% if "media_total" in value.2 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %}</h3>
                                     <span 
@@ -535,7 +590,12 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-success">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white">8</h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white">{% if "media_total1" in value.2 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %}</h4>
                                     <span 
@@ -545,7 +605,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white">{% if "media_total4" in value.2 %}{% widthratio value.2.media_total4 value.2.media_cant4 1 %}{% else %}0{% endif %}</h4>
                                     <span 
@@ -555,7 +615,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white">{% if "media_total7" in value.2 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</h4>
                                     <span 
@@ -565,20 +625,28 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table class="table table-flush text-white table-sm m-0 p-0">
+                            <tbody>
+                              <tr>
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h5 class="m-0">{% if "media_general" in value.2 %}{{value.2.media_general}}{% else %}0{% endif %}</h5>
-                                    <span 
+                                    <h5 class="m-0 text-white">
+                                      <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
-                                      style="width: 60px; height: 15px; font-size: 10px;">
-                                      PM4*MIX
-                                    </span>
+                                      style="width: 40px; height: 15px; font-size: 10px;">
+                                      PM3*
+                                    </span>{% if "media_total03" in value.2 %}{% widthratio value.2.media_total03 value.2.media_cant03 1 %}{% else %}0{% endif %}</h5>
                                   </div>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                        </td>
+                        <td class="text-sm tr m-0 p-0 border" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 border border-white" style="background-color: #317ec6;">
@@ -591,7 +659,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.2.4.1.price}}</h5>
                                     <span 
@@ -601,7 +669,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.2.4.2.price}}</h5>
                                     <span 
@@ -611,7 +679,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.2.4.3.price}}</h5>
                                     <span 
@@ -621,7 +689,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class=" m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class=" m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.2.4.4.price}}</h3>
                                     <span 
@@ -631,7 +699,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0">{{value.2.4.9.price}}</h3>
                                     <span 
@@ -641,7 +709,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="m-0 p-0 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0">{{value.2.4.14.price}}</h3>
                                     <span 
@@ -651,7 +719,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="m-0 p-0 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0">{{value.2.4.19.price}}</h3>
                                     <span 
@@ -661,7 +729,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="m-1 p-1 bg-danger border border-white">
+                                <td class="m-0 p-0 bg-danger border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.2.4.24.price}}</h3>
                                     <span 
@@ -674,7 +742,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
@@ -731,37 +799,8 @@
                             </tbody>
                           </table>
                         </td>
-                        <td class="text-sm bg-warning text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                        <td class="text-sm bg-warning text-white tr m-0 p-0 border" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
                           <table class="table table-flush text-white table-sm m-0 p-0">
-                            <tbody>
-                              <tr>
-                                <td class="text-sm m-0 p-0 border border-white">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-bold">
-                                      {% if "media_name_hotel" in value.2 %}
-                                        {% widthratio value.2.media_name_hotel value.2.media_cant_name_hotel 1 %}
-                                      {% else %}0{% endif %}
-                                    </h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 border border-white">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-bold">
-                                      0
-                                    </h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 border border-white">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-bold">
-                                      0
-                                    </h3>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
                                 <td class="text-sm m-1 p-1">
@@ -800,20 +839,20 @@
                             </tbody>
                           </table>
                         </td>
-                        <td class="text-sm bg-danger text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                        <td class="text-sm bg-danger text-white tr m-0 p-0 border" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de dobles" onclick="window.location.href='/booking?date={{date}}&occupancy=2'">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1">
-                                  <span class="h4 text-bold text-white m-2">PM+50%: {{value.2.media_name_50}}</span>
+                                <td class="text-sm m-0 p-0">
+                                  <span class="h6 text-bold text-white m-1">50%: {{value.2.media_name_50}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+40%: {{value.2.media_name_40}}</span>
+                                  <span class="h6 text-bold text-white m-1">40%: {{value.2.media_name_40}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+30%: {{value.2.media_name_30}}</span>
+                                  <span class="h6 text-bold text-white m-1">30%: {{value.2.media_name_30}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+20%: {{value.2.media_name_20}}</span>
+                                  <span class="h6 text-bold text-white m-1">20%: {{value.2.media_name_20}}</span>
                                   <br>
-                                  <span class="h4 text-bold text-white m-2">PM+10%: {{value.2.media_name_10}}</span>
+                                  <span class="h6 text-bold text-white m-1">10%: {{value.2.media_name_10}}</span>
                                 </td>
                               </tr>
                             </tbody>

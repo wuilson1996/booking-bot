@@ -58,44 +58,54 @@ def generate_date_with_month_time(_date:str):
 def active_process_sf():
     _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
     if _credential:
+        suites_feria = SuitesFeria(_credential.username, _credential.password)
         while True:
             # get data suitesferia.
-            try:
-                suites_feria = SuitesFeria(_credential.username, _credential.password)
+            try:  
                 resp = suites_feria.login()
                 logging.info(f"[+] Actualizando suites feria: {now().date()} {resp}")
                 generate_log(f"[+] Actualizando Dispo suites feria: {resp['message']}", BotLog.SUITESFERIA)
                 if resp["code"] == 200:
-                    resp_sf = suites_feria.disponibilidad(now().date())
-                    resp_sf = suites_feria.format_avail(resp_sf)
-                    for dsf in resp_sf:
-                        avail_sf = AvailSuitesFeria.objects.filter(date_avail = dsf["date"]).first()
-                        if not avail_sf:
-                            avail_sf = AvailSuitesFeria.objects.create(date_avail = dsf["date"])
-                        for key_sf, value_sf in dsf["avail"].items():
-                            cant_asf = CantAvailSuitesFeria.objects.filter(avail_suites_feria = avail_sf, type_avail = key_sf).first()
-                            if not cant_asf:
-                                cant_asf = CantAvailSuitesFeria.objects.create(
-                                    type_avail = key_sf,
-                                    avail = value_sf,
-                                    avail_suites_feria = avail_sf
-                                )
-                            else:
-                                cant_asf.avail = value_sf
-                                cant_asf.save()
-                    resp_l = suites_feria.logout()
-                    
-                    logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
-                    generate_log(f"[+] Dispo Suites feria actualizado: {resp_l['message']}", BotLog.SUITESFERIA)
-                else:
-                    generate_log(f"[+] Informacion de respuesta: {now()} {resp['resp']}", BotLog.SUITESFERIA)
+                    time.sleep(60)
+                    break
+            except Exception as e:
+                logging.info(f"[+] {now()} Error Get Suites feria: "+str(er))
+                generate_log("[+] Error Get Suites feria", BotLog.SUITESFERIA)
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
+                    break
+                time.sleep(600)
+        while True:
+            # get data suitesferia.
+            try:
+                resp_sf = suites_feria.disponibilidad(now().date())
+                _resp_sf = suites_feria.format_avail(resp_sf)
+                for dsf in _resp_sf:
+                    avail_sf = AvailSuitesFeria.objects.filter(date_avail = dsf["date"]).first()
+                    if not avail_sf:
+                        avail_sf = AvailSuitesFeria.objects.create(date_avail = dsf["date"])
+                    for key_sf, value_sf in dsf["avail"].items():
+                        cant_asf = CantAvailSuitesFeria.objects.filter(avail_suites_feria = avail_sf, type_avail = key_sf).first()
+                        if not cant_asf:
+                            cant_asf = CantAvailSuitesFeria.objects.create(
+                                type_avail = key_sf,
+                                avail = value_sf,
+                                avail_suites_feria = avail_sf
+                            )
+                        else:
+                            cant_asf.avail = value_sf
+                            cant_asf.save()
+                
+                logging.info(f"[+] Suites feria actualizado: {now()} {resp_sf}")
+                generate_log(f"[+] Dispo Suites feria actualizado: {resp_sf['message']}", BotLog.SUITESFERIA)
 
                 if not check_finish_process():
                     logging.info(f"[+] {now()} Finish process, proceso suites feria...")
                     generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
                     break
                 
-                time.sleep(180)
+                time.sleep(1200)
 
                 if not check_finish_process():
                     logging.info(f"[+] {now()} Finish process, proceso suites feria...")
@@ -108,7 +118,11 @@ def active_process_sf():
                     logging.info(f"[+] {now()} Finish process, proceso suites feria...")
                     generate_log(f"[+] Finalizando proceso, proceso suites feria...", BotLog.SUITESFERIA)
                     break
-                time.sleep(60)
+                time.sleep(600)
+
+        resp_l = suites_feria.logout()       
+        logging.info(f"[+] Suites feria actualizado: {now()} {resp_l}")
+        generate_log(f"[+] Dispo Suites feria actualizado: {resp_l['message']}", BotLog.SUITESFERIA)
 
         logging.info(f"[+] {now()} Proceso suites feria Finalizando...")
         generate_log("[+] Proceso suites feria Finalizando...", BotLog.SUITESFERIA)
