@@ -173,13 +173,13 @@ class BookingSearch:
                                     except ElementClickInterceptedException:
                                         driver.execute_script("arguments[0].click();", check_start)
                                         sleep(2)
-                                    generate_log(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}", BotLog.BOOKING)
+                                    generate_log(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)
                                     #logging.info(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
                                     break
                                     
                         except NoSuchElementException as e:
                             logging.info(f"[-] {now()} Error in start button, not fount")
-                            generate_log(f"[-] {now()} Error in start button, not fount", BotLog.BOOKING)
+                            generate_log(f"[-] {now()} Error in start button, not fount", BotLog.HISTORY)
                             try:
                                 _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                                 elements = _soup_elements.find_all("input")
@@ -194,7 +194,7 @@ class BookingSearch:
                                         except ElementClickInterceptedException:
                                             driver.execute_script("arguments[0].click();", check_start)
                                             sleep(2)
-                                        generate_log(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.BOOKING)
+                                        generate_log(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)
                                         #logging.info(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                         break
                                         
@@ -228,7 +228,7 @@ class BookingSearch:
                                         logging.info(f"[-] {now()} Error al hacer click, intentando con JavaScript: {e}")
                                         driver.execute_script("arguments[0].click();", check_hotel)
                                         sleep(2)
-                                    generate_log(f"[+] {now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.BOOKING)   
+                                    generate_log(f"[+] {now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)   
                                     #logging.info(f"[+] {now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                     break
                         except Exception as e:
@@ -257,7 +257,7 @@ class BookingSearch:
                             except ElementClickInterceptedException as e2:
                                 driver.execute_script("arguments[0].click();", check_price)
                                 sleep(2)
-                            generate_log(f"[+] {now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.BOOKING)   
+                            generate_log(f"[+] {now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)   
                             #logging.info(f"[+] {now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                         except NoSuchElementException as e:
                             logging.info(f"[-] {now()} Error in button price, not fount")
@@ -278,7 +278,7 @@ class BookingSearch:
                     try:
                         total_search = str(driver.find_element_by_xpath("//h1[@aria-live='assertive']").text).split(": ")[1].split(" ")[0].strip().replace(".", "")
                         #logging.info(f"[+] {now()} Total search success: {total_search} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
-                        generate_log(f"[+] {now()} Total search success: {total_search} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.BOOKING)   
+                        generate_log(f"[+] {now()} Total search success: {total_search} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)   
                         total_search = total_search.replace(",", "").replace(".", "")
                     except NoSuchElementException as e:
                         logging.info(f"[-] {now()} Error in get total_search, not fount")
@@ -316,7 +316,7 @@ class BookingSearch:
 
                     try:
                         #logging.info(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
-                        generate_log(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}", BotLog.BOOKING)   
+                        generate_log(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}", BotLog.HISTORY)   
                         for position in process.position:
                             cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name)
                     except Exception as e:
