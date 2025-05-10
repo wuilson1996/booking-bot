@@ -156,7 +156,7 @@ class BookingSearch:
                     sleep(3)
                     if process.type_proces == 1:
                         try:
-                            cls.guardar_captura(driver, descripcion=f"cap_booking_{_now.date()}")
+                            cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
                         except Exception as e:
                             pass
                         try:
@@ -264,7 +264,7 @@ class BookingSearch:
 
                     sleep(3)
                     try:
-                        cls.guardar_captura(driver, descripcion=f"cap_booking_{_now.date()}")
+                        cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
                     except Exception as e:
                         pass
                     # Items booking search
@@ -300,6 +300,12 @@ class BookingSearch:
                                 comp.updated = now()
                                 comp.created = now()
                                 comp.save()
+                            
+                            if total_search == 0:
+                                try:
+                                    cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.start)}_{_now.date()}")
+                                except Exception as e:
+                                    pass
                         except Exception as er2:
                             logging.info(f"[-] {now()} Error 228: "+str(er2))
 
