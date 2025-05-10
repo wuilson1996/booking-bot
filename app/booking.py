@@ -156,6 +156,10 @@ class BookingSearch:
                     sleep(3)
                     if process.type_proces == 1:
                         try:
+                            cls.guardar_captura(driver, descripcion=f"cap_booking_{_now.date()}")
+                        except Exception as e:
+                            pass
+                        try:
                             _soup_elements = BeautifulSoup(driver.page_source, "html.parser")
                             elements = _soup_elements.find_all("input", {"type": "checkbox"})
                             for s in elements:
@@ -259,6 +263,10 @@ class BookingSearch:
                             logging.info(f"[-] {now()} Error in price button general: "+str(e))
 
                     sleep(3)
+                    try:
+                        cls.guardar_captura(driver, descripcion=f"cap_booking_{_now.date()}")
+                    except Exception as e:
+                        pass
                     # Items booking search
                     items = driver.find_elements_by_xpath("//div[@data-testid='property-card']")
                     #logging.info(f"[+] {now()} Elementos encontrados: {len(items)} - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
@@ -595,6 +603,38 @@ class BookingSearch:
     @classmethod
     def close(cls, driver):
         driver.close()
+
+    @classmethod
+    def guardar_captura(cls, driver, carpeta="media/capturas", descripcion=""):
+        # Crear carpeta si no existe
+        if not os.path.exists(carpeta):
+            os.makedirs(carpeta)
+
+        # Generar nombre con timestamp
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        nombre_archivo = f"{descripcion}_{timestamp}.png" if descripcion else f"captura_{timestamp}.png"
+        ruta_completa = os.path.join(carpeta, nombre_archivo)
+
+        # Guardar captura
+        driver.save_screenshot(ruta_completa)
+        generate_log(f"[✓] Captura guardada en: {ruta_completa}", BotLog.BOOKING)
+
+        try:
+            ScreenshotLog.objects.create(
+                descripcion = descripcion,
+                created = now(),
+                imagen = "capturas/"+nombre_archivo,
+            )
+        except Exception as e:
+            logging.info(f"[-] Error create Screen: {e}")
+            try:
+                ScreenshotLog.objects.create(
+                    descripcion = descripcion,
+                    created = now(),
+                    imagen = "capturas/"+nombre_archivo,
+                )
+            except Exception as e:
+                logging.info(f"[-] Error create Screen: {e}")
 
 if __name__ == "__main__":
     booking = BookingSearch()
