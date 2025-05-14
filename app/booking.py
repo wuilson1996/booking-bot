@@ -118,9 +118,7 @@ class BookingSearch:
                         "ss": search_name,
                         "group_adults": str(process.occupancy),
                         "checkin": str(_date_elem.date()),
-                        "checkout": str(_now.date()),
-                        "no_rooms": 1,
-                        "group_children": 0
+                        "checkout": str(_now.date())
                     }
 
                     _url_performance = f"{cls._url}?{urlencode(params)}"
@@ -296,7 +294,7 @@ class BookingSearch:
                             
                             if total_search == 0:
                                 try:
-                                    cls.guardar_captura(driver, name=f"cap_booking_{str(process.occupancy)}_{str(process.start)}_{_now.date()}", descripcion=_url_performance)
+                                    cls.guardar_captura(driver, name=f"cap_booking_{str(process.occupancy)}_{str(process.start)}_{_now.date()}", descripcion=_url_performance+f"_{total_search}")
                                 except Exception as e:
                                     pass
                         except Exception as er2:
