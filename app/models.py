@@ -390,7 +390,7 @@ class BotRange(models.Model):
         return f"Number: {self.number} | {self.days_from}-{self.days} | Desde: {self.date_from} | Hasta: {self.date_end} | {self.bot_setting} | Hours: [{hour_ranges}] | Days: [{day_names}]"
     
 class ScreenshotLog(models.Model):
-    descripcion = models.CharField(max_length=255, blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     created = models.CharField(default="", max_length=128)
     imagen = models.ImageField(upload_to='capturas/')

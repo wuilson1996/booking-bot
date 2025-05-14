@@ -308,7 +308,7 @@ class BookingSearch:
                             
                             if total_search == 0:
                                 try:
-                                    cls.guardar_captura(driver, descripcion=f"cap_booking_{str(process.occupancy)}_{str(process.start)}_{_now.date()}")
+                                    cls.guardar_captura(driver, name=f"cap_booking_{str(process.occupancy)}_{str(process.start)}_{_now.date()}", descripcion=_url_performance)
                                 except Exception as e:
                                     pass
                         except Exception as er2:
@@ -617,14 +617,14 @@ class BookingSearch:
         driver.close()
 
     @classmethod
-    def guardar_captura(cls, driver, carpeta="media/capturas", descripcion=""):
+    def guardar_captura(cls, driver, carpeta="media/capturas", name="", descripcion=""):
         # Crear carpeta si no existe
         if not os.path.exists(carpeta):
             os.makedirs(carpeta)
 
         # Generar nombre con timestamp
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        nombre_archivo = f"{descripcion}_{timestamp}.png" if descripcion else f"captura_{timestamp}.png"
+        nombre_archivo = f"{name}_{timestamp}.png" if name else f"captura_{timestamp}.png"
         ruta_completa = os.path.join(carpeta, nombre_archivo)
 
         # Guardar captura
