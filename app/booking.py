@@ -14,6 +14,7 @@ import re
 from .models import *
 import os
 import platform
+from urllib.parse import urlencode
 
 _logging = logging.basicConfig(filename="logger.log", level=logging.INFO)
 
@@ -50,8 +51,8 @@ class BookingSearch:
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
-        options.add_argument("-private")  # Modo incógnito
-        #options.set_preference("browser.privatebrowsing.autostart", True)
+        #options.add_argument("-private")  # Modo incógnito
+        options.set_preference("browser.privatebrowsing.autostart", True)
 
         return webdriver.Firefox(executable_path=os.path.abspath("geckodriver"), options=options)
     
@@ -73,6 +74,7 @@ class BookingSearch:
             driver.delete_all_cookies()
             sleep(5)
             #logging.info(driver.current_url)
+            generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial: {driver.current_url} {_now}", BotLog.BOOKING)
             #if process.type_proces == 1:
             try:
                 _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
@@ -90,7 +92,7 @@ class BookingSearch:
             sleep(1)
             # Escribe el texto en el campo de búsqueda
             #logging.info(f"Search name or city: {search_name} {_now}")
-            generate_log(f"[+] Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
+            generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} |  Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
             search.send_keys(search_name)
             sleep(1)
             # Confirma con ENTER
@@ -104,41 +106,27 @@ class BookingSearch:
             try:
                 _current_url = driver.current_url
                 _url_performance = _current_url  # Inicialización
+                generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial2: {_current_url} {_now}", BotLog.BOOKING)
                 while True:
-                    generate_log(f"[+] Actualizando Datos: {search_name} - Date: {_now}", BotLog.BOOKING)
-                    if not check_finish_process():
-                        #logging.info(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...")
-                        generate_log(f"[+] {now()} Finish process, Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
-                        break
-                    if stop_event and stop_event.is_set():
-                        #logging.info(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...")
-                        generate_log(f"[+] {now()} Deteniendo ejecución por fin de rango horario. Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
+                    generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Actualizando Datos: {search_name} - Date: {_now}", BotLog.BOOKING)
+                    if not check_finish_process() or (stop_event and stop_event.is_set()):
+                        generate_log(f"[+] {now()} | {str(process.occupancy)} | {str(process.start)} | Deteniendo ejecución. Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
                         break
                     
-                    if "ss" not in _current_url:
-                        _url_performance = _url_performance + f"ss={search_name}"
+                    # Construir URL limpia en cada iteración
+                    params = {
+                        "ss": search_name,
+                        "group_adults": str(process.occupancy),
+                        "checkin": str(_date_elem.date()),
+                        "checkout": str(_now.date()),
+                        "no_rooms": 1,
+                        "group_children": 0
+                    }
 
-                    if "group_adults" in _current_url:
-                        #logging.info("[+] group_adults encontrado dentro de la url...")
-                        _url_performance = _current_url.replace("group_adults=2", "group_adults="+str(process.occupancy))#.replace(f"checkin={str(_date_elem.date())}", f"checkin={str(_date_elem.date())}").replace(f"checkout={_now.date()}", f"checkout={_now.date()}")
-                    else:
-                        _url_performance = _url_performance + f"&group_adults={str(process.occupancy)}"
-
-                    # Reemplazar las fechas en la URL usando expresiones regulares
-                    if "checkin" in _current_url:
-                        _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={str(_date_elem.date())}", _url_performance)
-                    else:
-                        _url_performance = _url_performance + f"&checkin={str(_date_elem.date())}"
-
-                    if "checkout" in _current_url:
-                        _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
-                    else:
-                        _url_performance = _url_performance + f"&checkout={_now.date()}"
-                    #else:
-                    #    logging.info("[+] group_adults no encontrado dentro de la url...")
-                    #    _url_performance = cls._url + f"ss={search_name}&checkin={str(_date_elem.date())}&checkout={str(_now.date())}&group_adults={str(process.occupancy)}&no_rooms=1&group_children=0"
+                    _url_performance = f"{cls._url}?{urlencode(params)}"
                     driver.get(_url_performance)
                     driver.implicitly_wait(15)
+                    generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url Performance: {_url_performance} {_now}", BotLog.BOOKING)
                     #logging.info(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url}")
 
                     #if process.type_proces == 1:
@@ -316,7 +304,7 @@ class BookingSearch:
 
                     try:
                         #logging.info(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
-                        generate_log(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}", BotLog.HISTORY)   
+                        generate_log(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} \n {driver.current_url} \n {_url_performance}", BotLog.HISTORY)   
                         for position in process.position:
                             cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name)
                     except Exception as e:
