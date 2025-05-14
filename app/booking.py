@@ -305,7 +305,7 @@ class BookingSearch:
                             
                             if total_search == 0:
                                 try:
-                                    cls.guardar_captura(driver, name=f"cap_booking_{str(process.occupancy)}_{str(process.start)}_{_now.date()}", descripcion=_url_performance+f"_{total_search}")
+                                    cls.guardar_captura(driver, name=f"cap_booking_{str(process.occupancy)}_{str(process.start)}_{_now.date()}", descripcion=_url_performance+f" | {total_search} | {str(process.occupancy)} | {str(process.start)}")
                                 except Exception as e:
                                     pass
                         except Exception as er2:
