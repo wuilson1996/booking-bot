@@ -79,7 +79,7 @@ class BookingSearch:
 
                 driver.get(cls._url)
                 driver.implicitly_wait(15)
-                driver.delete_all_cookies()
+                #driver.delete_all_cookies()
                 sleep(5)
                 #logging.info(driver.current_url)
                 generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial: {driver.current_url} {_now}", BotLog.BOOKING)
