@@ -113,10 +113,10 @@ class BookingSearch:
 
                 _url_performance = driver.current_url  # Inicialización
                 if check_params(_url_performance, "label"):
-                    generate_log(f"[✓] Parámetro 'label' detectado en intento {i+1}", BotLog.BOOKING)
+                    generate_log(f"[✓] Parámetro 'label' detectado en intento {i+1} | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
                     break
                 else:
-                    generate_log(f"[-] Parámetro 'label' no presente en intento {i+1}", BotLog.BOOKING)
+                    generate_log(f"[-] Parámetro 'label' no presente en intento {i+1} | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
             try:
                 generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial2: {_url_performance} {_now}", BotLog.BOOKING)
                 while True:
