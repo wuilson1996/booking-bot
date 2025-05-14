@@ -113,15 +113,26 @@ class BookingSearch:
                         generate_log(f"[+] {now()} | {str(process.occupancy)} | {str(process.start)} | Deteniendo ejecución. Search: {search_name} - Date: {_now}...", BotLog.BOOKING)
                         break
                     
-                    # Construir URL limpia en cada iteración
-                    params = {
-                        "ss": search_name,
-                        "group_adults": str(process.occupancy),
-                        "checkin": str(_date_elem.date()),
-                        "checkout": str(_now.date())
-                    }
+                    # Reemplazar o agregar los parámetros manualmente
+                    if "ss=" in _url_performance:
+                        _url_performance = re.sub(r"ss=[^&]*", f"ss={search_name}", _url_performance)
+                    else:
+                        _url_performance += f"&ss={search_name}"
 
-                    _url_performance = f"{cls._url}?{urlencode(params)}"
+                    if "group_adults=" in _url_performance:
+                        _url_performance = re.sub(r"group_adults=\d+", f"group_adults={process.occupancy}", _url_performance)
+                    else:
+                        _url_performance += f"&group_adults={process.occupancy}"
+
+                    if "checkin=" in _url_performance:
+                        _url_performance = re.sub(r"checkin=\d{4}-\d{2}-\d{2}", f"checkin={_date_elem.date()}", _url_performance)
+                    else:
+                        _url_performance += f"&checkin={_date_elem.date()}"
+
+                    if "checkout=" in _url_performance:
+                        _url_performance = re.sub(r"checkout=\d{4}-\d{2}-\d{2}", f"checkout={_now.date()}", _url_performance)
+                    else:
+                        _url_performance += f"&checkout={_now.date()}"
                     driver.get(_url_performance)
                     driver.implicitly_wait(15)
                     generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url Performance: {_url_performance} {_now}", BotLog.BOOKING)
@@ -159,7 +170,7 @@ class BookingSearch:
                                     except ElementClickInterceptedException:
                                         driver.execute_script("arguments[0].click();", check_start)
                                         sleep(2)
-                                    generate_log(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)
+                                    generate_log(f"[+] {now()} Click button start success: {_date_elem.date()} | {_now.date()} | S:{process.start} | O:{process.occupancy}", BotLog.HISTORY)
                                     #logging.info(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy}")
                                     break
                                     
@@ -180,7 +191,7 @@ class BookingSearch:
                                         except ElementClickInterceptedException:
                                             driver.execute_script("arguments[0].click();", check_start)
                                             sleep(2)
-                                        generate_log(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)
+                                        generate_log(f"[+] {now()} Click button start success: {_date_elem.date()} | {_now.date()} | S:{process.start} | O:{process.occupancy}", BotLog.HISTORY)
                                         #logging.info(f"[+] {now()} Click button start success - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                         break
                                         
@@ -214,7 +225,7 @@ class BookingSearch:
                                         logging.info(f"[-] {now()} Error al hacer click, intentando con JavaScript: {e}")
                                         driver.execute_script("arguments[0].click();", check_hotel)
                                         sleep(2)
-                                    generate_log(f"[+] {now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)   
+                                    generate_log(f"[+] {now()} Click button hoteles success: {_date_elem.date()} | {_now.date()} | S:{process.start} | O:{process.occupancy}", BotLog.HISTORY)   
                                     #logging.info(f"[+] {now()} Click button hoteles success: {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                                     break
                         except Exception as e:
@@ -243,7 +254,7 @@ class BookingSearch:
                             except ElementClickInterceptedException as e2:
                                 driver.execute_script("arguments[0].click();", check_price)
                                 sleep(2)
-                            generate_log(f"[+] {now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}", BotLog.HISTORY)   
+                            generate_log(f"[+] {now()} Click button price success: {_date_elem.date()} | {_now.date()} | S:{process.start} | O:{process.occupancy}", BotLog.HISTORY)   
                             #logging.info(f"[+] {now()} Click button price success: - {_date_elem.date()} - {_now.date()}  - S:{process.start} - O:{process.occupancy}")
                         except NoSuchElementException as e:
                             logging.info(f"[-] {now()} Error in button price, not fount")
@@ -302,7 +313,7 @@ class BookingSearch:
 
                     try:
                         #logging.info(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} - {driver.current_url} - {_url_performance}")
-                        generate_log(f"[-] {now()} - {search_name} - {_date_elem.date()} - {_now.date()} - S:{process.start} - O:{process.occupancy} \n {driver.current_url} \n {_url_performance}", BotLog.HISTORY)   
+                        generate_log(f"[-] {now()} | {search_name} | {_date_elem.date()} | {_now.date()} | S:{process.start} | O:{process.occupancy} | {driver.current_url} | {_url_performance}", BotLog.HISTORY)   
                         for position in process.position:
                             cls.get_data_to_text(items[position], _date_elem, _now, process.occupancy, position, total_search, process, search_name)
                     except Exception as e:
