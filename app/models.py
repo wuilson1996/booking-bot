@@ -303,6 +303,7 @@ class TaskExecute(models.Model):
     second = models.IntegerField(default=0)
     time_sleep = models.FloatField(default=0.5)
     time_execute = models.FloatField(default=90)
+    minute_notify = models.IntegerField(default=30)
 
     def __str__(self):
         return str(self.hour)+" "+str(self.minute)+" "+str(self.second)
@@ -418,3 +419,59 @@ def generate_log(description, option):
         except Exception as e:
             print(f"[-] Error create BotLog: {e}")
 
+class EmailSMTP(models.Model):
+    email = models.CharField(max_length = 100)
+    password = models.CharField(max_length = 100)
+    host = models.CharField(max_length = 100)
+    port = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.email
+    
+    @classmethod
+    def get_email(cls):
+        return [
+            {
+                'pk':i.pk,
+                "email":i.email,
+                "host":i.host,
+                "port":i.port
+            }
+            for i in cls.objects.all()
+        ]
+
+class EmailSend(models.Model):
+    email = models.CharField(max_length=512)
+
+    def __str__(self):
+        return str(self.email)
+
+class MessageEmail(models.Model):
+    asunto = models.CharField(max_length = 256)
+    message = models.TextField()
+    CHECK_EMAIL = "CheckEmail"
+    SEND_FILE = "SendFile"
+    NOTIFY = "Notify"
+    TYPE = (
+        (CHECK_EMAIL, "CheckEmail"),
+        (SEND_FILE, "SendFile"),
+        (NOTIFY, "Notify"),
+    )
+    type_message = models.TextField(choices=TYPE, default=NOTIFY)
+    email = models.ManyToManyField(EmailSend)
+
+    def __str__(self):
+        return self.asunto
+
+
+    @classmethod
+    def get_email(cls):
+        return [
+            {
+                'pk':i.pk,
+                "asunto":i.asunto,
+                "message":i.message,
+                "type_message":i.type_message,
+            }
+            for i in cls.objects.all()
+        ]

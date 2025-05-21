@@ -3,9 +3,11 @@
 import time
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
 from .models import *
 from django.db import transaction
 import logging
+from .notification import *
 
 scheduler = BackgroundScheduler()
 
@@ -182,7 +184,7 @@ def tarea_diaria():
         logging.info(f"Error al ejecutar la función: {now()}: {e}")
 
 def iniciar_scheduler():
-    time.sleep(5)
+    #time.sleep(5)
     if not scheduler.running:
         scheduler.start()
         generate_log(f"[+]Scheduler iniciado: {now()}", BotLog.HISTORY)
@@ -192,9 +194,9 @@ def iniciar_scheduler():
         generate_log(f"[-]No hay configuración de ejecución para el scheduler", BotLog.HISTORY)
         return
 
-    if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
-        generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
-        return
+    # if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
+    #     generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
+    #     return
 
     scheduler.add_job(
         tarea_diaria,
@@ -206,3 +208,14 @@ def iniciar_scheduler():
         replace_existing=True
     )
     generate_log(f"[+]Tarea programada diaria a las {task_execute.hour}:{task_execute.minute}:{task_execute.second}", BotLog.HISTORY)
+
+    # ────────────────────── 3. NUEVA tarea cada 30 min ─────────────────────
+    #   Ejecutará send_notification inmediatamente y luego cada 30 minutos.
+    scheduler.add_job(
+        notification_programer,
+        trigger=IntervalTrigger(minutes=task_execute.minute_notify, start_date=datetime.now()),
+        id='notificacion_30min',
+        replace_existing=True,
+        max_instances=1          # evita solapamientos
+    )
+    generate_log("[+] Tarea 'send_notification' programada cada 30 minutos", BotLog.HISTORY)

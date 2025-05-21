@@ -21,7 +21,7 @@ class AvailWithDateAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
 class CantAvailSuitesFeriaAdmin(admin.ModelAdmin):
-    search_fields = ["id"]
+    search_fields = ["id", "avail_suites_feria__date_avail", "type_avail", "avail"]
 
 class PriceAdmin(admin.ModelAdmin):
     search_fields = ["id", "price", "date_from"]
@@ -91,3 +91,6 @@ admin.site.register(ScreenshotLog)
 admin.site.register(HourRange)
 admin.site.register(Day)
 admin.site.register(MessageName)
+admin.site.register(EmailSMTP)
+admin.site.register(EmailSend)
+admin.site.register(MessageEmail)

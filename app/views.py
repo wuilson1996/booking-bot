@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import locale
 import threading
-from datetime import datetime as dt
 import time
 import subprocess
 from .booking import *
@@ -15,6 +14,7 @@ from .suitesferia import SuitesFeria
 from .fee import FeeTask
 from django.utils.timezone import localtime
 from .serializer import *
+from .generate_sample_date import *
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -32,28 +32,6 @@ def reset_task():
         t.delete()
 
 threading.Thread(target=reset_task).start()
-
-def generate_date_with_month(_date:str):
-    ___date_from = dt(
-        year=int(_date.split("-")[0]),
-        month=int(_date.split("-")[1]),
-        day=int(_date.split("-")[2])
-    )
-    return ___date_from.strftime('%d')+"-"+___date_from.strftime('%B')
-
-def generate_date_with_month_time(_date:str):
-    _time = _date.split(" ")[1].split(".")[0]
-    _date = _date.split(" ")[0]
-    meses = [
-        "enero", "febrero", "marzo", "abril", "mayo", "junio",
-        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-    ]
-    ___date_from = dt(
-        year=int(_date.split("-")[0]),
-        month=int(_date.split("-")[1]),
-        day=int(_date.split("-")[2])
-    )
-    return f"{___date_from.day}-{meses[___date_from.month - 1]} {_time[:-3]}"
     
 def active_process_sf():
     _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
@@ -975,6 +953,34 @@ def index(request):
                 elif int(ocp) == 5:
                     bookings[str(_date_from.date())][int(ocp)]["totalFeria1"] += cpwd.avail_4
 
+                #Disponibilidad 4 dias atras
+                copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
+                try:
+                    cpwd = copy_avail_with_name[3]
+                except Exception as ecpwd:
+                    cpwd = CopyAvailWithDaySF()
+                    cpwd.avail_1 = 0
+                    cpwd.avail_2 = 0
+                    cpwd.avail_3 = 0
+                    cpwd.avail_4 = 0
+                    cpwd.created = str(now())
+
+                if "totalFeria4" not in bookings[str(_date_from.date())][int(ocp)].keys():
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria4"] = 0
+
+                if int(ocp) == 2:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria4"] += cpwd.avail_1
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaM4"] = cpwd.avail_1
+
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria4"] += cpwd.avail_2
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeriaD4"] = cpwd.avail_2
+
+                elif int(ocp) == 3:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria4"] += cpwd.avail_3
+
+                elif int(ocp) == 5:
+                    bookings[str(_date_from.date())][int(ocp)]["totalFeria4"] += cpwd.avail_4
+
                 #Disponibilidad 7 dias atras
                 copy_avail_with_name = CopyAvailWithDaySF.objects.filter(avail_suites_feria = avail_sf).order_by("-id")[:7]
                 try:
@@ -1271,25 +1277,45 @@ def index(request):
                     bookings[str(_date_from.date())][2]["media_name_10"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.1)
 
             # media + %
+            if bookings[str(_date_from.date())][2]["media_total"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][2]["media_total"] / bookings[str(_date_from.date())][2]["media_cant"])
+                if bookings[str(_date_from.date())][2]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][2]["media_total7"] / bookings[str(_date_from.date())][2]["media_cant7"])
+                    valueRest = ___media_total - ___media_total7
+                    bookings[str(_date_from.date())][2]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            # media + %
             if bookings[str(_date_from.date())][3]["media_total"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"])
                 if "media_name_50" not in bookings[str(_date_from.date())][3].keys():
-                    bookings[str(_date_from.date())][3]["media_name_50"] = round((bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"]) * 1.5)
+                    bookings[str(_date_from.date())][3]["media_name_50"] = round(___media_total * 1.5)
                 if "media_name_40" not in bookings[str(_date_from.date())][3].keys():
-                    bookings[str(_date_from.date())][3]["media_name_40"] = round((bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"]) * 1.4)
+                    bookings[str(_date_from.date())][3]["media_name_40"] = round(___media_total * 1.4)
                 if "media_name_30" not in bookings[str(_date_from.date())][3].keys():
-                    bookings[str(_date_from.date())][3]["media_name_30"] = round((bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"]) * 1.3)
+                    bookings[str(_date_from.date())][3]["media_name_30"] = round(___media_total * 1.3)
+                
+                if bookings[str(_date_from.date())][3]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][3]["media_total7"] / bookings[str(_date_from.date())][3]["media_cant7"])
+                    valueRest = ___media_total - ___media_total7
+                    bookings[str(_date_from.date())][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
 
             # media + %
             if bookings[str(_date_from.date())][5]["media_total"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"])
                 if "media_name_60" not in bookings[str(_date_from.date())][5].keys():
-                    bookings[str(_date_from.date())][5]["media_name_60"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.6)
+                    bookings[str(_date_from.date())][5]["media_name_60"] = round(___media_total * 1.6)
                 if "media_name_50" not in bookings[str(_date_from.date())][5].keys():
-                    bookings[str(_date_from.date())][5]["media_name_50"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.5)
+                    bookings[str(_date_from.date())][5]["media_name_50"] = round(___media_total * 1.5)
                 if "media_name_40" not in bookings[str(_date_from.date())][5].keys():
-                    bookings[str(_date_from.date())][5]["media_name_40"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.4)
+                    bookings[str(_date_from.date())][5]["media_name_40"] = round(___media_total * 1.4)
                 if "media_name_30" not in bookings[str(_date_from.date())][5].keys():
-                    bookings[str(_date_from.date())][5]["media_name_30"] = round((bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"]) * 1.3)
+                    bookings[str(_date_from.date())][5]["media_name_30"] = round(___media_total * 1.3)
 
+                if bookings[str(_date_from.date())][5]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][5]["media_total7"] / bookings[str(_date_from.date())][5]["media_cant7"])
+                    valueRest = ___media_total - ___media_total7
+                    bookings[str(_date_from.date())][5]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+                    #print(___media_total, ___media_total7)
             # media entre la zona y actual.
             if "media_name_hotel" in bookings[str(_date_from.date())][2].keys() and "media_total" in bookings[str(_date_from.date())][2].keys():
                 if "media_general" not in bookings[str(_date_from.date())][2].keys():
@@ -1303,12 +1329,43 @@ def index(request):
             if "total_search" in bookings[str(_date_from.date())][2].keys() and "total_search7" in bookings[str(_date_from.date())][2].keys():
                 bookings[str(_date_from.date())][2]["total_search_rest"] = int(float(bookings[str(_date_from.date())][2]["total_search"]) - float(bookings[str(_date_from.date())][2]["total_search7"]))
 
+            # disponibilidad suites feria. resta de dia actual y 7 dias. 
+            # tambien dia actual y disponiblidad manual.
             avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
             bookings[str(_date_from.date())]["availWithDate"] = 0
             if avail_with_date:
                 bookings[str(_date_from.date())]["availWithDate"] = int(avail_with_date.avail)
+            
+            # dia actual y disponibilidad manual.
             valueRest = bookings[str(_date_from.date())]["totalFeria"] - bookings[str(_date_from.date())]["availWithDate"]
             bookings[str(_date_from.date())]["availWithDateRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            # disponibilidad suites feria actual y 7 dias.
+            valueRest = bookings[str(_date_from.date())][2]["totalFeria"] - bookings[str(_date_from.date())][2]["totalFeria7"]
+            bookings[str(_date_from.date())][2]["totalFeriaRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            valueRest = bookings[str(_date_from.date())][2]["suiteFeria"] - bookings[str(_date_from.date())][2]["totalFeriaD7"]
+            bookings[str(_date_from.date())][2]["totalFeriaDRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            valueRest = bookings[str(_date_from.date())][2]["suiteFeria1"] - bookings[str(_date_from.date())][2]["totalFeriaM7"]
+            bookings[str(_date_from.date())][2]["totalFeriaMRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            valueRest = bookings[str(_date_from.date())][3]["totalFeria"] - bookings[str(_date_from.date())][3]["totalFeria7"]
+            bookings[str(_date_from.date())][3]["totalFeriaRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            valueRest = bookings[str(_date_from.date())][5]["totalFeria"] - bookings[str(_date_from.date())][5]["totalFeria7"]
+            bookings[str(_date_from.date())][5]["totalFeriaRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            # precio de suites feria, dia actual menos hace 7 dias.
+            valueRest = int(bookings[str(_date_from.date())][2]["priceSuitesFeria"]) - bookings[str(_date_from.date())][2]["priceSuitesFeria7"]
+            bookings[str(_date_from.date())][2]["priceSuitesFeriaRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            valueRest = int(bookings[str(_date_from.date())][3]["priceSuitesFeria"]) - bookings[str(_date_from.date())][3]["priceSuitesFeria7"]
+            bookings[str(_date_from.date())][3]["priceSuitesFeriaRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            valueRest = int(bookings[str(_date_from.date())][5]["priceSuitesFeria"]) - bookings[str(_date_from.date())][5]["priceSuitesFeria7"]
+            bookings[str(_date_from.date())][5]["priceSuitesFeriaRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
             if "range_bt" in request.POST:
                 if request.POST["range_bt"] == "2":
                     if valueRest != 0:
@@ -1318,7 +1375,7 @@ def index(request):
                         del bookings[str(_date_from.date())]
 
             _date_from += datetime.timedelta(days=1)
-
+            #break
         _date_process =  BotRange.objects.filter(bot_setting=BotSetting.objects.filter(name = BotSetting.BOT_DEFAULT).last()).first()
         bot_auto = BotAutomatization.objects.last()
         _bot_setting = BotSetting.objects.filter(name = BotSetting.BOT_AUTO).last()

@@ -219,26 +219,26 @@
             <tbody>
               {% for date, value in bookings.items %}
               <tr class="border border-dark">
-                <td id="temp-bg{{date}}" style="width: 40px;" class="text-sm m-1 p-1 {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
+                <td id="temp-bg{{date}}" style="width: 40px;" class="text-sm m-0 p-0 {% if 'temporadaByDay' in value %}{{value.temporadaByDay.bgColor}}{% else %}bg-success{% endif %} {% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %} text-center">
                   <div class="col-md-2 bg-secondary" style="width: 200px;">
                     <table class="table table-flush text-white table-sm m-0 p-0">
                       <tbody>
                         <tr>
-                          <td class="text-sm m-1 p- border border-white">
+                          <td class="text-sm m-0 p-0 border border-white">
                             <div class="d-flex flex-column align-items-center">
                               <h2 class="m-0 text-white text-bold">
                                 {{value.2.total_search}}
                               </h2>
                             </div>
                           </td>
-                          <td class="text-sm m-1 p-1 border border-white">
+                          <td class="text-sm m-0 p-0 border border-white">
                             <div class="d-flex flex-column align-items-center">
                               <h4 class="m-0 text-white text-bold">
                                 {{value.2.total_search1}}
                               </h4>
                             </div>
                           </td>
-                          <td class="text-sm m-1 p-1 border border-white">
+                          <td class="text-sm m-0 p-0 border border-white">
                             <div class="d-flex flex-column align-items-center">
                               <h4 class="m-0 text-white text-bold">
                                 {{value.2.total_search7}}
@@ -269,11 +269,11 @@
                       </tbody>
                     </table>
                   </div>
-                  <h4 class="text-white my-4">{{value.date_from}}</h4>
-                  <h4 class="text-white my-4">{{value.day}}</h4>
+                  <h4 class="text-white my-2">{{value.date_from}}</h4>
+                  <h4 class="text-white my-2">{{value.day}}</h4>
                   <hr>
                   <h3 id="temp-n{{date}}" class="{% if 'temporadaByDay' in value %}{{value.temporadaByDay.textColor}}{% else %}text-white{% endif %}">{{value.temporadaByDay.number}}</h3>
-                  <div class="input-group mb-3">
+                  <div class="input-group mb-1">
                     <select id="temp{{date}}" class="form-control form-control-sm" value="{{value.temporadaByDay.number}}">
                       <option value="">Seleccionar</option>
                       <option value="0" {% if value.temporadaByDay.number == '0' %}selected{% endif %}>Temporada 0</option>
@@ -286,18 +286,17 @@
                     <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
                   </div>
                   <hr>
-                  <h4 class="text-white my-4" id="buttonFeeUpgrade{{date}}">...</h4>
+                  <h4 class="text-white my-2" id="buttonFeeUpgrade{{date}}">...</h4>
                   <button class="btn btn-white" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
                   <hr>
-                  <h1 class="text-white my-4 bg-dark" id="temp-t{{date}}">{{value.totalFeria}}</h1>
-                  <div class="input-group mb-3">
+                  <h1 class="text-white my-2 bg-dark" id="temp-t{{date}}">{{value.totalFeria}}</h1>
+                  <div class="input-group mb-0">
                     <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
                     <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
                   </div>
                   <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-4 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
                   <hr>
                   <span id="temp-update{{date}}">{{value.updated}}</span>
-                  </br>
                 </td>
                 <td class="m-1 p-1">
                   <table class="table table-flush text-white table-sm m-1 p-1" id="bgtable{{date}}2" style="background-color: {{value.2.messageDay.bg_color}};"> <!-- Change backgroud -->
@@ -325,7 +324,7 @@
                               </span>
                             </div> -->
                             <div class="col-md-12">
-                              <div class="input-group mb-3">
+                              <div class="input-group mb-0">
                                 <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="saveEvent('{{date}}', 2)">Guardar</button>
                                 <textarea class="form-control form-control-lg text-lg" placeholder="Fijar evento" rows="2" aria-describedby="button-addon7" id="textEvent{{date}}2">{{value.2.eventByDay.text}}</textarea>
                               </div>
@@ -351,33 +350,35 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-dark">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria" in value.2 %}{{value.2.priceSuitesFeria}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.2.priceSuitesFeriaRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "priceSuitesFeriaRest" in value.2 %}{{value.2.priceSuitesFeriaRest.value}}{% else %}0{% endif %}
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria1" in value.2 %}{{value.2.priceSuitesFeria1}}{% else %}0{% endif %}
                                     </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria4" in value.2 %}{{value.2.priceSuitesFeria4}}{% else %}0{% endif %}
                                     </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria7" in value.2 %}{{value.2.priceSuitesFeria7}}{% else %}0{% endif %}
@@ -391,29 +392,45 @@
                             <tbody>
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                  <div class="d-flex flex-column align-items-start">
+                                    <h6 class="m-0 text-white text-bold">
+                                      T
+                                    </h6>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 bg-dark border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h2 class="m-0 text-white text-bold">
                                       {% if "totalFeria" in value.2 %}{{value.2.totalFeria}}{% else %}0{% endif %}
                                     </h2>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h2 class="m-0 text-white text-bold">0</h2>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.2.totalFeriaRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h2 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaRest" in value.2 %}{{value.2.totalFeriaRest.value}}{% else %}0{% endif %}
+                                    </h2>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
                                       {% if "totalFeria1" in value.2 %}{{value.2.totalFeria1}}{% else %}0{% endif %}
-                                    </h2>
+                                    </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h2 class="m-0 text-white text-bold">
+                                    <h4 class="m-0 text-white text-bold">
+                                      {% if "totalFeria4" in value.2 %}{{value.2.totalFeria4}}{% else %}0{% endif %}
+                                    </h4>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
                                       {% if "totalFeria7" in value.2 %}{{value.2.totalFeria7}}{% else %}0{% endif %}
-                                    </h2>
+                                    </h4>
                                   </div>
                                 </td>
                               </tr>
@@ -425,9 +442,9 @@
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
                                   <div class="d-flex flex-column align-items-start">
-                                    <h3 class="m-0 text-white text-bold">
-                                      D:
-                                    </h3>
+                                    <h6 class="m-0 text-white text-bold">
+                                      D
+                                    </h6>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -437,23 +454,32 @@
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.2.totalFeriaDRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaDRest" in value.2 %}{{value.2.totalFeriaDRest.value}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
                                       {% if "totalFeriaD1" in value.2 %}{{value.2.totalFeriaD1}}{% else %}0{% endif %}
-                                    </h3>
+                                    </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">
+                                    <h4 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaD4" in value.2 %}{{value.2.totalFeriaD4}}{% else %}0{% endif %}
+                                    </h4>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
                                       {% if "totalFeriaD7" in value.2 %}{{value.2.totalFeriaD7}}{% else %}0{% endif %}
-                                    </h3>
+                                    </h4>
                                   </div>
                                 </td>
                               </tr>
@@ -464,9 +490,9 @@
                               <tr>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
                                   <div class="d-flex flex-column align-items-start">
-                                    <h3 class="m-0 text-white text-bold">
-                                      M:
-                                    </h3>
+                                    <h6 class="m-0 text-white text-bold">
+                                      M
+                                    </h6>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 bg-dark border border-white">
@@ -476,31 +502,40 @@
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
-                                  <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
-                                  </div>
-                                </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.2.totalFeriaMRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaMRest" in value.2 %}{{value.2.totalFeriaMRest.value}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
                                       {% if "totalFeriaM1" in value.2 %}{{value.2.totalFeriaM1}}{% else %}0{% endif %}
-                                    </h3>
+                                    </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">
+                                    <h4 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaM4" in value.2 %}{{value.2.totalFeriaM4}}{% else %}0{% endif %}
+                                    </h4>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
                                       {% if "totalFeriaM7" in value.2 %}{{value.2.totalFeriaM7}}{% else %}0{% endif %}
-                                    </h3>
+                                    </h4>
                                   </div>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                         </td>
-                        <td class="text-sm m-1 p-1">
-                          <div class="input-group mb-3">
+                        <td class="text-sm m-0 p-1">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon2" onclick="saveMessage('{{date}}', 2, '{{date}}2')">
                               Guardar
                               <br><span id="textDate{{date}}2" class="text-black text-lg m-2 text-xs">{{value.2.messageDay.updated}}</span>
@@ -513,21 +548,21 @@
                             </select>
                           </div>
                           <!---->
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
                               Guardar <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
-                            <h2 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}2">000</h2>
+                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}2">000</h3>
                           </div>
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
                               Guardar <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
-                            <h2 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}1">000</h2>
+                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}1">000</h3>
                           </div>
                           <!---->
                         </td>
@@ -544,16 +579,16 @@
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white text-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-bold">
+                                    <h3 class="m-0 text-bold text-white">
                                       0
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-bold">
+                                    <h3 class="m-0 text-bold text-white">
                                       0
                                     </h3>
                                   </div>
@@ -580,7 +615,7 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{% if "media_total" in value.2 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %}</h3>
                                     <span 
@@ -590,38 +625,38 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white bg-success">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.2.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">0</h3>
+                                    <h3 class="m-0 text-white">{% if "media_totalRest" in value.2 %}{{value.2.media_totalRest.value}}{% else %}0{% endif %}</h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white">{% if "media_total1" in value.2 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %}</h4>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 10px;">
-                                      -1D
+                                      -1
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white">{% if "media_total4" in value.2 %}{% widthratio value.2.media_total4 value.2.media_cant4 1 %}{% else %}0{% endif %}</h4>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 10px;">
-                                      -4D
+                                      -4
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white">{% if "media_total7" in value.2 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</h4>
                                     <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 10px;">
-                                      -7D
+                                      -7
                                     </span>
                                   </div>
                                 </td>
@@ -631,7 +666,7 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-0 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">
                                       <span 
@@ -803,35 +838,35 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1">
-                                  <div class="d-flex justify-content-between">
-                                    <span class="h4 text-bold text-white m-0">ZEN: {% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span>
-                                    <span class="h4 text-bold text-white m-0">ECO: {% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span>
+                                <td class="text-sm m-0 p-0">
+                                  <div class="d-flex justify-content-between border">
+                                    <span class="h6 text-bold text-white m-0">ZEN: <span class="h5 text-bold text-white m-0">{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span></span>
+                                    <span class="h6 text-bold text-white m-0">ECO: <span class="h5 text-bold text-white m-0">{% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
-                                  <div class="d-flex justify-content-between">
-                                    <span class="h4 text-bold text-white m-0">SIL: {% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span>
-                                    <span class="h4 text-bold text-white m-0">ILU: {% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span>
+                                  <div class="d-flex justify-content-between border">
+                                    <span class="h6 text-bold text-white m-0">SIL: <span class="h5 text-bold text-white m-0">{% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span></span>
+                                    <span class="h6 text-bold text-white m-0">ILU: <span class="h5 text-bold text-white m-0">{% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
-                                  <div class="d-flex justify-content-between">
-                                    <span class="h4 text-bold text-white m-0">AXO: {% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span>
-                                    <span class="h4 text-bold text-white m-0">SER: {% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span>
+                                  <div class="d-flex justify-content-between border">
+                                    <span class="h6 text-bold text-white m-0">AXO: <span class="h5 text-bold text-white m-0">{% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span></span>
+                                    <span class="h6 text-bold text-white m-0">SER: <span class="h5 text-bold text-white m-0">{% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
-                                  <div class="d-flex justify-content-between">
-                                    <span class="h4 text-bold text-white m-0">BOS: {% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span>
-                                    <span class="h4 text-bold text-white m-0">EXE: {% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span>
+                                  <div class="d-flex justify-content-between border">
+                                    <span class="h6 text-bold text-white m-0">BOS: <span class="h5 text-bold text-white m-0">{% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span></span>
+                                    <span class="h6 text-bold text-white m-0">EXE: <span class="h5 text-bold text-white m-0">{% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
-                                  <div class="d-flex justify-content-between">
-                                    <span class="h4 text-bold text-white m-0">DWO: {% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span>
-                                    <span class="h4 text-bold text-white m-0">OSU: {% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span>
+                                  <div class="d-flex justify-content-between border">
+                                    <span class="h6 text-bold text-white m-0">DWO: <span class="h5 text-bold text-white m-0">{% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span></span>
+                                    <span class="h6 text-bold text-white m-0">OSU: <span class="h5 text-bold text-white m-0">{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
-                                  <div class="d-flex justify-content-between">
-                                    <span class="h4 text-bold text-white m-0">SEN: {% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span>
-                                    <span class="h4 text-bold text-white m-0">TOR: {% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span>
+                                  <div class="d-flex justify-content-between border">
+                                    <span class="h6 text-bold text-white m-0">SEN: <span class="h5 text-bold text-white m-0">{% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span></span>
+                                    <span class="h6 text-bold text-white m-0">TOR: <span class="h5 text-bold text-white m-0">{% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                 </td>
@@ -843,16 +878,16 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0">
-                                  <span class="h6 text-bold text-white m-1">50%: {{value.2.media_name_50}}</span>
+                                <td class="text-sm m-0 p-0 border">
+                                  <span class="h6 text-bold text-white m-0">50%:{{value.2.media_name_50}}</span>
                                   <br>
-                                  <span class="h6 text-bold text-white m-1">40%: {{value.2.media_name_40}}</span>
+                                  <span class="h6 text-bold text-white m-0">40%:{{value.2.media_name_40}}</span>
                                   <br>
-                                  <span class="h6 text-bold text-white m-1">30%: {{value.2.media_name_30}}</span>
+                                  <span class="h6 text-bold text-white m-0">30%:{{value.2.media_name_30}}</span>
                                   <br>
-                                  <span class="h6 text-bold text-white m-1">20%: {{value.2.media_name_20}}</span>
+                                  <span class="h6 text-bold text-white m-0">20%:{{value.2.media_name_20}}</span>
                                   <br>
-                                  <span class="h6 text-bold text-white m-1">10%: {{value.2.media_name_10}}</span>
+                                  <span class="h6 text-bold text-white m-0">10%:{{value.2.media_name_10}}</span>
                                 </td>
                               </tr>
                             </tbody>
@@ -926,26 +961,35 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-dark">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria" in value.3 %}{{value.3.priceSuitesFeria}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.3.priceSuitesFeriaRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "priceSuitesFeriaRest" in value.3 %}{{value.3.priceSuitesFeriaRest.value}}{% else %}0{% endif %}
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria1" in value.3 %}{{value.3.priceSuitesFeria1}}{% else %}0{% endif %}
                                     </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "priceSuitesFeria4" in value.3 %}{{value.3.priceSuitesFeria4}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria7" in value.3 %}{{value.3.priceSuitesFeria7}}{% else %}0{% endif %}
@@ -965,19 +1009,28 @@
                                     </h2>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.3.totalFeriaRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaRest" in value.3 %}{{value.3.totalFeriaRest.value}}{% else %}0{% endif %}
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h2 class="m-0 text-white text-bold">
                                       {% if "totalFeria1" in value.3 %}{{value.3.totalFeria1}}{% else %}0{% endif %}
                                     </h2>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeria4" in value.3 %}{{value.3.totalFeria4}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h2 class="m-0 text-white text-bold">
                                       {% if "totalFeria7" in value.3 %}{{value.3.totalFeria7}}{% else %}0{% endif %}
@@ -989,7 +1042,7 @@
                           </table>
                         </td>
                         <td class="text-sm m-1 p-1">
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 3, '{{date}}3')">
                               Guardar
                               <br><span id="textDate{{date}}3" class="text-xs text-black m-2">{{value.3.messageDay.updated}}</span>
@@ -1001,21 +1054,21 @@
                               {% endfor %}
                             </select>
                           </div>
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 3, '{{date}}3')">
                               Guardar <i id="iconStatus{{date}}3" class="{% if not value.3.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}3">{{value.3.tarifa.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa.price}}" aria-describedby="button-addon3" id="price{{date}}3">
-                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}3">000</h2>
+                            <h3 class="m-0 text-white bg-success p-1" id="recomendation{{date}}3">000</h3>
                           </div>
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon3" onclick="savePrice('{{date}}', 4, '{{date}}4')">
                               Guardar <i id="iconStatus{{date}}4" class="{% if not value.3.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}4">{{value.3.tarifa1.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.3.tarifa1.price}}" aria-describedby="button-addon3" id="price{{date}}4">
-                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}4">000</h2>
+                            <h3 class="m-0 text-white bg-success p-1" id="recomendation{{date}}4">000</h3>
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.3 %}{{value.3.suiteFeria}}{% else %}-{% endif %} | 
@@ -1024,44 +1077,83 @@
                           </h4> -->
                         </td>
                         <td class="text-sm tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <table class="m-1 p-1">
+                          <table class="m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white text-bold">
                                       {% if "media_total03" in value.5 %}{% widthratio value.3.media_total03 value.3.media_cant03 1 %}{% else %}0{% endif %}
                                     </h5>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      PM3*
+                                    </span> -->
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_total" in value.5 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %}
+                                      {% if "media_total" in value.3 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %}
+                                    </h3>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      PM4*
+                                    </span> -->
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-1 border border-white {% if value.3.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "media_totalRest" in value.3 %}{{value.3.media_totalRest.value}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total1" in value.5 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %}
+                                      {% if "media_total1" in value.3 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %}
                                     </h4>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -1
+                                    </span> -->
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total7" in value.5 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
+                                      {% if "media_total4" in value.3 %}{% widthratio value.3.media_total4 value.3.media_cant4 1 %}{% else %}0{% endif %}
                                     </h4>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -4
+                                    </span> -->
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-1 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
+                                      {% if "media_total7" in value.3 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
+                                    </h4>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -7
+                                    </span> -->
                                   </div>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.3.4.0.price}}</h3>
                                     <span 
@@ -1071,7 +1163,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.3.4.1.price}}</h5>
                                     <span 
@@ -1081,7 +1173,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.3.4.2.price}}</h5>
                                     <span 
@@ -1091,7 +1183,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0">{{value.3.4.3.price}}</h5>
                                     <span 
@@ -1101,7 +1193,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0">{{value.3.4.4.price}}</h3>
                                     <span 
@@ -1111,7 +1203,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0">{{value.3.4.5_10}}</h3>
                                     <span 
@@ -1121,7 +1213,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 bg-danger border border-white">
+                                <td class="text-sm m-0 p-1 bg-danger border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.3.4.9.price}}</h3>
                                     <span 
@@ -1135,10 +1227,10 @@
                             </tr>
                             </tbody>
                           </table>
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h2 class="m-0 text-white">{{value.3.3.0.price}}</h2>
                                     <span 
@@ -1148,7 +1240,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.3.3.1.price}}</h5>
                                     <span 
@@ -1158,7 +1250,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.3.3.2.price}}</h5>
                                     <span 
@@ -1168,7 +1260,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.3.3.3.price}}</h5>
                                     <span 
@@ -1178,7 +1270,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.3.3.4.price}}</h3>
                                     <span 
@@ -1193,10 +1285,10 @@
                           </table>
                         </td>
                         <td class="text-sm bg-warning text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de triples" onclick="window.location.href='/booking?date={{date}}&occupancy=3'">
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1">
+                                <td class="text-sm m-0 p-0 border">
                                   <span class="h4 text-bold text-white">TOR: {% if 'priceTOR' in value.3 %}{{value.3.priceTOR}}{% else %}0{% endif %}</span><br>
                                   <span class="h4 text-bold text-white">BAR: {% if 'priceBAR' in value.3 %}{{value.3.priceBAR}}{% else %}0{% endif %}</span>
                                 </td>
@@ -1309,26 +1401,35 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-dark">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria" in value.5 %}{{value.5.priceSuitesFeria}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.5.priceSuitesFeriaRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "priceSuitesFeriaRest" in value.5 %}{{value.5.priceSuitesFeriaRest.value}}{% else %}0{% endif %}
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria1" in value.5 %}{{value.5.priceSuitesFeria1}}{% else %}0{% endif %}
                                     </h4>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "priceSuitesFeria4" in value.5 %}{{value.5.priceSuitesFeria4}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "priceSuitesFeria7" in value.5 %}{{value.5.priceSuitesFeria7}}{% else %}0{% endif %}
@@ -1348,23 +1449,32 @@
                                     </h2>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white bg-success">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.5.totalFeriaRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white text-bold">0</h3>
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeriaRest" in value.5 %}{{value.5.totalFeriaRest.value}}{% else %}0{% endif %}
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h2 class="m-0 text-white text-bold">
+                                    <h3 class="m-0 text-white text-bold">
                                       {% if "totalFeria1" in value.5 %}{{value.5.totalFeria1}}{% else %}0{% endif %}
-                                    </h2>
+                                    </h3>
                                   </div>
                                 </td>
-                                <td class="text-sm m-0 p-0 bg-dark border border-white">
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h2 class="m-0 text-white text-bold">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "totalFeria4" in value.5 %}{{value.5.totalFeria4}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-0 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
                                       {% if "totalFeria7" in value.5 %}{{value.5.totalFeria7}}{% else %}0{% endif %}
-                                    </h2>
+                                    </h3>
                                   </div>
                                 </td>
                               </tr>
@@ -1372,7 +1482,7 @@
                           </table>
                         </td>
                         <td class="text-sm m-1 p-1">
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon6" onclick="saveMessage('{{date}}', 5, '{{date}}5')">
                               Guardar
                               <br><span id="textDate{{date}}5" class="text-xs m-2 text-black">{{value.5.messageDay.updated}}</span>
@@ -1384,21 +1494,21 @@
                               {% endfor %}
                             </select>
                           </div>
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 5, '{{date}}5')">
                               Guardar<i id="iconStatus{{date}}5" class="{% if not value.5.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}5">{{value.5.tarifa.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg 1-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa.price}}" aria-describedby="button-addon5" id="price{{date}}5">
-                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}5">000</h2>
+                            <h3 class="m-0 text-white bg-success p-1" id="recomendation{{date}}5">000</h3>
                           </div>
-                          <div class="input-group mb-3">
+                          <div class="input-group mb-1">
                             <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon5" onclick="savePrice('{{date}}', 6, '{{date}}6')">
                               Guardar <i id="iconStatus{{date}}6" class="{% if not value.5.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}6">{{value.5.tarifa1.updated}}</span>
                             </button>
                             <input type="text" class="form-control form-control-lg text-lg w-15" placeholder="Tarifa RoomPrice" value="{{value.5.tarifa1.price}}" aria-describedby="button-addon5" id="price{{date}}6">
-                            <h2 class="m-0 text-white bg-success p-1" id="recomendation{{date}}6">000</h2>
+                            <h3 class="m-0 text-white bg-success p-1" id="recomendation{{date}}6">000</h3>
                           </div>
                           <!-- <h4 class="text-white text-center">
                             {% if "suiteFeria" in value.5 %}{{value.5.suiteFeria}}{% else %}0{% endif %} | 
@@ -1410,32 +1520,71 @@
                           <table class="m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white text-bold">
                                       {% if "media_total03" in value.5 %}{% widthratio value.5.media_total03 value.5.media_cant03 1 %}{% else %}0{% endif %}
                                     </h5>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      PM3*
+                                    </span> -->
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
                                       {% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %}
                                     </h3>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      PM4*
+                                    </span> -->
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white {% if value.5.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h3 class="m-0 text-white text-bold">
+                                      {% if "media_totalRest" in value.5 %}{{value.5.media_totalRest.value}}{% else %}0{% endif %}
+                                    </h3>
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %}
                                     </h4>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -1
+                                    </span> -->
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-2 border border-white">
+                                <td class="text-sm m-0 p-1 border border-white bg-secondary">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <h4 class="m-0 text-white text-bold">
+                                      {% if "media_total4" in value.5 %}{% widthratio value.5.media_total4 value.5.media_cant4 1 %}{% else %}0{% endif %}
+                                    </h4>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -4
+                                    </span> -->
+                                  </div>
+                                </td>
+                                <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
                                       {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
                                     </h4>
+                                    <!-- <span 
+                                      class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
+                                      style="width: 30px; height: 15px; font-size: 10px;">
+                                      -7
+                                    </span> -->
                                   </div>
                                 </td>
                               </tr>
@@ -1444,7 +1593,7 @@
                           <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.5.4.0.price}}</h3>
                                     <span 
@@ -1454,7 +1603,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.5.4.1.price}}</h5>
                                     <span 
@@ -1464,7 +1613,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #6cb7fc;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.5.4.2.price}}</h5>
                                     <span 
@@ -1474,7 +1623,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0">{{value.5.4.3.price}}</h5>
                                     <span 
@@ -1484,7 +1633,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #FFD700;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #FFD700;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0">{{value.5.4.4.price}}</h3>
                                     <span 
@@ -1494,7 +1643,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 bg-danger border border-white">
+                                <td class="text-sm m-0 p-1 bg-danger border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.5.4.5_10}}</h3>
                                     <span 
@@ -1504,7 +1653,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 bg-danger border border-white">
+                                <td class="text-sm m-0 p-1 bg-danger border border-white">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.5.4.9.price}}</h3>
                                     <span 
@@ -1521,7 +1670,7 @@
                           <table class="table table-flush text-white table-sm m-1 p-1">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h2 class="m-0 text-white">{{value.5.3.0.price}}</h2>
                                     <span 
@@ -1531,7 +1680,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.5.3.1.price}}</h5>
                                     <span 
@@ -1541,7 +1690,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.5.3.2.price}}</h5>
                                     <span 
@@ -1551,7 +1700,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1 border border-white" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-white">{{value.5.3.3.price}}</h5>
                                     <span 
@@ -1561,7 +1710,7 @@
                                     </span>
                                   </div>
                                 </td>
-                                <td class="text-sm m-1 p-1" style="background-color: #317ec6;">
+                                <td class="text-sm m-0 p-1" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white">{{value.5.3.4.price}}</h3>
                                     <span 
@@ -1576,10 +1725,10 @@
                           </table>
                         </td>
                         <td class="text-sm bg-warning text-white tr m-1 p-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Ir a lista de suite" onclick="window.location.href='/booking?date={{date}}&occupancy=5'">
-                          <table class="table table-flush text-white table-sm m-1 p-1">
+                          <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr>
-                                <td class="text-sm m-1 p-1">
+                                <td class="text-sm m-0 p-0 border">
                                   <span class="h4 text-bold text-white">AZA: {% if 'priceAZA' in value.5 %}{{value.5.priceAZA}}{% else %}0{% endif %}</span><br>
                                   <span class="h4 text-bold text-white">ECO: {% if 'priceECO' in value.5 %}{{value.5.priceECO}}{% else %}0{% endif %}</span>
                                 </td>
@@ -2693,24 +2842,24 @@
         //console.log(message_name2);
         //console.log(itemBooking[2].suiteFeria, itemBooking[2].suiteFeria1, itemDate);
         $("#recomendation"+itemDate+"2").text("");
-        if (parseInt(itemBooking[2].suiteFeria) > 0 && parseInt(itemBooking[2].suiteFeria1) > 0) {
+        $("#recomendation"+itemDate+"1").text("");
+        if (parseInt(itemBooking[2].suiteFeria) > 0 || parseInt(itemBooking[2].suiteFeria1) > 0) {
           for (i=0; i<message_name2.length; i++) {
             if (parseInt(message_name2[i].id) == parseInt(pkItem)){ // precio recomendacion doble
               // validar si no hay Cama Dobles.
               // validar si no hay Cama Matrimonial.
               //console.log("Change Recomendacion para dobles: "+message_name2[i].name);
+              price = 0;
               switch (message_name2[i].name) {
                 case "Manual":
-                  $("#recomendation"+itemDate+"2").append("0");
                   break
                 case "Max":
                   price = 0;
-                  nameHotel.map(function(value, index){
-                    if (price < parseInt(itemBooking[2][value])){
-                      price = parseInt(itemBooking[2][value]);
+                  for (i=0; i<nameHotel.length; i++){
+                    if (price < parseInt(itemBooking[2][nameHotel[i]])){
+                      price = parseInt(itemBooking[2][nameHotel[i]]);
                     }
-                  });
-                  $("#recomendation"+itemDate+"2").append(price);
+                  }
                   break
                 case "&gt;Zen + PM":
                   pmZone = Math.round(parseInt(itemBooking[2].media_name_hotel / itemBooking[2].media_cant_name_hotel));
@@ -2719,31 +2868,24 @@
                   if (pmZone > pZen){
                     price = pmZone;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "Zenit":
                   price = parseInt(itemBooking[2].priceZEN) - 1;
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM+50%":
                   price = parseInt(itemBooking[2].media_name_50);
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM+40%":
                   price = parseInt(itemBooking[2].media_name_40);
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM+30%":
                   price = parseInt(itemBooking[2].media_name_30);
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM+20%":
                   price = parseInt(itemBooking[2].media_name_20);
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM+10%":
                   price = parseInt(itemBooking[2].media_name_10);
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "25":
                   price20 = parseInt(itemBooking[2]['4'][19].price) - 1;
@@ -2752,7 +2894,6 @@
                   if (price25 < price20){
                     price = price20;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "20":
                   price20 = parseInt(itemBooking[2]['4'][19].price) - 1;
@@ -2761,7 +2902,6 @@
                   if (price20 < price15){
                     price = price15;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "15":
                   price10 = parseInt(itemBooking[2]['4'][9].price) - 1;
@@ -2770,7 +2910,6 @@
                   if (price15 < price10){
                     price = price10;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "10":
                   price10 = parseInt(itemBooking[2]['4'][9].price) - 1;
@@ -2779,7 +2918,6 @@
                   if (price10 < price5){
                     price = price5;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "5":
                   price4 = parseInt(itemBooking[2]['4'][3].price) - 1;
@@ -2788,7 +2926,6 @@
                   if (price5 < price4){
                     price = price4;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "4":
                   price4 = parseInt(itemBooking[2]['4'][3].price) - 1;
@@ -2797,7 +2934,6 @@
                   if (price4 < price3){
                     price = price3;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "3":
                   price2 = parseInt(itemBooking[2]['4'][1].price) - 1;
@@ -2806,7 +2942,6 @@
                   if (price3 < price2){
                     price = price2;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "2":
                   price2 = parseInt(itemBooking[2]['4'][1].price) - 1;
@@ -2815,7 +2950,6 @@
                   if (price2 < price1){
                     price = price1;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "1":
                   price1 = parseInt(itemBooking[2]['4'][0].price) - 1;
@@ -2824,7 +2958,6 @@
                   if (priceV < price1){
                     price = price1;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "V":
                   priceV = parseInt(itemBooking[2]['3'][4].price) - 1;
@@ -2833,7 +2966,6 @@
                   if (priceV < priceIV){
                     price = priceIV;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "IV":
                   priceIV = parseInt(itemBooking[2]['3'][3].price) - 1;
@@ -2842,7 +2974,6 @@
                   if (priceIV < priceIII){
                     price = priceIII;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "III":
                   priceIII = parseInt(itemBooking[2]['3'][2].price) - 1;
@@ -2851,7 +2982,6 @@
                   if (priceIII < priceII){
                     price = priceII;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "II":
                   priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
@@ -2860,7 +2990,6 @@
                   if (priceII < priceI){
                     price = priceI;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "I":
                   priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
@@ -2869,23 +2998,18 @@
                   if (priceI < priceII){
                     price = priceI;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM 3*":
                   price = Math.round(parseInt(itemBooking[2].media_total03) / parseInt(itemBooking[2].media_cant03));
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM 4*":
                   price = Math.round(parseInt(itemBooking[2].media_total) / parseInt(itemBooking[2].media_cant));
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM Mixto":
                   price = Math.round(parseInt(itemBooking[2].media_general));
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "PM zona":
                   price = Math.round(parseInt(itemBooking[2].media_name_hotel / itemBooking[2].media_cant_name_hotel));
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "&lt;Zen + PM":
                   pmZone = Math.round(parseInt(itemBooking[2].media_name_hotel / itemBooking[2].media_cant_name_hotel));
@@ -2894,27 +3018,49 @@
                   if (pZen < pmZone){
                     price = pZen;
                   }
-                  $("#recomendation"+itemDate+"2").append(price);
                   break
                 case "Minzone":
-                  price = 99999;
-                  nameHotel.map(function(value, index){
-                    if (price > parseInt(itemBooking[2][value]) && parseInt(itemBooking[2][value]) > 0){
-                      price = parseInt(itemBooking[2][value]);
+                  price0 = 99999;
+                  for (i=0; i<nameHotel.length; i++){
+                    if (price0 > parseInt(itemBooking[2][nameHotel[i]]) && parseInt(itemBooking[2][nameHotel[i]]) > 0){
+                      price0 = parseInt(itemBooking[2][nameHotel[i]]);
                     }
-                  });
-                  $("#recomendation"+itemDate+"2").append(price);
+                  }
+                  if (price0 != 99999){
+                    price = price0
+                  }
                   break
+              }
+              if (parseInt(itemBooking[2].suiteFeria) <= 0 && parseInt(itemBooking[2].suiteFeria1) > 0){
+                // poner tarifa triple-6 en doble y recomendación en matrimonial
+                $("#recomendation"+itemDate+"2").append(parseInt(itemBooking[3].tarifa.price) - 6);
+                $("#recomendation"+itemDate+"1").append(price);
+              } else if (parseInt(itemBooking[2].suiteFeria) > 0 && parseInt(itemBooking[2].suiteFeria1) <= 0) {
+                // poner SUITE-6 en matrimonial y recomendación en doble
+                $("#recomendation"+itemDate+"2").append(price);
+                $("#recomendation"+itemDate+"1").append(parseInt(itemBooking[5].tarifa.price) - 6);
+              } else {
+                // lanzar recomendación establecida en desplegable.
+                if (price > 0) {
+                  if (parseInt(itemBooking[2].suiteFeria) < parseInt(itemBooking[2].suiteFeria1)) {
+                    // si doble es menor a matrimonial, la recomendación actual + 3
+                    $("#recomendation"+itemDate+"2").append(price+3);
+                    $("#recomendation"+itemDate+"1").append(price);
+                  } else {
+                    // si matrimonial es menor o igual a doble, recomendación actua + 3
+                    $("#recomendation"+itemDate+"2").append(price);
+                    $("#recomendation"+itemDate+"1").append(price+3);
+                  }
+                }
               }
               break;
             }
           }
-        }else if (parseInt(itemBooking[2].suiteFeria) <= 0) { // dobles
+        }else { // dobles
           if (itemBooking[3].tarifa){
             price = parseInt(itemBooking[3].tarifa.price) - 6;
-            $("#recomendation"+itemDate+"2").append(price);
+            $("#recomendation"+itemDate+"1").append(price);
           }
-        }else if (parseInt(itemBooking[2].suiteFeria1) <= 0) { // matrimonial
           if (itemBooking[5].tarifa){
             price = parseInt(itemBooking[5].tarifa.price) - 6;
             $("#recomendation"+itemDate+"2").append(price);
@@ -2924,166 +3070,152 @@
         //console.log("Recomendacion para triples.");
         //console.log(message_name3);
         $("#recomendation"+itemDate+"3").text("");
+        $("#recomendation"+itemDate+"4").text("");
         if (parseInt(itemBooking[3].totalFeria) > 0) {
           for (i=0; i<message_name3.length; i++) {
             if (parseInt(message_name3[i].id) == parseInt(pkItem)){
               //console.log("Change Recomendacion para triples: "+message_name3[i].name);
               //console.log(itemBooking);
+              price = 0;
               switch (message_name3[i].name) {
                 case "Manual":
-                  $("#recomendation"+itemDate+"3").append("0");
                   break
                 case "Suites":
                   if (itemBooking[5].tarifa){
                     price = parseInt(itemBooking[5].tarifa.price) - 6;
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "PM+50%":
-                  price = parseInt(itemBooking[3].media_name_50);
                   if (itemBooking[2].tarifa){
+                    price0 = parseInt(itemBooking[3].media_name_50);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
-                    price = Math.max(price, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
+                    price = Math.max(price0, tarifa);
                   }
                   break
                 case "PM+40%":
-                  price = parseInt(itemBooking[3].media_name_40);
                   if (itemBooking[2].tarifa){
+                    price0 = parseInt(itemBooking[3].media_name_40);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
-                    price = Math.max(price, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
+                    price = Math.max(price0, tarifa);
                   }
                   break
                 case "PM+30%":
-                  price = parseInt(itemBooking[3].media_name_30);
                   if (itemBooking[2].tarifa){
+                    price0 = parseInt(itemBooking[3].media_name_30);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
-                    price = Math.max(price, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
+                    price = Math.max(price0, tarifa);
                   }
                   break
                 case "10":
-                  price10 = parseInt(itemBooking[3]['4'][9].price) - 1;
-                  price5_10 = parseInt(itemBooking[3]['4']['5_10']);
                   if (itemBooking[2].tarifa){
+                    price10 = parseInt(itemBooking[3]['4'][9].price) - 1;
+                    price5_10 = parseInt(itemBooking[3]['4']['5_10']);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
-                    // Obtener el mayor de los tres
                     price = Math.max(price10, price5_10, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "5":
-                  price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
-                  price5 = parseInt(itemBooking[3]['4'][4].price) - 1;
                   if (itemBooking[2].tarifa){
+                    price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
+                    price5 = parseInt(itemBooking[3]['4'][4].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price4, price5, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "4":
-                  price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
-                  price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
                   if (itemBooking[2].tarifa){
+                    price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
+                    price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price4, price3, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "3":
-                  price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
-                  price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
                   if (itemBooking[2].tarifa){
+                    price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
+                    price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price2, price3, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "2":
-                  price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
-                  price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
                   if (itemBooking[2].tarifa){
+                    price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
+                    price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price2, price1, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "1":
-                  price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
-                  priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
                   if (itemBooking[2].tarifa){
+                    price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
+                    priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceV, price1, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "V":
-                  priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
-                  priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
                   if (itemBooking[2].tarifa){
+                    priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
+                    priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceV, priceIV, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "IV":
-                  priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
-                  priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
                   if (itemBooking[2].tarifa){
+                    priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
+                    priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceIII, priceIV, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "III":
-                  priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
-                  priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
                   if (itemBooking[2].tarifa){
+                    priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
+                    priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceIII, priceII, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "II":
-                  priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
-                  priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
                   if (itemBooking[2].tarifa){
+                    priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
+                    priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceI, priceII, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "I":
-                  priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
-                  priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
                   if (itemBooking[2].tarifa){
+                    priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
+                    priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.min(priceI, priceII, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
                 case "PM 3*":
                   price = Math.round(parseInt(itemBooking[3].media_total03) / parseInt(itemBooking[3].media_cant03));
-                  $("#recomendation"+itemDate+"3").append(price);
                   break
                 case "PM 4*":
                   price = Math.round(parseInt(itemBooking[3].media_total) / parseInt(itemBooking[3].media_cant));
-                  $("#recomendation"+itemDate+"3").append(price);
                   break
                 case "PM 5-10":
-                  price5_10 = parseInt(itemBooking[3]['4']['5_10']);
                   if (itemBooking[2].tarifa){
+                    price5_10 = parseInt(itemBooking[3]['4']['5_10']);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price5_10, tarifa);
-                    $("#recomendation"+itemDate+"3").append(price);
                   }
                   break
+              }
+              $("#recomendation"+itemDate+"3").append(price);
+              if (price > 0){
+                $("#recomendation"+itemDate+"4").append(price+10);
               }
               break;
             }
           }
-        } else if (parseInt(itemBooking[3].totalFeria) <= 0) { // dobles
+        } else { // dobles
           if (itemBooking[5].tarifa){
             price = parseInt(itemBooking[5].tarifa.price) - 6;
             $("#recomendation"+itemDate+"3").append(price);
@@ -3095,107 +3227,96 @@
         //console.log("Recomendacion para suites.");
         //console.log(message_name5);
         $("#recomendation"+itemDate+"5").text("");
+        $("#recomendation"+itemDate+"6").text("");
         for (i=0; i<message_name5.length; i++) {
           if (parseInt(message_name5[i].id) == parseInt(pkItem)){
             //console.log("Change Recomendacion para suites: "+message_name5[i].name);
+            price = 0;
             switch (message_name5[i].name) {
               case "Manual":
-                $("#recomendation"+itemDate+"5").append("0");
                 break
               case "PM+60%":
                 price = parseInt(itemBooking[5].media_name_60);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "PM+50%":
                 price = parseInt(itemBooking[5].media_name_50);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "PM+40%":
                 price = parseInt(itemBooking[5].media_name_40);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "PM+30%":
                 price = parseInt(itemBooking[5].media_name_30);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "10":
                 price10 = parseInt(itemBooking[5]['4'][9].price) - 1;
                 price5_10 = parseInt(itemBooking[5]['4']['5_10']) - 1;
                 price = Math.max(price10, price5_10);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "5":
                 price4 = parseInt(itemBooking[5]['4'][3].price) - 1;
                 price5 = parseInt(itemBooking[5]['4'][4].price) - 1;
                 price = Math.max(price4, price5);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "4":
                 price4 = parseInt(itemBooking[5]['4'][3].price) - 1;
                 price3 = parseInt(itemBooking[5]['4'][2].price) - 1;
                 price = Math.max(price4, price3);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "3":
                 price2 = parseInt(itemBooking[5]['4'][1].price) - 1;
                 price3 = parseInt(itemBooking[5]['4'][2].price) - 1;
                 price = Math.max(price2, price3);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "2":
                 price2 = parseInt(itemBooking[5]['4'][1].price) - 1;
                 price1 = parseInt(itemBooking[5]['4'][0].price) - 1;
                 price = Math.max(price2, price1);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "1":
                 price1 = parseInt(itemBooking[5]['4'][0].price) - 1;
                 priceV = parseInt(itemBooking[5]['3'][4].price) - 1;
                 price = Math.max(priceV, price1);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "V":
                 priceV = parseInt(itemBooking[5]['3'][4].price) - 1;
                 priceIV = parseInt(itemBooking[5]['3'][3].price) - 1;
                 price = Math.max(priceV, priceIV);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "IV":
                 priceIV = parseInt(itemBooking[5]['3'][3].price) - 1;
                 priceIII = parseInt(itemBooking[5]['3'][2].price) - 1;
                 price = Math.max(priceIII, priceIV);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "III":
                 priceIII = parseInt(itemBooking[5]['3'][2].price) - 1;
                 priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
                 price = Math.max(priceIII, priceII);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "II":
                 priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
                 priceI = parseInt(itemBooking[5]['3'][0].price) - 1;
                 price = Math.max(priceI, priceII);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "I":
                 priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
                 priceI = parseInt(itemBooking[5]['3'][0].price) - 1;
                 price = Math.min(priceI, priceII);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "PM 3*":
                 price = Math.round(parseInt(itemBooking[5].media_total03) / parseInt(itemBooking[5].media_cant03));
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "4-PM":
                 price = Math.round(parseInt(itemBooking[5].media_total) / parseInt(itemBooking[5].media_cant));
-                $("#recomendation"+itemDate+"5").append(price);
                 break
               case "PM 5-10":
                 price = parseInt(itemBooking[5]['4']['5_10']);
-                $("#recomendation"+itemDate+"5").append(price);
                 break
+            }
+            $("#recomendation"+itemDate+"5").append(price);
+            if (parseInt(itemBooking[5].totalFeria) == 2 && price > 0) {
+              $("#recomendation"+itemDate+"6").append(price+20);
+            } else {
+              $("#recomendation"+itemDate+"6").append(price);
             }
             break;
           }
