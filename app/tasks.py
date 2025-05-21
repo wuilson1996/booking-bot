@@ -194,9 +194,9 @@ def iniciar_scheduler():
         generate_log(f"[-]No hay configuración de ejecución para el scheduler", BotLog.HISTORY)
         return
 
-    # if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
-    #     generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
-    #     return
+    if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
+        generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
+        return
 
     scheduler.add_job(
         tarea_diaria,
