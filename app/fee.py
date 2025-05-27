@@ -95,7 +95,7 @@ class FeeTask:
                 save_type = False
                 #logging.info(f"[+] search buttons calendar...")
                 generate_log(f"[+] Buscando fecha en calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                for b in driver.find_elements_by_xpath("//button[@data-state='closed']"):
+                for b in driver.find_elements_by_xpath("//div[@data-testid]"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
                         generate_log(f"[+] Buscando fecha en calendario: {_date} | {str(b.get_attribute('data-testid'))}", BotLog.ROOMPRICE)
@@ -109,7 +109,7 @@ class FeeTask:
                             #logging.info(f"[+] Click fecha success...")
                             generate_log(f"[+] Abriendo fecha... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             sleep(3)
-                            bt_edit_price = driver.find_element_by_xpath("//button[@data-testid='editPricesTab']")
+                            bt_edit_price = driver.find_element_by_xpath("//div[@data-testid='editPricesTab']")
                             driver.execute_script("arguments[0].scrollIntoView();", bt_edit_price)
                             sleep(1)
                             bt_edit_price.click()
