@@ -607,23 +607,23 @@ def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform
         while cron.current_date > now():
             sleep(1)
 
-        cont = 0
-        while True:
-            try:
-                #for _ in range(2):
-                fee = FeeTask()
-                _driver = fee._driver()
-                _check = fee.controller(_driver, price, _date, _credential.username, _credential.password)
-                sleep(5)
-                fee.close(_driver)
-                # if not _check:
-                #     break
-                if _check or cont >= 3:
-                    break
-                cont += 1
-            except Exception as e:
-                logging.info(f"Error general Fee: {e}")
-                generate_log(f"Error general Fee: {now()}: {e}", BotLog.ROOMPRICE)
+        #cont = 0
+        #while True:
+        try:
+            #for _ in range(2):
+            fee = FeeTask()
+            _driver = fee._driver()
+            _check = fee.controller(_driver, price, _date, _credential.username, _credential.password)
+            sleep(5)
+            fee.close(_driver)
+            # if not _check:
+            #     break
+            #if _check or cont >= 3:
+            #    break
+            #cont += 1
+        except Exception as e:
+            logging.info(f"Error general Fee: {e}")
+            generate_log(f"Error general Fee: {now()}: {e}", BotLog.ROOMPRICE)
 
         cron.active = False
         cron.save()
