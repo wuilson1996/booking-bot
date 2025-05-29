@@ -18,8 +18,12 @@ def send(Email_send, Password, Email_receiver, Affair, Text, Text_html, host, po
     msg['To'] = Email_receiver				#correoa quien se envia
     msg['Subject'] = Affair					#asunto de el envio de correo
     msg.attach(MIMEText(Text, 'plain'))
-    server=smtplib.SMTP(f'{host}: {port}')
-    server.starttls()
+    # Conexión segura si el puerto es 465 (SSL)
+    if port == 465:
+        server = smtplib.SMTP_SSL(host, port)
+    else:
+        server = smtplib.SMTP(host, port)
+        server.starttls()
     server.login(msg['From'],Password)
     server.sendmail(msg['From'],msg['To'],msg.as_string())
     server.quit()
@@ -50,65 +54,73 @@ def send_notification(data):
         generate_log(f"No hay datos para enviar", BotLog.HISTORY)
 	
 def notification_programer():
-    _date_from = now()
-    logging.info(f"[-] Ejecutando notificacion: {str(_date_from)}")
-    occupancys = []
-    for p in ProcessActive.objects.all():
-        if p.occupancy not in occupancys:
-            occupancys.append(p.occupancy)
-    
-    data_send = []
-    for i in range(180):
-        totalFeria = 0
-        for ocp in occupancys:
-            try:
-                avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
-                avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                    type_avail = int(ocp),
-                    avail_suites_feria = avail_sf
-                ).last()
-                if avail_sf_cant:
-                    totalFeria += avail_sf_cant.avail
-                    if int(ocp) == 2:
-                        avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 1,
-                            avail_suites_feria = avail_sf
-                        ).last()
+    try:
+        _date_from = now()
+        logging.info(f"[-] Ejecutando notificacion: {str(_date_from)}")
+        occupancys = []
+        for p in ProcessActive.objects.all():
+            if p.occupancy not in occupancys:
+                occupancys.append(p.occupancy)
+        
+        data_send = []
+        for i in range(180):
+            totalFeria = 0
+            for ocp in occupancys:
+                try:
+                    avail_sf = AvailSuitesFeria.objects.filter(date_avail = str(_date_from.date())).last()
+                    avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                        type_avail = int(ocp),
+                        avail_suites_feria = avail_sf
+                    ).last()
+                    if avail_sf_cant:
                         totalFeria += avail_sf_cant.avail
-                else:
-                    if int(ocp) == 5:
-                        avail_sf_cant = CantAvailSuitesFeria.objects.filter(
-                            type_avail = 4,
-                            avail_suites_feria = avail_sf
-                        ).last()
-                        totalFeria += avail_sf_cant.avail if avail_sf_cant else 0
-            except Exception as e:
-                generate_log(f"Error check notifications: {str(e)}", BotLog.HISTORY)
-                logging.info(f"[-] Error check notifications: {str(e)}")
-
-        try:
-            avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
-            if avail_with_date:
-                if avail_with_date.avail != "":
-                    totalFeriaRest = totalFeria - int(avail_with_date.avail)
-                    if i < 60:
-                        if totalFeriaRest <= -3:
-                            data_send.append({
-                                "date": str(_date_from),
-                                "n": totalFeriaRest,
-                                "h": totalFeria
-                            })
+                        if int(ocp) == 2:
+                            avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                                type_avail = 1,
+                                avail_suites_feria = avail_sf
+                            ).last()
+                            totalFeria += avail_sf_cant.avail
                     else:
-                        if totalFeriaRest <= -2:
-                            data_send.append({
-                                "date": str(_date_from),
-                                "n": totalFeriaRest,
-                                "h": totalFeria
-                            })
+                        if int(ocp) == 5:
+                            avail_sf_cant = CantAvailSuitesFeria.objects.filter(
+                                type_avail = 4,
+                                avail_suites_feria = avail_sf
+                            ).last()
+                            totalFeria += avail_sf_cant.avail if avail_sf_cant else 0
+                except Exception as e:
+                    generate_log(f"Error check notifications: {str(e)}", BotLog.HISTORY)
+                    logging.info(f"[-] Error check notifications: {str(e)}")
+
+            try:
+                avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
+                if avail_with_date:
+                    if avail_with_date.avail != "":
+                        totalFeriaRest = totalFeria - int(avail_with_date.avail)
+                        if i < 60:
+                            if totalFeriaRest <= -3:
+                                data_send.append({
+                                    "date": str(_date_from),
+                                    "n": totalFeriaRest,
+                                    "h": totalFeria
+                                })
+                        else:
+                            if totalFeriaRest <= -2:
+                                data_send.append({
+                                    "date": str(_date_from),
+                                    "n": totalFeriaRest,
+                                    "h": totalFeria
+                                })
+            except Exception as e:
+                generate_log(f"Error check2 notifications: {str(e)}", BotLog.HISTORY)
+                logging.info(f"[-] Error check2 notifications: {str(e)}")
+            sleep(5)
+            _date_from += timedelta(days=1)
+        try:
+            send_notification(data_send)
         except Exception as e:
-            generate_log(f"Error check2 notifications: {str(e)}", BotLog.HISTORY)
-            logging.info(f"[-] Error check2 notifications: {str(e)}")
-        sleep(5)
-        _date_from += timedelta(days=1)
-    
-    send_notification(data_send)
+            generate_log(f"Error check3 notifications: {str(e)}", BotLog.HISTORY)
+            logging.info(f"[-] Error check3 notifications: {str(e)}")
+
+    except Exception as e:
+        generate_log(f"Error check4 notifications: {str(e)}", BotLog.HISTORY)
+        logging.info(f"[-] Error check4 notifications: {str(e)}")
