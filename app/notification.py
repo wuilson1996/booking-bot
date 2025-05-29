@@ -113,7 +113,7 @@ def notification_programer():
             except Exception as e:
                 generate_log(f"Error check2 notifications: {str(e)}", BotLog.HISTORY)
                 logging.info(f"[-] Error check2 notifications: {str(e)}")
-            sleep(5)
+            sleep(0.3)
             _date_from += timedelta(days=1)
         try:
             send_notification(data_send)
