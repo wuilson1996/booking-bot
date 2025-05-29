@@ -95,10 +95,19 @@ class FeeTask:
                 save_type = False
                 #logging.info(f"[+] search buttons calendar...")
                 generate_log(f"[+] Buscando fecha en calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                try:
+                    containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
+                    if cls.check_date_found(containers, _date):
+                        generate_log(f"[+] La fecha {_date} fue encontrada dentro del calendario. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                    else:
+                        generate_log(f"[+] La fecha {_date} NO fue encontrada dentro del calendario. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                except Exception as e01:
+                    logging.info("Error Fee: "+str(e))
+                    generate_log(f"[+] Error Fee, check date: {e}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                 for b in driver.find_elements_by_xpath("//div[@data-testid]"):
                     if b.get_attribute("data-testid") != "" and b.get_attribute("data-testid") != None:
                         #logging.info(f"[+] Fecha: {_date} {str(b.get_attribute('data-testid'))}...")
-                        generate_log(f"[+] Buscando fecha en calendario: {_date} | {str(b.get_attribute('data-testid'))}", BotLog.ROOMPRICE)
+                        #generate_log(f"[+] Buscando fecha en calendario: {_date} | {str(b.get_attribute('data-testid'))}", BotLog.ROOMPRICE)
                         if _date == str(b.get_attribute("data-testid")):
                             #logging.info(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}...")
                             generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
@@ -210,7 +219,16 @@ class FeeTask:
                     sleep(3)
                     #logging.info(f"[+] Click button next calendar success...")
                     generate_log(f"[+] Siguiente calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-        
+                    try:
+                        containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
+                        if cls.check_date_found(containers, _date):
+                            generate_log(f"[+] La fecha {_date} fue encontrada dentro de un contenedor, se detiene. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                            break
+                        else:
+                            generate_log(f"[+] La fecha {_date} NO fue encontrada en ningún contenedor. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                    except Exception as e01:
+                        logging.info("Error Fee: "+str(e))
+                        generate_log(f"[+] Error Fee, check date: {e}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
         except Exception as e:
             logging.info("Error Fee: "+str(e))
             generate_log(f"[+] Error Fee {e}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
@@ -218,6 +236,17 @@ class FeeTask:
 
         return check
 
+    @classmethod
+    def check_date_found(cls, containers, _date):
+        status_found = False
+        for c in containers:
+            soup = BeautifulSoup(c.get_attribute("innerHTML"), "html.parser")
+            # Buscar cualquier elemento que tenga el atributo data-testid con el valor de la fecha
+            if soup.find(attrs={"data-testid": _date}):
+                status_found = True
+                break
+        return status_found
+    
     @classmethod
     def update_with_date(cls, driver, _date, price, check):
         #logging.info("[+] Abrir modal, actualizar channels manager...")
