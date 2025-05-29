@@ -46,7 +46,7 @@ def send_notification(data):
                     text,
                     "",
                     email_smtp.host,
-                    email_smtp.port
+                    int(email_smtp.port)
                 )
         else:
             generate_log(f"Configure: EmailSMTP y MessageEmail", BotLog.HISTORY)
