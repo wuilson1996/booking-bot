@@ -286,8 +286,8 @@
                     <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon7" onclick="tempOption('{{date}}')">Guardar</button>
                   </div>
                   <hr>
-                  <h4 class="text-white my-2" id="buttonFeeUpgrade{{date}}">...</h4>
-                  <button class="btn btn-white" onclick="upgradeFee('{{date}}')">Actualizar Tarifa</button>
+                  <h4 class="text-white my-2" id="textFeeUpgrade{{date}}">...</h4>
+                  <button class="btn btn-white" onclick="upgradeFee('{{date}}')" id="buttonFeeUpgrade{{date}}">Actualizar Tarifa</button>
                   <hr>
                   <h1 class="text-white my-2 bg-dark" id="temp-t{{date}}">{{value.totalFeria}}</h1>
                   <div class="input-group mb-0">
@@ -2091,10 +2091,17 @@
               $("#addLogCopyPrice").append("Horario de copia de precio no disponible");
             }
             json.status_price.map(function(value, index){
+              _active = false;
+              _date = "";
               value.map(function(value2, index2){
-                //console.log(value2);
+                console.log(value2);
                 changeStatusPRice(value2.date_from+""+value2.occupancy, value2.pSync);
+                _date = value2.date_from;
+                if (value2.active){
+                  _active = value2.active;
+                }
               });
+              changeStatusFee(_date, _active);
             });
           },
           error: function(error) {
@@ -2209,8 +2216,24 @@
           }
       });
     }
-    function changeStatusPRice(inputId, status){
-      let icon = document.getElementById("iconStatus"+inputId);
+    function changeStatusFee(_date, _active){
+      console.log(_date, _active);
+      // deshabilitamos el boton de actualizar en la fecha especifica.
+      // activamos loader si no esta activo en caso de ser necesario.
+      if (_active) {
+        // si esta activa la insercion queda cargando, si no esta visible.
+        // deshabilitamos boton de actualizar.
+        showLoader("textFeeUpgrade"+_date);
+        $("#buttonFeeUpgrade"+ _date).prop("disabled", true);
+      } else {
+        // si no esta activa la insercion quitamos el loader si esta visible.
+        // habilitamos boton de actualizar.
+        $("#textFeeUpgrade" + _date).text("...");
+        $("#buttonFeeUpgrade"+ _date).prop("disabled", false);
+      }
+    }
+    function changeStatusPRice(_inputId, status){
+      let icon = document.getElementById("iconStatus"+_inputId);
       if (status == true) {
           icon.classList.remove("fa-exclamation-triangle", "text-warning");
           icon.classList.add("fa-check", "text-success");
@@ -2221,7 +2244,8 @@
     }
     let timeoutHandles = {}
     function upgradeFee(_date){
-      showLoader("buttonFeeUpgrade"+_date);
+      showLoader("textFeeUpgrade"+_date);
+      $("#buttonFeeUpgrade"+ _date).prop("disabled", true);
       $.ajax({
           url: '/upgrade/fee',
           type: 'POST',
@@ -2230,17 +2254,17 @@
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
-            console.log(json);
+            /*console.log(json);
             console.log(json.time * 1000);
             if (json.code == 200){
               if (timeoutHandles[_date]) {
                 clearTimeout(timeoutHandles[_date]);
               }
               timeoutHandles[_date] = setTimeout(function(){
-                $("#buttonFeeUpgrade" + _date).text("...");
+                $("#textFeeUpgrade" + _date).text("...");
                 delete timeoutHandles[_date];
               },json.time * 1000);
-            }
+            }*/
           },
           error: function(error) {
             console.log("Ocurrio un error");

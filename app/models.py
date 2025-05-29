@@ -84,6 +84,7 @@ class Price(models.Model):
     updated = models.CharField(null=True, blank=True, max_length=50)
     created = models.CharField(null=True, blank=True, max_length=50)
     plataform_sync = models.BooleanField(default=False)
+    active_sync = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return "Price: "+str(self.price)+" - O: "+str(self.occupancy)+" - Date: "+str(self.date_from)+" - Updated: "+str(self.updated)+" - Created: "+str(self.created)
