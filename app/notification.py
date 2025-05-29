@@ -25,23 +25,29 @@ def send(Email_send, Password, Email_receiver, Affair, Text, Text_html, host, po
     server.quit()
     generate_log(f"correo fue enviado con exito a {msg['To']}:", BotLog.HISTORY)
 		
-def send_notification(current_date, n):
-	email_smtp = EmailSMTP.objects.all().last()
-	email_send = MessageEmail.objects.filter(type_message=MessageEmail.NOTIFY).first()
-	if email_smtp and email_send:
-		for e in email_send.email.all():
-			send(
-                email_smtp.email,
-                email_smtp.password,
-                e.email,
-                email_send.asunto.replace("{date}", generate_date_with_month_time(str(current_date)).split(" ")[0]).replace("{n}", str(n)),
-                email_send.message.replace("{date}", generate_date_with_month_time(str(current_date)).split(" ")[0]).replace("{n}", str(n)),
-                "",
-                email_smtp.host,
-                email_smtp.port
-            )
-	else:
-		generate_log(f"Configure: EmailSMTP y MessageEmail", BotLog.HISTORY)
+def send_notification(data):
+    email_smtp = EmailSMTP.objects.all().last()
+    email_send = MessageEmail.objects.filter(type_message=MessageEmail.NOTIFY).first()
+    text = ""
+    if data:
+        for d in data:
+            text += email_send.message.replace("{date}", generate_date_with_month_time(str(d["date"])).split(" ")[0]).replace("{n}", str(d["n"])).replace("{h}", str(d["h"]))+"\n"
+        if email_smtp and email_send:
+            for e in email_send.email.all():
+                send(
+                    email_smtp.email,
+                    email_smtp.password,
+                    e.email,
+                    email_send.asunto,
+                    text,
+                    "",
+                    email_smtp.host,
+                    email_smtp.port
+                )
+        else:
+            generate_log(f"Configure: EmailSMTP y MessageEmail", BotLog.HISTORY)
+    else:
+        generate_log(f"No hay datos para enviar", BotLog.HISTORY)
 	
 def notification_programer():
     _date_from = now()
@@ -50,6 +56,8 @@ def notification_programer():
     for p in ProcessActive.objects.all():
         if p.occupancy not in occupancys:
             occupancys.append(p.occupancy)
+    
+    data_send = []
     for i in range(180):
         totalFeria = 0
         for ocp in occupancys:
@@ -82,15 +90,25 @@ def notification_programer():
             avail_with_date = AvailWithDate.objects.filter(date_from=str(_date_from.date())).first()
             if avail_with_date:
                 if avail_with_date.avail != "":
-                    totalFeria -= int(avail_with_date.avail)
+                    totalFeriaRest = totalFeria - int(avail_with_date.avail)
                     if i < 60:
-                        if totalFeria <= -3:
-                            send_notification(str(_date_from), totalFeria)
+                        if totalFeriaRest <= -3:
+                            data_send.append({
+                                "date": str(_date_from),
+                                "n": totalFeriaRest,
+                                "h": totalFeria
+                            })
                     else:
-                        if totalFeria <= -2:
-                            send_notification(str(_date_from), totalFeria)
+                        if totalFeriaRest <= -2:
+                            data_send.append({
+                                "date": str(_date_from),
+                                "n": totalFeriaRest,
+                                "h": totalFeria
+                            })
         except Exception as e:
             generate_log(f"Error check2 notifications: {str(e)}", BotLog.HISTORY)
             logging.info(f"[-] Error check2 notifications: {str(e)}")
         sleep(5)
         _date_from += timedelta(days=1)
+    
+    send_notification(data_send)
