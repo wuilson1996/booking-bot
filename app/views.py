@@ -1337,8 +1337,8 @@ def index(request):
                 bookings[str(_date_from.date())]["availWithDate"] = int(avail_with_date.avail)
             
             # dia actual y disponibilidad manual.
-            valueRest = bookings[str(_date_from.date())]["totalFeria"] - bookings[str(_date_from.date())]["availWithDate"]
-            bookings[str(_date_from.date())]["availWithDateRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+            current_valueRest = bookings[str(_date_from.date())]["totalFeria"] - bookings[str(_date_from.date())]["availWithDate"]
+            bookings[str(_date_from.date())]["availWithDateRest"] = {"value":current_valueRest, "color": "text-white" if current_valueRest >= 0 else "text-danger"}
 
             # disponibilidad suites feria actual y 7 dias.
             valueRest = bookings[str(_date_from.date())][2]["totalFeria"] - bookings[str(_date_from.date())][2]["totalFeria7"]
@@ -1368,10 +1368,10 @@ def index(request):
 
             if "range_bt" in request.POST:
                 if request.POST["range_bt"] == "2":
-                    if valueRest != 0:
+                    if current_valueRest != 0:
                         del bookings[str(_date_from.date())]
                 elif request.POST["range_bt"] == "3":
-                    if valueRest == 0:
+                    if current_valueRest == 0:
                         del bookings[str(_date_from.date())]
 
             _date_from += datetime.timedelta(days=1)
