@@ -18,7 +18,7 @@ def send(Email_send, Password, Email_receiver, Affair, Text, Text_html, host, po
     msg['To'] = Email_receiver				#correoa quien se envia
     msg['Subject'] = Affair					#asunto de el envio de correo
     msg.attach(MIMEText(Text, 'plain'))
-    server=smtplib.SMTP('smtp.gmail.com: 587')
+    server=smtplib.SMTP(f'{host}: {port}')
     server.starttls()
     server.login(msg['From'],Password)
     server.sendmail(msg['From'],msg['To'],msg.as_string())
