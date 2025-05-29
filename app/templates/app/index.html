@@ -3033,12 +3033,20 @@
               }
               if (parseInt(itemBooking[2].suiteFeria) <= 0 && parseInt(itemBooking[2].suiteFeria1) > 0){
                 // poner tarifa triple-6 en doble y recomendación en matrimonial
-                $("#recomendation"+itemDate+"2").append(parseInt(itemBooking[3].tarifa.price) - 6);
+                if (itemBooking[3].tarifa){
+                  $("#recomendation"+itemDate+"2").append(parseInt(itemBooking[3].tarifa.price) - 6);
+                }else{
+                  $("#recomendation"+itemDate+"2").append(parseInt(0));
+                }
                 $("#recomendation"+itemDate+"1").append(price);
               } else if (parseInt(itemBooking[2].suiteFeria) > 0 && parseInt(itemBooking[2].suiteFeria1) <= 0) {
                 // poner SUITE-6 en matrimonial y recomendación en doble
                 $("#recomendation"+itemDate+"2").append(price);
-                $("#recomendation"+itemDate+"1").append(parseInt(itemBooking[5].tarifa.price) - 6);
+                if (itemBooking[5].tarifa) {
+                  $("#recomendation"+itemDate+"1").append(parseInt(itemBooking[5].tarifa.price) - 6);
+                }else{
+                  $("#recomendation"+itemDate+"1").append(parseInt(0));
+                }
               } else {
                 // lanzar recomendación establecida en desplegable.
                 if (price > 0) {
