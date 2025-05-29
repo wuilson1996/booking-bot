@@ -2094,7 +2094,7 @@
               _active = false;
               _date = "";
               value.map(function(value2, index2){
-                console.log(value2);
+                //console.log(value2);
                 changeStatusPRice(value2.date_from+""+value2.occupancy, value2.pSync);
                 _date = value2.date_from;
                 if (value2.active){
@@ -2217,7 +2217,7 @@
       });
     }
     function changeStatusFee(_date, _active){
-      console.log(_date, _active);
+      //console.log(_date, _active);
       // deshabilitamos el boton de actualizar en la fecha especifica.
       // activamos loader si no esta activo en caso de ser necesario.
       if (_active) {
