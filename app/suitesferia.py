@@ -1,4 +1,7 @@
 import requests
+import json
+from datetime import datetime
+import base64
 
 class SuitesFeria:
     def __init__(self, username, password) -> None:
@@ -10,6 +13,96 @@ class SuitesFeria:
             'User-Agent': 'Mozilla/5.0',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
+    
+    def get_data_by_query(self):
+        # Datos
+        url = ""  # o Custom/TableFields
+        cid = ""
+        password = ""
+        authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
+        date_header = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
+
+        # JSON de la consulta
+        payload = {
+            "queryRequest": {
+                "table": "RESUME",
+                "fields": ["FACTURA", "YEAR", "FECHAEMI", "IMP_TOTA"],
+                "conditions": [
+                    {"field": "SERIE", "oper": "=", "value": "T"},
+                    {
+                        "field": "FECHAEMI",
+                        "oper": "in",
+                        "startRangeValue": "2025-05-30",
+                        "endRangeValue": "2025-06-30"
+                    }
+                ]
+            },
+            "control": {
+                "uniqueId": "654315758",
+                "timestamp": "2025-06-30T18:12:41+02:00"
+            }
+        }
+        # Headers
+        headers = {
+            "CID": cid,
+            "Authorization": authorization,
+            "Date": date_header,
+            "Content-Type": "application/json"
+        }
+
+        # Realizar POST
+        response = requests.post(url, headers=headers, data=json.dumps(payload), verify=False)
+
+        # Procesar respuesta
+        if response.status_code == 200:
+            print(response.json())
+        else:
+            print("Error:", response.status_code, response.text)
+
+    def get_fields_data_by_query(self):
+        # Datos
+        url = ""  # o Custom/TableFields
+        cid = ""
+        password = ""
+        authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
+        date_header = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
+
+        # JSON de la consulta
+        payload = {
+            "queryRequest": {
+                "table": "RESUME",
+                "fields": ["FACTURA", "YEAR", "FECHAEMI", "IMP_TOTA"],
+                "conditions": [
+                    {"field": "SERIE", "oper": "=", "value": "T"},
+                    {
+                        "field": "FECHAEMI",
+                        "oper": "in",
+                        "startRangeValue": "2025-05-30",
+                        "endRangeValue": "2025-06-30"
+                    }
+                ]
+            },
+            "control": {
+                "uniqueId": "654315758",
+                "timestamp": "2025-06-30T18:12:41+02:00"
+            }
+        }
+        # Headers
+        headers = {
+            "CID": cid,
+            "Authorization": authorization,
+            "Date": date_header,
+            "Content-Type": "application/json"
+        }
+
+        # Realizar POST
+        response = requests.post(url, headers=headers, data=json.dumps(payload), verify=False)
+
+        # Procesar respuesta
+        if response.status_code == 200:
+            print(response.json())
+        else:
+            print("Error:", response.status_code, response.text)
 
     def login(self):
         self.session = requests.Session()
@@ -93,12 +186,14 @@ class SuitesFeria:
 
 
 if __name__ == "__main__":
-    suites_feria = SuitesFeria("karine@hotelsuitesferia.com", "APkfBHj77V")
-    resp = suites_feria.login()
-    print(resp)
-    if resp["code"] == 200:
-        resp_sf = suites_feria.disponibilidad("2025-03-25")
-        resp_sf = suites_feria.format_avail(resp_sf)
-        print(resp_sf)
-        resp_l = suites_feria.logout()
-        print(resp_l)
+    suites_feria = SuitesFeria("", "")
+    suites_feria.get_data_by_query()
+    #suites_feria.get_fields_data_by_query()
+    # resp = suites_feria.login()
+    # print(resp)
+    # if resp["code"] == 200:
+    #     resp_sf = suites_feria.disponibilidad("2025-03-25")
+    #     resp_sf = suites_feria.format_avail(resp_sf)
+    #     print(resp_sf)
+    #     resp_l = suites_feria.logout()
+    #     print(resp_l)
