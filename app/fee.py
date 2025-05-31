@@ -209,16 +209,6 @@ class FeeTask:
                         check = cls.update_with_range(driver, _date, price, check)
                     break
                 else:
-                    #logging.info("[+] Buscando calendario...")
-                    #generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
-                    bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
-                    driver.execute_script("arguments[0].scrollIntoView();", bt_next)
-                    driver.execute_script("arguments[0].click();", bt_next)
-                    sleep(1)
-                    #bt_next.click()
-                    sleep(3)
-                    #logging.info(f"[+] Click button next calendar success...")
-                    generate_log(f"[+] Siguiente calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                     try:
                         containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
                         if cls.check_date_found(containers, _date):
@@ -229,6 +219,16 @@ class FeeTask:
                     except Exception as e01:
                         logging.info("Error Fee: "+str(e))
                         generate_log(f"[+] Error Fee, check date: {e}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                    #logging.info("[+] Buscando calendario...")
+                    #generate_log(f"[+] Buscando calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
+                    bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
+                    driver.execute_script("arguments[0].scrollIntoView();", bt_next)
+                    driver.execute_script("arguments[0].click();", bt_next)
+                    sleep(1)
+                    #bt_next.click()
+                    sleep(3)
+                    #logging.info(f"[+] Click button next calendar success...")
+                    generate_log(f"[+] Siguiente calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
         except Exception as e:
             logging.info("Error Fee: "+str(e))
             generate_log(f"[+] Error Fee {e}... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
