@@ -278,7 +278,7 @@ class FeeTask:
                         timeout = 120  # Tiempo máximo en segundos
                         status1 = False
                         status2 = False
-                        status3 = False
+                        #status3 = False
                         status = False
                         while True:
                             if "Sending Prices. Waiting for the Channel Manager to confirm" in driver.page_source:
@@ -289,12 +289,12 @@ class FeeTask:
                                 status2 = True
                                 #logging.info("[+] Channel Manager: Prices Uploaded Successfully.")
                                 generate_log(f"[+] Channel Manager: Prices Uploaded Successfully... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
-                            if "Data Updated Successfully" in driver.page_source:
-                                status3 = True
-                                #logging.info("[+] Channel Manager: Data Updated Successfully.")
-                                generate_log(f"[+] Channel Manager: Data Updated Successfully... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
+                            # if "Data Updated Successfully" in driver.page_source:
+                            #     status3 = True
+                            #     #logging.info("[+] Channel Manager: Data Updated Successfully.")
+                            #     generate_log(f"[+] Channel Manager: Data Updated Successfully... {_date} | {str(cls.organice_price(price))} | Sending Prices:{status1} | Prices Uploaded:{status2}", BotLog.ROOMPRICE)
                             
-                            if status1 and status2 and status3:
+                            if status1 and status2: #and status3:
                                 status = True
                                 break
 
