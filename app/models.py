@@ -476,3 +476,10 @@ class MessageEmail(models.Model):
             }
             for i in cls.objects.all()
         ]
+
+class CookieUrl(models.Model):
+    name = models.CharField(max_length = 256)
+    label = models.TextField()
+
+    def __str__(self):
+        return str(self.name)+" | "+str(self.label)

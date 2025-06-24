@@ -611,6 +611,48 @@ def save_message(request):
         }
     return Response(result)
 
+def task_save_fee_masive(cron:CronActive, _credential:CredentialPlataform, days):
+    while cron.current_date > now():
+        sleep(1)
+
+    fee = FeeTask()
+    _driver = fee._driver()
+    _check = fee.sign_in(_driver, _credential.username, _credential.password)
+    if _check:
+        prices_list = []
+        prices_list_not = []
+        for d in range(days):
+            _prices = {}
+            plataform_sync = False
+            _date_from = str((now() + datetime.timedelta(days=d)).date())
+            for p in Price.objects.filter(date_from = _date_from):
+                if p.price != None and p.price != "":
+                    if not p.plataform_sync:
+                        plataform_sync = True
+                    _prices[str(p.occupancy)] = p
+                    p.active_sync = True
+                    p.save()
+            #logging.info(_prices)
+            if len(list(_prices.keys())) > 0:
+                _check = False
+                if plataform_sync:
+                    logging.info(_prices)
+                    _check = fee.send_fee_masive(_driver, _prices, _date_from)
+                    sleep(10)
+                if _check:
+                    prices_list.append(_prices)
+                else:
+                    prices_list_not.append(_prices)
+
+        fee.update_with_range(_driver, "Masive instance", prices_list, False)
+        sleep(5)
+        fee.close(_driver)
+        for price in prices_list + prices_list_not:
+            for key, value in price.items():
+                _p = Price.objects.filter(pk = value.pk).first()
+                _p.active_sync = False
+                _p.save()
+
 def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform):
     try:
         while cron.current_date > now():
@@ -651,11 +693,12 @@ def upgrade_fee(request):
         try:
             _prices = {}
             __time = 90
-            for p in Price.objects.filter(date_from = request.data["date"]):
-                if p.price != None and p.price != "":
-                    _prices[str(p.occupancy)] = p
-                    p.active_sync = True
-                    p.save()
+            if request.data["masive"] == "false":
+                for p in Price.objects.filter(date_from = request.data["date"]):
+                    if p.price != None and p.price != "":
+                        _prices[str(p.occupancy)] = p
+                        p.active_sync = True
+                        p.save()
 
             message = "Proceso activado correctamente."
             _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
@@ -678,16 +721,27 @@ def upgrade_fee(request):
                         active = True,
                         current_date = now()
                     )
-                threading.Thread(
-                    target=task_save_fee, 
-                    args=(
-                        _prices,
-                        request.data["date"],
-                        cron,
-                        _credential
-                    )
-                ).start()
-                __time += (cron.current_date - now()).total_seconds()
+                if request.data["masive"] == "false":
+                    threading.Thread(
+                        target=task_save_fee, 
+                        args=(
+                            _prices,
+                            request.data["date"],
+                            cron,
+                            _credential
+                        )
+                    ).start()
+                    __time += (cron.current_date - now()).total_seconds()
+                else:
+                    threading.Thread(
+                        target=task_save_fee_masive, 
+                        args=(
+                            cron,
+                            _credential,
+                            int(request.data["days"])
+                        )
+                    ).start()
+                    __time += (cron.current_date - now()).total_seconds()
             else:
                 message = "No se ha configurado credenciales"
         except Exception as e:

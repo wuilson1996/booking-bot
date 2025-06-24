@@ -16,7 +16,7 @@ class SuitesFeria:
     
     def get_data_by_query_asghab(self, startRangeValue, endRangeValue):
         # Datos
-        url = "https://83.48.12.213:1281/api/Query/Table/"  # o Custom/TableFields
+        url = ""  # o Custom/TableFields
         cid = ""
         password = ""
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
@@ -62,7 +62,7 @@ class SuitesFeria:
 
     def get_data_by_query_habsol(self, startRangeValue, endRangeValue):
         # Datos
-        url = "https://83.48.12.213:1281/api/Query/Table/"  # o Custom/TableFields
+        url = ""  # o Custom/TableFields
         cid = ""
         password = ""
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
@@ -113,7 +113,7 @@ class SuitesFeria:
 
     def get_data_by_query_habits(self, n):
         # Datos
-        url = "https://83.48.12.213:1281/api/Query/Table/"  # o Custom/TableFields
+        url = ""  # o Custom/TableFields
         cid = ""
         password = ""
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
@@ -172,7 +172,7 @@ class SuitesFeria:
 
     def get_fields_data_by_query(self):
         # Datos
-        url = "https://83.48.12.213:1281/api/Query/TableFields/"  # o Custom/TableFields
+        url = ""  # o Custom/TableFields
         cid = ""
         password = ""
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
@@ -286,39 +286,67 @@ class SuitesFeria:
                 "code": 400
             }
 
+def filtrar_habsol_unicos(asg, habsol):
+    """
+    Devuelve un set de IDs de reserva únicos, combinando ASG y Habsol (sin duplicados).
+    """
+    # Filtrar duplicados dentro de Habsol
+    ids_habsol = set()
+    reservas_habsol_filtradas = []
+
+    for r in habsol:
+        id_reserva = r[0]
+        if id_reserva not in ids_habsol:
+            ids_habsol.add(id_reserva)
+            reservas_habsol_filtradas.append(r)
+
+    # Crear set con todos los IDs únicos: ASG + habsol (ya filtrado)
+    ids_asg = set(r[0] for r in asg)
+    ids_final = ids_asg.union(ids_habsol)
+
+    return ids_final
+
 
 if __name__ == "__main__":
     suites_feria = SuitesFeria("", "")
-    confirmadas = suites_feria.get_data_by_query_asghab("2025-06-16", "2025-06-16")
-    procesadas = suites_feria.get_data_by_query_habsol("2025-06-16", "2025-06-16")
+    confirmadas_asg = suites_feria.get_data_by_query_asghab("2025-06-21", "2025-06-21")
+    procesadas_habsol = suites_feria.get_data_by_query_habsol("2025-06-21", "2025-06-21")
 
-    print(confirmadas)
+    #print(f"AsgHab: {confirmadas}")
+    #print(f"Habsol: {procesadas}")
     tipos = ["1", "2", "3", "4"]
 
     for t in tipos:
         print("---------------------------------------------")
-        # Obtener todas las habitaciones del tipo actual
         habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
 
-        # Filtrar ocupadas dentro de este tipo
-        ocupadas = [c for c in confirmadas if c[5] == t]
+        ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
+        ocupadas_habsol = [c for c in procesadas_habsol if c[5] == t]
 
-        print(f"Ocupacion1: {len(ocupadas)} - {ocupadas}")
-        ocupadas2 = [c for c in procesadas if c[5] == t]
-        print(f"Ocupacion2: {len(ocupadas2)} - {ocupadas2}")
-        print(f"habitaciones: {habitaciones_tipo}")
-        cont = 0
-        for o in ocupadas:
-            for o2 in ocupadas2:
-                if o[0] == o2[0]:
-                    cont += 1
-                    break
-        print(f"Contador: {cont}")
-        # Mostrar resumen
         print(f"Tipo: {t}")
+        print(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}")
+        print(f"Habsol: {len(ocupadas_habsol)} - {ocupadas_habsol}")
+        habsol_limpio = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
+        print(f"Habsol filtrado ({len(habsol_limpio)}): {habsol_limpio}")
+        print(f"habits: {habitaciones_tipo}")
+
+        # Detectar duplicados por ID (índice 0)
+        duplicadas = set()
+        ids_asghab = set([c[0] for c in ocupadas_asghab])
+        for c in ocupadas_habsol:
+            if c[0] in ids_asghab:
+                duplicadas.add(c[0])
+
+        contador_duplicados = len(duplicadas)
+
+        # Calcular ocupadas únicas
+        ocupadas_total = len(habsol_limpio)#len(ocupadas_asghab) + len(ocupadas_habsol) - contador_duplicados
+        disponibles = len(habitaciones_tipo) - ocupadas_total
+
+        print(f"Contador duplicados: {contador_duplicados}")
         print(f"  Total habitaciones: {len(habitaciones_tipo)}")
-        print(f"  Ocupadas: {len(ocupadas)}")
-        print(f"  Disponibles: {len(habitaciones_tipo) - len(ocupadas)}")
+        print(f"  Ocupadas: {ocupadas_total}")
+        print(f"  Disponibles: {disponibles}")
 
 
     #suites_feria = SuitesFeria("", "")

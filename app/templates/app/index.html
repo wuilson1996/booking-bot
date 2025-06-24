@@ -59,17 +59,32 @@
                         <option value="180" {% if range_pg == '180' %}selected{% endif %}>180 Dias</option>
                       </select>
                     </div>
-                    <div class="col-md-2">
-                      <button type="submit" class="btn btn-info">Filtrar</button>
+                    <div class="col-md-3">
+                      <button type="submit" class="btn btn-info w-100">Filtrar</button>
                     </div>
                   </div>
                 </form>
+                <div class="row bg-gradient-warning">
+                  <div class="col-md-6">
+                    <select name="range_masive" id="range_masive" class="form-control">
+                      <option value="1">1 Dias</option>
+                      <option value="30">30 Dias</option>
+                      <option value="60">60 Dias</option>
+                      <option value="90">90 Dias</option>
+                      <option value="180">180 Dias</option>
+                      <option value="360">360 Dias</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive">Actualizar Tarifa (Masivo)</button>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="card p-3 bg-secondary m-1">
                 <div class="row">
-                  <div class="col-12 col-sm-1 mt-2">
+                  <div class="col-12 col-sm-2 mt-2">
                     <div class="d-flex mt-4">
                       <label for="" class="text-white m-1">Auto:</label>
                       <div class="my-auto form-check">
@@ -2243,14 +2258,20 @@
       }
     }
     let timeoutHandles = {}
-    function upgradeFee(_date){
+    function upgradeFee(_date, masive=false){
+      days = 0;
+      if (masive){
+        days = document.getElementById("range_masive").value;
+      }
       showLoader("textFeeUpgrade"+_date);
       $("#buttonFeeUpgrade"+ _date).prop("disabled", true);
       $.ajax({
           url: '/upgrade/fee',
           type: 'POST',
           data:{
-            date: _date
+            date: _date,
+            masive: masive,
+            days: days
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {

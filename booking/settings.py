@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'booking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DB_PROD = True
+DB_PROD = False
 
 if DB_PROD:
     DATABASES = {
@@ -108,7 +108,7 @@ else:
             'HOST': 'localhost',                    # Host, si es local usa 'localhost'
             'PORT': '3306',                         # Puerto de MariaDB, usualmente 3306
         }
-    } 
+    }
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.mysql',  # Utiliza el backend de MySQL
