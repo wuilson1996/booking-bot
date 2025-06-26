@@ -158,9 +158,10 @@ class BookingSearch:
             _date_end = dt(int(str(date_end).split("-")[0]), int(str(date_end).split("-")[1]), int(str(date_end).split("-")[2]))
             _now = dt(int(str(date_from).split("-")[0]), int(str(date_from).split("-")[1]), int(str(date_from).split("-")[2]))
 
-            # driver.get(cls._url)
-            # driver.implicitly_wait(15)
-            # driver.delete_all_cookies()
+            if process.type_proces != 1:
+                driver.get(cls._url)
+                driver.implicitly_wait(15)
+                driver.delete_all_cookies()
             sleep(5)
             #logging.info(driver.current_url)
             #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial: {driver.current_url} {_now}", BotLog.BOOKING)
@@ -179,28 +180,30 @@ class BookingSearch:
                     generate_log(f"[-] {now()} Error in button cookies, element not fount", BotLog.BOOKING)
                 except ElementClickInterceptedException as e:
                     generate_log(f"[-] {now()} Error in button cookies, element not clicked", BotLog.BOOKING)
-                
-            # Search
-            # sleep(2)
-            # search = driver.find_element_by_xpath("//input[@name='ss']")
-            # search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
-            # search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
-            # sleep(1)
-            # Escribe el texto en el campo de búsqueda
-            #logging.info(f"Search name or city: {search_name} {_now}")
-            #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} |  Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
-            # search.send_keys(search_name)
-            # sleep(1)
-            # Confirma con ENTER
-            # search.send_keys(Keys.RETURN)
-            # sleep(3)
+            
+            if process.type_proces != 1:
+                # Search
+                sleep(2)
+                search = driver.find_element_by_xpath("//input[@name='ss']")
+                search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
+                search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
+                sleep(1)
+                # Escribe el texto en el campo de búsqueda
+                #logging.info(f"Search name or city: {search_name} {_now}")
+                generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} |  Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
+                search.send_keys(search_name)
+                sleep(1)
+                # Confirma con ENTER
+                search.send_keys(Keys.RETURN)
+                sleep(3)
             cont = 0
 
             _date_elem = _now
             _now += datetime.timedelta(days=1)
 
-            # _url_performance = driver.current_url  # Inicialización
-            # generate_log(f"[+] URL: {_url_performance}", BotLog.BOOKING)
+            if process.type_proces != 1:
+                _url_performance = driver.current_url  # Inicialización
+                generate_log(f"[+] URL: {_url_performance}", BotLog.BOOKING)
             # if check_params(_url_performance, "label"):
             #     generate_log(f"[✓] Parámetro 'label' detectado | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
             #     URL_PERFORMANCE["url"] = _url_performance

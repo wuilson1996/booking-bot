@@ -280,7 +280,7 @@ def active_process(bot_setting:BotSetting):
             #logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             generate_log("[+] Buscando hoteles por nombre...", BotLog.BOOKING)
             for gs in general_search_to_name:
-                cookie_url = get_cookie_param(instances, gs)
+                #cookie_url = get_cookie_param(instances, gs)
                 if not check_finish_process():
                     #logging.info(f"[+] {now()} Finish process de busqueda por nombre...")
                     generate_log(f"[+] {now()} Finish process de busqueda por nombre...", BotLog.BOOKING)
