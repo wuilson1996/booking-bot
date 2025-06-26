@@ -14,7 +14,7 @@ import re
 from .models import *
 import os
 import platform
-from urllib.parse import urlencode
+from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
 URL_PERFORMANCE = {"url": ""}
 
@@ -74,6 +74,16 @@ class BookingSearch:
                     return match.group(1)
                 return None
 
+            def remove_param(url, param):
+                # Quita el parámetro y reensambla la URL
+                parsed = list(urlparse(url))
+                query = parse_qs(parsed[4])
+                if param in query:
+                    del query[param]
+                    parsed[4] = urlencode(query, doseq=True)
+                    return urlunparse(parsed)
+                return url
+
             driver.get(cls._url)
             driver.implicitly_wait(15)
             driver.delete_all_cookies()
@@ -102,16 +112,23 @@ class BookingSearch:
 
             label_found = check_params(_url_performance, "label")
             error_search = check_params(_url_performance, "errorc_searchstring_not_found")
+
+            # Guardar captura siempre
             try:
                 cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
-            except Exception as e:
+            except Exception:
                 pass
-            # Validar ambas condiciones
-            if label_found and not error_search:
-                generate_log(f"[✓] URL válida: contiene 'label' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
+
+            # Si hay error, limpiar la URL y continuar
+            if label_found:
+                if error_search:
+                    _url_performance = remove_param(_url_performance, "errorc_searchstring_not_found")
+                    generate_log(f"[✓] URL contenía 'errorc_searchstring_not_found' pero fue limpiada. Guardando URL limpia.", BotLog.BOOKING)
+                else:
+                    generate_log(f"[✓] URL válida: contiene 'label' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
                 return _url_performance
             else:
-                generate_log(f"[-] URL inválida: label={'✔' if label_found else '✗'}, errorc_searchstring_not_found={'✗' if not error_search else '✔'} | {_url_performance}", BotLog.BOOKING)
+                generate_log(f"[-] URL inválida: no contiene 'label'. {_url_performance}", BotLog.BOOKING)
                 return False
 
         except Exception as e02:
@@ -119,7 +136,7 @@ class BookingSearch:
             generate_log(f"[-] Error General 264: {str(e02)}", BotLog.BOOKING)
 
         return None
-
+    
     @classmethod
     def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None, date_from="", date_end="", stop_event=None, _url_performance=""):
         try:#https://www.booking.com/searchresults.es.html?ss=Madrid, España&label=gen173nr-1FCAQoggI49ANIClgEaEaIAQGYAQq4ARjIAQ_YAQHoAQH4AQKIAgGoAgS4AsCnk8EGwAIB0gIkMjhkMzU1ODQtZWJkMS00OTliLWEzNjQtYzNiYWYwY2UxOGRk2AIF4AIB&aid=304142&lang=es&sb=1&src_elem=sb&src=searchresults&dest_id=-390625&dest_type=city&ac_position=0&ac_click_type=b&ac_langcode=es&ac_suggestion_list_length=5&search_selected=true&search_pageview_id=befc7b60a9b1024c&ac_meta=GhBiZWZjN2I2MGE5YjEwMjRjIAAoATICZXM6D01hZHJpZCwgRXNwYcOxYUAASgBQAA%3D%3D&checkin=2025-05-28&checkout=2025-05-29&group_adults=5&no_rooms=1&group_children=0
