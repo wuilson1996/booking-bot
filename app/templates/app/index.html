@@ -78,11 +78,23 @@
                       <option value="360">360 Dias</option>
                     </select>
                   </div> -->
-                  <div class="col-md-6">
-                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive1">Actualizar Tarifa (Masivo)</button>
+                  <div class="col-12 col-sm-4">
+                    <div class="input-group bg-white">
+                      <label for="" class="text-black">Desde: </label>
+                      <input type="date" class="form-control" value="{{date_from}}" name="date_recomendacion_from" id="date_recomendacion_from">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <button class="btn btn-white w-100" onclick="" id="buttonUpgradeRecom">Insertar recomendacion</button>
+                  <div class="col-12 col-sm-4">
+                    <div class="input-group bg-white">
+                      <label for="" class="text-black">Hasta: </label>
+                      <input type="date" class="form-control" value="{{date_from}}" name="date_recomendacion" id="date_recomendacion" min="{{date_from}}">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-white w-100" onclick="saveRecomendacion()" id="buttonUpgradeRecom">Insertar recomendacion</button>
+                  </div>
+                  <div class="col-md-12">
+                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive1">Actualizar Tarifa (Masivo)</button>
                   </div>
                 </div>
               </div>
@@ -2395,7 +2407,110 @@
           }
       });
     }
+    function saveRecomendacion() {
+      const startDate = $('#date_recomendacion_from').val();
+      const endDate = $('#date_recomendacion').val();
+
+      if (!startDate || !endDate) {
+        alert('Debes seleccionar un rango de fechas válido.');
+        return;
+      }
+
+      function parseLocalDate(str) {
+        const [year, month, day] = str.split('-').map(Number);
+        return new Date(year, month - 1, day);
+      }
+
+      const recomendaciones = [];
+      const maxItems = 6;
+
+      let currentDate = parseLocalDate(startDate);
+      const finalDate = parseLocalDate(endDate);
+
+      while (currentDate <= finalDate) {
+        const yyyy = currentDate.getFullYear();
+        const mm = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(currentDate.getDate()).padStart(2, '0');
+        const itemDate = `${yyyy}-${mm}-${dd}`;
+
+        // Obtener valores de los 3 <select>
+        const select2 = $(`#text${itemDate}2`).val();
+        const select3 = $(`#text${itemDate}3`).val();
+        const select5 = $(`#text${itemDate}5`).val();
+
+        for (let i = 1; i <= maxItems; i++) {
+          const id = `#recomendation${itemDate}${i}`;
+          const valueRaw = $(id).val()?.trim() || $(id).text()?.trim();
+          const value = parseFloat(valueRaw);
+
+          // Validación del número
+          if (
+            valueRaw === "" ||
+            isNaN(value) ||
+            value <= 0
+          ) {
+            console.warn(`Valor inválido en ${id}: "${valueRaw}" "${value}"`);
+            continue;
+          }
+
+          // Determinar el select asociado
+          let selectVal = null;
+
+          if (i === 1 || i === 2) {
+            selectVal = select2;
+          } else if (i === 3 || i === 4) {
+            selectVal = select3;
+          } else if (i === 5 || i === 6) {
+            selectVal = select5;
+          }
+
+          // VALIDACIÓN de select (si es "1" o "", NO guardar)
+          if (selectVal === "1" || selectVal === "") {
+            console.warn(`Select inválido para ${id}: select="${selectVal}", valor="${valueRaw}", valor="${value}"`);
+            continue;
+          }
+
+          // Agregar recomendación válida
+          recomendaciones.push({
+            fecha: itemDate,
+            index: i,
+            id: id,
+            valor: value,
+            tipo: selectVal
+          });
+        }
+        
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      console.log("Recomendaciones válidas:", recomendaciones);
+      aplicarRecomendaciones(recomendaciones);
+    }
+    function aplicarRecomendaciones(recomendaciones) {
+      recomendaciones.forEach(rec => {
+        const id = `#price${rec.fecha}${rec.index}`;
+        const $input = $(id);
+
+        if ($input.length) {
+          const valorActual = parseFloat($input.val());
+
+          // Solo actualizamos si el valor es distinto
+          if (isNaN(valorActual) || valorActual !== rec.valor) {
+            console.log(`Actualizando ${id}: ${valorActual} → ${rec.valor}`);
+            $input.val('');        // Limpiar primero
+            $input.val(rec.valor); // Insertar nuevo valor
+            savePrice(rec.fecha, rec.index, rec.fecha + rec.index); // Guardar solo si se cambió
+          } else {
+            console.log(`Sin cambios en ${id}: ya tiene el valor ${valorActual}`);
+          }
+        } else {
+          console.warn(`No se encontró el input ${id}`);
+        }
+      });
+    }
+
     function savePrice(_date, occupancy, inputId){
+      console.log(_date, occupancy, inputId);
       inputText = document.getElementById("price"+inputId).value;
       showLoader("priceDate"+inputId);
       $.ajax({
