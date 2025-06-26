@@ -78,7 +78,6 @@ class BookingSearch:
                 return None
 
             def remove_param(url, param):
-                # Quita el parámetro y reensambla la URL
                 parsed = list(urlparse(url))
                 query = parse_qs(parsed[4])
                 if param in query:
@@ -102,50 +101,40 @@ class BookingSearch:
 
             sleep(2)
             search = driver.find_element_by_xpath("//input[@name='ss']")
-            search.send_keys(Keys.CONTROL + "a")
+            search.click()
+            search.clear()  # Asegura que esté limpio
+            sleep(0.5)
+
+            # Simular escritura letra por letra
+            for letra in search_name:
+                search.send_keys(letra)
+                try:
+                    cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion="antes_enter")
+                except Exception:
+                    pass
+                sleep(0.1)  # Puedes ajustar esto para que se vea más humano
+
             try:
-                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
+                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion="antes_enter")
             except Exception:
                 pass
-            search.send_keys(Keys.DELETE)
-            try:
-                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
-            except Exception:
-                pass
-            sleep(1)
-            search.send_keys(search_name)
-            try:
-                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
-            except Exception:
-                pass
-            sleep(2)
+
             search.send_keys(Keys.RETURN)
-            try:
-                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
-            except Exception:
-                pass
             sleep(3)
 
             _url_performance = driver.current_url
             logging.info(f"Search name or city: {search_name}")
 
-            #label_found = check_params(_url_performance, "label")
             error_search = check_params(_url_performance, "errorc_searchstring_not_found")
             has_pageview = check_params(_url_performance, "search_pageview_id")
             has_ac_meta = check_params(_url_performance, "ac_meta")
 
-            # Guardar captura siempre
             try:
                 cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
             except Exception:
                 pass
 
-            # Si hay error, limpiar la URL y continuar
             if not error_search and has_pageview and has_ac_meta:
-                # if error_search:
-                #     _url_performance = remove_param(_url_performance, "errorc_searchstring_not_found")
-                #     generate_log(f"[✓] URL contenía 'errorc_searchstring_not_found' pero fue limpiada. Guardando URL limpia.", BotLog.BOOKING)
-                # else:
                 generate_log(f"[✓] URL válida: contiene 'label' o 'ac_meta' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
                 return _url_performance
             else:
