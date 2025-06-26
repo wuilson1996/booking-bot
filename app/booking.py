@@ -103,11 +103,27 @@ class BookingSearch:
             sleep(2)
             search = driver.find_element_by_xpath("//input[@name='ss']")
             search.send_keys(Keys.CONTROL + "a")
+            try:
+                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
+            except Exception:
+                pass
             search.send_keys(Keys.DELETE)
+            try:
+                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
+            except Exception:
+                pass
             sleep(1)
             search.send_keys(search_name)
+            try:
+                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
+            except Exception:
+                pass
             sleep(2)
             search.send_keys(Keys.RETURN)
+            try:
+                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
+            except Exception:
+                pass
             sleep(3)
 
             _url_performance = driver.current_url
