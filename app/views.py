@@ -172,6 +172,21 @@ def check_change_range(hr, stop_event, stop_event_check):
             generate_log(f"[+] Error Check change range: {e}...", BotLog.BOOKING)
         sleep(60)
 
+def get_cookie_param(instances, general_search:GeneralSearch):
+    while True:
+        status_param = instances[0]["booking"].get_params(instances[0]["driver"], general_search.city_and_country)
+        generate_log(f"[+] Configurando url base...", BotLog.BOOKING)
+        #print(status_param)
+        if status_param:
+            generate_log(f"[+] Configurando url base... {status_param}", BotLog.BOOKING)
+            cookie_url = CookieUrl.objects.create(
+                name = general_search.city_and_country,
+                label = status_param
+            )
+            break
+        sleep(5)
+    return cookie_url
+
 def active_process(bot_setting:BotSetting):
     general_search = GeneralSearch.objects.filter(type_search = 1).last()
     general_search_to_name = GeneralSearch.objects.filter(type_search = 2)
@@ -196,18 +211,7 @@ def active_process(bot_setting:BotSetting):
 
     while True:
         try:
-            while True:
-                status_param = instances[0]["booking"].get_params(instances[0]["driver"], general_search.city_and_country)
-                generate_log(f"[+] Configurando url base...", BotLog.BOOKING)
-                #print(status_param)
-                if status_param:
-                    generate_log(f"[+] Configurando url base... {status_param}", BotLog.BOOKING)
-                    cookie_url = CookieUrl.objects.create(
-                        name = general_search.city_and_country,
-                        label = status_param
-                    )
-                    break
-                sleep(5)
+            cookie_url = get_cookie_param(instances, general_search)
             stop_event = threading.Event()
             if not check_finish_process():
                 #logging.info(f"[+] {now()} Finish process...")
@@ -276,6 +280,7 @@ def active_process(bot_setting:BotSetting):
             #logging.info(f"[+] {now()} Process active in while. Search with name browser... {instances[0]['booking']}")
             generate_log("[+] Buscando hoteles por nombre...", BotLog.BOOKING)
             for gs in general_search_to_name:
+                cookie_url = get_cookie_param(instances, general_search)
                 if not check_finish_process():
                     #logging.info(f"[+] {now()} Finish process de busqueda por nombre...")
                     generate_log(f"[+] {now()} Finish process de busqueda por nombre...", BotLog.BOOKING)
