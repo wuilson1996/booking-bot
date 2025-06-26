@@ -354,3 +354,1152 @@ INFO:root:[+] Check cron active...
 INFO:root:[+] Check cron active finish...
 INFO:root:[+] Reset data price status...
 INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Error button update: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:Error button update: 'NoneType' object has no attribute 'find_elements_by_xpath'
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: 'NoneType' object has no attribute 'get'
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:{'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:Error Fee: cannot unpack non-iterable bool object
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - cannot unpack non-iterable bool object
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - ('Connection aborted.', ConnectionResetError(10054, 'Se ha forzado la interrupción de una conexión existente por el host remoto', None, 10054, None))
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - cannot unpack non-iterable bool object
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - cannot unpack non-iterable bool object
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - cannot unpack non-iterable bool object
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - cannot unpack non-iterable bool object
+INFO:root:Error Fee: {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>} - cannot unpack non-iterable bool object
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="cec76254e3fb7e6215ed63c325a00c0d", element="f.975B70F8EA074240A3077E6CB474BA2F.d.D45231F634BFFA2A28AC0F3CF7EBFEAA.e.108")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:2025-07-13
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="cec76254e3fb7e6215ed63c325a00c0d", element="f.975B70F8EA074240A3077E6CB474BA2F.d.AB81013A0E523856B80CF6C7BE91F6DF.e.264")>
+INFO:root:Error Fee: {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="cec76254e3fb7e6215ed63c325a00c0d", element="f.975B70F8EA074240A3077E6CB474BA2F.d.996169D745F68217A02BCA6B8BE9B774.e.423")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="cec76254e3fb7e6215ed63c325a00c0d", element="f.975B70F8EA074240A3077E6CB474BA2F.d.8D802472E455F84B36693AC57F4893E2.e.534")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2025-07-10
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="cec76254e3fb7e6215ed63c325a00c0d", element="f.975B70F8EA074240A3077E6CB474BA2F.d.6180F1E6FD4EF1FC8127784F919F3144.e.685")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}
+INFO:root:2025-08-21
+INFO:root:div 2025-08-21
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="cec76254e3fb7e6215ed63c325a00c0d", element="f.975B70F8EA074240A3077E6CB474BA2F.d.E06EC21CEB82527BFAF5119E1DF4D6B3.e.874")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:Error button update: 'list' object has no attribute 'items'
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\fee.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="75de4a5deb52535e0ca213632253a5af", element="f.F1B91E385B3C05E630DE92EBBD29458A.d.EF012BB9788176E8C4D1847FB972C870.e.115")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:2025-07-13
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="75de4a5deb52535e0ca213632253a5af", element="f.F1B91E385B3C05E630DE92EBBD29458A.d.F81F40BAFB26CB5482E8CF23A427A878.e.264")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="75de4a5deb52535e0ca213632253a5af", element="f.F1B91E385B3C05E630DE92EBBD29458A.d.467726ED7BAB2E77F9FE60C6866557FD.e.376")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2025-07-10
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="75de4a5deb52535e0ca213632253a5af", element="f.F1B91E385B3C05E630DE92EBBD29458A.d.B4FBCC524D4EFB18F06D707FD68E9AF4.e.528")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}
+INFO:root:2025-08-21
+INFO:root:div 2025-08-21
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="75de4a5deb52535e0ca213632253a5af", element="f.F1B91E385B3C05E630DE92EBBD29458A.d.0C9993D572035F8A13920CC5B2710A51.e.716")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:plataform_sync True
+INFO:root:Error button update: 'bool' object has no attribute 'plataform_sync'
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="e2f8deadba8156f9fdb705a400cf6f9b", element="f.94E9ED8FC3A11F9D4CF9015C19583340.d.0FFF61E6AF005068D20E93F2B1A0F548.e.164")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:2025-07-13
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="e2f8deadba8156f9fdb705a400cf6f9b", element="f.94E9ED8FC3A11F9D4CF9015C19583340.d.834F0A2B7290643E732F216EC78EB6E8.e.367")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="e2f8deadba8156f9fdb705a400cf6f9b", element="f.94E9ED8FC3A11F9D4CF9015C19583340.d.D892DA662340592474104597F2CFCF8C.e.478")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2025-07-10
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="e2f8deadba8156f9fdb705a400cf6f9b", element="f.94E9ED8FC3A11F9D4CF9015C19583340.d.C6B8FC6907D11D2654E0DDFE30C1A513.e.635")>
+INFO:root:Error Fee: {'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="e2f8deadba8156f9fdb705a400cf6f9b", element="f.94E9ED8FC3A11F9D4CF9015C19583340.d.972BE3060660872A4DBE1AB13BB69F9D.e.739")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}
+INFO:root:2025-08-21
+INFO:root:div 2025-08-21
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="e2f8deadba8156f9fdb705a400cf6f9b", element="f.94E9ED8FC3A11F9D4CF9015C19583340.d.A338B63903E84493A32D250380032525.e.930")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.215094+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:45.598929+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.102383+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:46.533773+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:48.887676+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 06:45:49.423937+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:{'5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:5 Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:17.668938+02:00 - Created: 2025-06-13 05:50:17.696070+02:00
+INFO:root:4 Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.577726+02:00 - Created: 2025-06-13 05:50:09.737912+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:09.922897+02:00 - Created: 2025-06-13 05:50:05.696876+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.462343+02:00 - Created: 2025-06-13 05:50:02.373643+02:00
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 06:48:10.904378+02:00 - Created: 2025-06-13 05:49:57.954860+02:00
+INFO:root:{'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.888941+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:29.323805+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.655198+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:28.215417+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:27.382719+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 06:46:26.848682+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:{'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:35.012236+02:00 - Created: 2025-06-10 20:17:57.694904+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.673222+02:00 - Created: 2025-06-10 20:17:57.266018+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:34.055015+02:00 - Created: 2025-06-10 20:17:56.816392+02:00
+INFO:root:4 Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:33.551165+02:00 - Created: 2025-06-10 20:17:56.453265+02:00
+INFO:root:5 Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 06:47:32.911638+02:00 - Created: 2025-06-10 20:17:55.839635+02:00
+INFO:root:{'2': <Price: Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00>}
+INFO:root:2 Price: 77 - O: 2 - Date: 2025-08-21 - Updated: 2025-04-15 19:26:10.868627+02:00 - Created: 2025-04-15 19:26:10.868699+02:00
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:39.391964+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.954641+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.312312+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.900457+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.335655+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:36.754380+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:58.946330+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.887363+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.394189+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.712633+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.199214+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.930972+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.496830+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.872737+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.393833+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.792371+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.319656+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:50.775667+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.239167+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.921232+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:52.423698+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:53.360118+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': False}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:39.391964+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.954641+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.312312+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.900457+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.335655+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:36.754380+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.89AE4408FAAF73A70B7EFCD00DA41FAC.e.113")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:58.946330+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.887363+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.394189+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.712633+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.199214+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:2025-07-13
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.D14D44C79C9688A63BC469E45DC35C96.e.314")>
+INFO:root:Error Fee: {'5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:58.946330+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.887363+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.394189+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.712633+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.199214+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.96BFA8FF613206964A55C348F337FF2D.e.420")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.930972+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.496830+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.872737+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.393833+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.792371+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.319656+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.F23D5F258643D25048FF1F5E3E2C02F8.e.572")>
+INFO:root:Error Fee: {'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.930972+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.496830+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.872737+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.393833+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.792371+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.319656+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.82582FB27746A71571BC5262662DBECD.e.639")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:50.775667+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.239167+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.921232+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:52.423698+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:53.360118+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2025-07-10
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.DD007FF4A57C50026F9799AB218D896B.e.841")>
+INFO:root:Error Fee: {'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:50.775667+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.239167+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.921232+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:52.423698+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:53.360118+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.06DED868902FC046A8839594D2DB25BA.e.953")>
+INFO:root:Error Fee: {'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:50.775667+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.239167+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.921232+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:52.423698+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:53.360118+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="a0bd8debf048f76ba1e971bedee1dd44", element="f.EA9EABB24398983BB7309A02C7858466.d.2CEE90D9362743FFACB2DB1624939F32.e.1059")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:39.391964+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.954641+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.312312+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.900457+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.335655+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:36.754380+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:39.391964+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.954641+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:38.312312+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.900457+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:37.335655+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:38:36.754380+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:{'5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:58.946330+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.887363+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.394189+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.712633+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.199214+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:5 Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:58.946330+02:00 - Created: 2025-06-13 05:50:17.696070+02:00
+INFO:root:4 Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.887363+02:00 - Created: 2025-06-13 05:50:09.737912+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:57.394189+02:00 - Created: 2025-06-13 05:50:05.696876+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.712633+02:00 - Created: 2025-06-13 05:50:02.373643+02:00
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:38:56.199214+02:00 - Created: 2025-06-13 05:49:57.954860+02:00
+INFO:root:{'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.930972+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.496830+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.872737+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.393833+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.792371+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.319656+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.930972+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:43.496830+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.872737+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:42.393833+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.792371+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:38:41.319656+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:{'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:50.775667+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.239167+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.921232+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:52.423698+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:53.360118+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:50.775667+02:00 - Created: 2025-06-10 20:17:57.694904+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.239167+02:00 - Created: 2025-06-10 20:17:57.266018+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:51.921232+02:00 - Created: 2025-06-10 20:17:56.816392+02:00
+INFO:root:4 Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:52.423698+02:00 - Created: 2025-06-10 20:17:56.453265+02:00
+INFO:root:5 Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:38:53.360118+02:00 - Created: 2025-06-10 20:17:55.839635+02:00
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.657411+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.265024+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:25.360943+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:24.753799+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.698939+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.192269+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.936623+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.349285+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.993110+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.288284+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:44.831014+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}, '2025-06-28': {'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.775770+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.386638+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:31.168156+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.788002+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.057884+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:29.633458+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}, '2025-07-10': {'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.175371+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.593507+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.218128+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.760276+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:41.505281+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}, '2025-08-21': {'plataform_sync': False}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.657411+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.265024+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:25.360943+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:24.753799+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.698939+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.192269+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="38278cc12d423d71610531015ffe0091", element="f.05FDC5198A242D68C6E03162402A7E84.d.B3D360E77F3C6E1E518FDEC2619BBC01.e.109")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.936623+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.349285+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.993110+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.288284+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:44.831014+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:2025-07-13
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="38278cc12d423d71610531015ffe0091", element="f.05FDC5198A242D68C6E03162402A7E84.d.DD375DF0FBC186D103B5347F3FF46B19.e.311")>
+INFO:root:Error Fee: {'5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.936623+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.349285+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.993110+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.288284+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:44.831014+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-13
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="38278cc12d423d71610531015ffe0091", element="f.05FDC5198A242D68C6E03162402A7E84.d.EE28DD52CA267C7127DCC4A220913020.e.417")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.775770+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.386638+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:31.168156+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.788002+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.057884+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:29.633458+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="38278cc12d423d71610531015ffe0091", element="f.05FDC5198A242D68C6E03162402A7E84.d.A009E1AD1DBD64C5CE0FCFC1A023B44E.e.564")>
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.175371+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.593507+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.218128+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.760276+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:41.505281+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2025-07-10
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="38278cc12d423d71610531015ffe0091", element="f.05FDC5198A242D68C6E03162402A7E84.d.22366FA2AFCF9CD0433EFF8EC95652D7.e.774")>
+INFO:root:Error Fee: {'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.175371+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.593507+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.218128+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.760276+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:41.505281+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-07-10
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="38278cc12d423d71610531015ffe0091", element="f.05FDC5198A242D68C6E03162402A7E84.d.9F497E648DAB4973D44C94A47C16D39A.e.879")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.657411+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.265024+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:25.360943+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:24.753799+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.698939+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.192269+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.657411+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.265024+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:25.360943+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:24.753799+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.698939+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.192269+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:{'5': <Price: Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.936623+02:00 - Created: 2025-06-13 05:50:17.696070+02:00>, '4': <Price: Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.349285+02:00 - Created: 2025-06-13 05:50:09.737912+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.993110+02:00 - Created: 2025-06-13 05:50:05.696876+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.288284+02:00 - Created: 2025-06-13 05:50:02.373643+02:00>, '2': <Price: Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:44.831014+02:00 - Created: 2025-06-13 05:49:57.954860+02:00>}
+INFO:root:5 Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.936623+02:00 - Created: 2025-06-13 05:50:17.696070+02:00
+INFO:root:4 Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.349285+02:00 - Created: 2025-06-13 05:50:09.737912+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.993110+02:00 - Created: 2025-06-13 05:50:05.696876+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.288284+02:00 - Created: 2025-06-13 05:50:02.373643+02:00
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:44.831014+02:00 - Created: 2025-06-13 05:49:57.954860+02:00
+INFO:root:{'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.775770+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.386638+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:31.168156+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.788002+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.057884+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:29.633458+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.775770+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.386638+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:31.168156+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.788002+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.057884+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:29.633458+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:{'2': <Price: Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.175371+02:00 - Created: 2025-06-10 20:17:57.694904+02:00>, '1': <Price: Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.593507+02:00 - Created: 2025-06-10 20:17:57.266018+02:00>, '3': <Price: Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.218128+02:00 - Created: 2025-06-10 20:17:56.816392+02:00>, '4': <Price: Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.760276+02:00 - Created: 2025-06-10 20:17:56.453265+02:00>, '5': <Price: Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:41.505281+02:00 - Created: 2025-06-10 20:17:55.839635+02:00>}
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.175371+02:00 - Created: 2025-06-10 20:17:57.694904+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.593507+02:00 - Created: 2025-06-10 20:17:57.266018+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.218128+02:00 - Created: 2025-06-10 20:17:56.816392+02:00
+INFO:root:4 Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.760276+02:00 - Created: 2025-06-10 20:17:56.453265+02:00
+INFO:root:5 Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:41.505281+02:00 - Created: 2025-06-10 20:17:55.839635+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.657411+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:26.265024+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:25.360943+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:24.753799+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.698939+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 07:50:23.192269+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:5 Price: 199 - O: 5 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.936623+02:00 - Created: 2025-06-13 05:50:17.696070+02:00
+INFO:root:4 Price: 114 - O: 4 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:46.349285+02:00 - Created: 2025-06-13 05:50:09.737912+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.993110+02:00 - Created: 2025-06-13 05:50:05.696876+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:45.288284+02:00 - Created: 2025-06-13 05:50:02.373643+02:00
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-13 - Updated: 2025-06-26 07:50:44.831014+02:00 - Created: 2025-06-13 05:49:57.954860+02:00
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.775770+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:32.386638+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:31.168156+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.788002+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:30.057884+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 07:50:29.633458+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:2 Price: 94 - O: 2 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.175371+02:00 - Created: 2025-06-10 20:17:57.694904+02:00
+INFO:root:1 Price: 94 - O: 1 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:39.593507+02:00 - Created: 2025-06-10 20:17:57.266018+02:00
+INFO:root:3 Price: 109 - O: 3 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.218128+02:00 - Created: 2025-06-10 20:17:56.816392+02:00
+INFO:root:4 Price: 119 - O: 4 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:40.760276+02:00 - Created: 2025-06-10 20:17:56.453265+02:00
+INFO:root:5 Price: 239 - O: 5 - Date: 2025-07-10 - Updated: 2025-06-26 07:50:41.505281+02:00 - Created: 2025-06-10 20:17:55.839635+02:00
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:{'2025-06-26': {'plataform_sync': False}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': False}, '2025-06-28': {'plataform_sync': False}, '2025-07-10': {'plataform_sync': False}, '2025-08-21': {'plataform_sync': False}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:{'2025-06-26': {'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:53.183692+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.693301+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.098184+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.683899+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.183610+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:50.592331+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}, '2025-08-07': {'plataform_sync': False}, '2025-08-03': {'plataform_sync': False}, '2025-07-25': {'plataform_sync': False}, '2025-07-13': {'plataform_sync': False}, '2025-06-28': {'plataform_sync': False}, '2025-07-10': {'plataform_sync': False}, '2025-08-21': {'plataform_sync': False}, '2025-08-27': {'plataform_sync': False}}
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:53.183692+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.693301+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.098184+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.683899+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.183610+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:50.592331+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="f466d180449ac57863f4ab18cac05bab", element="f.874199A6FD8F47DD07B3528925CCEF9E.d.5B54D572981D457B59CA3A9331C690A2.e.110")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:53.183692+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.693301+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.098184+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.683899+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.183610+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:50.592331+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:53.183692+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.693301+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.098184+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.683899+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.183610+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:50.592331+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:53.183692+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.693301+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:52.098184+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.683899+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:51.183610+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:00:50.592331+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:root:plataform_sync False
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:django.utils.autoreload:C:\Users\wuilson-desk\Desktop\progra\booking\booking\app\views.py changed, reloading.
+INFO:root:[+] Check cron active...
+INFO:root:[+] Check cron active finish...
+INFO:root:[+] Reset data price status...
+INFO:root:[+] Reset data price status finish...
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:40.179023+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:39.511983+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.887906+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.136443+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.609380+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.152903+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="25adc9c3c64b5685df11274bef448764", element="f.7787BCDD5884164DA96E363DC9646307.d.2094472B05F3982638EDB913025521F3.e.110")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:45.488417+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.943909+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.248919+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.769404+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.073265+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:42.584753+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="25adc9c3c64b5685df11274bef448764", element="f.7787BCDD5884164DA96E363DC9646307.d.E48A63E8FF99082B6950CBD793A88D11.e.270")>
+INFO:root:Error Fee: {'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:45.488417+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.943909+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.248919+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.769404+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.073265+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:42.584753+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>} - Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@data-testid='editPricesTab']"}
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+	GetHandleVerifier [0x0063FC03+61635]
+	GetHandleVerifier [0x0063FC44+61700]
+	(No symbol) [0x004605D3]
+	(No symbol) [0x004A899E]
+	(No symbol) [0x004A8D3B]
+	(No symbol) [0x004F0E12]
+	(No symbol) [0x004CD2E4]
+	(No symbol) [0x004EE61B]
+	(No symbol) [0x004CD096]
+	(No symbol) [0x0049C840]
+	(No symbol) [0x0049D6A4]
+	GetHandleVerifier [0x008C4523+2701795]
+	GetHandleVerifier [0x008BFCA6+2683238]
+	GetHandleVerifier [0x008DA9EE+2793134]
+	GetHandleVerifier [0x006568C5+155013]
+	GetHandleVerifier [0x0065CFAD+181357]
+	GetHandleVerifier [0x00647458+92440]
+	GetHandleVerifier [0x00647600+92864]
+	GetHandleVerifier [0x00631FF0+5296]
+	BaseThreadInitThunk [0x76ECFCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x771082AE+286]
+	RtlGetAppContainerNamedObjectPath [0x7710827E+238]
+
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="25adc9c3c64b5685df11274bef448764", element="f.7787BCDD5884164DA96E363DC9646307.d.D78C316991224B3AF311E89CB466E8F0.e.339")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:40.179023+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:39.511983+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.887906+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.136443+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.609380+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.152903+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:40.179023+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:39.511983+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.887906+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.136443+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.609380+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.152903+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:{'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:45.488417+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.943909+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.248919+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.769404+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.073265+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:42.584753+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:45.488417+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.943909+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.248919+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.769404+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.073265+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:42.584753+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:40.179023+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:39.511983+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.887906+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:38.136443+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.609380+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:04:37.152903+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:45.488417+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.943909+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:44.248919+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.769404+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:43.073265+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:04:42.584753+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.657497+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.145161+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:24.448662+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.992494+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.153063+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:22.512932+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="72c2440360a57d730f6aa7b5fd433b14", element="f.E16794C632D645D524A597181B1FDA05.d.8E1C5DF34C8EB5884811AEAAC94474A8.e.110")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.679683+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.207842+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.570660+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.164800+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:29.122412+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:28.697778+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:2025-06-28
+INFO:root:div 2025-06-28
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="72c2440360a57d730f6aa7b5fd433b14", element="f.E16794C632D645D524A597181B1FDA05.d.6F58BD8F4F3D3C7FA5C03A85119001CC.e.273")>
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.657497+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.145161+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:24.448662+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.992494+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.153063+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:22.512932+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.657497+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.145161+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:24.448662+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.992494+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.153063+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:22.512932+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:{'6': <Price: Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.679683+02:00 - Created: 2025-06-10 20:18:36.431796+02:00>, '5': <Price: Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.207842+02:00 - Created: 2025-06-10 20:18:36.134031+02:00>, '4': <Price: Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.570660+02:00 - Created: 2025-06-10 20:18:29.317590+02:00>, '3': <Price: Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.164800+02:00 - Created: 2025-06-10 20:18:28.974424+02:00>, '1': <Price: Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:29.122412+02:00 - Created: 2025-06-10 20:18:21.808916+02:00>, '2': <Price: Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:28.697778+02:00 - Created: 2025-06-10 20:18:21.557322+02:00>}
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.679683+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.207842+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.570660+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.164800+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:29.122412+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:28.697778+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.657497+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:25.145161+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:24.448662+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.992494+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:23.153063+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:07:22.512932+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 269 - O: 6 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.679683+02:00 - Created: 2025-06-10 20:18:36.431796+02:00
+INFO:root:5 Price: 269 - O: 5 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:31.207842+02:00 - Created: 2025-06-10 20:18:36.134031+02:00
+INFO:root:4 Price: 199 - O: 4 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.570660+02:00 - Created: 2025-06-10 20:18:29.317590+02:00
+INFO:root:3 Price: 199 - O: 3 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:30.164800+02:00 - Created: 2025-06-10 20:18:28.974424+02:00
+INFO:root:1 Price: 169 - O: 1 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:29.122412+02:00 - Created: 2025-06-10 20:18:21.808916+02:00
+INFO:root:2 Price: 174 - O: 2 - Date: 2025-06-28 - Updated: 2025-06-26 08:07:28.697778+02:00 - Created: 2025-06-10 20:18:21.557322+02:00
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:45.273790+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:44.696325+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.979450+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.427513+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.695710+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.108573+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="f717753e2506d6708c1e32673608b1a6", element="f.02DB8F490CE7F40B83193FEE08229102.d.BC281053F5C53A19122DBA631D0012B9.e.115")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:45.273790+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:44.696325+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.979450+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.427513+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.695710+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.108573+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:45.273790+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:44.696325+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.979450+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.427513+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.695710+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.108573+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:45.273790+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:44.696325+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.979450+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:43.427513+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.695710+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:11:42.108573+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:21.212220+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:20.569926+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:19.585892+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:18.986844+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:17.517120+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:16.789802+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="11d0109964ff94b201d623dc7bcdea89", element="f.CD899BC0F662F3B23C7BBDAF9A87188B.d.AB4FA92CF1C81CFA2E642A2C5D6C63F0.e.114")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:21.212220+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:20.569926+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:19.585892+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:18.986844+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:17.517120+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:16.789802+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:21.212220+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:20.569926+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:19.585892+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:18.986844+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:17.517120+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:16.789802+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:21.212220+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:20.569926+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:19.585892+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:18.986844+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:17.517120+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:15:16.789802+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.707196+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.031200+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:59.090588+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:57.941429+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.964281+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.330292+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="2c111c2def4b4621dfc86330b46b2c7c", element="f.13BDE7C2880674C1E8E388D0CD068834.d.6560B2AB4F2203369C73A4B1B9FB421B.e.110")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.707196+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.031200+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:59.090588+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:57.941429+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.964281+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.330292+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.707196+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.031200+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:59.090588+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:57.941429+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.964281+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.330292+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.707196+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:20:00.031200+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:59.090588+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:57.941429+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.964281+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:19:56.330292+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+WARNING:django.request:Not Found: /sm/b71d1fdf2e18834149b01e90c6fb68c49c8720f6f79466e6360b5d5b6793e05e.map
+INFO:root:----------------------------------------------
+INFO:root:{'plataform_sync': True, '6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:18.603529+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:17.369207+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:16.492097+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.859097+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.101412+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:14.162231+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:2025-06-26
+INFO:root:div 2025-06-26
+INFO:root:<selenium.webdriver.remote.webelement.WebElement (session="1962c2dcebf70a7a0a009140ab9b06b6", element="f.6ECE2144F1B3697956155B65145828DC.d.195A0B3859AE970B3E076D0B4FB5D939.e.111")>
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:----------------------------------------------
+INFO:root:{'6': <Price: Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:18.603529+02:00 - Created: 2025-06-26 06:24:08.823776+02:00>, '5': <Price: Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:17.369207+02:00 - Created: 2025-06-26 06:24:06.578969+02:00>, '4': <Price: Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:16.492097+02:00 - Created: 2025-06-26 06:24:04.351207+02:00>, '3': <Price: Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.859097+02:00 - Created: 2025-06-26 06:24:01.592678+02:00>, '1': <Price: Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.101412+02:00 - Created: 2025-06-26 06:23:58.368938+02:00>, '2': <Price: Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:14.162231+02:00 - Created: 2025-06-26 06:23:53.760432+02:00>}
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:18.603529+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:17.369207+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:16.492097+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.859097+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.101412+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:14.162231+02:00 - Created: 2025-06-26 06:23:53.760432+02:00
+INFO:root:6 Price: 169 - O: 6 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:18.603529+02:00 - Created: 2025-06-26 06:24:08.823776+02:00
+INFO:root:5 Price: 172 - O: 5 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:17.369207+02:00 - Created: 2025-06-26 06:24:06.578969+02:00
+INFO:root:4 Price: 109 - O: 4 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:16.492097+02:00 - Created: 2025-06-26 06:24:04.351207+02:00
+INFO:root:3 Price: 99 - O: 3 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.859097+02:00 - Created: 2025-06-26 06:24:01.592678+02:00
+INFO:root:1 Price: 89 - O: 1 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:15.101412+02:00 - Created: 2025-06-26 06:23:58.368938+02:00
+INFO:root:2 Price: 89 - O: 2 - Date: 2025-06-26 - Updated: 2025-06-26 08:24:14.162231+02:00 - Created: 2025-06-26 06:23:53.760432+02:00

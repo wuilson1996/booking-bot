@@ -635,37 +635,52 @@ def task_save_fee_masive(cron:CronActive, _credential:CredentialPlataform, days)
     if _check:
         prices_list = []
         prices_list_not = []
-        for d in range(days):
-            _prices = {}
-            plataform_sync = False
-            _date_from = str((now() + datetime.timedelta(days=d)).date())
-            for p in Price.objects.filter(date_from = _date_from):
-                if p.price != None and p.price != "":
-                    if not p.plataform_sync:
-                        plataform_sync = True
-                    _prices[str(p.occupancy)] = p
-                    p.active_sync = True
-                    p.save()
-            #logging.info(_prices)
-            if len(list(_prices.keys())) > 0:
-                _check = False
-                if plataform_sync:
-                    logging.info(_prices)
-                    _check = fee.send_fee_masive(_driver, _prices, _date_from)
-                    sleep(10)
-                if _check:
-                    prices_list.append(_prices)
-                else:
-                    prices_list_not.append(_prices)
+        prices_all = Price.objects.all().order_by("-id")
+        _prices = {}
+        for price_obj in prices_all:
+            if datetime.datetime(year=int(price_obj.date_from.split("-")[0]), month=int(price_obj.date_from.split("-")[1]), day=int(price_obj.date_from.split("-")[2])).date() >= now().date():
+                if price_obj.date_from not in list(_prices.keys()):
+                    #plataform_sync = False
+                    _prices[price_obj.date_from] = {
+                        "plataform_sync": False
+                    }
 
-        fee.update_with_range(_driver, "Masive instance", prices_list, False)
+                if price_obj.price != None and price_obj.price != "":
+                    if not price_obj.plataform_sync:
+                        _prices[price_obj.date_from]["plataform_sync"] = True
+
+                        _prices[price_obj.date_from][str(price_obj.occupancy)] = price_obj
+                        price_obj.active_sync = True
+                        price_obj.save()
+
+        #print(_prices)
+        #logging.info(_prices)
+        logging.info("----------------------------------------------")
+        for _key, _value in _prices.items():
+            _check = False
+            if _value["plataform_sync"]:
+                logging.info(_value)
+                del _value["plataform_sync"]
+                _check = fee.send_fee_masive(_driver, _value, _key)
+                sleep(10)
+            if _check:
+                prices_list.append(_value)
+            else:
+                prices_list_not.append(_value)
+            logging.info("----------------------------------------------")
+
+        if prices_list:
+            fee.update_with_range(_driver, "Masive instance", prices_list, False)
+
         sleep(5)
         fee.close(_driver)
         for price in prices_list + prices_list_not:
             for key, value in price.items():
-                _p = Price.objects.filter(pk = value.pk).first()
-                _p.active_sync = False
-                _p.save()
+                if key != "plataform_sync":
+                    logging.info(f"{key} {value}")
+                    _p = Price.objects.filter(pk = value.pk).first()
+                    _p.active_sync = False
+                    _p.save()
 
 def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform):
     try:
@@ -752,7 +767,7 @@ def upgrade_fee(request):
                         args=(
                             cron,
                             _credential,
-                            int(request.data["days"])
+                            0
                         )
                     ).start()
                     __time += (cron.current_date - now()).total_seconds()

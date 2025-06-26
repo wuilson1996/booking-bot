@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from time import sleep, time
@@ -48,10 +49,216 @@ class FeeTask:
 
     @classmethod
     def organice_price(cls, prices):
-        _prices = {}
-        for key, value in prices.items():
-            _prices[key] = value.price
-        return _prices
+        #_prices = {}
+        #for key, value in prices.items():
+        #    _prices[key] = value.price
+        return prices
+
+    @classmethod
+    def sign_in(cls, driver, username, password):
+        try:
+            check = False
+            driver.get(cls._url)
+            driver.maximize_window()
+            driver.implicitly_wait(15)
+            driver.delete_all_cookies()
+            generate_log(f"[+] Iniciando sesion, insercion masiva...", BotLog.ROOMPRICE)
+            driver.find_element_by_xpath("//input[@type='email']").send_keys(username)
+            #logging.info(f"[+] Add username success...")
+            #generate_log(f"[+] Add username success... {_date} | {str(price)}", BotLog.ROOMPRICE)
+            driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
+            #logging.info(f"[+] Add username password...")
+            #generate_log(f"[+] Add username password... {_date} | {str(price)}", BotLog.ROOMPRICE)
+            driver.find_element_by_xpath("//button[@type='submit']").click()
+            #logging.info(f"[+] click button login success...")
+            #generate_log(f"[+] click button login success... {_date} | {str(price)}", BotLog.ROOMPRICE)
+            sleep(5)
+            if "Ajustes de la cuenta" in driver.page_source:
+                #logging.info(f"[+] Inicio sesion correctamente... {_date} | {str(price)}")
+                generate_log(f"[+] Inicio sesion correctamente, insercion masiva...", BotLog.ROOMPRICE)
+                check = True
+            __time = time()
+            while True:
+                #logging.info(f"[+] verificando inicio de sesion...")
+                generate_log(f"[+] verificando inicio de sesion, insercion masiva...", BotLog.ROOMPRICE)
+                if "Optimizando..." not in driver.page_source or (time() - __time >= 180):
+                    check = True
+                    break
+                sleep(1)
+        except Exception as e:
+            logging.info("Error Fee: "+str(e))
+            generate_log(f"[+] Error Fee, insercion masiva, {e}...", BotLog.ROOMPRICE)
+            cls.guardar_captura(driver, descripcion="error_general")
+
+        return check
+    
+    @classmethod
+    def send_fee_masive(cls, driver, price, _date):
+        try:
+            logging.info(_date)
+            driver.get(driver.current_url)
+            driver.implicitly_wait(15)
+            sleep(5)
+            __time = time()
+            while True:
+                #logging.info(f"[+] verificando inicio de sesion...")
+                generate_log(f"[+] verificando inicio de sesion... {_date}", BotLog.ROOMPRICE)
+                if "Optimizando..." not in driver.page_source or (time() - __time >= 180):
+                    break
+                sleep(1)
+            cont_recharge = 0
+            while True:
+                status = False
+                #logging.info(f"[+] search buttons calendar...")
+                generate_log(f"[+] Buscando fecha en calendario... {_date}", BotLog.ROOMPRICE)
+                try:
+                    containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
+                    fount_element, tag_name = cls.check_date_found(containers, _date)
+                    if fount_element:
+                        generate_log(f"[+] La fecha {_date} fue encontrada dentro del calendario.", BotLog.ROOMPRICE)
+                        logging.info(f"{tag_name} {str(_date)}")
+                        b = driver.find_element_by_xpath(f"//{tag_name}[@data-testid='{_date}']")
+                        logging.info(b)
+                        generate_log(f"[+] Fecha encontrada: {str(b.get_attribute('data-testid'))}... {_date}", BotLog.ROOMPRICE)
+                        driver.execute_script("arguments[0].scrollIntoView();", b)
+                        sleep(1)
+                        #b.click()
+                        driver.execute_script("arguments[0].click();", b) # Upgrade change button for javascript.
+                        #logging.info(f"[+] Click fecha success...")
+                        generate_log(f"[+] Abriendo fecha... {_date}", BotLog.ROOMPRICE)
+                        sleep(3)
+                        bt_edit_price = driver.find_element_by_xpath("//div[@data-testid='editPricesTab']")
+                        driver.execute_script("arguments[0].scrollIntoView();", bt_edit_price)
+                        sleep(1)
+                        bt_edit_price.click()
+                        #logging.info(f"[+] Click button edit price tab success...")
+                        generate_log(f"[+] Abriendo edicion de precios... {_date}", BotLog.ROOMPRICE)
+                        sleep(2)
+                        #if "Sending Prices. Waiting for the Channel Manager to confirm" in driver.page_source:
+                        #    logging.info(f"[+] Check message Sending Prices....")
+                        #if "Prices Uploaded Successfully" in driver.page_source:
+                        #    logging.info(f"[+] Check message Prices Uploaded....")
+                        #if "Data Updated Successfully" in driver.page_source:
+                        #    logging.info(f"[+] Check message Data Updated....")
+
+                        for b2 in driver.find_elements_by_xpath("//div[@class='m_69686b9b mantine-SegmentedControl-control']"):
+                            if b2.text == "Precios fijos":
+                                #driver.execute_script("arguments[0].scrollIntoView();", b2)
+                                sleep(1)
+                                b2.click()
+                                #logging.info(f"[+] Precios fijos click success...")
+                                generate_log(f"[+] Edicion de precios fijos... {_date}", BotLog.ROOMPRICE)
+                                sleep(2)
+
+                                # cambiar boton por cambios en plataforma roomprice. -------- solucionado -----------
+                                bs = driver.find_element_by_xpath("//input[@role='switch']")
+                                #logging.info(f"[+] Button switch check... {bs}")
+                                if bs.get_attribute("checked"):
+                                    bs_div = driver.find_element_by_xpath("//input[@role='switch']/following-sibling::div")
+                                    #logging.info(f"[+] Button switch success... {bs_div}")
+                                    driver.execute_script("arguments[0].click();", bs_div)
+                                    
+                                sleep(2)
+                                generate_log(f"[+] Cambiando precios... {_date}", BotLog.ROOMPRICE)
+                                try:
+                                    input_price = WebDriverWait(driver, 15).until(
+                                        EC.visibility_of_element_located((By.XPATH, "//input[@id='fixPricesAdjustment.3.id']"))
+                                    )
+                                    input_price.clear()
+                                except TimeoutException as e:
+                                    logging.error(f"El campo de precio no se hizo visible a tiempo: {e}")
+                                except Exception as e:
+                                    logging.error(f"Ocurrió otro error al intentar encontrar el campo de precio: {e}")
+
+                                input_price2 = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.4.id']")
+                                input_price2.clear()
+                                sleep(1)
+                                if "1" in price.keys():
+                                    input_price.send_keys(str(price["1"].price))
+                                    input_price2.send_keys(str(price["1"].price))
+                                sleep(1)
+                                input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.0.id']")
+                                input_price.clear()
+                                sleep(1)
+                                if "2" in price.keys():
+                                    input_price.send_keys(str(price["2"].price))
+                                sleep(1)
+                                input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.1.id']")
+                                input_price.clear()
+                                sleep(1)
+                                if "3" in price.keys():
+                                    input_price.send_keys(str(price["3"].price))
+                                sleep(1)
+                                input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.2.id']")
+                                input_price.clear()
+                                sleep(1)
+                                if "4" in price.keys():
+                                    input_price.send_keys(str(price["4"].price))
+                                sleep(1)
+                                input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.5.id']")
+                                input_price.clear()
+                                sleep(1)
+                                if "5" in price.keys():
+                                    input_price.send_keys(str(price["5"].price))
+                                sleep(1)
+                                input_price = driver.find_element_by_xpath("//input[@id='fixPricesAdjustment.6.id']")
+                                input_price.clear()
+                                sleep(1)
+                                if "6" in price.keys():
+                                    input_price.send_keys(str(price["6"].price))
+                                sleep(1)
+                                cls.guardar_captura(driver, descripcion="por_rango")
+                                btn_update = driver.find_element_by_xpath("//button[@data-userflow-id='price-drawer-save-prices-button']")
+                                btn_update.click()
+                                #logging.info("[+] Actualizacion general...")
+                                generate_log(f"[+] Actualizacion general activada... {_date}", BotLog.ROOMPRICE)
+                                status = True
+                                break
+                        break
+                    else:
+                        generate_log(f"[+] La fecha {_date} NO fue encontrada dentro del calendario.", BotLog.ROOMPRICE)
+                        try:
+                            containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
+                            if cls.check_date_found(containers, _date)[0]:
+                                generate_log(f"[+] La fecha {_date} fue encontrada dentro de un contenedor, se detiene.", BotLog.ROOMPRICE)
+                                break
+                            else:
+                                generate_log(f"[+] La fecha {_date} NO fue encontrada en ningún contenedor.", BotLog.ROOMPRICE)
+                        except Exception as e01:
+                            logging.info(f"Error Fee: {price} - "+str(e01))
+                            generate_log(f"[+] Error Fee, check date: {e01}... {_date}", BotLog.ROOMPRICE)
+                        #logging.info("[+] Buscando calendario...")
+                        #generate_log(f"[+] Buscando calendario... {_date}", BotLog.ROOMPRICE)
+                        bt_next = driver.find_element_by_xpath("//button[@data-testid='toNextMonthButton']")
+                        driver.execute_script("arguments[0].scrollIntoView();", bt_next)
+                        driver.execute_script("arguments[0].click();", bt_next)
+                        sleep(1)
+                        #bt_next.click()
+                        sleep(3)
+                        #logging.info(f"[+] Click button next calendar success...")
+                        generate_log(f"[+] Siguiente calendario... {_date}", BotLog.ROOMPRICE)
+                except Exception as e01:
+                    logging.info(f"Error Fee: {price} - "+str(e01))
+                    generate_log(f"[+] Error Fee, check date: {e01}... {_date}", BotLog.ROOMPRICE)
+                    driver.get(driver.current_url)
+                    driver.implicitly_wait(15)
+                    sleep(5)
+                    __time = time()
+                    while True:
+                        #logging.info(f"[+] verificando inicio de sesion...")
+                        generate_log(f"[+] verificando inicio de sesion... {_date}", BotLog.ROOMPRICE)
+                        if "Optimizando..." not in driver.page_source or (time() - __time >= 180):
+                            break
+                        sleep(1)
+                    if cont_recharge > 5:
+                        break
+                    cont_recharge += 1
+        except Exception as e:
+           logging.info(f"Error Fee: {price} - "+str(e))
+           generate_log(f"[+] Error Fee {e}... {_date}", BotLog.ROOMPRICE)
+           cls.guardar_captura(driver, descripcion="error_general")
+
+        return status
 
     @classmethod
     def controller(cls, driver, price, _date, username, password):
@@ -97,7 +304,7 @@ class FeeTask:
                 generate_log(f"[+] Buscando fecha en calendario... {_date} | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                 try:
                     containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
-                    if cls.check_date_found(containers, _date):
+                    if cls.check_date_found(containers, _date)[0]:
                         generate_log(f"[+] La fecha {_date} fue encontrada dentro del calendario. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                     else:
                         generate_log(f"[+] La fecha {_date} NO fue encontrada dentro del calendario. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
@@ -203,15 +410,18 @@ class FeeTask:
                                     break
                             break
                 if status:
+                    price_list = []
+                    price_list.append(price)
+                    logging.info(price_list)
                     if save_type:
-                        check = cls.update_with_date(driver, _date, price, check)
+                        check = cls.update_with_date(driver, _date, price_list, check)
                     else:
-                        check = cls.update_with_range(driver, _date, price, check)
+                        check = cls.update_with_range(driver, _date, price_list, check)
                     break
                 else:
                     try:
                         containers = driver.find_elements_by_xpath("//div[@class='flex flex-col']")
-                        if cls.check_date_found(containers, _date):
+                        if cls.check_date_found(containers, _date)[0]:
                             generate_log(f"[+] La fecha {_date} fue encontrada dentro de un contenedor, se detiene. | {str(cls.organice_price(price))}", BotLog.ROOMPRICE)
                             break
                         else:
@@ -238,14 +448,13 @@ class FeeTask:
 
     @classmethod
     def check_date_found(cls, containers, _date):
-        status_found = False
         for c in containers:
             soup = BeautifulSoup(c.get_attribute("innerHTML"), "html.parser")
-            # Buscar cualquier elemento que tenga el atributo data-testid con el valor de la fecha
-            if soup.find(attrs={"data-testid": _date}):
-                status_found = True
-                break
-        return status_found
+            element = soup.find(attrs={"data-testid": _date})
+            if element:
+                tag_name = element.name
+                return True, tag_name
+        return False, None
     
     @classmethod
     def update_with_date(cls, driver, _date, price, check):
@@ -406,10 +615,13 @@ class FeeTask:
         driver.close()
     
     @classmethod
-    def change_status_price(cls, price, status):
-        for key, value in price.items():
-            value.plataform_sync = status
-            value.save()
+    def change_status_price(cls, prices, status):
+        for price in prices:
+            logging.info(price)
+            for key, value in price.items():
+                logging.info(f"{key} {value}")
+                value.plataform_sync = status
+                value.save()
 
     @classmethod
     def guardar_captura(cls, driver, carpeta="media/capturas", descripcion=""):

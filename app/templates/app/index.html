@@ -79,10 +79,10 @@
                     </select>
                   </div> -->
                   <div class="col-md-6">
-                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive">Actualizar Tarifa (Masivo)</button>
+                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive1">Actualizar Tarifa (Masivo)</button>
                   </div>
                   <div class="col-md-6">
-                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive">Insertar recomendacion</button>
+                    <button class="btn btn-white w-100" onclick="" id="buttonUpgradeRecom">Insertar recomendacion</button>
                   </div>
                 </div>
               </div>
@@ -2328,6 +2328,7 @@
             } else {
               $("#addLogCopyPrice").append("Horario de copia de precio no disponible");
             }
+            _active_masive = false
             json.status_price.map(function(value, index){
               _active = false;
               _date = "";
@@ -2337,10 +2338,12 @@
                 _date = value2.date_from;
                 if (value2.active){
                   _active = value2.active;
+                  _active_masive = value2.active;
                 }
               });
               changeStatusFee(_date, _active);
             });
+            changeStatusFeeMasive(_active_masive);
           },
           error: function(error) {
             console.log("Ocurrio un error");
@@ -2458,6 +2461,7 @@
       //console.log(_date, _active);
       // deshabilitamos el boton de actualizar en la fecha especifica.
       // activamos loader si no esta activo en caso de ser necesario.
+      //console.log("Active: "+_active)
       if (_active) {
         // si esta activa la insercion queda cargando, si no esta visible.
         // deshabilitamos boton de actualizar.
@@ -2468,6 +2472,14 @@
         // habilitamos boton de actualizar.
         $("#textFeeUpgrade" + _date).text("...");
         $("#buttonFeeUpgrade"+ _date).prop("disabled", false);
+      }
+    }
+    function changeStatusFeeMasive(_active){
+      console.log(_active);
+      if (_active) {
+        $("#buttonFeeUpgradeMasive1").prop("disabled", true);
+      } else {
+        $("#buttonFeeUpgradeMasive1").prop("disabled", false);
       }
     }
     function changeStatusPRice(_inputId, status){
@@ -2484,8 +2496,9 @@
     function upgradeFee(_date, masive=false){
       days = 0;
       if (masive){
-        days = document.getElementById("range_masive").value;
+        days = 0;//document.getElementById("range_masive").value;
       }
+      $("#buttonFeeUpgradeMasive1").prop("disabled", true);
       showLoader("textFeeUpgrade"+_date);
       $("#buttonFeeUpgrade"+ _date).prop("disabled", true);
       $.ajax({
