@@ -108,12 +108,8 @@ class BookingSearch:
             # Simular escritura letra por letra
             for letra in search_name:
                 search.send_keys(letra)
-                try:
-                    cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion="antes_enter")
-                except Exception:
-                    pass
                 sleep(0.1)  # Puedes ajustar esto para que se vea más humano
-
+ 
             try:
                 cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion="antes_enter")
             except Exception:
