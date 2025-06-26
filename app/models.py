@@ -260,6 +260,7 @@ class CredentialPlataform(models.Model):
     password = models.CharField(max_length=256)
     updated = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(null=True, blank=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return str(self.plataform_option)
