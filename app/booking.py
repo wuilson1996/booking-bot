@@ -102,7 +102,10 @@ class BookingSearch:
 
             label_found = check_params(_url_performance, "label")
             error_search = check_params(_url_performance, "errorc_searchstring_not_found")
-
+            try:
+                cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
+            except Exception as e:
+                pass
             # Validar ambas condiciones
             if label_found and not error_search:
                 generate_log(f"[✓] URL válida: contiene 'label' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
