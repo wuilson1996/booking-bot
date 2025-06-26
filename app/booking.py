@@ -3,6 +3,9 @@ import random
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import pandas as pd
 import logging
@@ -160,12 +163,19 @@ class BookingSearch:
             #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial: {driver.current_url} {_now}", BotLog.BOOKING)
             #if process.type_proces == 1:
             try:
-                _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
-                _button.click()
-            except NoSuchElementException as e:
-                logging.info(f"[-] {now()} Error in button cookies, element not fount")
-            except ElementClickInterceptedException as e:
-                logging.info(f"[-] {now()} Error in button cookies, element not clicked")
+                aceptar_btn = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Aceptar')]"))
+                )
+                aceptar_btn.click()
+            except:
+                generate_log("No apareció botón de cookies o ya fue gestionado.", BotLog.BOOKING)
+                try:
+                    _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
+                    _button.click()
+                except NoSuchElementException as e:
+                    generate_log(f"[-] {now()} Error in button cookies, element not fount", BotLog.BOOKING)
+                except ElementClickInterceptedException as e:
+                    generate_log(f"[-] {now()} Error in button cookies, element not clicked", BotLog.BOOKING)
                 
             # Search
             # sleep(2)
