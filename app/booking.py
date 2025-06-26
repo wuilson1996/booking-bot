@@ -108,7 +108,7 @@ class BookingSearch:
                 generate_log(f"[✓] URL válida: contiene 'label' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
                 return _url_performance
             else:
-                generate_log(f"[-] URL inválida: label={'✔' if label_found else '✗'}, errorc_searchstring_not_found={'✗' if not error_search else '✔'}", BotLog.BOOKING)
+                generate_log(f"[-] URL inválida: label={'✔' if label_found else '✗'}, errorc_searchstring_not_found={'✗' if not error_search else '✔'} | {_url_performance}", BotLog.BOOKING)
                 return False
 
         except Exception as e02:
