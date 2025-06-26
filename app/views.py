@@ -1425,8 +1425,10 @@ def index(request):
             # media entre la zona y actual.
             if "media_name_hotel" in bookings[str(_date_from.date())][2].keys() and "media_total" in bookings[str(_date_from.date())][2].keys():
                 if "media_general" not in bookings[str(_date_from.date())][2].keys():
-                    bookings[str(_date_from.date())][2]["media_general"] = round((round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"])) + round((bookings[str(_date_from.date())][2]["media_total"] / bookings[str(_date_from.date())][2]["media_cant"]))) / 2)
-
+                    try:
+                        bookings[str(_date_from.date())][2]["media_general"] = round((round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"])) + round((bookings[str(_date_from.date())][2]["media_total"] / bookings[str(_date_from.date())][2]["media_cant"]))) / 2)
+                    except Exception as e:
+                        generate_log(f"[X] Error view data: {e001}", BotLog.BOOKING)
             # calculo de precio 5 y 10 posicion de triples y suites
             if '4' in bookings[str(_date_from.date())][3].keys() and '4' in bookings[str(_date_from.date())][5].keys():
                 bookings[str(_date_from.date())][3]['4']["5_10"] = round((float(bookings[str(_date_from.date())][3]['4'][4]["price"]) + float(bookings[str(_date_from.date())][3]['4'][9]["price"])) / 2)
