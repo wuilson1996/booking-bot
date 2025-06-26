@@ -120,10 +120,10 @@ class BookingSearch:
                 pass
 
             search.send_keys(Keys.RETURN)
-            sleep(3)
+            sleep(5)
 
             _url_performance = driver.current_url
-            logging.info(f"Search name or city: {search_name}")
+            generate_log(f"Search name or city: {search_name} - {_url_performance}", BotLog.BOOKING)
 
             error_search = check_params(_url_performance, "errorc_searchstring_not_found")
             has_pageview = check_params(_url_performance, "search_pageview_id")
