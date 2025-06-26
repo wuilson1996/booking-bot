@@ -1390,19 +1390,21 @@ def index(request):
 
             # media + %
             if bookings[str(_date_from.date())][3]["media_total"] > 0:
-                ___media_total = round(bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"])
-                if "media_name_50" not in bookings[str(_date_from.date())][3].keys():
-                    bookings[str(_date_from.date())][3]["media_name_50"] = round(___media_total * 1.5)
-                if "media_name_40" not in bookings[str(_date_from.date())][3].keys():
-                    bookings[str(_date_from.date())][3]["media_name_40"] = round(___media_total * 1.4)
-                if "media_name_30" not in bookings[str(_date_from.date())][3].keys():
-                    bookings[str(_date_from.date())][3]["media_name_30"] = round(___media_total * 1.3)
-                
-                if bookings[str(_date_from.date())][3]["media_total7"] > 0:
-                    ___media_total7 = round(bookings[str(_date_from.date())][3]["media_total7"] / bookings[str(_date_from.date())][3]["media_cant7"])
-                    valueRest = ___media_total - ___media_total7
-                    bookings[str(_date_from.date())][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
-
+                try:
+                    ___media_total = round(bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"])
+                    if "media_name_50" not in bookings[str(_date_from.date())][3].keys():
+                        bookings[str(_date_from.date())][3]["media_name_50"] = round(___media_total * 1.5)
+                    if "media_name_40" not in bookings[str(_date_from.date())][3].keys():
+                        bookings[str(_date_from.date())][3]["media_name_40"] = round(___media_total * 1.4)
+                    if "media_name_30" not in bookings[str(_date_from.date())][3].keys():
+                        bookings[str(_date_from.date())][3]["media_name_30"] = round(___media_total * 1.3)
+                    
+                    if bookings[str(_date_from.date())][3]["media_total7"] > 0:
+                        ___media_total7 = round(bookings[str(_date_from.date())][3]["media_total7"] / bookings[str(_date_from.date())][3]["media_cant7"])
+                        valueRest = ___media_total - ___media_total7
+                        bookings[str(_date_from.date())][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+                except Exception as e001:
+                    generate_log(f"[X] Error view data: {e001}", BotLog.BOOKING)
             # media + %
             if bookings[str(_date_from.date())][5]["media_total"] > 0:
                 ___media_total = round(bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"])
