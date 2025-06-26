@@ -110,8 +110,10 @@ class BookingSearch:
             _url_performance = driver.current_url
             logging.info(f"Search name or city: {search_name}")
 
-            label_found = check_params(_url_performance, "label")
+            #label_found = check_params(_url_performance, "label")
             error_search = check_params(_url_performance, "errorc_searchstring_not_found")
+            has_pageview = check_params(_url_performance, "search_pageview_id")
+            has_ac_meta = check_params(_url_performance, "ac_meta")
 
             # Guardar captura siempre
             try:
@@ -120,7 +122,7 @@ class BookingSearch:
                 pass
 
             # Si hay error, limpiar la URL y continuar
-            if label_found:
+            if has_pageview and has_ac_meta:
                 if error_search:
                     _url_performance = remove_param(_url_performance, "errorc_searchstring_not_found")
                     generate_log(f"[✓] URL contenía 'errorc_searchstring_not_found' pero fue limpiada. Guardando URL limpia.", BotLog.BOOKING)
