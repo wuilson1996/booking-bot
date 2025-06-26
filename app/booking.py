@@ -115,8 +115,10 @@ class BookingSearch:
             except Exception:
                 pass
 
+            generate_log(f"Prev Search name or city: {search_name} - {driver.current_url}", BotLog.BOOKING)
+
             search.send_keys(Keys.RETURN)
-            sleep(5)
+            sleep(10)
 
             _url_performance = driver.current_url
             generate_log(f"Search name or city: {search_name} - {_url_performance}", BotLog.BOOKING)
