@@ -127,12 +127,14 @@ class BookingSearch:
             has_pageview = check_params(_url_performance, "search_pageview_id")
             has_ac_meta = check_params(_url_performance, "ac_meta")
             _label = check_params(_url_performance, "label")
+            _dest_id = check_params(_url_performance, "dest_id")
+            _dest_type = check_params(_url_performance, "dest_type")
             try:
                 cls.guardar_captura(driver, name=f"cap_booking_get_param_{now()}", descripcion=_url_performance)
             except Exception:
                 pass
 
-            if not error_search and (has_pageview or has_ac_meta or _label):
+            if not error_search and (has_pageview or has_ac_meta or _label or _dest_id or _dest_type):
                 generate_log(f"[✓] URL válida: contiene 'label' o 'ac_meta' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
                 return _url_performance
             else:
