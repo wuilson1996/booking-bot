@@ -125,15 +125,15 @@ class BookingSearch:
                 pass
 
             # Si hay error, limpiar la URL y continuar
-            if has_pageview and has_ac_meta:
-                if error_search:
-                    _url_performance = remove_param(_url_performance, "errorc_searchstring_not_found")
-                    generate_log(f"[✓] URL contenía 'errorc_searchstring_not_found' pero fue limpiada. Guardando URL limpia.", BotLog.BOOKING)
-                else:
-                    generate_log(f"[✓] URL válida: contiene 'label' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
+            if not error_search and has_pageview and has_ac_meta:
+                # if error_search:
+                #     _url_performance = remove_param(_url_performance, "errorc_searchstring_not_found")
+                #     generate_log(f"[✓] URL contenía 'errorc_searchstring_not_found' pero fue limpiada. Guardando URL limpia.", BotLog.BOOKING)
+                # else:
+                generate_log(f"[✓] URL válida: contiene 'label' o 'ac_meta' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
                 return _url_performance
             else:
-                generate_log(f"[-] URL inválida: no contiene 'label'. {_url_performance}", BotLog.BOOKING)
+                generate_log(f"[-] URL inválida: no contiene 'label' o 'ac_meta'. {_url_performance}", BotLog.BOOKING)
                 return False
 
         except Exception as e02:
@@ -687,6 +687,7 @@ class BookingSearch:
 
     @classmethod
     def save_name_hotel(cls, item_dict, occupancy, search_name):
+        generate_log(f"[+] Guardado |{item_dict['title']}| in positions. O: {occupancy} | {item_dict['date_from']} - para nombre de hotel: {search_name}", BotLog.BOOKING)
         price_with_name_hotel = PriceWithNameHotel.objects.filter(title = search_name, date_from = item_dict["date_from"], occupancy = occupancy).first()
         if search_name == item_dict["title"]:
             if not price_with_name_hotel:
