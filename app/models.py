@@ -95,7 +95,7 @@ class MessageName(models.Model):
     COLORS = (
         ("#90EE90", "verde"),
         ("#FF0000", "rojo"),
-        ("#FFD700", "amarillo"),
+        ("#ff7d60", "naranja"),
         ("#6cb7fc", "azul-claro"),
         ("#317ec6", "azul-oscuro")
     )
@@ -162,12 +162,12 @@ class EventByDay(models.Model):
 class TemporadaByDay(models.Model):
     date_from = models.CharField(max_length=30)
     COLORS = (
-        ("bg-danger", "bg-danger"),
-        ("bg-danger", "bg-danger"),
-        ("bg-warning", "bg-warning"),
-        ("bg-success", "bg-success"),
-        ("bg-info", "bg-info"),
-        ("bg-dark", "bg-dark"),
+        ("#f5365c", "bg-danger"),
+        ("#f5365c", "bg-danger"),
+        ("#fb6340", "bg-warning"),
+        ("#8392ab", "bg-secondary"),
+        ("#11cdef", "bg-info"),
+        ("#317ec6", "bg-dark"),
     )
     TEXT_COLORS = (
         ("text-success", "text-success"),
@@ -248,7 +248,7 @@ class CopyAvailWithDaySF(models.Model):
     avail_suites_feria = models.ForeignKey(AvailSuitesFeria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.avail_suites_feria)+" | "+ str(self.avail_1)+" | "+ str(self.avail_2)+" | "+ str(self.avail_4)
+        return str(self.avail_suites_feria)+" | "+ str(self.avail_1)+" | "+ str(self.avail_2)+" | "+ str(self.avail_3)+" | "+ str(self.avail_4)
     
 class CredentialPlataform(models.Model):
     TEXT_PLATAFORM = (
@@ -477,9 +477,11 @@ class MessageEmail(models.Model):
             for i in cls.objects.all()
         ]
 
+
 class CookieUrl(models.Model):
-    name = models.CharField(max_length = 256)
+    name = models.CharField(max_length=256)
     label = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)  # Se guarda la fecha al crear
 
     def __str__(self):
-        return str(self.name)+" | "+str(self.label)
+        return f"{self.name} | {self.label}"

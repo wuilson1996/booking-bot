@@ -48,10 +48,10 @@ class CopyPriceWithNameFromDayAdmin(admin.ModelAdmin):
     search_fields = ["id"]
 
 class CopyAvailWithDaySFAdmin(admin.ModelAdmin):
-    search_fields = ["id"]
+    search_fields = ["id", "avail_suites_feria__date_avail"]
 
 class CopyComplementWithDayAdmin(admin.ModelAdmin):
-    search_fields = ["id"]
+    search_fields = ["id", "complement__date_from", "complement__occupancy", "total_search"]
 
 class CredentialPlataformAdmin(admin.ModelAdmin):
     search_fields = ["id"]
@@ -61,6 +61,9 @@ class CronActiveAdmin(admin.ModelAdmin):
 
 class BotLogAdmin(admin.ModelAdmin):
     search_fields = ["id", "description", "plataform_option", "created"]
+
+class MessageNameAdmin(admin.ModelAdmin):
+    search_fields = ["occupancy"]
 
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(AvailableBooking, AvailableBookingAdmin)
@@ -90,7 +93,7 @@ admin.site.register(TaskExecute)
 admin.site.register(ScreenshotLog)
 admin.site.register(HourRange)
 admin.site.register(Day)
-admin.site.register(MessageName)
+admin.site.register(MessageName, MessageNameAdmin)
 admin.site.register(EmailSMTP)
 admin.site.register(EmailSend)
 admin.site.register(MessageEmail)

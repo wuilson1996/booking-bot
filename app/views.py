@@ -196,6 +196,18 @@ def active_process(bot_setting:BotSetting):
 
     while True:
         try:
+            while True:
+                status_param = instances[0]["booking"].get_params(instances[0]["driver"], general_search.city_and_country)
+                generate_log(f"[+] Configurando url base...", BotLog.BOOKING)
+                #print(status_param)
+                if status_param:
+                    generate_log(f"[+] Configurando url base... {status_param}", BotLog.BOOKING)
+                    cookie_url = CookieUrl.objects.create(
+                        name = general_search.city_and_country,
+                        label = status_param
+                    )
+                    break
+                sleep(5)
             stop_event = threading.Event()
             if not check_finish_process():
                 #logging.info(f"[+] {now()} Finish process...")
@@ -238,7 +250,8 @@ def active_process(bot_setting:BotSetting):
                             general_search_to_name,
                             bot_range.date_from,
                             bot_range.date_end,
-                            stop_event
+                            stop_event,
+                            cookie_url.label
                         )
                     )
                     process.daemon = True
@@ -280,7 +293,8 @@ def active_process(bot_setting:BotSetting):
                             None,
                             bot_range.date_from,
                             bot_range.date_end,
-                            stop_event
+                            stop_event,
+                            cookie_url.label
                         )
                     except Exception as ec:
                         logging.info(f"[-] {now()} Error in Execute controller with name... {ec}")

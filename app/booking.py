@@ -67,9 +67,8 @@ class BookingSearch:
 
     @classmethod
     def get_params(cls, driver, search_name):
-        try:#https://www.booking.com/searchresults.es.html?ss=Madrid, España&label=gen173nr-1FCAQoggI49ANIClgEaEaIAQGYAQq4ARjIAQ_YAQHoAQH4AQKIAgGoAgS4AsCnk8EGwAIB0gIkMjhkMzU1ODQtZWJkMS00OTliLWEzNjQtYzNiYWYwY2UxOGRk2AIF4AIB&aid=304142&lang=es&sb=1&src_elem=sb&src=searchresults&dest_id=-390625&dest_type=city&ac_position=0&ac_click_type=b&ac_langcode=es&ac_suggestion_list_length=5&search_selected=true&search_pageview_id=befc7b60a9b1024c&ac_meta=GhBiZWZjN2I2MGE5YjEwMjRjIAAoATICZXM6D01hZHJpZCwgRXNwYcOxYUAASgBQAA%3D%3D&checkin=2025-05-28&checkout=2025-05-29&group_adults=5&no_rooms=1&group_children=0
+        try:
             def check_params(url, clave):
-                # Usa expresión regular para encontrar el valor exacto del parámetro sin decodificar
                 match = re.search(rf"[?&]{clave}=([^&]+)", url)
                 if match:
                     return match.group(1)
@@ -79,65 +78,61 @@ class BookingSearch:
             driver.implicitly_wait(15)
             driver.delete_all_cookies()
             sleep(5)
-            #logging.info(driver.current_url)
-            #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial: {driver.current_url} {_now}", BotLog.BOOKING)
-            #if process.type_proces == 1:
+
             try:
                 _button = driver.find_element_by_xpath("//button[@id='onetrust-accept-btn-handler']")
                 _button.click()
-            except NoSuchElementException as e:
-                logging.info(f"[-] {now()} Error in button cookies, element not fount")
-            except ElementClickInterceptedException as e:
-                logging.info(f"[-] {now()} Error in button cookies, element not clicked")
-                
-            # Search
+            except NoSuchElementException:
+                logging.info(f"[-] {now()} Botón de cookies no encontrado")
+            except ElementClickInterceptedException:
+                logging.info(f"[-] {now()} No se pudo hacer clic en el botón de cookies")
+
             sleep(2)
             search = driver.find_element_by_xpath("//input[@name='ss']")
-            search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
-            search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
+            search.send_keys(Keys.CONTROL + "a")
+            search.send_keys(Keys.DELETE)
             sleep(1)
-            # Escribe el texto en el campo de búsqueda
-            #logging.info(f"Search name or city: {search_name} {_now}")
-            #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} |  Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
             search.send_keys(search_name)
             sleep(2)
-            # Confirma con ENTER
             search.send_keys(Keys.RETURN)
             sleep(3)
 
-            _url_performance = driver.current_url  # Inicialización
-
+            _url_performance = driver.current_url
             logging.info(f"Search name or city: {search_name}")
-            if check_params(_url_performance, "label"):
-                generate_log(f"[✓] Parámetro 'label' detectado", BotLog.BOOKING)
-                URL_PERFORMANCE["url"] = _url_performance
+
+            label_found = check_params(_url_performance, "label")
+            error_search = check_params(_url_performance, "errorc_searchstring_not_found")
+
+            # Validar ambas condiciones
+            if label_found and not error_search:
+                generate_log(f"[✓] URL válida: contiene 'label' y no tiene 'errorc_searchstring_not_found'", BotLog.BOOKING)
+                return _url_performance
             else:
-                generate_log(f"[-] Parámetro 'label' no presente, configurando...", BotLog.BOOKING)
-                for i in range(30):
-                    if URL_PERFORMANCE["url"]:
-                        _url_performance = URL_PERFORMANCE["url"]
-                        break
-                    sleep(1)
+                generate_log(f"[-] URL inválida: label={'✔' if label_found else '✗'}, errorc_searchstring_not_found={'✗' if not error_search else '✔'}", BotLog.BOOKING)
+                return False
+
         except Exception as e02:
-            logging.info(f"[-] {now()} Error General 264: "+str(e02))
-            generate_log(f"[-] Error General 264: "+str(e02), BotLog.BOOKING)
+            logging.info(f"[-] {now()} Error General 264: {str(e02)}")
+            generate_log(f"[-] Error General 264: {str(e02)}", BotLog.BOOKING)
+
+        return None
 
     @classmethod
-    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None, date_from="", date_end="", stop_event=None):
+    def controller(cls, driver, process:ProcessActive=None, search_name="", general_search_to_name=None, date_from="", date_end="", stop_event=None, _url_performance=""):
         try:#https://www.booking.com/searchresults.es.html?ss=Madrid, España&label=gen173nr-1FCAQoggI49ANIClgEaEaIAQGYAQq4ARjIAQ_YAQHoAQH4AQKIAgGoAgS4AsCnk8EGwAIB0gIkMjhkMzU1ODQtZWJkMS00OTliLWEzNjQtYzNiYWYwY2UxOGRk2AIF4AIB&aid=304142&lang=es&sb=1&src_elem=sb&src=searchresults&dest_id=-390625&dest_type=city&ac_position=0&ac_click_type=b&ac_langcode=es&ac_suggestion_list_length=5&search_selected=true&search_pageview_id=befc7b60a9b1024c&ac_meta=GhBiZWZjN2I2MGE5YjEwMjRjIAAoATICZXM6D01hZHJpZCwgRXNwYcOxYUAASgBQAA%3D%3D&checkin=2025-05-28&checkout=2025-05-29&group_adults=5&no_rooms=1&group_children=0
-            def check_params(url, clave):
-                # Usa expresión regular para encontrar el valor exacto del parámetro sin decodificar
-                match = re.search(rf"[?&]{clave}=([^&]+)", url)
-                if match:
-                    return match.group(1)
-                return None
+            # def check_params(url, clave):
+            #     # Usa expresión regular para encontrar el valor exacto del parámetro sin decodificar
+            #     match = re.search(rf"[?&]{clave}=([^&]+)", url)
+            #     if match:
+            #         return match.group(1)
+            #     return None
 
             _date_end = dt(int(str(date_end).split("-")[0]), int(str(date_end).split("-")[1]), int(str(date_end).split("-")[2]))
             _now = dt(int(str(date_from).split("-")[0]), int(str(date_from).split("-")[1]), int(str(date_from).split("-")[2]))
 
-            driver.get(cls._url)
-            driver.implicitly_wait(15)
-            driver.delete_all_cookies()
+            # driver.get(cls._url)
+            # driver.implicitly_wait(15)
+            # driver.delete_all_cookies()
             sleep(5)
             #logging.info(driver.current_url)
             #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial: {driver.current_url} {_now}", BotLog.BOOKING)
@@ -151,36 +146,36 @@ class BookingSearch:
                 logging.info(f"[-] {now()} Error in button cookies, element not clicked")
                 
             # Search
-            sleep(2)
-            search = driver.find_element_by_xpath("//input[@name='ss']")
-            search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
-            search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
-            sleep(1)
+            # sleep(2)
+            # search = driver.find_element_by_xpath("//input[@name='ss']")
+            # search.send_keys(Keys.CONTROL + "a")  # Selecciona todo el texto
+            # search.send_keys(Keys.DELETE)  # Elimina el texto seleccionado
+            # sleep(1)
             # Escribe el texto en el campo de búsqueda
             #logging.info(f"Search name or city: {search_name} {_now}")
             #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} |  Actualizando Datos: {search_name} {_now}", BotLog.BOOKING)
-            search.send_keys(search_name)
-            sleep(1)
+            # search.send_keys(search_name)
+            # sleep(1)
             # Confirma con ENTER
-            search.send_keys(Keys.RETURN)
-            sleep(3)
+            # search.send_keys(Keys.RETURN)
+            # sleep(3)
             cont = 0
 
             _date_elem = _now
             _now += datetime.timedelta(days=1)
 
-            _url_performance = driver.current_url  # Inicialización
-            generate_log(f"[+] URL: {_url_performance}", BotLog.BOOKING)
-            if check_params(_url_performance, "label"):
-                generate_log(f"[✓] Parámetro 'label' detectado | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
-                URL_PERFORMANCE["url"] = _url_performance
-            else:
-                generate_log(f"[-] Parámetro 'label' no presente, configurando... | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
-                for i in range(30):
-                    if URL_PERFORMANCE["url"]:
-                        _url_performance = URL_PERFORMANCE["url"]
-                        break
-                    sleep(1)
+            # _url_performance = driver.current_url  # Inicialización
+            # generate_log(f"[+] URL: {_url_performance}", BotLog.BOOKING)
+            # if check_params(_url_performance, "label"):
+            #     generate_log(f"[✓] Parámetro 'label' detectado | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
+            #     URL_PERFORMANCE["url"] = _url_performance
+            # else:
+            #     generate_log(f"[-] Parámetro 'label' no presente, configurando... | {str(process.occupancy)} | {str(process.start)}", BotLog.BOOKING)
+            #     for i in range(30):
+            #         if URL_PERFORMANCE["url"]:
+            #             _url_performance = URL_PERFORMANCE["url"]
+            #             break
+            #         sleep(1)
             try:
                 #generate_log(f"[+] {str(process.occupancy)} | {str(process.start)} | Url inicial2: {_url_performance} {_now}", BotLog.BOOKING)
                 while True:
