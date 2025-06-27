@@ -654,9 +654,9 @@ def task_save_fee_masive(cron:CronActive, _credential:CredentialPlataform, days)
                     if not price_obj.plataform_sync:
                         _prices[price_obj.date_from]["plataform_sync"] = True
 
-                        _prices[price_obj.date_from][str(price_obj.occupancy)] = price_obj
-                        price_obj.active_sync = True
-                        price_obj.save()
+                    _prices[price_obj.date_from][str(price_obj.occupancy)] = price_obj
+                    price_obj.active_sync = True
+                    price_obj.save()
 
         #print(_prices)
         #logging.info(_prices)
