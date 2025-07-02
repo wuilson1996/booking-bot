@@ -1144,7 +1144,7 @@ def index(request):
                 #----------------
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
-                    if int(avail_book.booking.start) != 0:
+                    if int(float(avail_book.booking.start)) != 0:
                         #----------------------------------
                         try:
                             copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[0]
