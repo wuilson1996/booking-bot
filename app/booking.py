@@ -649,7 +649,7 @@ class BookingSearch:
                         _available.booking = bg
                         _available.save()
                     #logging.info(item_dict)
-                    generate_log(f"[+] {now()} Guardando posision: {position} - TS: {total_search} - DT:{item_dict['date_from']} - STR:{process.start} - OCC:{process.occupancy}: Price:{item_dict['price']}", BotLog.BOOKING)   
+                    generate_log(f"[+] {now()} Guardando posision: TS: {total_search} - DT:{item_dict['date_from']} - OCC:{process.occupancy} - STR:{process.start} - PS:{position} - Price:{item_dict['price']}", BotLog.BOOKING)   
                 else:
                     logging.info(f"Data Error Start {item_dict['start']} - O: {occupancy}: {item_dict}")
             else:
