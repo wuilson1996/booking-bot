@@ -478,6 +478,8 @@ class BookingSearch:
         if container_start:
             starts = container_start.find_all("span", {"aria-hidden":"true"})
             result = len(starts)
+            if result > 5:
+                result = result / 2
 
         return result
     
