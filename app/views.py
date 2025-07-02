@@ -1157,7 +1157,7 @@ def index(request):
 
                         _price3 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price3 != "":
-                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                            if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
 
@@ -1172,7 +1172,7 @@ def index(request):
                         
                         _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
-                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                            if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total4"] += int(_price4)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant4"] += 1
 
@@ -1187,13 +1187,13 @@ def index(request):
                         
                         _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
-                            if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                            if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
                                 bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1
                         #---------------------------------
 
-                        if avail_book.booking.start not in bookings[avail_book.date_from][avail_book.occupancy]:
-                            bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start] = {}
+                        if str(int(float(avail_book.booking.start))) not in bookings[avail_book.date_from][avail_book.occupancy]:
+                            bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))] = {}
                         
                         _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price != "":
@@ -1207,19 +1207,19 @@ def index(request):
                             #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
                             #    print(_price, b.booking.start, b.position)
 
-                            if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start]:
+                            if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))]:
                                 #print(b.booking.occupancy, b.booking.start, b.position, _price)
                                 try:
                                     if _price:
-                                        bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position] = {}
-                                        bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["price"] = _price
-                                        if int(avail_book.booking.start) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                                        bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))][avail_book.position] = {}
+                                        bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))][avail_book.position]["price"] = _price
+                                        if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
-                                        elif int(avail_book.booking.start) == 3 and avail_book.position in [0,1,2,3,4]:
+                                        elif int(float(avail_book.booking.start)) == 3 and avail_book.position in [0,1,2,3,4]:
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_total03"] += int(_price)
                                             bookings[avail_book.date_from][avail_book.occupancy]["media_cant03"] += 1
-                                        bookings[avail_book.date_from][avail_book.occupancy][avail_book.booking.start][avail_book.position]["name"] = avail_book.booking.title
+                                        bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))][avail_book.position]["name"] = avail_book.booking.title
                                 except Exception as e:
                                     logging.info(f"[-] Error price: {e}")
                         
