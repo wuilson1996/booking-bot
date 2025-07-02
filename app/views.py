@@ -727,57 +727,57 @@ def upgrade_fee(request):
         try:
             _prices = {}
             __time = 90
-            if request.data["masive"] == "false":
-                for p in Price.objects.filter(date_from = request.data["date"]):
-                    if p.price != None and p.price != "":
-                        _prices[str(p.occupancy)] = p
-                        p.active_sync = True
-                        p.save()
+            # if request.data["masive"] == "false":
+            #     for p in Price.objects.filter(date_from = request.data["date"]):
+            #         if p.price != None and p.price != "":
+            #             _prices[str(p.occupancy)] = p
+            #             p.active_sync = True
+            #             p.save()
 
-            message = "Proceso activado correctamente."
-            _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
-            if _credential:
-                cron_active = CronActive.objects.last()
-                #print(cron_active)
-                if cron_active:
-                    if cron_active.active:
-                        cron = CronActive.objects.create(
-                            active = True,
-                            current_date = cron_active.current_date + datetime.timedelta(minutes=1.5)
-                        )
-                    else:
-                        cron = CronActive.objects.create(
-                            active = True,
-                            current_date = now()
-                        )
-                else:
-                    cron = CronActive.objects.create(
-                        active = True,
-                        current_date = now()
-                    )
-                if request.data["masive"] == "false":
-                    threading.Thread(
-                        target=task_save_fee, 
-                        args=(
-                            _prices,
-                            request.data["date"],
-                            cron,
-                            _credential
-                        )
-                    ).start()
-                    __time += (cron.current_date - now()).total_seconds()
-                else:
-                    threading.Thread(
-                        target=task_save_fee_masive, 
-                        args=(
-                            cron,
-                            _credential,
-                            0
-                        )
-                    ).start()
-                    __time += (cron.current_date - now()).total_seconds()
-            else:
-                message = "No se ha configurado credenciales"
+            # message = "Proceso activado correctamente."
+            # _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
+            # if _credential:
+            #     cron_active = CronActive.objects.last()
+            #     #print(cron_active)
+            #     if cron_active:
+            #         if cron_active.active:
+            #             cron = CronActive.objects.create(
+            #                 active = True,
+            #                 current_date = cron_active.current_date + datetime.timedelta(minutes=1.5)
+            #             )
+            #         else:
+            #             cron = CronActive.objects.create(
+            #                 active = True,
+            #                 current_date = now()
+            #             )
+            #     else:
+            #         cron = CronActive.objects.create(
+            #             active = True,
+            #             current_date = now()
+            #         )
+            #     if request.data["masive"] == "false":
+            #         threading.Thread(
+            #             target=task_save_fee, 
+            #             args=(
+            #                 _prices,
+            #                 request.data["date"],
+            #                 cron,
+            #                 _credential
+            #             )
+            #         ).start()
+            #         __time += (cron.current_date - now()).total_seconds()
+            #     else:
+            #         threading.Thread(
+            #             target=task_save_fee_masive, 
+            #             args=(
+            #                 cron,
+            #                 _credential,
+            #                 0
+            #             )
+            #         ).start()
+            #         __time += (cron.current_date - now()).total_seconds()
+            # else:
+            #     message = "No se ha configurado credenciales"
         except Exception as e:
             logging.info(f"Error price: {e}")
             generate_log(f"Error price: {now()}: {e}", BotLog.ROOMPRICE)
