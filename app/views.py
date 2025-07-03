@@ -734,7 +734,7 @@ def upgrade_fee(request):
             #             p.active_sync = True
             #             p.save()
 
-            # message = "Proceso activado correctamente."
+            message = "Proceso activado correctamente."
             # _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
             # if _credential:
             #     cron_active = CronActive.objects.last()
@@ -1144,82 +1144,89 @@ def index(request):
                 #----------------
                 available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
                 for avail_book in available_booking:
-                    if int(float(avail_book.booking.start)) != 0:
+                    if int(float(avail_book.booking.start)) in [3,4]:
+                        if int(float(avail_book.booking.start)) not in list(bookings[str(_date_from.date())][int(ocp)].keys()):
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))] = {}
                         #----------------------------------
                         try:
                             copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[0]
                         except Exception as e:
                             copy_prices1 = CopyPriceWithDay()
                             copy_prices1.price = "0"
-                        if "media_total1" not in bookings[str(_date_from.date())][avail_book.occupancy]:
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] = 0
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] = 0
+                        if "media_total1" not in bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]:
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total1"] = 0
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant1"] = 0
 
                         _price3 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price3 != "":
-                            if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total1"] += int(_price3)
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant1"] += 1  
+                            if int(float(avail_book.booking.start)) in [3,4] and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                                bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total1"] += int(_price3)
+                                bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant1"] += 1  
 
                         try:
                             copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[3]
                         except Exception as e:
                             copy_prices1 = CopyPriceWithDay()
                             copy_prices1.price = "0"
-                        if "media_total4" not in bookings[str(_date_from.date())][avail_book.occupancy]:
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total4"] = 0
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant4"] = 0
+                        if "media_total4" not in bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]:
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total4"] = 0
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant4"] = 0
                         
                         _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
-                            if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total4"] += int(_price4)
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant4"] += 1
+                            if int(float(avail_book.booking.start)) in [3,4] and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                                bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total4"] += int(_price4)
+                                bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant4"] += 1
 
                         try:
                             copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
                         except Exception as e:
                             copy_prices1 = CopyPriceWithDay()
                             copy_prices1.price = "0"
-                        if "media_total7" not in bookings[str(_date_from.date())][avail_book.occupancy]:
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] = 0
-                            bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] = 0
+                        if "media_total7" not in bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]:
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total7"] = 0
+                            bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant7"] = 0
                         
                         _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
-                            if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_total7"] += int(_price4)
-                                bookings[str(_date_from.date())][avail_book.occupancy]["media_cant7"] += 1
+                            if int(float(avail_book.booking.start)) in [3,4] and avail_book.position in [0,1,2,3,4,9,14,19,24]:
+                                bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total7"] += int(_price4)
+                                bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant7"] += 1
                         #---------------------------------
 
-                        if str(int(float(avail_book.booking.start))) not in bookings[avail_book.date_from][avail_book.occupancy]:
-                            bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))] = {}
+                        #if int(ocp) == 2 and int(float(avail_book.booking.start)) == 3:
+                        #    print(_price4)
+                        
                         
                         _price = avail_book.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price != "":
-                            if "media_total" not in bookings[avail_book.date_from][avail_book.occupancy]:
-                                bookings[avail_book.date_from][avail_book.occupancy]["media_total"] = 0
-                                bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] = 0
-                            if "media_total03" not in bookings[avail_book.date_from][avail_book.occupancy]:
-                                bookings[avail_book.date_from][avail_book.occupancy]["media_total03"] = 0
-                                bookings[avail_book.date_from][avail_book.occupancy]["media_cant03"] = 0
+                            if "media_total" not in bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]:
+                                bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_total"] = 0
+                                bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_cant"] = 0
+                            if "media_total03" not in bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]:
+                                bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_total03"] = 0
+                                bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_cant03"] = 0
 
-                            #if "2024-05-10" == b.date_from and 2 == b.booking.occupancy:
-                            #    print(_price, b.booking.start, b.position)
+                            #print(avail_book.date_from)
+                            #if "2025-07-03" == avail_book.date_from and 2 == int(ocp):
+                            #    print(_price, int(float(avail_book.booking.start)), avail_book.position, bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))])
 
-                            if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))]:
-                                #print(b.booking.occupancy, b.booking.start, b.position, _price)
+                            if "COP" not in _price and avail_book.position not in bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]:
+                                #print(ocp, int(float(avail_book.booking.start)), avail_book.position, _price)
                                 try:
                                     if _price:
-                                        bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))][avail_book.position] = {}
-                                        bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))][avail_book.position]["price"] = _price
+                                        bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))][avail_book.position] = {}
+                                        bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))][avail_book.position]["price"] = _price
+
                                         if int(float(avail_book.booking.start)) == 4 and avail_book.position in [0,1,2,3,4,9,14,19,24]:
-                                            bookings[avail_book.date_from][avail_book.occupancy]["media_total"] += int(_price)
-                                            bookings[avail_book.date_from][avail_book.occupancy]["media_cant"] += 1
+                                            bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_total"] += int(_price)
+                                            bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_cant"] += 1
+
                                         elif int(float(avail_book.booking.start)) == 3 and avail_book.position in [0,1,2,3,4]:
-                                            bookings[avail_book.date_from][avail_book.occupancy]["media_total03"] += int(_price)
-                                            bookings[avail_book.date_from][avail_book.occupancy]["media_cant03"] += 1
-                                        bookings[avail_book.date_from][avail_book.occupancy][str(int(float(avail_book.booking.start)))][avail_book.position]["name"] = avail_book.booking.title
+                                            bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_total03"] += int(_price)
+                                            bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))]["media_cant03"] += 1
+
+                                        bookings[avail_book.date_from][int(ocp)][int(float(avail_book.booking.start))][avail_book.position]["name"] = avail_book.booking.title
                                 except Exception as e:
                                     logging.info(f"[-] Error price: {e}")
                         
@@ -1385,18 +1392,27 @@ def index(request):
                 if "media_name_10" not in bookings[str(_date_from.date())][2].keys():
                     bookings[str(_date_from.date())][2]["media_name_10"] = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]) * 1.1)
 
-            # media + %
-            if bookings[str(_date_from.date())][2]["media_total"] > 0:
-                ___media_total = round(bookings[str(_date_from.date())][2]["media_total"] / bookings[str(_date_from.date())][2]["media_cant"])
-                if bookings[str(_date_from.date())][2]["media_total7"] > 0:
-                    ___media_total7 = round(bookings[str(_date_from.date())][2]["media_total7"] / bookings[str(_date_from.date())][2]["media_cant7"])
+            # media + % 4*
+            if bookings[str(_date_from.date())][2][4]["media_total"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][2][4]["media_total"] / bookings[str(_date_from.date())][2][4]["media_cant"])
+                bookings[str(_date_from.date())][2][4]["media_total01"] = ___media_total
+                if bookings[str(_date_from.date())][2][4]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][2][4]["media_total7"] / bookings[str(_date_from.date())][2][4]["media_cant7"])
                     valueRest = ___media_total - ___media_total7
-                    bookings[str(_date_from.date())][2]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+                    bookings[str(_date_from.date())][2][4]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+            
+            # media + % 3*
+            if bookings[str(_date_from.date())][2][3]["media_total03"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][2][3]["media_total03"] / bookings[str(_date_from.date())][2][3]["media_cant03"])
+                if bookings[str(_date_from.date())][2][3]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][2][3]["media_total7"] / bookings[str(_date_from.date())][2][3]["media_cant7"])
+                    valueRest = ___media_total - ___media_total7
+                    bookings[str(_date_from.date())][2][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
 
-            # media + %
-            if bookings[str(_date_from.date())][3]["media_total"] > 0:
+            # media + % triples 4*
+            if bookings[str(_date_from.date())][3][4]["media_total"] > 0:
                 try:
-                    ___media_total = round(bookings[str(_date_from.date())][3]["media_total"] / bookings[str(_date_from.date())][3]["media_cant"])
+                    ___media_total = round(bookings[str(_date_from.date())][3][4]["media_total"] / bookings[str(_date_from.date())][3][4]["media_cant"])
                     if "media_name_50" not in bookings[str(_date_from.date())][3].keys():
                         bookings[str(_date_from.date())][3]["media_name_50"] = round(___media_total * 1.5)
                     if "media_name_40" not in bookings[str(_date_from.date())][3].keys():
@@ -1404,15 +1420,27 @@ def index(request):
                     if "media_name_30" not in bookings[str(_date_from.date())][3].keys():
                         bookings[str(_date_from.date())][3]["media_name_30"] = round(___media_total * 1.3)
                     
-                    if bookings[str(_date_from.date())][3]["media_total7"] > 0:
-                        ___media_total7 = round(bookings[str(_date_from.date())][3]["media_total7"] / bookings[str(_date_from.date())][3]["media_cant7"])
+                    if bookings[str(_date_from.date())][3][4]["media_total7"] > 0:
+                        ___media_total7 = round(bookings[str(_date_from.date())][3][4]["media_total7"] / bookings[str(_date_from.date())][3][4]["media_cant7"])
                         valueRest = ___media_total - ___media_total7
-                        bookings[str(_date_from.date())][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+                        bookings[str(_date_from.date())][3][4]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
                 except Exception as e001:
                     generate_log(f"[X] Error view data: {e001} {str(_date_from.date())}", BotLog.BOOKING)
-            # media + %
-            if bookings[str(_date_from.date())][5]["media_total"] > 0:
-                ___media_total = round(bookings[str(_date_from.date())][5]["media_total"] / bookings[str(_date_from.date())][5]["media_cant"])
+            
+            # media + % triples 3*
+            if bookings[str(_date_from.date())][3][3]["media_total03"] > 0:
+                try:
+                    ___media_total = round(bookings[str(_date_from.date())][3][3]["media_total03"] / bookings[str(_date_from.date())][3][3]["media_cant03"])
+                    
+                    if bookings[str(_date_from.date())][3][3]["media_total7"] > 0:
+                        ___media_total7 = round(bookings[str(_date_from.date())][3][3]["media_total7"] / bookings[str(_date_from.date())][3][3]["media_cant7"])
+                        valueRest = ___media_total - ___media_total7
+                        bookings[str(_date_from.date())][3][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+                except Exception as e001:
+                    generate_log(f"[X] Error view data: {e001} {str(_date_from.date())}", BotLog.BOOKING)
+            # media + % suites 4*
+            if bookings[str(_date_from.date())][5][4]["media_total"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][5][4]["media_total"] / bookings[str(_date_from.date())][5][4]["media_cant"])
                 if "media_name_60" not in bookings[str(_date_from.date())][5].keys():
                     bookings[str(_date_from.date())][5]["media_name_60"] = round(___media_total * 1.6)
                 if "media_name_50" not in bookings[str(_date_from.date())][5].keys():
@@ -1422,22 +1450,31 @@ def index(request):
                 if "media_name_30" not in bookings[str(_date_from.date())][5].keys():
                     bookings[str(_date_from.date())][5]["media_name_30"] = round(___media_total * 1.3)
 
-                if bookings[str(_date_from.date())][5]["media_total7"] > 0:
-                    ___media_total7 = round(bookings[str(_date_from.date())][5]["media_total7"] / bookings[str(_date_from.date())][5]["media_cant7"])
+                if bookings[str(_date_from.date())][5][4]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][5][4]["media_total7"] / bookings[str(_date_from.date())][5][4]["media_cant7"])
                     valueRest = ___media_total - ___media_total7
-                    bookings[str(_date_from.date())][5]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
-                    #print(___media_total, ___media_total7)
+                    bookings[str(_date_from.date())][5][4]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
+            # media + % suites 4*
+            if bookings[str(_date_from.date())][5][3]["media_total03"] > 0:
+                ___media_total = round(bookings[str(_date_from.date())][5][3]["media_total03"] / bookings[str(_date_from.date())][5][3]["media_cant03"])
+
+                if bookings[str(_date_from.date())][5][3]["media_total7"] > 0:
+                    ___media_total7 = round(bookings[str(_date_from.date())][5][3]["media_total7"] / bookings[str(_date_from.date())][5][3]["media_cant7"])
+                    valueRest = ___media_total - ___media_total7
+                    bookings[str(_date_from.date())][5][3]["media_totalRest"] = {"value":valueRest, "color": "text-white" if valueRest >= 0 else "text-danger"}
+
             # media entre la zona y actual.
-            if "media_name_hotel" in bookings[str(_date_from.date())][2].keys() and "media_total" in bookings[str(_date_from.date())][2].keys():
+            if "media_name_hotel" in bookings[str(_date_from.date())][2].keys() and "media_total" in bookings[str(_date_from.date())][2][4].keys():
                 if "media_general" not in bookings[str(_date_from.date())][2].keys():
                     try:
-                        bookings[str(_date_from.date())][2]["media_general"] = round((round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"])) + round((bookings[str(_date_from.date())][2]["media_total"] / bookings[str(_date_from.date())][2]["media_cant"]))) / 2)
+                        bookings[str(_date_from.date())][2]["media_general"] = round((round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"])) + round((bookings[str(_date_from.date())][2][4]["media_total"] / bookings[str(_date_from.date())][2][4]["media_cant"]))) / 2)
                     except Exception as e:
                         generate_log(f"[X] Error view data: {e} {str(_date_from.date())}", BotLog.BOOKING)
             # calculo de precio 5 y 10 posicion de triples y suites
-            if '4' in bookings[str(_date_from.date())][3].keys() and '4' in bookings[str(_date_from.date())][5].keys():
-                bookings[str(_date_from.date())][3]['4']["5_10"] = round((float(bookings[str(_date_from.date())][3]['4'][4]["price"]) + float(bookings[str(_date_from.date())][3]['4'][9]["price"])) / 2)
-                bookings[str(_date_from.date())][5]['4']["5_10"] = round((float(bookings[str(_date_from.date())][5]['4'][4]["price"]) + float(bookings[str(_date_from.date())][5]['4'][9]["price"])) / 2)
+            if 4 in bookings[str(_date_from.date())][3].keys() and 4 in bookings[str(_date_from.date())][5].keys():
+                bookings[str(_date_from.date())][3][4]["5_10"] = round((float(bookings[str(_date_from.date())][3][4][4]["price"]) + float(bookings[str(_date_from.date())][3][4][9]["price"])) / 2)
+                bookings[str(_date_from.date())][5][4]["5_10"] = round((float(bookings[str(_date_from.date())][5][4][4]["price"]) + float(bookings[str(_date_from.date())][5][4][9]["price"])) / 2)
 
             if "total_search" in bookings[str(_date_from.date())][2].keys() and "total_search7" in bookings[str(_date_from.date())][2].keys():
                 bookings[str(_date_from.date())][2]["total_search_rest"] = int(float(bookings[str(_date_from.date())][2]["total_search"]) - float(bookings[str(_date_from.date())][2]["total_search7"]))
@@ -1488,7 +1525,9 @@ def index(request):
                         del bookings[str(_date_from.date())]
 
             _date_from += datetime.timedelta(days=1)
+
             #break
+        
         _date_process =  BotRange.objects.filter(bot_setting=BotSetting.objects.filter(name = BotSetting.BOT_DEFAULT).last()).first()
         bot_auto = BotAutomatization.objects.last()
         _bot_setting = BotSetting.objects.filter(name = BotSetting.BOT_AUTO).last()
@@ -1512,7 +1551,7 @@ def index(request):
 
         message_name5_serializer = MessageNameSerializer(__message_name5, many=True)
         __message_name5_serializer = message_name5_serializer.data
-
+        #print(bookings)
         #print(time.time() - __time)
         return render(
             request, 

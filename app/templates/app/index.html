@@ -717,14 +717,14 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio 4*">
-                                <td class="text-sm m-0 p-0 border border-white {% if value.2.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                <td class="text-sm m-0 p-0 border border-white {% if value.2.4.media_totalRest.value < 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">{% if "media_totalRest" in value.2 %}{{value.2.media_totalRest.value}}{% else %}0{% endif %}</h3>
+                                    <h3 class="m-0 text-white">{% if "media_totalRest" in value.2.4 %}{{value.2.4.media_totalRest.value}}{% else %}0{% endif %}</h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">{% if "media_total" in value.2 %}{% widthratio value.2.media_total value.2.media_cant 1 %}{% else %}0{% endif %}</h3>
+                                    <h3 class="m-0 text-white">{% if "media_total" in value.2.4 %}{% widthratio value.2.4.media_total value.2.4.media_cant 1 %}{% else %}0{% endif %}</h3>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 8px;">
@@ -734,7 +734,7 @@
                                 </td>
                                 <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h5 class="m-0 text-white">{% if "media_total1" in value.2 %}{% widthratio value.2.media_total1 value.2.media_cant1 1 %}{% else %}0{% endif %}</h5>
+                                    <h5 class="m-0 text-white">{% if "media_total1" in value.2.4 %}{% widthratio value.2.4.media_total1 value.2.4.media_cant1 1 %}{% else %}0{% endif %}</h5>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 10px;">
@@ -744,7 +744,7 @@
                                 </td>
                                 <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h5 class="m-0 text-white">{% if "media_total4" in value.2 %}{% widthratio value.2.media_total4 value.2.media_cant4 1 %}{% else %}0{% endif %}</h5>
+                                    <h5 class="m-0 text-white">{% if "media_total4" in value.2.4 %}{% widthratio value.2.4.media_total4 value.2.4.media_cant4 1 %}{% else %}0{% endif %}</h5>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 10px;">
@@ -754,7 +754,7 @@
                                 </td>
                                 <td class="text-sm m-0 p-0 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h5 class="m-0 text-white">{% if "media_total7" in value.2 %}{% widthratio value.2.media_total7 value.2.media_cant7 1 %}{% else %}0{% endif %}</h5>
+                                    <h5 class="m-0 text-white">{% if "media_total7" in value.2.4 %}{% widthratio value.2.4.media_total7 value.2.4.media_cant7 1 %}{% else %}0{% endif %}</h5>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 10px;">
@@ -768,16 +768,16 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio 3*">
-                                <td class="text-sm m-0 p-0 border text-white border-white bg-danger">
+                                <td class="text-sm m-0 p-0 border text-white border-white {% if value.2.3.media_totalRest.value < 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-bold text-white">
-                                      0
+                                      {% if "media_totalRest" in value.2.3 %}{{value.2.3.media_totalRest.value}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
-                                    <h3 class="m-0 text-white">{% if "media_total03" in value.2 %}{% widthratio value.2.media_total03 value.2.media_cant03 1 %}{% else %}0{% endif %}</h3>
+                                    <h3 class="m-0 text-white">{% if "media_total03" in value.2.3 %}{% widthratio value.2.3.media_total03 value.2.3.media_cant03 1 %}{% else %}0{% endif %}</h3>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
                                       style="width: 30px; height: 15px; font-size: 8px;">
@@ -788,21 +788,21 @@
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_total1" in value.2.3 %}{% widthratio value.2.3.media_total1 value.2.3.media_cant1 1 %}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_total4" in value.2.3 %}{% widthratio value.2.3.media_total4 value.2.3.media_cant4 1 %}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_total7" in value.2.3 %}{% widthratio value.2.3.media_total7 value.2.3.media_cant7 1 %}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
@@ -1222,17 +1222,17 @@
                           <table class="m-0 p-0">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio 4*">
-                                <td class="text-sm m-0 p-1 border border-white {% if value.3.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                <td class="text-sm m-0 p-1 border border-white {% if value.3.4.media_totalRest.value < 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_totalRest" in value.3 %}{{value.3.media_totalRest.value}}{% else %}0{% endif %}
+                                      {% if "media_totalRest" in value.3.4 %}{{value.3.4.media_totalRest.value}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_total" in value.3 %}{% widthratio value.3.media_total value.3.media_cant 1 %}{% else %}0{% endif %}
+                                      {% if "media_total" in value.3.4 %}{% widthratio value.3.4.media_total value.3.4.media_cant 1 %}{% else %}0{% endif %}
                                     </h3>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1244,7 +1244,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total1" in value.3 %}{% widthratio value.3.media_total1 value.3.media_cant1 1 %}{% else %}0{% endif %}
+                                      {% if "media_total1" in value.3.4 %}{% widthratio value.3.4.media_total1 value.3.4.media_cant1 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1256,7 +1256,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total4" in value.3 %}{% widthratio value.3.media_total4 value.3.media_cant4 1 %}{% else %}0{% endif %}
+                                      {% if "media_total4" in value.3.4 %}{% widthratio value.3.4.media_total4 value.3.4.media_cant4 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1268,7 +1268,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total7" in value.3 %}{% widthratio value.3.media_total7 value.3.media_cant7 1 %}{% else %}0{% endif %}
+                                      {% if "media_total7" in value.3.4 %}{% widthratio value.3.4.media_total7 value.3.4.media_cant7 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1283,17 +1283,17 @@
                           <table class="m-0 p-0">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio 3*">
-                                <td class="text-sm m-0 p-1 border border-white {% if value.3.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                <td class="text-sm m-0 p-1 border border-white {% if value.3.3.media_totalRest.value < 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      0
+                                      {% if "media_totalRest" in value.3.3 %}{{value.3.3.media_totalRest.value}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_total03" in value.5 %}{% widthratio value.3.media_total03 value.3.media_cant03 1 %}{% else %}0{% endif %}
+                                      {% if "media_total03" in value.3.3 %}{% widthratio value.3.3.media_total03 value.3.3.media_cant03 1 %}{% else %}0{% endif %}
                                     </h3>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1305,7 +1305,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      000
+                                      {% if "media_total1" in value.3.3 %}{% widthratio value.3.3.media_total1 value.3.3.media_cant1 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1317,7 +1317,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      000
+                                      {% if "media_total4" in value.3.3 %}{% widthratio value.3.3.media_total4 value.3.3.media_cant4 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1329,7 +1329,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      000
+                                      {% if "media_total7" in value.3.3 %}{% widthratio value.3.3.media_total7 value.3.3.media_cant7 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1716,17 +1716,17 @@
                           <table class="m-1 p-1">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio 4*">
-                                 <td class="text-sm m-0 p-1 border border-white {% if value.5.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                 <td class="text-sm m-0 p-1 border border-white {% if value.5.4.media_totalRest.value < 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_totalRest" in value.5 %}{{value.5.media_totalRest.value}}{% else %}0{% endif %}
+                                      {% if "media_totalRest" in value.5.4 %}{{value.5.4.media_totalRest.value}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-1 border border-white" style="background-color: #6cb7fc;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_total" in value.5 %}{% widthratio value.5.media_total value.5.media_cant 1 %}{% else %}0{% endif %}
+                                      {% if "media_total" in value.5.4 %}{% widthratio value.5.4.media_total value.5.4.media_cant 1 %}{% else %}0{% endif %}
                                     </h3>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1738,7 +1738,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total1" in value.5 %}{% widthratio value.5.media_total1 value.5.media_cant1 1 %}{% else %}0{% endif %}
+                                      {% if "media_total1" in value.5.4 %}{% widthratio value.5.4.media_total1 value.5.4.media_cant1 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1750,7 +1750,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total4" in value.5 %}{% widthratio value.5.media_total4 value.5.media_cant4 1 %}{% else %}0{% endif %}
+                                      {% if "media_total4" in value.5.4 %}{% widthratio value.5.4.media_total4 value.5.4.media_cant4 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1762,7 +1762,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      {% if "media_total7" in value.5 %}{% widthratio value.5.media_total7 value.5.media_cant7 1 %}{% else %}0{% endif %}
+                                      {% if "media_total7" in value.5.4 %}{% widthratio value.5.4.media_total7 value.5.4.media_cant7 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1777,17 +1777,17 @@
                           <table class="m-1 p-1">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio 3*">
-                                <td class="text-sm m-0 p-1 border border-white {% if value.5.media_totalRest.value > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                <td class="text-sm m-0 p-1 border border-white {% if value.5.3.media_totalRest.value < 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_totalRest" in value.5 %}{{value.5.media_totalRest.value}}{% else %}0{% endif %}
+                                      {% if "media_totalRest" in value.5.3 %}{{value.5.3.media_totalRest.value}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-1 border border-white" style="background-color: #317ec6;">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-white text-bold">
-                                      {% if "media_total03" in value.5 %}{% widthratio value.5.media_total03 value.5.media_cant03 1 %}{% else %}0{% endif %}
+                                      {% if "media_total03" in value.5.3 %}{% widthratio value.5.3.media_total03 value.5.3.media_cant03 1 %}{% else %}0{% endif %}
                                     </h3>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1800,7 +1800,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      000
+                                      {% if "media_total1" in value.5.3 %}{% widthratio value.5.3.media_total1 value.5.3.media_cant1 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1812,7 +1812,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      000
+                                      {% if "media_total4" in value.5.3 %}{% widthratio value.5.3.media_total4 value.5.3.media_cant4 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -1824,7 +1824,7 @@
                                 <td class="text-sm m-0 p-1 border border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h4 class="m-0 text-white text-bold">
-                                      000
+                                      {% if "media_total7" in value.5.3 %}{% widthratio value.5.3.media_total7 value.5.3.media_cant7 1 %}{% else %}0{% endif %}
                                     </h4>
                                     <!-- <span 
                                       class="badge rounded-circle bg-dark text-white d-inline-flex justify-content-center align-items-center mt-0"
@@ -2224,7 +2224,7 @@
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
-            console.log(json);
+            //console.log(json);
             checkActiveProcess();
             Swal.fire({
               title: 'Proceso activado',
@@ -2523,7 +2523,7 @@
           },
           headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
           success: function(json) {
-            console.log(json);
+            //console.log(json);
             if (json.code == 200){
               $("#priceDate"+inputId).text("");
               $("#priceDate"+inputId).append(json.updated);
@@ -2590,7 +2590,7 @@
       }
     }
     function changeStatusFeeMasive(_active){
-      console.log(_active);
+      //console.log(_active);
       if (_active) {
         $("#buttonFeeUpgradeMasive1").prop("disabled", true);
       } else {
@@ -2598,7 +2598,9 @@
       }
     }
     function changeStatusPRice(_inputId, status){
+      //console.log(_inputId, status)
       let icon = document.getElementById("iconStatus"+_inputId);
+      //console.log(icon)
       if (status == true) {
           icon.classList.remove("fa-exclamation-triangle", "text-warning");
           icon.classList.add("fa-check", "text-success");
@@ -3284,122 +3286,122 @@
                   price = parseInt(itemBooking[2].media_name_10);
                   break
                 case "25":
-                  price20 = parseInt(itemBooking[2]['4'][19].price) - 1;
-                  price25 = parseInt(itemBooking[2]['4'][24].price) - 1;
+                  price20 = parseInt(itemBooking[2][4][19].price) - 1;
+                  price25 = parseInt(itemBooking[2][4][24].price) - 1;
                   price = price25;
                   if (price25 < price20){
                     price = price20;
                   }
                   break
                 case "20":
-                  price20 = parseInt(itemBooking[2]['4'][19].price) - 1;
-                  price15 = parseInt(itemBooking[2]['4'][14].price) - 1;
+                  price20 = parseInt(itemBooking[2][4][19].price) - 1;
+                  price15 = parseInt(itemBooking[2][4][14].price) - 1;
                   price = price20;
                   if (price20 < price15){
                     price = price15;
                   }
                   break
                 case "15":
-                  price10 = parseInt(itemBooking[2]['4'][9].price) - 1;
-                  price15 = parseInt(itemBooking[2]['4'][14].price) - 1;
+                  price10 = parseInt(itemBooking[2][4][9].price) - 1;
+                  price15 = parseInt(itemBooking[2][4][14].price) - 1;
                   price = price15;
                   if (price15 < price10){
                     price = price10;
                   }
                   break
                 case "10":
-                  price10 = parseInt(itemBooking[2]['4'][9].price) - 1;
-                  price5 = parseInt(itemBooking[2]['4'][4].price) - 1;
+                  price10 = parseInt(itemBooking[2][4][9].price) - 1;
+                  price5 = parseInt(itemBooking[2][4][4].price) - 1;
                   price = price10;
                   if (price10 < price5){
                     price = price5;
                   }
                   break
                 case "5":
-                  price4 = parseInt(itemBooking[2]['4'][3].price) - 1;
-                  price5 = parseInt(itemBooking[2]['4'][4].price) - 1;
+                  price4 = parseInt(itemBooking[2][4][3].price) - 1;
+                  price5 = parseInt(itemBooking[2][4][4].price) - 1;
                   price = price5;
                   if (price5 < price4){
                     price = price4;
                   }
                   break
                 case "4":
-                  price4 = parseInt(itemBooking[2]['4'][3].price) - 1;
-                  price3 = parseInt(itemBooking[2]['4'][2].price) - 1;
+                  price4 = parseInt(itemBooking[2][4][3].price) - 1;
+                  price3 = parseInt(itemBooking[2][4][2].price) - 1;
                   price = price4;
                   if (price4 < price3){
                     price = price3;
                   }
                   break
                 case "3":
-                  price2 = parseInt(itemBooking[2]['4'][1].price) - 1;
-                  price3 = parseInt(itemBooking[2]['4'][2].price) - 1;
+                  price2 = parseInt(itemBooking[2][4][1].price) - 1;
+                  price3 = parseInt(itemBooking[2][4][2].price) - 1;
                   price = price3;
                   if (price3 < price2){
                     price = price2;
                   }
                   break
                 case "2":
-                  price2 = parseInt(itemBooking[2]['4'][1].price) - 1;
-                  price1 = parseInt(itemBooking[2]['4'][0].price) - 1;
+                  price2 = parseInt(itemBooking[2][4][1].price) - 1;
+                  price1 = parseInt(itemBooking[2][4][0].price) - 1;
                   price = price2;
                   if (price2 < price1){
                     price = price1;
                   }
                   break
                 case "1":
-                  price1 = parseInt(itemBooking[2]['4'][0].price) - 1;
-                  priceV = parseInt(itemBooking[2]['3'][4].price) - 1;
+                  price1 = parseInt(itemBooking[2][4][0].price) - 1;
+                  priceV = parseInt(itemBooking[2][3][4].price) - 1;
                   price = priceV;
                   if (priceV < price1){
                     price = price1;
                   }
                   break
                 case "V":
-                  priceV = parseInt(itemBooking[2]['3'][4].price) - 1;
-                  priceIV = parseInt(itemBooking[2]['3'][3].price) - 1;
+                  priceV = parseInt(itemBooking[2][3][4].price) - 1;
+                  priceIV = parseInt(itemBooking[2][3][3].price) - 1;
                   price = priceV;
                   if (priceV < priceIV){
                     price = priceIV;
                   }
                   break
                 case "IV":
-                  priceIV = parseInt(itemBooking[2]['3'][3].price) - 1;
-                  priceIII = parseInt(itemBooking[2]['3'][2].price) - 1;
+                  priceIV = parseInt(itemBooking[2][3][3].price) - 1;
+                  priceIII = parseInt(itemBooking[2][3][2].price) - 1;
                   price = priceIV;
                   if (priceIV < priceIII){
                     price = priceIII;
                   }
                   break
                 case "III":
-                  priceIII = parseInt(itemBooking[2]['3'][2].price) - 1;
-                  priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
+                  priceIII = parseInt(itemBooking[2][3][2].price) - 1;
+                  priceII = parseInt(itemBooking[2][3][1].price) - 1;
                   price = priceIII;
                   if (priceIII < priceII){
                     price = priceII;
                   }
                   break
                 case "II":
-                  priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
-                  priceI = parseInt(itemBooking[2]['3'][0].price) - 1;
+                  priceII = parseInt(itemBooking[2][3][1].price) - 1;
+                  priceI = parseInt(itemBooking[2][3][0].price) - 1;
                   price = priceII;
                   if (priceII < priceI){
                     price = priceI;
                   }
                   break
                 case "I":
-                  priceII = parseInt(itemBooking[2]['3'][1].price) - 1;
-                  priceI = parseInt(itemBooking[2]['3'][0].price) - 1;
+                  priceII = parseInt(itemBooking[2][3][1].price) - 1;
+                  priceI = parseInt(itemBooking[2][3][0].price) - 1;
                   price = priceII;
                   if (priceI < priceII){
                     price = priceI;
                   }
                   break
                 case "PM 3*":
-                  price = Math.round(parseInt(itemBooking[2].media_total03) / parseInt(itemBooking[2].media_cant03));
+                  price = Math.round(parseInt(itemBooking[2][3].media_total03) / parseInt(itemBooking[2][3].media_cant03));
                   break
                 case "PM 4*":
-                  price = Math.round(parseInt(itemBooking[2].media_total) / parseInt(itemBooking[2].media_cant));
+                  price = Math.round(parseInt(itemBooking[2][4].media_total) / parseInt(itemBooking[2][4].media_cant));
                   break
                 case "PM Mixto":
                   price = Math.round(parseInt(itemBooking[2].media_general));
@@ -3512,101 +3514,101 @@
                   break
                 case "10":
                   if (itemBooking[2].tarifa){
-                    price10 = parseInt(itemBooking[3]['4'][9].price) - 1;
-                    price5_10 = parseInt(itemBooking[3]['4']['5_10']);
+                    price10 = parseInt(itemBooking[3][4][9].price) - 1;
+                    price5_10 = parseInt(itemBooking[3][4]['5_10']);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price10, price5_10, tarifa);
                   }
                   break
                 case "5":
                   if (itemBooking[2].tarifa){
-                    price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
-                    price5 = parseInt(itemBooking[3]['4'][4].price) - 1;
+                    price4 = parseInt(itemBooking[3][4][3].price) - 1;
+                    price5 = parseInt(itemBooking[3][4][4].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price4, price5, tarifa);
                   }
                   break
                 case "4":
                   if (itemBooking[2].tarifa){
-                    price4 = parseInt(itemBooking[3]['4'][3].price) - 1;
-                    price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
+                    price4 = parseInt(itemBooking[3][4][3].price) - 1;
+                    price3 = parseInt(itemBooking[3][4][2].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price4, price3, tarifa);
                   }
                   break
                 case "3":
                   if (itemBooking[2].tarifa){
-                    price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
-                    price3 = parseInt(itemBooking[3]['4'][2].price) - 1;
+                    price2 = parseInt(itemBooking[3][4][1].price) - 1;
+                    price3 = parseInt(itemBooking[3][4][2].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price2, price3, tarifa);
                   }
                   break
                 case "2":
                   if (itemBooking[2].tarifa){
-                    price2 = parseInt(itemBooking[3]['4'][1].price) - 1;
-                    price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
+                    price2 = parseInt(itemBooking[3][4][1].price) - 1;
+                    price1 = parseInt(itemBooking[3][4][0].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price2, price1, tarifa);
                   }
                   break
                 case "1":
                   if (itemBooking[2].tarifa){
-                    price1 = parseInt(itemBooking[3]['4'][0].price) - 1;
-                    priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
+                    price1 = parseInt(itemBooking[3][4][0].price) - 1;
+                    priceV = parseInt(itemBooking[3][3][4].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceV, price1, tarifa);
                   }
                   break
                 case "V":
                   if (itemBooking[2].tarifa){
-                    priceV = parseInt(itemBooking[3]['3'][4].price) - 1;
-                    priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
+                    priceV = parseInt(itemBooking[3][3][4].price) - 1;
+                    priceIV = parseInt(itemBooking[3][3][3].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceV, priceIV, tarifa);
                   }
                   break
                 case "IV":
                   if (itemBooking[2].tarifa){
-                    priceIV = parseInt(itemBooking[3]['3'][3].price) - 1;
-                    priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
+                    priceIV = parseInt(itemBooking[3][3][3].price) - 1;
+                    priceIII = parseInt(itemBooking[3][3][2].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceIII, priceIV, tarifa);
                   }
                   break
                 case "III":
                   if (itemBooking[2].tarifa){
-                    priceIII = parseInt(itemBooking[3]['3'][2].price) - 1;
-                    priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
+                    priceIII = parseInt(itemBooking[3][3][2].price) - 1;
+                    priceII = parseInt(itemBooking[3][3][1].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceIII, priceII, tarifa);
                   }
                   break
                 case "II":
                   if (itemBooking[2].tarifa){
-                    priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
-                    priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
+                    priceII = parseInt(itemBooking[3][3][1].price) - 1;
+                    priceI = parseInt(itemBooking[3][3][0].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(priceI, priceII, tarifa);
                   }
                   break
                 case "I":
                   if (itemBooking[2].tarifa){
-                    priceII = parseInt(itemBooking[3]['3'][1].price) - 1;
-                    priceI = parseInt(itemBooking[3]['3'][0].price) - 1;
+                    priceII = parseInt(itemBooking[3][3][1].price) - 1;
+                    priceI = parseInt(itemBooking[3][3][0].price) - 1;
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.min(priceI, priceII, tarifa);
                   }
                   break
                 case "PM 3*":
-                  price = Math.round(parseInt(itemBooking[3].media_total03) / parseInt(itemBooking[3].media_cant03));
+                  price = Math.round(parseInt(itemBooking[3][3].media_total03) / parseInt(itemBooking[3][3].media_cant03));
                   break
                 case "PM 4*":
-                  price = Math.round(parseInt(itemBooking[3].media_total) / parseInt(itemBooking[3].media_cant));
+                  price = Math.round(parseInt(itemBooking[3][4].media_total) / parseInt(itemBooking[3][4].media_cant));
                   break
                 case "PM 5-10":
                   if (itemBooking[2].tarifa){
-                    price5_10 = parseInt(itemBooking[3]['4']['5_10']);
+                    price5_10 = parseInt(itemBooking[3][4]['5_10']);
                     tarifa = parseInt(itemBooking[2].tarifa.price) + 6;
                     price = Math.max(price5_10, tarifa);
                   }
@@ -3652,68 +3654,68 @@
                 price = parseInt(itemBooking[5].media_name_30);
                 break
               case "10":
-                price10 = parseInt(itemBooking[5]['4'][9].price) - 1;
-                price5_10 = parseInt(itemBooking[5]['4']['5_10']) - 1;
+                price10 = parseInt(itemBooking[5][4][9].price) - 1;
+                price5_10 = parseInt(itemBooking[5][4]['5_10']) - 1;
                 price = Math.max(price10, price5_10);
                 break
               case "5":
-                price4 = parseInt(itemBooking[5]['4'][3].price) - 1;
-                price5 = parseInt(itemBooking[5]['4'][4].price) - 1;
+                price4 = parseInt(itemBooking[5][4][3].price) - 1;
+                price5 = parseInt(itemBooking[5][4][4].price) - 1;
                 price = Math.max(price4, price5);
                 break
               case "4":
-                price4 = parseInt(itemBooking[5]['4'][3].price) - 1;
-                price3 = parseInt(itemBooking[5]['4'][2].price) - 1;
+                price4 = parseInt(itemBooking[5][4][3].price) - 1;
+                price3 = parseInt(itemBooking[5][4][2].price) - 1;
                 price = Math.max(price4, price3);
                 break
               case "3":
-                price2 = parseInt(itemBooking[5]['4'][1].price) - 1;
-                price3 = parseInt(itemBooking[5]['4'][2].price) - 1;
+                price2 = parseInt(itemBooking[5][4][1].price) - 1;
+                price3 = parseInt(itemBooking[5][4][2].price) - 1;
                 price = Math.max(price2, price3);
                 break
               case "2":
-                price2 = parseInt(itemBooking[5]['4'][1].price) - 1;
-                price1 = parseInt(itemBooking[5]['4'][0].price) - 1;
+                price2 = parseInt(itemBooking[5][4][1].price) - 1;
+                price1 = parseInt(itemBooking[5][4][0].price) - 1;
                 price = Math.max(price2, price1);
                 break
               case "1":
-                price1 = parseInt(itemBooking[5]['4'][0].price) - 1;
-                priceV = parseInt(itemBooking[5]['3'][4].price) - 1;
+                price1 = parseInt(itemBooking[5][4][0].price) - 1;
+                priceV = parseInt(itemBooking[5][3][4].price) - 1;
                 price = Math.max(priceV, price1);
                 break
               case "V":
-                priceV = parseInt(itemBooking[5]['3'][4].price) - 1;
-                priceIV = parseInt(itemBooking[5]['3'][3].price) - 1;
+                priceV = parseInt(itemBooking[5][3][4].price) - 1;
+                priceIV = parseInt(itemBooking[5][3][3].price) - 1;
                 price = Math.max(priceV, priceIV);
                 break
               case "IV":
-                priceIV = parseInt(itemBooking[5]['3'][3].price) - 1;
-                priceIII = parseInt(itemBooking[5]['3'][2].price) - 1;
+                priceIV = parseInt(itemBooking[5][3][3].price) - 1;
+                priceIII = parseInt(itemBooking[5][3][2].price) - 1;
                 price = Math.max(priceIII, priceIV);
                 break
               case "III":
-                priceIII = parseInt(itemBooking[5]['3'][2].price) - 1;
-                priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
+                priceIII = parseInt(itemBooking[5][3][2].price) - 1;
+                priceII = parseInt(itemBooking[5][3][1].price) - 1;
                 price = Math.max(priceIII, priceII);
                 break
               case "II":
-                priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
-                priceI = parseInt(itemBooking[5]['3'][0].price) - 1;
+                priceII = parseInt(itemBooking[5][3][1].price) - 1;
+                priceI = parseInt(itemBooking[5][3][0].price) - 1;
                 price = Math.max(priceI, priceII);
                 break
               case "I":
-                priceII = parseInt(itemBooking[5]['3'][1].price) - 1;
-                priceI = parseInt(itemBooking[5]['3'][0].price) - 1;
+                priceII = parseInt(itemBooking[5][3][1].price) - 1;
+                priceI = parseInt(itemBooking[5][3][0].price) - 1;
                 price = Math.min(priceI, priceII);
                 break
               case "PM 3*":
-                price = Math.round(parseInt(itemBooking[5].media_total03) / parseInt(itemBooking[5].media_cant03));
+                price = Math.round(parseInt(itemBooking[5][3].media_total03) / parseInt(itemBooking[5][3].media_cant03));
                 break
               case "4-PM":
-                price = Math.round(parseInt(itemBooking[5].media_total) / parseInt(itemBooking[5].media_cant));
+                price = Math.round(parseInt(itemBooking[5][4].media_total) / parseInt(itemBooking[5][4].media_cant));
                 break
               case "PM 5 a10":
-                price = parseInt(itemBooking[5]['4']['5_10']);
+                price = parseInt(itemBooking[5][4]['5_10']);
                 break
             }
             $("#recomendation"+itemDate+"5").append(price);
@@ -3731,6 +3733,7 @@
 
     for (let i = 0; i < keysDate.length; i++) {
       const itemDt = keysDate[i];
+      //console.log(itemDt);
       if (bookings[itemDt][2].messageDay){
         changePriceRecom(itemDt, bookings[itemDt][2].messageDay.pk, 2);
       }
