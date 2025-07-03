@@ -15,6 +15,7 @@ from .fee import FeeTask
 from django.utils.timezone import localtime
 from .serializer import *
 from .generate_sample_date import *
+from django.db.models import F
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -899,6 +900,57 @@ def save_avail_with_date(request):
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
     return Response(result)
 
+def get_filtered_available_bookings(_date_from, ocp):
+    ocp = int(ocp)
+    date_str = str(_date_from.date())
+
+    # Límites máximos por ocupación y estrellas
+    limits = {
+        2: {'3': 5, '4': 9},
+        3: {'3': 5, '4': 6},
+        5: {'3': 5, '4': 6},
+    }
+
+    max_3 = limits.get(ocp, {}).get('3', 0)
+    max_4 = limits.get(ocp, {}).get('4', 0)
+
+    def get_unique_by_position(qs, max_items):
+        unique = {}
+        result = []
+        for item in qs:
+            key = item.position
+            if key not in unique:
+                unique[key] = item
+                result.append(item)
+            if len(result) >= max_items:
+                break
+        return result
+
+    # Consulta para 3 estrellas
+    qs_3 = (
+        AvailableBooking.objects
+        .filter(date_from=date_str, occupancy=ocp, booking__start="3")
+        .select_related('booking')
+        .order_by('position', '-updated')  # más actualizado por posición
+    )
+
+    results_3 = get_unique_by_position(qs_3, max_3)
+
+    # Consulta para 4 estrellas
+    qs_4 = (
+        AvailableBooking.objects
+        .filter(date_from=date_str, occupancy=ocp, booking__start="4")
+        .select_related('booking')
+        .order_by('position', '-updated')
+    )
+
+    results_4 = get_unique_by_position(qs_4, max_4)
+
+    # Unir resultados
+    final_results = results_3 + results_4
+
+    return final_results
+
 def index(request):
     if request.user.is_authenticated:
         cant_default = 30
@@ -949,7 +1001,8 @@ def index(request):
             __temporada_by_day = TemporadaByDay.objects.filter(date_from = str(_date_from.date())).last()
             if __temporada_by_day:
                 bookings[str(_date_from.date())]["temporadaByDay"] = {"number":__temporada_by_day.number, "bgColor":str(__temporada_by_day.bg_color), "textColor":str(__temporada_by_day.text_color)}
-        
+
+            #print(occupancys)
             for ocp in occupancys:
                 if int(ocp) not in list(bookings[str(_date_from.date())].keys()):
                     bookings[str(_date_from.date())][int(ocp)] = {}
@@ -1142,9 +1195,15 @@ def index(request):
                         bookings[str(_date_from.date())][int(ocp)]["total_search7"] = __com2.total_search
 
                 #----------------
-                available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
+                #available_booking = AvailableBooking.objects.filter(date_from=str(_date_from.date()), occupancy=int(ocp))
+                available_booking = get_filtered_available_bookings(_date_from, ocp)
+                #print(f"Len: {len(available_booking)}")
                 for avail_book in available_booking:
                     if int(float(avail_book.booking.start)) in [3,4]:
+
+                        #if int(float(avail_book.booking.start)) == 4 and int(ocp) == 2:
+                        #    print(avail_book.price)
+
                         if int(float(avail_book.booking.start)) not in list(bookings[str(_date_from.date())][int(ocp)].keys()):
                             bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))] = {}
                         #----------------------------------
@@ -1164,30 +1223,30 @@ def index(request):
                                 bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant1"] += 1  
 
                         try:
-                            copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[3]
+                            copy_prices4 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[3]
                         except Exception as e:
-                            copy_prices1 = CopyPriceWithDay()
-                            copy_prices1.price = "0"
+                            copy_prices4 = CopyPriceWithDay()
+                            copy_prices4.price = "0"
                         if "media_total4" not in bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]:
                             bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total4"] = 0
                             bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant4"] = 0
                         
-                        _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        _price4 = copy_prices4.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
                             if int(float(avail_book.booking.start)) in [3,4] and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total4"] += int(_price4)
                                 bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant4"] += 1
 
                         try:
-                            copy_prices1 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
+                            copy_prices7 = CopyPriceWithDay.objects.filter(avail_booking = avail_book).order_by("-id")[6]
                         except Exception as e:
-                            copy_prices1 = CopyPriceWithDay()
-                            copy_prices1.price = "0"
+                            copy_prices7 = CopyPriceWithDay()
+                            copy_prices7.price = "0"
                         if "media_total7" not in bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]:
                             bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total7"] = 0
                             bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_cant7"] = 0
                         
-                        _price4 = copy_prices1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        _price4 = copy_prices7.price.replace("€ ", "").replace(".", "").replace(",", "")
                         if _price4 != "":
                             if int(float(avail_book.booking.start)) in [3,4] and avail_book.position in [0,1,2,3,4,9,14,19,24]:
                                 bookings[str(_date_from.date())][int(ocp)][int(float(avail_book.booking.start))]["media_total7"] += int(_price4)
