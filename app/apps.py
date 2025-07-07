@@ -8,4 +8,4 @@ class AppConfig(AppConfig):
     def ready(self):
         # Importa e inicia la tarea en background
         from .tasks import iniciar_scheduler
-        #iniciar_scheduler()
+        iniciar_scheduler()
