@@ -565,20 +565,28 @@
                           </div>
                           <!---->
                           <div class="input-group mb-1">
-                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 2, '{{date}}2')" data-bs-toggle="tooltip" data-bs-placement="left" title="Tarifa doble">
                               Guardar <i id="iconStatus{{date}}2" class="{% if not value.2.tarifa.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}2">{{value.2.tarifa.updated}}</span>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
-                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}2">000</h3>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Doble" value="{{value.2.tarifa.price}}" aria-describedby="button-addon1" id="price{{date}}2">
+                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}2" data-bs-toggle="tooltip" data-bs-placement="left" title="Recomendacion doble">0</h3>
                           </div>
                           <div class="input-group mb-1">
-                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 1, '{{date}}1')" data-bs-toggle="tooltip" data-bs-placement="left" title="Tarifa matrimonial">
                               Guardar <i id="iconStatus{{date}}1" class="{% if not value.2.tarifa1.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
                               <br><span class="text-black text-xs" id="priceDate{{date}}1">{{value.2.tarifa1.updated}}</span>
                             </button>
-                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa RoomPrice" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
-                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}1">000</h3>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Matrimonial" value="{{value.2.tarifa1.price}}" aria-describedby="button-addon1" id="price{{date}}1">
+                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}1" data-bs-toggle="tooltip" data-bs-placement="left" title="Recomendacion matrimonial">0</h3>
+                          </div>
+                          <div class="input-group mb-1">
+                            <button class="btn btn-white btn-xs mb-0" type="button" id="button-addon1" onclick="savePrice('{{date}}', 0, '{{date}}0')" data-bs-toggle="tooltip" data-bs-placement="left" title="Tarifa individual">
+                              Guardar <i id="iconStatus{{date}}0" class="{% if not value.2.tarifa0.pSync %}fas fa-exclamation-triangle text-warning fa-2x{% else %}fa fa-check text-success fa-2x{% endif %}"></i>
+                              <br><span class="text-black text-xs" id="priceDate{{date}}0">{{value.2.tarifa0.updated}}</span>
+                            </button>
+                            <input type="text" class="form-control form-control-lg text-lg" placeholder="Tarifa Individual" value="{{value.2.tarifa0.price}}" aria-describedby="button-addon1" id="price{{date}}0">
+                            <h3 class="m-0 text-white bg-success text-center p-1" id="recomendation{{date}}0" data-bs-toggle="tooltip" data-bs-placement="left" title="Recomendacion individual">0</h3>
                           </div>
                           <!---->
                         </td>
@@ -586,10 +594,10 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio Zenit">
-                                <td class="text-sm m-0 p-0 border text-white border-white bg-danger">
+                                <td class="text-sm m-0 p-0 border text-white border-white {% if value.2.priceZENRest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-bold text-white">
-                                      0
+                                      {% if "priceZENRest7" in value.2 %}{{value.2.priceZENRest7}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
@@ -606,21 +614,21 @@
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if 'priceZEN1' in value.2 %}{{value.2.priceZEN1}}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if 'priceZEN4' in value.2 %}{{value.2.priceZEN4}}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if 'priceZEN7' in value.2 %}{{value.2.priceZEN7}}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
@@ -630,10 +638,10 @@
                           <table class="table table-flush text-white table-sm m-0 p-0 bg-warning">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio zona">
-                                <td class="text-sm m-0 p-0 border text-white border-white bg-danger">
+                                <td class="text-sm m-0 p-0 border text-white border-white {% if value.2.media_name_hotelRest > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-bold text-white">
-                                      0
+                                      {% if "media_name_hotelRest" in value.2 %}{{value.2.media_name_hotelRest}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
@@ -649,21 +657,27 @@
                                 <td class="text-sm m-0 p-0 border border-white text-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_name_hotel1" in value.2 %}
+                                        {% widthratio value.2.media_name_hotel1 value.2.media_cant_name_hotel1 1 %}
+                                      {% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_name_hotel4" in value.2 %}
+                                        {% widthratio value.2.media_name_hotel4 value.2.media_cant_name_hotel4 1 %}
+                                      {% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_name_hotel7" in value.2 %}
+                                        {% widthratio value.2.media_name_hotel7 value.2.media_cant_name_hotel7 1 %}
+                                      {% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
@@ -673,10 +687,10 @@
                           <table class="table table-flush text-white table-sm m-0 p-0">
                             <tbody>
                               <tr class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Precio medio mixto">
-                                <td class="text-sm m-0 p-0 border text-white border-white bg-danger">
+                                <td class="text-sm m-0 p-0 border text-white border-white {% if value.2.media_name_hotel_generalRest > 0 %}bg-success{% else %}bg-danger{% endif %}">
                                   <div class="d-flex flex-column align-items-center">
                                     <h3 class="m-0 text-bold text-white">
-                                      0
+                                      {% if "media_name_hotel_generalRest" in value.2 %}{{value.2.media_name_hotel_generalRest}}{% else %}0{% endif %}
                                     </h3>
                                   </div>
                                 </td>
@@ -693,21 +707,21 @@
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_name_hotel_general1" in value.2 %}{{value.2.media_name_hotel_general1}}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_name_hotel_general4" in value.2 %}{{value.2.media_name_hotel_general4}}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
                                 <td class="text-sm m-0 p-0 border text-white border-white bg-secondary">
                                   <div class="d-flex flex-column align-items-center">
                                     <h5 class="m-0 text-bold text-white">
-                                      000
+                                      {% if "media_name_hotel_general7" in value.2 %}{{value.2.media_name_hotel_general7}}{% else %}0{% endif %}
                                     </h5>
                                   </div>
                                 </td>
@@ -2533,6 +2547,12 @@
                   bookings[_date][2].tarifa1.price = parseInt(inputText);
                 }else{
                   bookings[_date][2] = { tarifa1: { price: parseInt(inputText) }};
+                }
+              } else if (occupancy == 0){
+                if (bookings[_date][2].tarifa0){
+                  bookings[_date][2].tarifa0.price = parseInt(inputText);
+                }else{
+                  bookings[_date][2] = { tarifa0: { price: parseInt(inputText) }};
                 }
               } else if (occupancy == 2){
                 if (bookings[_date][2].tarifa){

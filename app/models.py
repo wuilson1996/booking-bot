@@ -72,11 +72,12 @@ class AvailWithDate(models.Model):
 class Price(models.Model):
     date_from = models.CharField(max_length=30)
     OCCUPANCYS = (
-        (1, "1 Personas"),
-        (2, "2 Personas"),
-        (3, "3 Personas"),
+        (0, "Individual"),
+        (1, "Matrimonial"),
+        (2, "Doble"),
+        (3, "Triple"),
         (4, "4 Personas"),
-        (5, "5 Personas"),
+        (5, "Suites"),
         (6, "6 Personas")
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
@@ -334,10 +335,32 @@ class GeneralSearch(models.Model):
     )
     type_search = models.IntegerField(choices=TYPE_SEARCH, default=1)
     proces_active = models.ManyToManyField(ProcessActive, null=True, blank=True)
+    list_abr_name_hotel = (
+        ("ZEN", "ZEN"), 
+        ("OSU", "OSU"), 
+        ("ILU", "ILU"),
+        ("ECO", "ECO"), 
+        ("SIL", "SIL"), 
+        ("EXE", "EXE"), 
+        ("SER", "SER"), 
+        ("AXO", "AXO"), 
+        ("DWO", "DWO"), 
+        ("BOS", "BOS"), 
+        ("SEN", "SEN"), 
+        ("TOR2", "TOR2"),
+        ("SF", "SF")
+    )
+    code = models.TextField(choices=list_abr_name_hotel, default="ZEN")
 
     def __str__(self) -> str:
-        return str(self.url)+" | "+str(self.city_and_country)+" | "+str(self.time_sleep_minutes)+" | "+str(self.type_search)
-
+        process_data = ", ".join([
+            f"| OC: {p.occupancy}/ ST: {p.start}" for p in self.proces_active.all()
+        ])
+        return (
+            f"{self.url} | {self.city_and_country} | {self.time_sleep_minutes} | "
+            f"{self.type_search} | {process_data} | {self.code}"
+        )
+    
 class BotSetting(models.Model): # Configurations bots default and automatics.
     BOT_AUTO = "bot_auto"
     BOT_DEFAULT = "bot_default"

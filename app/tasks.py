@@ -79,16 +79,23 @@ def ejecutar_funcion():
         except Exception as e:
             generate_log(f"Error copy price: {now()}. {e}", BotLog.HISTORY)
             
-        try:
+        
             #logging.info("[+] Copy price suites feria.")
             # copy price with suites feria.
-            price_with_names = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()))
-            for price_with_name in price_with_names:
-                CopyPriceWithNameFromDay.objects.create(
-                    price = price_with_name.price,
-                    created = str(now().date()),
-                    avail = price_with_name
-                )
+        try:
+            general_search_to_name = GeneralSearch.objects.filter(type_search=2).values_list('city_and_country', flat=True).distinct()
+            generate_log(f"Name hotel by copy: {now()} - {str(general_search_to_name)}", BotLog.HISTORY)
+            for g in general_search_to_name:
+                try:
+                    price_with_names = PriceWithNameHotel.objects.filter(title = g, date_from = str(_date_from.date()))
+                    for price_with_name in price_with_names:
+                        CopyPriceWithNameFromDay.objects.create(
+                            price = price_with_name.price,
+                            created = str(now().date()),
+                            avail = price_with_name
+                        )
+                except Exception as e:
+                    generate_log(f"Error copy price name hotel: {g} {now()}. {e}", BotLog.HISTORY)
         except Exception as e:
             generate_log(f"Error copy price suites feria: {now()}. {e}", BotLog.HISTORY)
 
@@ -162,6 +169,7 @@ def delete_old_logs(days=5):
     return deleted_count, count_avail
 
 def tarea_diaria():
+    generate_log(f"[+] Copia diaria iniciado: {now()}", BotLog.HISTORY)
     task_execute = TaskExecute.objects.last()
     if not task_execute:
         generate_log(f"No hay configuración de ejecución", BotLog.HISTORY)
@@ -195,8 +203,8 @@ def iniciar_scheduler():
         return
 
     if not acquire_lock(name="espera_tarea_diaria", ttl_minutes=task_execute.time_sleep):
-        generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
-        return
+       generate_log(f"[-]Otro worker ya está ejecutando la tarea programada. Este no la agenda. {now()}", BotLog.HISTORY)
+       return
 
     scheduler.add_job(
         tarea_diaria,

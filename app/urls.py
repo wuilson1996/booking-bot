@@ -17,5 +17,6 @@ urlpatterns = [
     path("check/booking/process", check_booking_process, name="check_booking_process"),
     path("save/avail/with/date", save_avail_with_date, name="save_avail_with_date"),
     path('upgrade/fee', upgrade_fee, name="upgrade_fee"),
+    path('reception', reception, name="reception"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

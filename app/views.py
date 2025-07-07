@@ -16,6 +16,8 @@ from django.utils.timezone import localtime
 from .serializer import *
 from .generate_sample_date import *
 from django.db.models import F
+from itertools import groupby
+from operator import attrgetter
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -1025,6 +1027,16 @@ def index(request):
                                 "pSync": __price.plataform_sync,
                                 "active": __price.active_sync
                             }
+
+                        __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=0).last()
+                        if __price:
+                            bookings[str(_date_from.date())][int(ocp)]["tarifa0"] = {
+                                "price":__price.price, 
+                                "updated": generate_date_with_month_time(str(__price.updated)),
+                                "pSync": __price.plataform_sync,
+                                "active": __price.active_sync
+                            }
+
                     if int(ocp) == 3:
                         __price = Price.objects.filter(date_from = str(_date_from.date()), occupancy=4).last()
                         if __price:
@@ -1292,41 +1304,20 @@ def index(request):
                 # change price with nameprice hotel.
                 price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Suites Feria de Madrid", date_from = str(_date_from.date()), occupancy = int(ocp)).first()
                 if price_with_name_hotel:
-                    bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeria"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+                    bookings[str(_date_from.date())][int(ocp)]["priceSuitesFeria"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
                     
-                    try:
-                        available_booking1 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[0]
-                    except Exception as e:
-                        available_booking1 = CopyPriceWithNameFromDay()
-                        available_booking1.price = "0"
+                    for inj in [0,3,6]:
+                        try:
+                            available_booking1 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[inj]
+                        except Exception as e:
+                            available_booking1 = CopyPriceWithNameFromDay()
+                            available_booking1.price = "0"
 
-                    if available_booking1:
-                        _price1 = available_booking1.price.replace("€ ", "").replace(".", "").replace(",", "")
-                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeria1"] = int(_price1)
-                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeriaRest1"] = int(_price1) - int(_price) if "priceSuitesFeria" in bookings[price_with_name_hotel.date_from][int(ocp)] else 0
-                    
-                    try:
-                        available_booking4 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[3]
-                    except Exception as e:
-                        available_booking4 = CopyPriceWithNameFromDay()
-                        available_booking4.price = "0"
+                        if available_booking1:
+                            _price1 = available_booking1.price.replace("€ ", "").replace(".", "").replace(",", "")
+                            bookings[str(_date_from.date())][int(ocp)][f"priceSuitesFeria{inj+1}"] = int(_price1)
+                            bookings[str(_date_from.date())][int(ocp)][f"priceSuitesFeriaRest{inj+1}"] = int(_price1) - int(bookings[str(_date_from.date())][int(ocp)]["priceSuitesFeria"]) if "priceSuitesFeria" in bookings[str(_date_from.date())][int(ocp)] else 0
 
-                    if available_booking4:
-                        _price4 = available_booking4.price.replace("€ ", "").replace(".", "").replace(",", "")
-                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeria4"] = int(_price4)
-                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeriaRest4"] = int(_price4) - int(_price) if "priceSuitesFeria" in bookings[price_with_name_hotel.date_from][int(ocp)] else 0
-
-                    try:
-                        available_booking7 = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[6]
-                    except Exception as e:
-                        available_booking7 = CopyPriceWithNameFromDay()
-                        available_booking7.price = "0"
-
-                    if available_booking7:
-                        _price7 = available_booking7.price.replace("€ ", "").replace(".", "").replace(",", "")
-                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeria7"] = int(_price7)
-                        bookings[price_with_name_hotel.date_from][int(ocp)]["priceSuitesFeriaRest7"] = int(_price7) - int(_price) if "priceSuitesFeria" in bookings[price_with_name_hotel.date_from][int(ocp)] else 0
-                
             # change price with nameprice hotel.
             if "media_name_hotel" not in bookings[str(_date_from.date())][2].keys():
                 bookings[str(_date_from.date())][2]["media_name_hotel"] = 0
@@ -1338,90 +1329,61 @@ def index(request):
                 #bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
                 #bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
 
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Zenit Conde de Orgaz", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceZEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Best Osuna", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceOSU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
+            __general_search_to_name = GeneralSearch.objects.filter(type_search=2, proces_active__occupancy=2).order_by('city_and_country', 'id')  # importante ordenar
+            for _name_hotel in __general_search_to_name:
+                if _name_hotel.city_and_country != "Hotel Suites Feria de Madrid":
+                    #logging.info(_name_hotel)
+                    price_with_name_hotel = PriceWithNameHotel.objects.filter(title=_name_hotel.city_and_country, date_from = str(_date_from.date()), occupancy = 2).first()
+                    if price_with_name_hotel:
+                        bookings[str(_date_from.date())][2][f"price{_name_hotel.code}"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
+                            bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
+                            bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
 
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Ilunion Alcala Norte", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceILU"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
+                        for i in [0,3,6]:
+                            try:
+                                copy_price_with_name = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[i]
+                            except Exception as e:
+                                copy_price_with_name = CopyPriceWithNameFromDay()
+                                copy_price_with_name.price = "0"
+                            #logging.info(f"{i+1} - {copy_price_with_name.price}")
+                            if copy_price_with_name:
+                                _price1 = copy_price_with_name.price.replace("€ ", "").replace(".", "").replace(",", "")
+                                bookings[str(_date_from.date())][2][f"price{_name_hotel.code}{i+1}"] = int(_price1)
+                                bookings[str(_date_from.date())][2][f"price{_name_hotel.code}Rest{i+1}"] = int(_price1) - int(bookings[str(_date_from.date())][2][f"price{_name_hotel.code}"]) if f"price{_name_hotel.code}" in bookings[str(_date_from.date())][2] else 0
+                                
+                                if f"media_name_hotel{i+1}" not in bookings[str(_date_from.date())][2].keys():
+                                    bookings[str(_date_from.date())][2][f"media_name_hotel{i+1}"] = 0
+                                    bookings[str(_date_from.date())][2][f"media_cant_name_hotel{i+1}"] = 0
+
+                                if int(_price1) > 0:
+                                    bookings[str(_date_from.date())][2][f"media_name_hotel{i+1}"] += int(_price1)
+                                    bookings[str(_date_from.date())][2][f"media_cant_name_hotel{i+1}"] += 1
             
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Eco Alcala Suites", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceECO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
+            for i in [0,3,6]:
+                try:
+                    bookings[str(_date_from.date())][2][f"media_name_hotel_general{i+1}"] = round((round((bookings[str(_date_from.date())][2][f"media_name_hotel{i+1}"] / bookings[str(_date_from.date())][2][f"media_cant_name_hotel{i+1}"])) + round((bookings[str(_date_from.date())][2][4][f"media_total{i+1}"] / bookings[str(_date_from.date())][2][4][f"media_cant{i+1}"]))) / 2)
+                except Exception as e:
+                    bookings[str(_date_from.date())][2][f"media_name_hotel_general{i+1}"] = 0
+                    generate_log(f"[X] Error view data media_name_hotel_general{i+1}: {e} {str(_date_from.date())}", BotLog.BOOKING)
             
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Silken Puerta Madrid", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceSIL"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
+            try:
+                try:
+                    __media_name_hotel_aux = round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"]))
+                except Exception as e001:
+                    __media_name_hotel_aux = 0
+                
+                try:
+                    __media_name_hotel_aux7 = round((bookings[str(_date_from.date())][2]["media_name_hotel7"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel7"]))
+                except Exception as e001:
+                    __media_name_hotel_aux7 = 0
+
+                bookings[str(_date_from.date())][2][f"media_name_hotelRest"] = round((__media_name_hotel_aux  -  __media_name_hotel_aux7))
+            except Exception as e:
+                bookings[str(_date_from.date())][2][f"media_name_hotelRest"] = 0
+                generate_log(f"[X] Error view data media_name_hotel_generalRest: {e} {str(_date_from.date())}", BotLog.BOOKING)
             
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Exe Madrid Norte", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceEXE"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Sercotel Alcala 611", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceSER"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Axor Feria", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceAXO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "DWO Colours Alcala", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceDWO"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Hotel Nuevo Boston", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceBOS"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Senator Barajas", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceSEN"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
-            price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 2).first()
-            if price_with_name_hotel:
-                bookings[price_with_name_hotel.date_from][2]["priceTOR2"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
-                if int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")) > 0:
-                    bookings[str(_date_from.date())][2]["media_name_hotel"] += int(price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", ""))
-                    bookings[str(_date_from.date())][2]["media_cant_name_hotel"] += 1
-            
+            # prices triples y suites
             price_with_name_hotel = PriceWithNameHotel.objects.filter(title = "Travelodge Torrelaguna", date_from = str(_date_from.date()), occupancy = 3).first()
             if price_with_name_hotel:
                 bookings[price_with_name_hotel.date_from][3]["priceTOR"] = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
@@ -1529,7 +1491,15 @@ def index(request):
                     try:
                         bookings[str(_date_from.date())][2]["media_general"] = round((round((bookings[str(_date_from.date())][2]["media_name_hotel"] / bookings[str(_date_from.date())][2]["media_cant_name_hotel"])) + round((bookings[str(_date_from.date())][2][4]["media_total"] / bookings[str(_date_from.date())][2][4]["media_cant"]))) / 2)
                     except Exception as e:
+                        bookings[str(_date_from.date())][2]["media_general"] = 0
                         generate_log(f"[X] Error view data: {e} {str(_date_from.date())}", BotLog.BOOKING)
+            
+            try:
+                bookings[str(_date_from.date())][2][f"media_name_hotel_generalRest"] = round(bookings[str(_date_from.date())][2][f"media_general"]) - round(bookings[str(_date_from.date())][2][f"media_name_hotel_general7"])
+            except Exception as e:
+                bookings[str(_date_from.date())][2]["media_name_hotel_generalRest"] = 0
+                generate_log(f"[X] Error view data: {e} {str(_date_from.date())}", BotLog.BOOKING)
+
             # calculo de precio 5 y 10 posicion de triples y suites
             if 4 in bookings[str(_date_from.date())][3].keys() and 4 in bookings[str(_date_from.date())][5].keys():
                 bookings[str(_date_from.date())][3][4]["5_10"] = round((float(bookings[str(_date_from.date())][3][4][4]["price"]) + float(bookings[str(_date_from.date())][3][4][9]["price"])) / 2)
@@ -1974,6 +1944,9 @@ def booking_view(request):
         return render(request, "app/booking.html", {"bookings":bookings, "segment": "index", "day": fecha_especifica.strftime('%A'), "date": ___date, "bg_color": bg_color})
     else:
         return redirect("sign-in")
+
+def reception(request):
+    return render(request, "app/reception.html", {"segment": "reception"})
 
 # Inicio de sesion para todos los usuarios.
 def login(request):
