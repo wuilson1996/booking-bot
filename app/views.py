@@ -938,6 +938,10 @@ def export_price_from_excel(request):
 
             df = df[columnas]
 
+            # Convertir columna 'date' a datetime y ordenar
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.sort_values("date")
+
             # Renombrar columnas
             df.rename(columns={
                 "0": "individual",
