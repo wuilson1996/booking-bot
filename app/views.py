@@ -902,6 +902,74 @@ def save_avail_with_date(request):
         result = {"code": 200, "status": "OK", "message":"Proceso activado correctamente."}
     return Response(result)
 
+@api_view(["POST"])
+def export_price_from_excel(request):
+    result = {"code": 400, "status": "Fail", "message": "User not authenticated."}
+
+    if request.user.is_authenticated:
+        generate_log(f"[+] Exportando precios...", BotLog.BOOKING)
+        try:
+            prices_all = Price.objects.all().order_by("-id")
+            _prices = {}
+
+            for price_obj in prices_all:
+                date_str = price_obj.date_from
+                date_parts = [int(part) for part in date_str.split("-")]
+                date_obj = datetime.date(*date_parts)
+
+                if date_obj >= now().date():
+                    if date_str not in _prices:
+                        _prices[date_str] = {"date": date_str}
+
+                    if price_obj.price not in [None, ""]:
+                        _prices[date_str][str(price_obj.occupancy)] = price_obj.price
+
+            # Convert dict to list of rows
+            data_rows = list(_prices.values())
+
+            # Crear DataFrame
+            df = pd.DataFrame(data_rows)
+
+            # Columnas esperadas del 0 al 6 más la fecha
+            columnas = ["date"] + [str(i) for i in range(7)]
+            for col in columnas:
+                if col not in df.columns:
+                    df[col] = None
+
+            df = df[columnas]
+
+            # Renombrar columnas
+            df.rename(columns={
+                "0": "individual",
+                "1": "matrimonial",
+                "2": "doble",
+                "3": "triple",
+                "5": "suites"
+            }, inplace=True)
+
+            # Crear carpeta si no existe
+            export_dir = f"media/proces/"
+            os.makedirs(export_dir, exist_ok=True)
+
+            file_path = os.path.join(export_dir, f"{request.user.username}.xlsx")
+        
+            df.to_excel(file_path, index=False)
+            message = "Procesado correctamente"
+            result = {
+                "code": 200,
+                "status": "OK",
+                "message": message,
+                "file": f"{request.user.username}.xlsx",
+                "path": file_path
+            }
+            generate_log(f"[+] Exportacion de precio con exito.", BotLog.BOOKING)
+        except Exception as e:
+            print("Error: " + str(e))
+            result["message"] = "Error: " + str(e)
+            generate_log(f"[-] Error export: {str(e)}", BotLog.BOOKING)
+
+    return Response(result)
+
 def get_filtered_available_bookings(_date_from, ocp):
     ocp = int(ocp)
     date_str = str(_date_from.date())

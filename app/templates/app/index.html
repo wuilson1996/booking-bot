@@ -91,10 +91,19 @@
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <button class="btn btn-white w-100" onclick="saveRecomendacion()" id="buttonUpgradeRecom">Insertar recomendacion</button>
+                    <button class="btn btn-white w-100" onclick="saveRecomendacion()" id="buttonUpgradeRecom" data-bs-toggle="tooltip" data-bs-placement="left" title="Actualiza tus precios con la recomendacion actual y usando un rango de fechas.">
+                      Insertar recomendacion
+                    </button>
                   </div>
-                  <div class="col-md-12">
-                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive1">Actualizar Tarifa (Masivo)</button>
+                  <div class="col-md-6">
+                    <button class="btn btn-white w-100" onclick="upgradeFee('', true)" id="buttonFeeUpgradeMasive1" data-bs-toggle="tooltip" data-bs-placement="left" title="Funcion no disponible">
+                      Actualizar Tarifa (Masivo)
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <button class="btn btn-white w-100" onclick="exportPrice()" data-bs-toggle="tooltip" data-bs-placement="left" title="Exporta precios y llevalos a D-Edge">
+                      Exportar precios
+                    </button>
                   </div>
                 </div>
               </div>
@@ -3763,6 +3772,33 @@
       if (bookings[itemDt][5].messageDay){
         changePriceRecom(itemDt, bookings[itemDt][5].messageDay.pk, 5);
       }
+    }
+    function exportPrice() {
+      //loader();
+      $.ajax({
+        url: '/price/export/',
+        type: 'POST',
+        data:{
+          dateFrom: "",
+          dateTo: ""
+        },
+        headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()},
+        success: function(json) {
+          //console.log(json);
+          download(json.name, json.path);
+        },
+        error: function(error) {
+          console.log(error)
+        }
+      });
+    }
+    function download(filename, textInput) {
+      var element = document.createElement('a');
+      element.setAttribute('href',textInput);
+      element.setAttribute('download', filename);
+      document.body.appendChild(element);
+      element.click();
+      $("#loader").text("");
     }
   </script>
 

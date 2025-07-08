@@ -18,5 +18,6 @@ urlpatterns = [
     path("save/avail/with/date", save_avail_with_date, name="save_avail_with_date"),
     path('upgrade/fee', upgrade_fee, name="upgrade_fee"),
     path('reception', reception, name="reception"),
+    path('price/export/', export_price_from_excel, name="price_export"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
