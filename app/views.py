@@ -1388,7 +1388,7 @@ def index(request):
                         if available_booking1:
                             _price1 = available_booking1.price.replace("€ ", "").replace(".", "").replace(",", "")
                             bookings[str(_date_from.date())][int(ocp)][f"priceSuitesFeria{inj+1}"] = int(_price1)
-                            bookings[str(_date_from.date())][int(ocp)][f"priceSuitesFeriaRest{inj+1}"] = int(_price1) - int(bookings[str(_date_from.date())][int(ocp)]["priceSuitesFeria"]) if "priceSuitesFeria" in bookings[str(_date_from.date())][int(ocp)] else 0
+                            bookings[str(_date_from.date())][int(ocp)][f"priceSuitesFeriaRest{inj+1}"] = int(bookings[str(_date_from.date())][int(ocp)]["priceSuitesFeria"]) - int(_price1) if "priceSuitesFeria" in bookings[str(_date_from.date())][int(ocp)] else 0
 
             # change price with nameprice hotel.
             if "media_name_hotel" not in bookings[str(_date_from.date())][2].keys():
@@ -1422,7 +1422,7 @@ def index(request):
                             if copy_price_with_name:
                                 _price1 = copy_price_with_name.price.replace("€ ", "").replace(".", "").replace(",", "")
                                 bookings[str(_date_from.date())][2][f"price{_name_hotel.code}{i+1}"] = int(_price1)
-                                bookings[str(_date_from.date())][2][f"price{_name_hotel.code}Rest{i+1}"] = int(_price1) - int(bookings[str(_date_from.date())][2][f"price{_name_hotel.code}"]) if f"price{_name_hotel.code}" in bookings[str(_date_from.date())][2] else 0
+                                bookings[str(_date_from.date())][2][f"price{_name_hotel.code}Rest{i+1}"] = int(bookings[str(_date_from.date())][2][f"price{_name_hotel.code}"]) - int(_price1) if f"price{_name_hotel.code}" in bookings[str(_date_from.date())][2] else 0
                                 
                                 if f"media_name_hotel{i+1}" not in bookings[str(_date_from.date())][2].keys():
                                     bookings[str(_date_from.date())][2][f"media_name_hotel{i+1}"] = 0

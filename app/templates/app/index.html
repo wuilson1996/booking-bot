@@ -994,44 +994,68 @@
                                 <td class="text-sm m-0 p-0">
                                   <div class="d-flex border">
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Zenit Conde de Orgaz">
-                                      ZEN: <span class="h5 bg-danger text-white border">0 </span><span class="h5 text-bold text-white m-0 border">{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span></span>
+                                      ZEN: <span class="h5 text-white border {% if value.2.priceZENRest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceZENRest7}} 
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceZEN' in value.2 %}{{value.2.priceZEN}}{% else %}0{% endif %}</span></span>
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Eco Alcalá Suites">
-                                      ECO: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span></span>
+                                      ECO: <span class="h5 text-white border {% if value.2.priceECORest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceECORest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceECO' in value.2 %}{{value.2.priceECO}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                   <div class="d-flex border">
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Silken Puerta Madrid">
-                                      SIL: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span></span>
+                                      SIL: <span class="h5 text-white border {% if value.2.priceSILRest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceSILRest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceSIL' in value.2 %}{{value.2.priceSIL}}{% else %}0{% endif %}</span></span>
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Ilunion Alcalá Norte">
-                                      ILU: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span></span>
+                                      ILU: <span class="h5 text-white border {% if value.2.priceILURest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceILURest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceILU' in value.2 %}{{value.2.priceILU}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                   <div class="d-flex border">
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Axor Feria">
-                                      AXO: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span></span>
+                                      AXO: <span class="h5 text-white border {% if value.2.priceAXORest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceAXORest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceAXO' in value.2 %}{{value.2.priceAXO}}{% else %}0{% endif %}</span></span>
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Sercotel Alcalá 611">
-                                      SER: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span></span>
+                                      SER: <span class="h5 text-white border {% if value.2.priceSERRest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceSERRest7}}
+                                      </span><span class="h5 text-bold text-white m-0 border">{% if 'priceSER' in value.2 %}{{value.2.priceSER}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                   <div class="d-flex border">
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Hotel Nuevo Boston">
-                                      BOS: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span></span>
+                                      BOS: <span class="h5 text-white border {% if value.2.priceBOSRest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceBOSRest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceBOS' in value.2 %}{{value.2.priceBOS}}{% else %}0{% endif %}</span></span>
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Exe Madrid Norte">
-                                      EXE: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span></span>
+                                      EXE: <span class="h5 text-white border {% if value.2.priceEXERest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceEXERest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceEXE' in value.2 %}{{value.2.priceEXE}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                   <div class="d-flex border">
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="DWO Colours Alcalá">
-                                      DWO: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span></span>
+                                      DWO: <span class="h5 text-white border {% if value.2.priceDWORest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceDWORest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceDWO' in value.2 %}{{value.2.priceDWO}}{% else %}0{% endif %}</span></span>
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Hotel Best Osuna">
-                                      OSU: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span></span>
+                                      OSU: <span class="h5 text-white border {% if value.2.priceOSURest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceOSURest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceOSU' in value.2 %}{{value.2.priceOSU}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                   <div class="d-flex border">
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Senator Barajas">
-                                      SEN: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span></span>
+                                      SEN: <span class="h5 text-white border {% if value.2.priceSENRest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceSENRest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceSEN' in value.2 %}{{value.2.priceSEN}}{% else %}0{% endif %}</span></span>
                                     <span class="h6 text-bold text-white m-0 ms-auto" class="tr" data-bs-toggle="tooltip" data-bs-placement="left" title="Travelodge Torrelaguna">
-                                      TOR: <span class="h5 bg-danger text-white border">0</span><span class="h5 text-bold text-white m-0 border">{% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span></span>
+                                      TOR: <span class="h5 text-white border {% if value.2.priceTOR2Rest7 > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                        {{value.2.priceTOR2Rest7}}
+                                    </span><span class="h5 text-bold text-white m-0 border">{% if 'priceTOR2' in value.2 %}{{value.2.priceTOR2}}{% else %}0{% endif %}</span></span>
                                   </div>
                           
                                 </td>

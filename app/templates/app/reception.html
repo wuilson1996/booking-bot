@@ -1,18 +1,619 @@
 {% extends 'layouts/base.html' %}
 {% block title %} Dashboard {% endblock title %}
 {% load static %}
+
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
+<style>
+    .reservation-card {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+    
+    .reservation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .section-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    
+    .room-card {
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .room-card:hover {
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+    
+    .room-card.selected {
+        border-color: #28a745;
+        background: #f8fff9;
+    }
+    
+    .room-title {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 5px;
+    }
+    
+    .room-capacity {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .room-price {
+        color: #28a745;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .calculate-btn {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        border: none;
+        border-radius: 10px;
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+    
+    .calculate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    }
+    
+    .result-item {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    
+    .result-item h6 {
+        color: #495057;
+        margin-bottom: 5px;
+    }
+    
+    .result-item .details {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .result-item .price {
+        color: #28a745;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .total-card {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .total-price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+    
+    .channel-badge {
+        background: #667eea;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .form-check-input:checked {
+        background-color: #667eea;
+        border-color: #667eea;
+    }
+    
+    @media (max-width: 768px) {
+        .room-card {
+            margin-bottom: 10px;
+        }
+        
+        .total-price {
+            font-size: 2rem;
+        }
+    }
+</style>
 {% endblock stylesheets %}
 
 {% block content %}
-
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card reservation-card">
+                <div class="card-body p-4">
+                    <h2 class="mb-4 text-center">
+                        <i class="fas fa-hotel text-primary"></i> 
+                        Sistema de Reservas - Hotel SuitesFeria
+                    </h2>
+                    
+                    <form id="reservationForm">
+                        <!-- Fechas -->
+                        <div class="section-header">
+                            <i class="fas fa-calendar-alt me-2"></i> Fechas de Estancia
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="checkIn" class="form-label">Fecha de Entrada</label>
+                                <input type="date" class="form-control" id="checkIn" name="checkIn" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="checkOut" class="form-label">Fecha de Salida</label>
+                                <input type="date" class="form-control" id="checkOut" name="checkOut" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Opciones -->
+                        <div class="section-header">
+                            <i class="fas fa-cogs me-2"></i> Opciones de Reserva
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="flexible" name="flexible">
+                                    <label class="form-check-label" for="flexible">
+                                        <i class="fas fa-exchange-alt text-warning me-2"></i>
+                                        Reserva Flexible (+10% sobre habitaciones)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="breakfast" name="breakfast">
+                                    <label class="form-check-label" for="breakfast">
+                                        <i class="fas fa-coffee text-warning me-2"></i>
+                                        Incluir Desayuno (€12 por persona/noche)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Canal de Venta -->
+                        <div class="section-header">
+                            <i class="fas fa-store me-2"></i> Canal de Venta
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="channel" class="form-label">Seleccionar Canal</label>
+                                <select class="form-select" id="channel" name="channel" required>
+                                    <option value="">Seleccionar canal...</option>
+                                    <option value="100">Booking (100%)</option>
+                                    <option value="95">Web (95%)</option>
+                                    <option value="82">Expedia (82%)</option>
+                                    <option value="83">Keytel (83%)</option>
+                                    <option value="80">Hotelbeds (80%)</option>
+                                    <option value="80">Welcomebeds (80%)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end">
+                                <div class="channel-badge" id="channelBadge" style="display: none;">
+                                    <i class="fas fa-percentage me-1"></i>
+                                    <span id="channelText">Canal seleccionado</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Selección de Habitaciones -->
+                        <div class="section-header">
+                            <i class="fas fa-bed me-2"></i> Selección de Habitaciones
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-user text-primary me-2"></i>Individual
+                                    </div>
+                                    <div class="room-capacity">1 persona</div>
+                                    <div class="room-price">€85/noche</div>
+                                    <input type="number" class="form-control mt-2" id="individual" name="individual" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-users text-primary me-2"></i>Doble
+                                    </div>
+                                    <div class="room-capacity">2 personas</div>
+                                    <div class="room-price">€75/noche</div>
+                                    <input type="number" class="form-control mt-2" id="double" name="double" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-heart text-danger me-2"></i>Matrimonial
+                                    </div>
+                                    <div class="room-capacity">2 personas</div>
+                                    <div class="room-price">€80/noche</div>
+                                    <input type="number" class="form-control mt-2" id="matrimonial" name="matrimonial" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-users text-primary me-2"></i>Doble Extra
+                                    </div>
+                                    <div class="room-capacity">3 personas</div>
+                                    <div class="room-price">€95/noche</div>
+                                    <input type="number" class="form-control mt-2" id="doubleExtra" name="doubleExtra" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-users text-primary me-2"></i>Triple
+                                    </div>
+                                    <div class="room-capacity">3 personas</div>
+                                    <div class="room-price">€100/noche</div>
+                                    <input type="number" class="form-control mt-2" id="triple" name="triple" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-crown text-warning me-2"></i>Suite 4 pax
+                                    </div>
+                                    <div class="room-capacity">5 personas</div>
+                                    <div class="room-price">€150/noche</div>
+                                    <input type="number" class="form-control mt-2" id="suite4" name="suite4" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="room-card">
+                                    <div class="room-title">
+                                        <i class="fas fa-crown text-warning me-2"></i>Suite 6 pax
+                                    </div>
+                                    <div class="room-capacity">6 personas</div>
+                                    <div class="room-price">€200/noche</div>
+                                    <input type="number" class="form-control mt-2" id="suite6" name="suite6" min="0" value="0" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-lg calculate-btn">
+                                <i class="fas fa-calculator me-2"></i>
+                                Calcular Precio Total
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Resultados -->
+                    <div id="results" style="display: none;" class="mt-5">
+                        <div class="section-header">
+                            <i class="fas fa-file-invoice-dollar me-2"></i> Resultado de la Reserva
+                        </div>
+                        <div id="resultDetails"></div>
+                        <div class="total-card">
+                            <h3 class="mb-3">
+                                <i class="fas fa-money-bill-wave me-2"></i>
+                                Total Final
+                            </h3>
+                            <div class="total-price" id="totalPrice">€0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% include 'includes/scripts.html' %}
 {% endblock content %}
-  
-<!-- Specific JS goes HERE --> 
-{% block javascripts %}
 
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script>
+    // Precios base por habitación por noche
+    const roomPrices = {
+        individual: 85,    // Se calculará como el mayor entre doble y matrimonial
+        double: 75,
+        matrimonial: 80,
+        doubleExtra: 95,
+        triple: 100,
+        suite4: 150,
+        suite6: 200
+    };
+
+    // Capacidad de personas por habitación
+    const roomCapacity = {
+        individual: 1,
+        double: 2,
+        matrimonial: 2,
+        doubleExtra: 3,
+        triple: 3,
+        suite4: 5,
+        suite6: 6
+    };
+
+    // Nombres de habitaciones para mostrar
+    const roomNames = {
+        individual: 'Individual',
+        double: 'Doble',
+        matrimonial: 'Matrimonial',
+        doubleExtra: 'Doble Extra',
+        triple: 'Triple',
+        suite4: 'Suite 4 pax',
+        suite6: 'Suite 6 pax'
+    };
+
+    // Canales de venta
+    const channels = {
+        100: 'Booking',
+        95: 'Web',
+        82: 'Expedia',
+        83: 'Keytel',
+        80: 'Hotelbeds'
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Establecer fecha mínima como hoy
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkIn').min = today;
+        document.getElementById('checkOut').min = today;
+
+        // Actualizar fecha mínima de salida cuando cambie la entrada
+        document.getElementById('checkIn').addEventListener('change', function() {
+            const checkInDate = new Date(this.value);
+            checkInDate.setDate(checkInDate.getDate() + 1);
+            document.getElementById('checkOut').min = checkInDate.toISOString().split('T')[0];
+        });
+
+        // Mostrar badge del canal seleccionado
+        document.getElementById('channel').addEventListener('change', function() {
+            const channelBadge = document.getElementById('channelBadge');
+            const channelText = document.getElementById('channelText');
+            
+            if (this.value) {
+                channelText.textContent = channels[this.value] + ' (' + this.value + '%)';
+                channelBadge.style.display = 'block';
+            } else {
+                channelBadge.style.display = 'none';
+            }
+        });
+
+        // Agregar efecto visual a las habitaciones seleccionadas
+        const roomInputs = document.querySelectorAll('input[type="number"]');
+        roomInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const card = this.closest('.room-card');
+                if (this.value > 0) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+        });
+
+        // Manejar envío del formulario
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateReservation();
+        });
+    });
+
+    function calculateReservation() {
+        const checkIn = new Date(document.getElementById('checkIn').value);
+        const checkOut = new Date(document.getElementById('checkOut').value);
+        
+        if (checkIn >= checkOut) {
+            alert('La fecha de salida debe ser posterior a la fecha de entrada');
+            return;
+        }
+
+        const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+        
+        const flexible = document.getElementById('flexible').checked;
+        const breakfast = document.getElementById('breakfast').checked;
+        const channelPercentage = parseFloat(document.getElementById('channel').value);
+        
+        if (!channelPercentage) {
+            alert('Por favor seleccione un canal de venta');
+            return;
+        }
+
+        // Calcular precio individual como el mayor entre doble y matrimonial
+        const individualPrice = Math.max(roomPrices.double, roomPrices.matrimonial);
+        const currentRoomPrices = { ...roomPrices, individual: individualPrice };
+
+        let totalAccommodation = 0;
+        let totalBreakfast = 0;
+        let totalPeople = 0;
+        let selectedRooms = [];
+
+        // Calcular totales por tipo de habitación
+        Object.keys(currentRoomPrices).forEach(roomType => {
+            const quantity = parseInt(document.getElementById(roomType).value) || 0;
+            if (quantity > 0) {
+                const roomTotal = currentRoomPrices[roomType] * quantity * nights;
+                const people = roomCapacity[roomType] * quantity;
+                
+                totalAccommodation += roomTotal;
+                totalPeople += people;
+                
+                selectedRooms.push({
+                    type: roomType,
+                    name: roomNames[roomType],
+                    quantity: quantity,
+                    pricePerNight: currentRoomPrices[roomType],
+                    nights: nights,
+                    people: people,
+                    totalRoom: roomTotal
+                });
+            }
+        });
+
+        if (selectedRooms.length === 0) {
+            alert('Por favor seleccione al menos una habitación');
+            return;
+        }
+
+        // Calcular desayuno
+        if (breakfast) {
+            totalBreakfast = totalPeople * 12 * nights;
+        }
+
+        // Aplicar recargo por flexibilidad (solo sobre habitaciones)
+        let accommodationWithFlex = totalAccommodation;
+        if (flexible) {
+            accommodationWithFlex = totalAccommodation * 1.1;
+        }
+
+        // Total antes de aplicar canal
+        const totalBeforeChannel = accommodationWithFlex + totalBreakfast;
+
+        // Aplicar porcentaje del canal
+        const finalTotal = totalBeforeChannel * (channelPercentage / 100);
+
+        // Mostrar resultados
+        displayResults(selectedRooms, {
+            nights: nights,
+            totalAccommodation: totalAccommodation,
+            accommodationWithFlex: accommodationWithFlex,
+            totalBreakfast: totalBreakfast,
+            totalBeforeChannel: totalBeforeChannel,
+            channelPercentage: channelPercentage,
+            finalTotal: finalTotal,
+            flexible: flexible,
+            breakfast: breakfast,
+            totalPeople: totalPeople,
+            channelName: channels[channelPercentage] || 'Canal'
+        });
+    }
+
+    function displayResults(selectedRooms, totals) {
+        const resultsDiv = document.getElementById('results');
+        const resultDetails = document.getElementById('resultDetails');
+        const totalPrice = document.getElementById('totalPrice');
+
+        let html = '';
+
+        // Mostrar detalles de habitaciones seleccionadas
+        selectedRooms.forEach(room => {
+            html += `
+                <div class="result-item">
+                    <h6><i class="fas fa-bed text-primary me-2"></i>${room.name}</h6>
+                    <div class="details">
+                        ${room.quantity} habitación${room.quantity > 1 ? 'es' : ''} × ${totals.nights} noche${totals.nights > 1 ? 's' : ''} × €${room.pricePerNight}
+                        <br>Total personas: ${room.people}
+                    </div>
+                    <div class="price">€${room.totalRoom.toFixed(2)}</div>
+                </div>
+            `;
+        });
+
+        // Mostrar subtotal de habitaciones
+        html += `
+            <div class="result-item">
+                <h6><i class="fas fa-home text-info me-2"></i>Subtotal Habitaciones</h6>
+                <div class="details">Total antes de modificadores</div>
+                <div class="price">€${totals.totalAccommodation.toFixed(2)}</div>
+            </div>
+        `;
+
+        // Mostrar recargo por flexibilidad si aplica
+        if (totals.flexible) {
+            html += `
+                <div class="result-item">
+                    <h6><i class="fas fa-exchange-alt text-warning me-2"></i>Recargo Flexibilidad (+10%)</h6>
+                    <div class="details">Solo sobre habitaciones</div>
+                    <div class="price">€${(totals.accommodationWithFlex - totals.totalAccommodation).toFixed(2)}</div>
+                </div>
+            `;
+        }
+
+        // Mostrar desayuno si aplica
+        if (totals.breakfast) {
+            html += `
+                <div class="result-item">
+                    <h6><i class="fas fa-coffee text-warning me-2"></i>Desayuno</h6>
+                    <div class="details">${totals.totalPeople} personas × ${totals.nights} noche${totals.nights > 1 ? 's' : ''} × €12</div>
+                    <div class="price">€${totals.totalBreakfast.toFixed(2)}</div>
+                </div>
+            `;
+        }
+
+        // Mostrar total antes del canal
+        html += `
+            <div class="result-item">
+                <h6><i class="fas fa-calculator text-secondary me-2"></i>Total antes de Canal</h6>
+                <div class="details">Habitaciones${totals.flexible ? ' + Flexibilidad' : ''}${totals.breakfast ? ' + Desayuno' : ''}</div>
+                <div class="price">€${totals.totalBeforeChannel.toFixed(2)}</div>
+            </div>
+        `;
+
+        // Mostrar descuento del canal si aplica
+        if (totals.channelPercentage < 100) {
+            html += `
+                <div class="result-item">
+                    <h6><i class="fas fa-store text-danger me-2"></i>Ajuste ${totals.channelName} (${totals.channelPercentage}%)</h6>
+                    <div class="details">Descuento aplicado: €${(totals.totalBeforeChannel - totals.finalTotal).toFixed(2)}</div>
+                    <div class="price">-€${(totals.totalBeforeChannel - totals.finalTotal).toFixed(2)}</div>
+                </div>
+            `;
+        }
+
+        resultDetails.innerHTML = html;
+        totalPrice.textContent = `€${totals.finalTotal.toFixed(2)}`;
+        
+        resultsDiv.style.display = 'block';
+        
+        // Smooth scroll to results
+        resultsDiv.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+</script>
 {% endblock javascripts %}
