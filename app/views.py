@@ -2018,7 +2018,41 @@ def booking_view(request):
         return redirect("sign-in")
 
 def reception(request):
-    return render(request, "app/reception.html", {"segment": "reception"})
+    context={
+        "segment": "reception",
+    }
+    return render(request, "app/reception.html", context)
+
+@api_view(["GET"])
+def reception_price(request):
+    try:
+        filter_date = request.GET["date"]
+        prices = Price.objects.filter(date_from=filter_date).values("occupancy", "price").distinct()
+        ocuppancies = {
+            0: "individual",
+            1: "matrimonial",
+            2: "double",
+            3: "triple",
+            5: "suite4",
+            6: "suite6",
+        }
+        data = {}
+        for p in prices:
+            ocuppancy = ocuppancies[p["occupancy"]]
+            data[ocuppancy] = p["price"]
+        result = {
+            "code": 200,
+            "status": "OK",
+            "data": data,
+            "message": "Success"
+        }
+        return Response(result)
+    except Exception as e:
+        print(e)
+        result = {"code": 500, "status": "Fail", "message":"Error in reception_price."}
+        return Response(result)
+
+
 
 # Inicio de sesion para todos los usuarios.
 def login(request):

@@ -356,8 +356,8 @@
 {% block javascripts %}
 <script>
     // Precios base por habitación por noche
-    const roomPrices = {
-        individual: 85,    // Se calculará como el mayor entre doble y matrimonial
+    let roomPrices = {
+        individual: 85,    
         double: 75,
         matrimonial: 80,
         doubleExtra: 95,
@@ -365,6 +365,20 @@
         suite4: 150,
         suite6: 200
     };
+    function getPrices(){
+        fetch("/reception/price?date="+document.getElementById("checkIn").value)
+        .then(response => response.json())
+        .then(data => {
+            if(data.code == 200){
+                roomPrices = data.data
+            }else{
+                alert("Error al obtener precios");
+            };
+        });
+    }
+    document.getElementById("checkIn").addEventListener("change", getPrices);
+
+    
 
     // Capacidad de personas por habitación
     const roomCapacity = {
