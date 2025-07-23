@@ -167,155 +167,155 @@
                     
                     <form id="reservationForm">
                         <!-- Fechas -->
-                        <div class="section-header">
-                            <i class="fas fa-calendar-alt me-2"></i> Fechas de Estancia
-                        </div>
-                        
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label for="checkIn" class="form-label">Fecha de Entrada</label>
-                                <input type="date" class="form-control" id="checkIn" name="checkIn" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="checkOut" class="form-label">Fecha de Salida</label>
-                                <input type="date" class="form-control" id="checkOut" name="checkOut" required>
-                            </div>
-                        </div>
-                        
-                        <!-- Opciones -->
-                        <div class="section-header">
-                            <i class="fas fa-cogs me-2"></i> Opciones de Reserva
-                        </div>
-                        
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="flexible" name="flexible">
-                                    <label class="form-check-label" for="flexible">
-                                        <i class="fas fa-exchange-alt text-warning me-2"></i>
-                                        Reserva Flexible (+10% sobre habitaciones)
-                                    </label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section-header">
+                                    <i class="fas fa-calendar-alt me-2"></i> Fechas de Estancia
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label for="checkIn" class="form-label">Fecha de Entrada</label>
+                                        <input type="date" class="form-control" id="checkIn" name="checkIn" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="checkOut" class="form-label">Fecha de Salida</label>
+                                        <input type="date" class="form-control" id="checkOut" name="checkOut" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="breakfast" name="breakfast">
-                                    <label class="form-check-label" for="breakfast">
-                                        <i class="fas fa-coffee text-warning me-2"></i>
-                                        Incluir Desayuno (€12 por persona/noche)
-                                    </label>
+                            <div class="col-md-3">
+                                        <!-- Canal de Venta -->
+                                <div class="section-header">
+                                    <i class="fas fa-store me-2"></i> Canal de Venta
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-12">
+                                        <label for="channel" class="form-label">Seleccionar Canal</label>
+                                        <select class="form-select" id="channel" name="channel" required>
+                                            <option value="">Seleccionar canal...</option>
+                                            <option value="100">Booking (100%)</option>
+                                            <option value="95">Web (95%)</option>
+                                            <option value="82">Expedia (82%)</option>
+                                            <option value="83">Keytel (83%)</option>
+                                            <option value="80">Hotelbeds (80%)</option>
+                                            <option value="80">Welcomebeds (80%)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <div class="channel-badge" id="channelBadge" style="display: none;">
+                                            <i class="fas fa-percentage me-1"></i>
+                                            <span id="channelText">Canal seleccionado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <!-- Opciones -->
+                                <div class="section-header">
+                                    <i class="fas fa-cogs me-2"></i> Opciones de Reserva
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="flexible" name="flexible">
+                                            <label class="form-check-label" for="flexible">
+                                                <i class="fas fa-exchange-alt text-warning me-2"></i>
+                                                Reserva Flexible (+10% sobre habitaciones)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="breakfast" name="breakfast">
+                                            <label class="form-check-label" for="breakfast">
+                                                <i class="fas fa-coffee text-warning me-2"></i>
+                                                Incluir Desayuno (€12 por persona/noche)
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Canal de Venta -->
-                        <div class="section-header">
-                            <i class="fas fa-store me-2"></i> Canal de Venta
-                        </div>
-                        
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label for="channel" class="form-label">Seleccionar Canal</label>
-                                <select class="form-select" id="channel" name="channel" required>
-                                    <option value="">Seleccionar canal...</option>
-                                    <option value="100">Booking (100%)</option>
-                                    <option value="95">Web (95%)</option>
-                                    <option value="82">Expedia (82%)</option>
-                                    <option value="83">Keytel (83%)</option>
-                                    <option value="80">Hotelbeds (80%)</option>
-                                    <option value="80">Welcomebeds (80%)</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 d-flex align-items-end">
-                                <div class="channel-badge" id="channelBadge" style="display: none;">
-                                    <i class="fas fa-percentage me-1"></i>
-                                    <span id="channelText">Canal seleccionado</span>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <!-- Selección de Habitaciones -->
                         <div class="section-header">
                             <i class="fas fa-bed me-2"></i> Selección de Habitaciones
                         </div>
                         
                         <div class="row mb-4">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-user text-primary me-2"></i>Individual
+                                        <i class="fas fa-user text-primary me-2"></i>Individual <span class="room-capacity">(1 persona)</span>
                                     </div>
-                                    <div class="room-capacity">1 persona</div>
-                                    <div class="room-price">€85/noche</div>
+                                    <!-- <div class="room-capacity">1 persona</div> -->
+                                    <!-- <div class="room-price">€85/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="individual" name="individual" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-users text-primary me-2"></i>Doble
+                                        <i class="fas fa-users text-primary me-2"></i>Doble <span class="room-capacity">(2 personas)</span>
                                     </div>
-                                    <div class="room-capacity">2 personas</div>
-                                    <div class="room-price">€75/noche</div>
+                                    <!-- <div class="room-capacity">2 personas</div> -->
+                                    <!-- <div class="room-price">€75/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="double" name="double" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="row mb-4">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-heart text-danger me-2"></i>Matrimonial
+                                        <i class="fas fa-heart text-danger me-2"></i>Matrimonial <span class="room-capacity">(2 personas)</span>
                                     </div>
-                                    <div class="room-capacity">2 personas</div>
-                                    <div class="room-price">€80/noche</div>
+                                    <!-- <div class="room-capacity">2 personas</div> -->
+                                    <!-- <div class="room-price">€80/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="matrimonial" name="matrimonial" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-users text-primary me-2"></i>Doble Extra
+                                        <i class="fas fa-users text-primary me-2"></i>Doble Extra <span class="room-capacity">(3 personas)</span>
                                     </div>
-                                    <div class="room-capacity">3 personas</div>
-                                    <div class="room-price">€95/noche</div>
+                                    <!-- <div class="room-capacity">3 personas</div> -->
+                                    <!-- <div class="room-price">€95/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="doubleExtra" name="doubleExtra" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="row mb-4">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-users text-primary me-2"></i>Triple
+                                        <i class="fas fa-users text-primary me-2"></i>Triple <span class="room-capacity">(3 personas)</span>
                                     </div>
-                                    <div class="room-capacity">3 personas</div>
-                                    <div class="room-price">€100/noche</div>
+                                    <!-- <div class="room-capacity">3 personas</div> -->
+                                    <!-- <div class="room-price">€100/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="triple" name="triple" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-crown text-warning me-2"></i>Suite 4 pax
+                                        <i class="fas fa-crown text-warning me-2"></i>Suite 4 pax <span class="room-capacity">(5 personas)</span>
                                     </div>
-                                    <div class="room-capacity">5 personas</div>
-                                    <div class="room-price">€150/noche</div>
+                                    <!-- <div class="room-capacity">5 personas</div> -->
+                                    <!-- <div class="room-price">€150/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="suite4" name="suite4" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="row mb-4">
-                            <div class="col-lg-6 col-md-12">
+                            
+                            <div class="col-lg-2 col-md-12">
                                 <div class="room-card">
                                     <div class="room-title">
-                                        <i class="fas fa-crown text-warning me-2"></i>Suite 6 pax
+                                        <i class="fas fa-crown text-warning me-2"></i>Suite 6 pax <span class="room-capacity">(6 personas)</span>
                                     </div>
-                                    <div class="room-capacity">6 personas</div>
-                                    <div class="room-price">€200/noche</div>
+                                    <!-- <div class="room-capacity">6 personas</div> -->
+                                    <!-- <div class="room-price">€200/noche</div> -->
                                     <input type="number" class="form-control mt-2" id="suite6" name="suite6" min="0" value="0" placeholder="Cantidad">
                                 </div>
                             </div>

@@ -213,12 +213,12 @@ def filtrar_habsol_unicos(asg, habsol):
 if __name__ == "__main__":
     suites_feria = SuitesFeria("", "")
 
-    start_date = "2025-07-21"
-    end_date = "2025-07-21"
+    start_date = "2025-07-23"
+    end_date = "2025-07-23"
 
     confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
     
-    habsol_filtrado = []
+    habsol_filtrado = filtrar_habsol_status(suites_feria.get_data_by_query_habsol(start_date, end_date))
     print(habsol_filtrado)
 
     tipos = ["1", "2", "3", "4"]
