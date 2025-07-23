@@ -1,0 +1,19 @@
+[project]
+name = "booking-bot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "apscheduler>=3.11.0",
+    "beautifulsoup4==4.12.3",
+    "django==3.2",
+    "django-cors-headers==4.4.0",
+    "djangorestframework==3.13.1",
+    "mysqlclient>=2.2.7",
+    "pandas>=2.3.1",
+    "pillow>=11.3.0",
+    "pytz>=2025.2",
+    "requests>=2.32.4",
+    "selenium>=4.34.2",
+]
