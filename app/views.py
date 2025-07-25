@@ -2026,24 +2026,27 @@ def reception(request):
 @api_view(["GET"])
 def reception_price(request):
     try:
-        filter_date = request.GET["date"]
-        prices = Price.objects.filter(date_from=filter_date).values("occupancy", "price").distinct()
         ocuppancies = {
-            0: "individual",
-            1: "matrimonial",
-            2: "double",
-            3: "triple",
-            5: "suite4",
-            6: "suite6",
+            "individual":0,
+            "matrimonial":1,
+            "double":2,
+            "doubleExtra":3,
+            "triple":3,
+            "suite4":4,
+            "suite6":5,
         }
-        data = {}
-        for p in prices:
-            ocuppancy = ocuppancies[p["occupancy"]]
-            data[ocuppancy] = p["price"]
+        date_from = request.GET["date_from"]
+        date_to = request.GET["date_to"]
+        occupancy = request.GET["occupancy"]
+        prices = Price.objects.filter(
+            date_from__gte=date_from,
+            date_from__lt=date_to,
+            occupancy=ocuppancies[occupancy]
+        ).values( "price", "date_from").distinct().order_by("date_from")
         result = {
             "code": 200,
             "status": "OK",
-            "data": data,
+            "data": prices,
             "message": "Success"
         }
         return Response(result)

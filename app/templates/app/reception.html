@@ -457,7 +457,7 @@
         });
     });
 
-    function calculateReservation() {
+    async function calculateReservation() {
         const checkIn = new Date(document.getElementById('checkIn').value);
         const checkOut = new Date(document.getElementById('checkOut').value);
         
@@ -487,10 +487,25 @@
         let selectedRooms = [];
 
         // Calcular totales por tipo de habitación
-        Object.keys(currentRoomPrices).forEach(roomType => {
+        for (const roomType of Object.keys(currentRoomPrices)) {
             const quantity = parseInt(document.getElementById(roomType).value) || 0;
             if (quantity > 0) {
-                const roomTotal = currentRoomPrices[roomType] * quantity * nights;
+                const filters = {
+                    date_from:document.getElementById('checkIn').value,
+                    date_to:document.getElementById('checkOut').value,
+                    occupancy:roomType
+                }
+                const filtersParams = new URLSearchParams(filters).toString();
+                const response = await fetch(`/reception/price?${filtersParams}`);
+                const data = await response.json();
+                if (data.code == 500){
+                    alert("Ha ocurrido un error al calcular los precios")
+                }
+                const price = data.data.reduce((last, price) => 
+                    parseFloat(price.price) + last,
+                    0
+                )
+                const roomTotal = price * quantity;
                 const people = roomCapacity[roomType] * quantity;
                 
                 totalAccommodation += roomTotal;
@@ -498,6 +513,7 @@
                 
                 selectedRooms.push({
                     type: roomType,
+                    details:data.data,
                     name: roomNames[roomType],
                     quantity: quantity,
                     pricePerNight: currentRoomPrices[roomType],
@@ -506,7 +522,7 @@
                     totalRoom: roomTotal
                 });
             }
-        });
+        };
 
         if (selectedRooms.length === 0) {
             alert('Por favor seleccione al menos una habitación');
@@ -552,18 +568,45 @@
         const totalPrice = document.getElementById('totalPrice');
 
         let html = '';
-
         // Mostrar detalles de habitaciones seleccionadas
         selectedRooms.forEach(room => {
+            let details = ``;
+            for (const detail of room.details) {
+                details += `<p>
+                    <span class="text-sm">${detail.date_from} €${detail.price} × ${room.quantity} habitaciones</span>
+                    <span class="text-bold">
+                        € ${parseInt(detail.price) * room.quantity}
+                    </span> 
+                    </p>`
+            }
+
             html += `
-                <div class="result-item">
+                <div class="result-item" >
                     <h6><i class="fas fa-bed text-primary me-2"></i>${room.name}</h6>
                     <div class="details">
-                        ${room.quantity} habitación${room.quantity > 1 ? 'es' : ''} × ${totals.nights} noche${totals.nights > 1 ? 's' : ''} × €${room.pricePerNight}
+                        ${room.quantity} habitación${room.quantity > 1 ? 'es' : ''} × ${totals.nights} noche${totals.nights > 1 ? 's' : ''} 
                         <br>Total personas: ${room.people}
                     </div>
                     <div class="price">€${room.totalRoom.toFixed(2)}</div>
+                    <div class="accordion-item"  id="accordion-${room.type}" >
+                        <h2 class="accordion-header">
+                            <a class="accordion-button" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#accordion-content-${room.type}" 
+                                aria-expanded="false" 
+                                aria-controls="accordion-content-${room.type}">
+                                ‣ Detalle
+                            </a>
+                        </h2>
+                        <div id="accordion-content-${room.type}" 
+                            class="accordion-collapse collapse" 
+                            data-bs-parent="#detail-${room.type}">
+                            <div class="accordion-body">${details}</div>
+                        </div>
+                    </div>
                 </div>
+                
             `;
         });
 
