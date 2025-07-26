@@ -2104,10 +2104,10 @@ def reception_price(request):
             date_from__lt=date_to
         ).values( "price", "date_from", "occupancy").distinct().order_by("date_from")
         data = {}
+        for occcupancy in ocuppancies.values():
+            data[occcupancy] = []
         for price in prices:
             occupancy = ocuppancies[price["occupancy"]]
-            if occupancy not in data:
-                data[occupancy] = []
             data[occupancy].append(price)
         result = {
             "code": 200,
