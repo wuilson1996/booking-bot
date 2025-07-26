@@ -2017,12 +2017,74 @@ def booking_view(request):
     else:
         return redirect("sign-in")
 
-def reception(request):
-    context={
-        "segment": "reception",
-    }
-    return render(request, "app/reception.html", context)
+def history_hotel(request):
+    if request.user.is_authenticated:
+        _date_from = dt(
+            year=int(request.GET["date"].split("-")[0]),
+            month=int(request.GET["date"].split("-")[1]),
+            day=int(request.GET["date"].split("-")[2])
+        )
+        bookings_name = []
 
+        __general_search_to_name = GeneralSearch.objects.filter(type_search=2, proces_active__occupancy=2).order_by('city_and_country', 'id')  # importante ordenar
+        for _name_hotel in __general_search_to_name:
+            #logging.info(_name_hotel)
+            history_name = {}
+            price_with_name_hotel = PriceWithNameHotel.objects.filter(title=_name_hotel.city_and_country, date_from = str(_date_from.date()), occupancy = 2).first()
+            if price_with_name_hotel:
+                price_w_name = price_with_name_hotel.price.replace("€ ", "").replace(".", "").replace(",", "")
+                history_name["code"] = _name_hotel.code
+                history_name["name"] = _name_hotel.city_and_country
+                history_name["price"] = []
+                history_name["price"].append(price_w_name)
+                # change price with name hotel.
+                try:
+                    cont = 1
+                    copy_price_with_name = CopyPriceWithNameFromDay.objects.filter(avail = price_with_name_hotel).order_by("-id")[:7]
+                    for index_cpwd in range(7):
+                        try:
+                            cpwd = copy_price_with_name[index_cpwd]
+                        except Exception as ecpwd:
+                            cpwd = CopyPriceWithNameFromDay()
+                            cpwd.price = "0"
+                            cpwd.created = str(now())
+                        
+                        cp_price = cpwd.price.replace("€ ", "").replace(".", "").replace(",", "")
+                        history_name["price"].append(cp_price)
+                        cont += 1
+                except Exception as e:
+                    pass
+
+            bookings_name.append(history_name)
+
+        fecha_especifica = dt.strptime(request.GET["date"], '%Y-%m-%d')
+        ___date = generate_date_with_month(request.GET["date"])
+        #if int(request.GET["occupancy"]) == 2:
+        #bg_color = "bg-info"
+        #elif int(request.GET["occupancy"]) == 3:
+        #    bg_color = "bg-success"
+        #else:
+        #    bg_color = "bg-danger"
+
+        context={
+            "segment": "index",
+            "history_hotel": bookings_name,
+            "history_hotel_text": json.dumps(bookings_name),
+            "day": fecha_especifica.strftime('%A'), "date": ___date, #"bg_color": bg_color
+        }
+        return render(request, "app/history-hotel.html", context)
+    else:
+        return redirect("sign-in")
+    
+def reception(request):
+    if request.user.is_authenticated:
+        context={
+            "segment": "reception",
+        }
+        return render(request, "app/reception.html", context)
+    else:
+        return redirect("sign-in")
+    
 @api_view(["GET"])
 def reception_price(request):
     try:

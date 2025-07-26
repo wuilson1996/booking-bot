@@ -20,5 +20,6 @@ urlpatterns = [
     path('reception', reception, name="reception"),
     path('reception/price', reception_price, name="reception_price"),
     path('price/export/', export_price_from_excel, name="price_export"),
+    path('history-hotel', history_hotel, name="history_hotel"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
