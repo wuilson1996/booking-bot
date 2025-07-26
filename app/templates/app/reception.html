@@ -365,18 +365,6 @@
         suite4: 150,
         suite6: 200
     };
-    function getPrices(){
-        fetch("/reception/price?date="+document.getElementById("checkIn").value)
-        .then(response => response.json())
-        .then(data => {
-            if(data.code == 200){
-                roomPrices = data.data
-            }else{
-                alert("Error al obtener precios");
-            };
-        });
-    }
-    document.getElementById("checkIn").addEventListener("change", getPrices);
 
     
 
@@ -487,21 +475,22 @@
         let selectedRooms = [];
 
         // Calcular totales por tipo de habitación
+         const filters = {
+            date_from:document.getElementById('checkIn').value,
+            date_to:document.getElementById('checkOut').value,
+        }
+        const filtersParams = new URLSearchParams(filters).toString();
+        const response = await fetch(`/reception/price?${filtersParams}`);
+        const data = await response.json();
+        if (data.code == 500){
+            alert("Ha ocurrido un error al calcular los precios")
+        }
         for (const roomType of Object.keys(currentRoomPrices)) {
             const quantity = parseInt(document.getElementById(roomType).value) || 0;
+            const priceObj = data.data[roomType];
             if (quantity > 0) {
-                const filters = {
-                    date_from:document.getElementById('checkIn').value,
-                    date_to:document.getElementById('checkOut').value,
-                    occupancy:roomType
-                }
-                const filtersParams = new URLSearchParams(filters).toString();
-                const response = await fetch(`/reception/price?${filtersParams}`);
-                const data = await response.json();
-                if (data.code == 500){
-                    alert("Ha ocurrido un error al calcular los precios")
-                }
-                const price = data.data.reduce((last, price) => 
+                
+                const price = priceObj.reduce((last, price) => 
                     parseFloat(price.price) + last,
                     0
                 )
@@ -513,7 +502,7 @@
                 
                 selectedRooms.push({
                     type: roomType,
-                    details:data.data,
+                    details:priceObj,
                     name: roomNames[roomType],
                     quantity: quantity,
                     pricePerNight: currentRoomPrices[roomType],

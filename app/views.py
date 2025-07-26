@@ -2089,26 +2089,30 @@ def reception(request):
 def reception_price(request):
     try:
         ocuppancies = {
-            "individual":0,
-            "matrimonial":1,
-            "double":2,
-            "doubleExtra":3,
-            "triple":3,
-            "suite4":4,
-            "suite6":5,
+            0:"individual",
+            1:"matrimonial",
+            2:"double",
+            5:"doubleExtra",
+            3:"triple",
+            4:"suite4",
+            6:"suite6",
         }
         date_from = request.GET["date_from"]
         date_to = request.GET["date_to"]
-        occupancy = request.GET["occupancy"]
         prices = Price.objects.filter(
             date_from__gte=date_from,
-            date_from__lt=date_to,
-            occupancy=ocuppancies[occupancy]
-        ).values( "price", "date_from").distinct().order_by("date_from")
+            date_from__lt=date_to
+        ).values( "price", "date_from", "occupancy").distinct().order_by("date_from")
+        data = {}
+        for price in prices:
+            occupancy = ocuppancies[price["occupancy"]]
+            if occupancy not in data:
+                data[occupancy] = []
+            data[occupancy].append(price)
         result = {
             "code": 200,
             "status": "OK",
-            "data": prices,
+            "data": data,
             "message": "Success"
         }
         return Response(result)
