@@ -2092,9 +2092,9 @@ def reception_price(request):
             0:"individual",
             1:"matrimonial",
             2:"double",
-            5:"doubleExtra",
             3:"triple",
-            4:"suite4",
+            4:"doubleExtra",
+            5:"suite4",
             6:"suite6",
         }
         date_from = request.GET["date_from"]

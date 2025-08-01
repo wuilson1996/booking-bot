@@ -1,7 +1,8 @@
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import base64
+from time import sleep, time
 
 class SuitesFeria:
     def __init__(self, username, password):
@@ -25,12 +26,17 @@ class SuitesFeria:
             "queryRequest": {
                 "table": "ASGHAB",
                 "fields": ["NRESERVA", "FEC_LLEG", "DIAS_EST", "SALIDA", "CHEKOUT", "TIPO_HAB"],
+                #"logicalOperator": "AND",
                 "conditions": [
                     {
                         "field": "FEC_LLEG",
-                        "oper": "in",
-                        "startRangeValue": startRangeValue,
-                        "endRangeValue": endRangeValue
+                        "oper": "<",
+                        "value": startRangeValue,
+                    },
+                    {
+                        "field": "SALIDA",
+                        "oper": ">",
+                        "value": endRangeValue
                     }
                 ]
             },
@@ -55,7 +61,7 @@ class SuitesFeria:
             print("Error:", response.status_code, response.text)
             return None
 
-    def get_data_by_query_habsol(self, startRangeValue, endRangeValue):
+    def get_data_by_query_habsol(self, startRangeValue, endRangeValue, status):
         url = "https://83.48.12.213:1281/api/Query/Table/"
         cid = "b21b8d9c6eeec87d6bc5d71b39aab97df03ebbfe"
         password = "Gr51tR703859711965RiEEbp"
@@ -67,11 +73,20 @@ class SuitesFeria:
                 "table": "HABSOL",
                 "fields": ["RESERVA", "FEC_LLEG", "DIAS_EST", "FEC_SALI", "STATUS", "TIPO_HAB", "CANTIDAD"],
                 "conditions": [
+                    # {
+                    #     "field": "STATUS",
+                    #     "oper": "!=",
+                    #     "value": status,
+                    # },
                     {
                         "field": "FEC_LLEG",
-                        "oper": "in",
-                        "startRangeValue": startRangeValue,
-                        "endRangeValue": endRangeValue
+                        "oper": "<",
+                        "value": startRangeValue,
+                    },
+                    {
+                        "field": "SALIDA",
+                        "oper": ">",
+                        "value": endRangeValue
                     }
                 ]
             },
@@ -211,34 +226,102 @@ def filtrar_habsol_unicos(asg, habsol):
     return ids_final
 
 if __name__ == "__main__":
+    # suites_feria = SuitesFeria("", "")
+
+    # start_date = "2025-08-02"
+    # end_date = "2025-08-01"
+
+    # # Convertir a objetos datetime
+    # start = datetime.strptime(start_date, "%Y-%m-%d")
+    # end = datetime.strptime(end_date, "%Y-%m-%d")
+
+    # # Recorrer el rango día por día
+    # # current = start
+    # # while current <= end:
+    # #     print(current.strftime("%Y-%m-%d"))  # Puedes usar directamente current si prefieres el objeto datetime
+    # #     current += timedelta(days=1)
+
+    # confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
+    # print(confirmadas_asg)
+    # print(len(confirmadas_asg))
+    # habsol_filtrado = suites_feria.get_data_by_query_habsol(start_date, end_date, "")
+    # print(habsol_filtrado)
+
+    # tipos = ["1"]
+
+    # for t in tipos:
+    #     print("---------------------------------------------")
+    #     habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
+    #     ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
+    #     ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
+
+    #     print(f"Tipo: {t}")
+    #     print(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}")
+    #     print(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}")
+
+    #     habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
+    #     print(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}")
+    #     print(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}")
+
+    #     ocupadas_total = len(habsol_unicos)
+    #     disponibles = len(habitaciones_tipo) - ocupadas_total
+
+    #     print(f" Ocupadas: {ocupadas_total}")
+    #     print(f" Disponibles: {disponibles}")
+
+
     suites_feria = SuitesFeria("", "")
 
-    start_date = "2025-07-23"
-    end_date = "2025-07-23"
+    start_date = "2025-08-01"
+    end_date = "2025-08-31"
 
-    confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
+    # Convertir a objetos datetime
+    start = datetime.strptime(start_date, "%Y-%m-%d")
+    end = datetime.strptime(end_date, "%Y-%m-%d")
+
+    # Recorrer el rango día por día
+    tipos = ["1"]
+    habitaciones_tipo = suites_feria.get_data_by_query_habits(tipos[0])
     
-    habsol_filtrado = filtrar_habsol_status(suites_feria.get_data_by_query_habsol(start_date, end_date))
-    print(habsol_filtrado)
+    current = start
+    _time = time()
+    while current <= end:
+        print(current.strftime("%Y-%m-%d"))  # Puedes usar directamente current si prefieres el objeto datetime
 
-    tipos = ["1", "2", "3", "4"]
+        start_date = str(current.date())
+        end_date = str((current - timedelta(days=1)).date())
+        
+        print(f"DATE: {start_date} - {end_date}")
 
-    for t in tipos:
-        print("---------------------------------------------")
-        habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
-        ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
-        ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
+        confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
+        print(confirmadas_asg)
+        print(len(confirmadas_asg))
+        habsol_filtrado = suites_feria.get_data_by_query_habsol(start_date, end_date, "")
+        print(habsol_filtrado)
 
-        print(f"Tipo: {t}")
-        print(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}")
-        print(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}")
+        for t in tipos:
+            print("---------------------------------------------")
+            #habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
+            ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
+            ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
 
-        habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
-        print(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}")
-        print(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}")
+            print(f"Tipo: {t}")
+            print(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}")
+            print(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}")
 
-        ocupadas_total = len(habsol_unicos)
-        disponibles = len(habitaciones_tipo) - ocupadas_total
+            habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
+            print(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}")
+            print(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}")
 
-        print(f" Ocupadas: {ocupadas_total}")
-        print(f" Disponibles: {disponibles}")
+            ocupadas_total = len(habsol_unicos)
+            disponibles = len(habitaciones_tipo) - ocupadas_total
+
+            print(f" Ocupadas: {ocupadas_total}")
+            print(f" Disponibles: {disponibles}")
+
+
+        #sleep(5)
+
+        current += timedelta(days=1)
+    
+    print(time() - _time)

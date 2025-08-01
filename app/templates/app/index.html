@@ -336,7 +336,7 @@
                     <button class="btn btn-white btn-xs mb-0 text-lg" type="button" id="button-addon11" onclick="saveAvailWithDate('{{date}}')">Guardar</button>
                     <input type="number" class="form-control form-control-lg text-lg" placeholder="Disponibilidad" value="{{value.availWithDate}}" aria-describedby="button-addon11" id="avail{{date}}">
                   </div>
-                  <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-0 {% if value.temporadaByDay.bgColor == 'bg-danger' and value.availWithDateRest.color == 'text-danger' %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
+                  <h2 id="temp-n2{{date}}" class="{{value.availWithDateRest.color}} my-0 {% if value.availWithDateRest.value < 0 and value.temporadaByDay.number == '0' and value.temporadaByDay.number == '1'  %}bg-white{% endif %}">{{value.availWithDateRest.value}}</h2>
                   <hr>
                   <span id="temp-update{{date}}">{{value.updated}}</span>
                 </td>
