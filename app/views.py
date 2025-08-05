@@ -22,7 +22,6 @@ from datetime import timedelta
 
 from .green_correction import SuitesFeria as SuFe
 from .green_correction import filtrar_habsol_unicos
-from dateutil.relativedelta import relativedelta
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -52,13 +51,16 @@ def active_process_sf_v2():
 
         while True:
             try:
+                generate_log("Entro en bucle", BotLog.SUITESFERIA)
                 start_date = now().date()
-                end_date = start_date + relativedelta(months=2)
-
+                generate_log("Entro en bucle2", BotLog.SUITESFERIA)
+                end_date = start_date + timedelta(months=2)
+                generate_log("Entro en bucle3", BotLog.SUITESFERIA)
                 current = start_date
-                _time = time()
-
+                #_time = time()
+                generate_log("Entro en bucle4", BotLog.SUITESFERIA)
                 while current <= end_date:
+                    generate_log("Entro en bucle5", BotLog.SUITESFERIA)
                     generate_log(str(current), BotLog.SUITESFERIA)
 
                     start_date = str(current)
@@ -128,7 +130,7 @@ def active_process_sf_v2():
 
                     current += timedelta(days=1)
 
-                generate_log(f"Tiempo total: {time() - _time}", BotLog.SUITESFERIA)
+                #generate_log(f"Tiempo total: {time() - _time}", BotLog.SUITESFERIA)
 
                 logging.info(f"[+] Suites feria v2 actualizado: {now()}")
                 generate_log(f"[+] Dispo Suites feria v2 actualizado: {now()}", BotLog.SUITESFERIA)
