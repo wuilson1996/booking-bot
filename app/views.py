@@ -54,7 +54,7 @@ def active_process_sf_v2():
                 generate_log("Entro en bucle", BotLog.SUITESFERIA)
                 start_date = now().date()
                 generate_log("Entro en bucle2", BotLog.SUITESFERIA)
-                end_date = start_date + timedelta(months=2)
+                end_date = start_date + timedelta(days=62)
                 generate_log("Entro en bucle3", BotLog.SUITESFERIA)
                 current = start_date
                 #_time = time()
