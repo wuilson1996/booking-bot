@@ -59,7 +59,7 @@ def active_process_sf_v2():
                 _time = time()
 
                 while current <= end_date:
-                    generate_log(str(current.strftime("%Y-%m-%d")), BotLog.SUITESFERIA)
+                    generate_log(str(current), BotLog.SUITESFERIA)
 
                     start_date = str(current)
                     end_date = str((current - timedelta(days=1)))
