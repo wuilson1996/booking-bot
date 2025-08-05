@@ -146,7 +146,7 @@ def active_process_sf_v2():
                     break
             except Exception as er:
                 logging.info(f"[+] {now()} Error Get Suites feria v2: "+str(er))
-                generate_log("[+] Error Get Suites feria v2", BotLog.SUITESFERIA)
+                generate_log("[+] Error Get Suites feria v2: "+str(er), BotLog.SUITESFERIA)
                 if not check_finish_process():
                     logging.info(f"[+] {now()} Finish process, proceso suites feria v2...")
                     generate_log(f"[+] Finalizando proceso, proceso suites feria v2...", BotLog.SUITESFERIA)
