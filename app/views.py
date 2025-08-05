@@ -51,26 +51,21 @@ def active_process_sf_v2():
 
         while True:
             try:
-                generate_log("Entro en bucle", BotLog.SUITESFERIA)
                 start_date = now().date()
-                generate_log("Entro en bucle2", BotLog.SUITESFERIA)
                 end_date = start_date + timedelta(days=62)
-                generate_log("Entro en bucle3", BotLog.SUITESFERIA)
                 current = start_date
                 #_time = time()
-                generate_log("Entro en bucle4", BotLog.SUITESFERIA)
                 while current <= end_date:
-                    generate_log("Entro en bucle5", BotLog.SUITESFERIA)
                     generate_log(str(current), BotLog.SUITESFERIA)
 
                     start_date_str = str(current)
                     end_date_str = str((current - timedelta(days=1)))
 
-                    generate_log(f"DATE: {start_date_str} - {end_date_str}", BotLog.SUITESFERIA)
+                    #generate_log(f"DATE: {start_date_str} - {end_date_str}", BotLog.SUITESFERIA)
 
                     confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date_str, end_date_str)
-                    generate_log(str(confirmadas_asg), BotLog.SUITESFERIA)
-                    generate_log(str(len(confirmadas_asg)), BotLog.SUITESFERIA)
+                    #generate_log(str(confirmadas_asg), BotLog.SUITESFERIA)
+                    #generate_log(str(len(confirmadas_asg)), BotLog.SUITESFERIA)
 
                     habsol_filtrado = []  # opcional: suites_feria.get_data_by_query_habsol(start_date_str, end_date_str, "")
                     #generate_log(habsol_filtrado)
@@ -82,23 +77,23 @@ def active_process_sf_v2():
                     }
 
                     for t in tipos:
-                        generate_log("---------------------------------------------", BotLog.SUITESFERIA)
+                        #generate_log("---------------------------------------------", BotLog.SUITESFERIA)
                         ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
                         ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
 
-                        generate_log(f"Tipo: {t}", BotLog.SUITESFERIA)
-                        generate_log(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}", BotLog.SUITESFERIA)
-                        generate_log(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}", BotLog.SUITESFERIA)
+                        #generate_log(f"Tipo: {t}", BotLog.SUITESFERIA)
+                        #generate_log(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}", BotLog.SUITESFERIA)
+                        #generate_log(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}", BotLog.SUITESFERIA)
 
                         habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
-                        generate_log(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}", BotLog.SUITESFERIA)
-                        generate_log(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}", BotLog.SUITESFERIA)
+                        #generate_log(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}", BotLog.SUITESFERIA)
+                        #generate_log(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}", BotLog.SUITESFERIA)
 
                         ocupadas_total = len(habsol_unicos)
                         disponibles = len(habitaciones_tipo) - ocupadas_total
 
-                        generate_log(f" Ocupadas: {ocupadas_total}", BotLog.SUITESFERIA)
-                        generate_log(f" Disponibles: {disponibles}", BotLog.SUITESFERIA)
+                        #generate_log(f" Ocupadas: {ocupadas_total}", BotLog.SUITESFERIA)
+                        generate_log(f"Tipo: {t} - Disponibles: {disponibles}", BotLog.SUITESFERIA)
 
                         # Agregamos al diccionario para guardar
                         dsf["avail"][t] = disponibles
