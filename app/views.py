@@ -323,7 +323,7 @@ def active_process(bot_setting:BotSetting):
 
     #logging.info(f"[+] {now()} Activando process...")
     generate_log("[+] Activando process...", BotLog.BOOKING)
-    threading.Thread(target=active_process_sf_v2).start()
+    threading.Thread(target=active_process_sf).start()
 
     while True:
         try:
@@ -2205,8 +2205,8 @@ def reception_price(request):
             0:"individual",
             1:"matrimonial",
             2:"double",
-            3:"triple",
-            4:"doubleExtra",
+            4:"triple",
+            3:"doubleExtra",
             5:"suite4",
             6:"suite6",
         }
