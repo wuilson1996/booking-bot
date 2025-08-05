@@ -63,21 +63,21 @@ def active_process_sf_v2():
                     generate_log("Entro en bucle5", BotLog.SUITESFERIA)
                     generate_log(str(current), BotLog.SUITESFERIA)
 
-                    start_date = str(current)
-                    end_date = str((current - timedelta(days=1)))
+                    start_date_str = str(current)
+                    end_date_str = str((current - timedelta(days=1)))
 
-                    generate_log(f"DATE: {start_date} - {end_date}", BotLog.SUITESFERIA)
+                    generate_log(f"DATE: {start_date_str} - {end_date_str}", BotLog.SUITESFERIA)
 
-                    confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
+                    confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date_str, end_date_str)
                     generate_log(str(confirmadas_asg), BotLog.SUITESFERIA)
                     generate_log(str(len(confirmadas_asg)), BotLog.SUITESFERIA)
 
-                    habsol_filtrado = []  # opcional: suites_feria.get_data_by_query_habsol(start_date, end_date, "")
+                    habsol_filtrado = []  # opcional: suites_feria.get_data_by_query_habsol(start_date_str, end_date_str, "")
                     #generate_log(habsol_filtrado)
 
                     # Inicializar estructura para guardar los valores como si fuera _resp_sf
                     dsf = {
-                        "date": start_date,
+                        "date": start_date_str,
                         "avail": {}
                     }
 
