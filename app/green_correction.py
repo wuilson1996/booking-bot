@@ -17,8 +17,8 @@ class SuitesFeria:
 
     def get_data_by_query_asghab(self, startRangeValue, endRangeValue):
         url = "https://83.48.12.213:1281/api/Query/Table/"
-        cid = "b21b8d9c6eeec87d6bc5d71b39aab97df03ebbfe"
-        password = "Gr51tR703859711965RiEEbp"
+        cid = self.username
+        password = self.password
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
         date_header = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
 
@@ -63,8 +63,8 @@ class SuitesFeria:
 
     def get_data_by_query_habsol(self, startRangeValue, endRangeValue, status):
         url = "https://83.48.12.213:1281/api/Query/Table/"
-        cid = "b21b8d9c6eeec87d6bc5d71b39aab97df03ebbfe"
-        password = "Gr51tR703859711965RiEEbp"
+        cid = self.username
+        password = self.password
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
         date_header = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
 
@@ -113,8 +113,8 @@ class SuitesFeria:
 
     def get_data_by_query_habits(self, tipo_hab):
         url = "https://83.48.12.213:1281/api/Query/Table/"
-        cid = "b21b8d9c6eeec87d6bc5d71b39aab97df03ebbfe"
-        password = "Gr51tR703859711965RiEEbp"
+        cid = self.username
+        password = self.password
         authorization = f"Query.API: {base64.b64encode(password.encode()).decode()}"
         date_header = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
 

@@ -18,6 +18,11 @@ from .generate_sample_date import *
 from django.db.models import F
 from itertools import groupby
 from operator import attrgetter
+from datetime import timedelta
+
+from .green_correction import SuitesFeria as SuFe
+from .green_correction import filtrar_habsol_unicos
+from dateutil.relativedelta import relativedelta
 
 def reset_task():
     logging.info("[+] Check cron active...")
@@ -36,7 +41,118 @@ def reset_task():
         t.delete()
 
 threading.Thread(target=reset_task).start()
-    
+
+def active_process_sf_v2():
+    _credential = CredentialPlataform.objects.filter(plataform_option="suitesferia").last()
+    if _credential:
+        suites_feria = SuFe(_credential.username, _credential.password)
+
+        tipos = ["1", "2", "3", "4"]
+        habitaciones_tipo = suites_feria.get_data_by_query_habits(tipos[0])
+
+        while True:
+            try:
+                start_date = datetime.now().date()
+                end_date = start_date + relativedelta(months=2)
+
+                current = start_date
+                _time = time()
+
+                while current <= end_date:
+                    generate_log(str(current.strftime("%Y-%m-%d")), BotLog.SUITESFERIA)
+
+                    start_date = str(current)
+                    end_date = str((current - timedelta(days=1)))
+
+                    generate_log(f"DATE: {start_date} - {end_date}", BotLog.SUITESFERIA)
+
+                    confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
+                    generate_log(str(confirmadas_asg), BotLog.SUITESFERIA)
+                    generate_log(str(len(confirmadas_asg)), BotLog.SUITESFERIA)
+
+                    habsol_filtrado = []  # opcional: suites_feria.get_data_by_query_habsol(start_date, end_date, "")
+                    #generate_log(habsol_filtrado)
+
+                    # Inicializar estructura para guardar los valores como si fuera _resp_sf
+                    dsf = {
+                        "date": start_date,
+                        "avail": {}
+                    }
+
+                    for t in tipos:
+                        generate_log("---------------------------------------------", BotLog.SUITESFERIA)
+                        ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
+                        ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
+
+                        generate_log(f"Tipo: {t}", BotLog.SUITESFERIA)
+                        generate_log(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}", BotLog.SUITESFERIA)
+                        generate_log(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}", BotLog.SUITESFERIA)
+
+                        habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
+                        generate_log(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}", BotLog.SUITESFERIA)
+                        generate_log(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}", BotLog.SUITESFERIA)
+
+                        ocupadas_total = len(habsol_unicos)
+                        disponibles = len(habitaciones_tipo) - ocupadas_total
+
+                        generate_log(f" Ocupadas: {ocupadas_total}", BotLog.SUITESFERIA)
+                        generate_log(f" Disponibles: {disponibles}", BotLog.SUITESFERIA)
+
+                        # Agregamos al diccionario para guardar
+                        dsf["avail"][t] = disponibles
+
+                    # GUARDAR EN LA BASE DE DATOS
+                    try:
+                        avail_sf = AvailSuitesFeria.objects.filter(date_avail=dsf["date"]).first()
+                        if not avail_sf:
+                            avail_sf = AvailSuitesFeria.objects.create(date_avail=dsf["date"])
+
+                        for key_sf, value_sf in dsf["avail"].items():
+                            cant_asf = CantAvailSuitesFeria.objects.filter(
+                                avail_suites_feria=avail_sf,
+                                type_avail=key_sf
+                            ).first()
+                            if not cant_asf:
+                                CantAvailSuitesFeria.objects.create(
+                                    type_avail=key_sf,
+                                    avail=value_sf,
+                                    avail_suites_feria=avail_sf
+                                )
+                            else:
+                                cant_asf.avail = value_sf
+                                cant_asf.save()
+
+                        generate_log(f"[+] Guardado disponibilidad v2 para {dsf['date']} correctamente", BotLog.SUITESFERIA)
+                    except Exception as e:
+                        logging.error(f"[!] Error guardando v2 en BD para {dsf['date']}: {str(e)}")
+
+                    current += timedelta(days=1)
+
+                generate_log(f"Tiempo total: {time() - _time}", BotLog.SUITESFERIA)
+
+                logging.info(f"[+] Suites feria v2 actualizado: {now()}")
+                generate_log(f"[+] Dispo Suites feria v2 actualizado: {now()}", BotLog.SUITESFERIA)
+
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria v2...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria v2...", BotLog.SUITESFERIA)
+                    break
+                
+                time.sleep(300)
+
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria v2...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria v2...", BotLog.SUITESFERIA)
+                    break
+            except Exception as er:
+                logging.info(f"[+] {now()} Error Get Suites feria v2: "+str(er))
+                generate_log("[+] Error Get Suites feria v2", BotLog.SUITESFERIA)
+                if not check_finish_process():
+                    logging.info(f"[+] {now()} Finish process, proceso suites feria v2...")
+                    generate_log(f"[+] Finalizando proceso, proceso suites feria v2...", BotLog.SUITESFERIA)
+                    break
+                time.sleep(300)
+
 def active_process_sf():
     _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
     if _credential:
@@ -210,7 +326,7 @@ def active_process(bot_setting:BotSetting):
 
     #logging.info(f"[+] {now()} Activando process...")
     generate_log("[+] Activando process...", BotLog.BOOKING)
-    threading.Thread(target=active_process_sf).start()
+    threading.Thread(target=active_process_sf_v2).start()
 
     while True:
         try:
