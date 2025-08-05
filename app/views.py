@@ -52,7 +52,7 @@ def active_process_sf_v2():
 
         while True:
             try:
-                start_date = datetime.now().date()
+                start_date = now().date()
                 end_date = start_date + relativedelta(months=2)
 
                 current = start_date
