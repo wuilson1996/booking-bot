@@ -72,7 +72,7 @@ def active_process_sf_v2():
 
                     # Inicializar estructura para guardar los valores como si fuera _resp_sf
                     dsf = {
-                        "date": start_date_str,
+                        "date": end_date_str,
                         "avail": {}
                     }
 
