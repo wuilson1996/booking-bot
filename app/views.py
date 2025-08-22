@@ -324,7 +324,7 @@ def active_process(bot_setting:BotSetting):
 
     #logging.info(f"[+] {now()} Activando process...")
     generate_log("[+] Activando process...", BotLog.BOOKING)
-    threading.Thread(target=active_process_sf).start()
+    threading.Thread(target=active_process_sf_v2).start()
 
     while True:
         try:
