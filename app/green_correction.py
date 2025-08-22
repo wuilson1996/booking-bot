@@ -270,9 +270,9 @@ if __name__ == "__main__":
     #     print(f" Disponibles: {disponibles}")
 
 
-    suites_feria = SuitesFeria("", "")
+    suites_feria = SuitesFeria("b21b8d9c6eeec87d6bc5d71b39aab97df03ebbfe", "Gr51tR703859711965RiEEbp")
 
-    start_date = "2025-08-01"
+    start_date = "2025-08-22"
     end_date = "2025-08-31"
 
     # Convertir a objetos datetime
@@ -280,8 +280,8 @@ if __name__ == "__main__":
     end = datetime.strptime(end_date, "%Y-%m-%d")
 
     # Recorrer el rango día por día
-    tipos = ["1"]
-    habitaciones_tipo = suites_feria.get_data_by_query_habits(tipos[0])
+    tipos = ["1", "2", "3", "4"]
+    #habitaciones_tipo = suites_feria.get_data_by_query_habits(tipos[0])
     
     current = start
     _time = time()
@@ -296,12 +296,12 @@ if __name__ == "__main__":
         confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date, end_date)
         print(confirmadas_asg)
         print(len(confirmadas_asg))
-        habsol_filtrado = suites_feria.get_data_by_query_habsol(start_date, end_date, "")
+        habsol_filtrado = []#suites_feria.get_data_by_query_habsol(start_date, end_date, "")
         print(habsol_filtrado)
 
         for t in tipos:
             print("---------------------------------------------")
-            #habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
+            habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
             ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
             ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
 
@@ -309,11 +309,11 @@ if __name__ == "__main__":
             print(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}")
             print(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}")
 
-            habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
-            print(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}")
-            print(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}")
+            #habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
+            #print(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}")
+            #print(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}")
 
-            ocupadas_total = len(habsol_unicos)
+            ocupadas_total = len(ocupadas_asghab)
             disponibles = len(habitaciones_tipo) - ocupadas_total
 
             print(f" Ocupadas: {ocupadas_total}")

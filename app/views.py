@@ -47,7 +47,7 @@ def active_process_sf_v2():
         suites_feria = SuFe(_credential.username, _credential.password)
 
         tipos = ["1", "2", "3", "4"]
-        habitaciones_tipo = suites_feria.get_data_by_query_habits(tipos[0])
+        #habitaciones_tipo = suites_feria.get_data_by_query_habits(tipos[0])
 
         while True:
             try:
@@ -77,6 +77,7 @@ def active_process_sf_v2():
                     }
 
                     for t in tipos:
+                        habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
                         #generate_log("---------------------------------------------", BotLog.SUITESFERIA)
                         ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
                         ocupadas_habsol = [c for c in habsol_filtrado if c[5] == t]
@@ -85,11 +86,11 @@ def active_process_sf_v2():
                         #generate_log(f"AsgHab: {len(ocupadas_asghab)} - {ocupadas_asghab}", BotLog.SUITESFERIA)
                         #generate_log(f"Habsol filtrado: {len(ocupadas_habsol)} - {ocupadas_habsol}", BotLog.SUITESFERIA)
 
-                        habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
+                        #habsol_unicos = filtrar_habsol_unicos(ocupadas_asghab, ocupadas_habsol)
                         #generate_log(f"Reservas únicas ({len(habsol_unicos)}): {habsol_unicos}", BotLog.SUITESFERIA)
                         #generate_log(f"Total habitaciones tipo {t}: {len(habitaciones_tipo)}", BotLog.SUITESFERIA)
 
-                        ocupadas_total = len(habsol_unicos)
+                        ocupadas_total = len(ocupadas_asghab)
                         disponibles = len(habitaciones_tipo) - ocupadas_total
 
                         #generate_log(f" Ocupadas: {ocupadas_total}", BotLog.SUITESFERIA)
