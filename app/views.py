@@ -321,8 +321,8 @@ def active_process(bot_setting:BotSetting):
         t.start()
 
     # Esperar a que todos terminen
-    for t in threads:
-        t.join()
+    #for t in threads:
+    #    t.join()
     #threading.Thread(target=active_process_sf_v2).start()
 
     while True:
