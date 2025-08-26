@@ -113,14 +113,14 @@ def active_process_sf_v2(start_offset, months, name_log):
             if not check_finish_process():
                 break
 
-            sleep(300)
+            sleep(10)
 
         except Exception as er:
             logging.error(f"[{name_log}] Error general: {str(er)}")
             generate_log(f"[{name_log}] Error general: {str(er)}", BotLog.SUITESFERIA)
             if not check_finish_process():
                 break
-            sleep(300)
+            sleep(30)
 
 def active_process_sf():
     _credential = CredentialPlataform.objects.filter(plataform_option = "suitesferia").first()
@@ -300,11 +300,29 @@ def active_process(bot_setting:BotSetting):
     - Hilo 1: fecha actual → +2 meses
     - Hilo 2: fecha +2 meses → +12 meses
     """
-    thread_2m = threading.Thread(target=active_process_sf_v2, args=(0, 2, "HILO_2_MESES"))
-    thread_10m = threading.Thread(target=active_process_sf_v2, args=(62, 10, "HILO_2_A_10_MESES"))
+    #thread_2m = threading.Thread(target=active_process_sf_v2, args=(0, 2, "HILO_2_MESES"))
+    #thread_10m = threading.Thread(target=active_process_sf_v2, args=(62, 10, "HILO_2_A_10_MESES"))
 
-    thread_2m.start()
-    thread_10m.start()
+    #thread_2m.start()
+    #thread_10m.start()
+    
+    # Crear hilos según rangos
+    threads = [
+        threading.Thread(target=active_process_sf_v2, args=(0, 1, "HILO_0_A_1_MESES")),
+        threading.Thread(target=active_process_sf_v2, args=(31, 2, "HILO_1_A_2_MESES")),
+        threading.Thread(target=active_process_sf_v2, args=(62, 4, "HILO_2_A_4_MESES")),
+        threading.Thread(target=active_process_sf_v2, args=(122, 6, "HILO_4_A_6_MESES")),
+        threading.Thread(target=active_process_sf_v2, args=(183, 9, "HILO_6_A_9_MESES")),
+        threading.Thread(target=active_process_sf_v2, args=(274, 12, "HILO_9_A_12_MESES"))
+    ]
+
+    # Iniciar hilos
+    for t in threads:
+        t.start()
+
+    # Esperar a que todos terminen
+    for t in threads:
+        t.join()
     #threading.Thread(target=active_process_sf_v2).start()
 
     while True:
