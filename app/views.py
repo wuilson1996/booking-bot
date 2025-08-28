@@ -59,12 +59,23 @@ def active_process_sf_v2(start_offset, months, name_log):
         habitaciones_tipo[t] = len(suites_feria.get_data_by_query_habits(t))
     while True:
         try:
+            #total_process_start = time.time()  # Tiempo total del hilo
+
             start_date = now().date() + timedelta(days=start_offset)
             end_date = start_date + timedelta(days=months * 31)  # rango dinámico
             current = start_date
 
+            process_start = time.time()  # Tiempo desde que comienza el procesamiento de fechas
+
             while current <= end_date:
-                generate_log(f"[{name_log}] Procesando fecha {current}", BotLog.SUITESFERIA)
+                # Tiempo total por fecha (API + guardado)
+                date_start = time.time()
+                # Log de progreso general
+                elapsed = time.time() - process_start
+                generate_log(
+                    f"[{name_log}] Procesando fecha {current} | Tiempo desde inicio: {elapsed:.2f}s",
+                    BotLog.SUITESFERIA
+                )
 
                 start_date_str = str(current)
                 end_date_str = str((current - timedelta(days=1)))
@@ -103,14 +114,21 @@ def active_process_sf_v2(start_offset, months, name_log):
                             cant_asf.avail = value_sf
                             cant_asf.save()
 
-                    generate_log(f"[{name_log}] Guardado {dsf['date']}", BotLog.SUITESFERIA)
+                    # Tiempo total de esa fecha (consulta + guardado)
+                    date_elapsed = time.time() - date_start
+                    generate_log(
+                        f"[{name_log}] Fecha {dsf['date']} procesada en {date_elapsed:.2f}s",
+                        BotLog.SUITESFERIA
+                    )
                 except Exception as e:
                     logging.error(f"[{name_log}] Error guardando en BD {dsf['date']}: {str(e)}")
 
                 current += timedelta(days=1)
-
-            logging.info(f"[{name_log}] Actualización finalizada {now()}")
-            generate_log(f"[{name_log}] Proceso finalizado", BotLog.SUITESFERIA)
+            
+            # Tiempo total del rango
+            range_elapsed = time.time() - process_start
+            logging.info(f"[{name_log}] Rango finalizado {now()} | Tiempo total rango: {range_elapsed:.2f}s")
+            generate_log(f"[{name_log}] Rango procesado en {range_elapsed:.2f}s", BotLog.SUITESFERIA)
 
             if not check_finish_process():
                 break
