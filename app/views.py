@@ -54,7 +54,9 @@ def active_process_sf_v2(start_offset, months, name_log):
 
     suites_feria = SuFe(_credential.username, _credential.password)
     tipos = ["1", "2", "3", "4"]
-
+    habitaciones_tipo = {}
+    for t in tipos:
+        habitaciones_tipo[t] = len(suites_feria.get_data_by_query_habits(t))
     while True:
         try:
             start_date = now().date() + timedelta(days=start_offset)
@@ -68,14 +70,14 @@ def active_process_sf_v2(start_offset, months, name_log):
                 end_date_str = str((current - timedelta(days=1)))
 
                 confirmadas_asg = suites_feria.get_data_by_query_asghab(start_date_str, end_date_str)
-                habsol_filtrado = []  # opcional
+                #habsol_filtrado = []  # opcional
 
                 dsf = {"date": end_date_str, "avail": {}}
 
                 for t in tipos:
-                    habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
+                    #habitaciones_tipo = suites_feria.get_data_by_query_habits(t)
                     ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
-                    disponibles = len(habitaciones_tipo) - len(ocupadas_asghab)
+                    disponibles = habitaciones_tipo[t] - len(ocupadas_asghab) #len(habitaciones_tipo) - len(ocupadas_asghab)
 
                     generate_log(f"[{name_log}] Tipo {t} -> Disponibles: {disponibles}", BotLog.SUITESFERIA)
                     dsf["avail"][t] = disponibles
