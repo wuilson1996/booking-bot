@@ -90,7 +90,7 @@ def active_process_sf_v2(start_offset, months, name_log):
                     ocupadas_asghab = [c for c in confirmadas_asg if c[5] == t]
                     disponibles = habitaciones_tipo[t] - len(ocupadas_asghab) #len(habitaciones_tipo) - len(ocupadas_asghab)
 
-                    generate_log(f"[{name_log}] Tipo {t} -> Disponibles: {disponibles}", BotLog.SUITESFERIA)
+                    #generate_log(f"[{name_log}] Tipo {t} -> Disponibles: {disponibles}", BotLog.SUITESFERIA)
                     dsf["avail"][t] = disponibles
 
                 # Guardar en BD
