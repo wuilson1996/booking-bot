@@ -329,7 +329,7 @@ def active_process(bot_setting:BotSetting):
     # Crear hilos según rangos
     
     threads = [
-        threading.Thread(target=active_process_sf_v2, args=(0, 3, "HILO_0_A_1_MESES")),
+        threading.Thread(target=active_process_sf_v2, args=(0, 3, "HILO_0_A_3_MESES")),
         #threading.Thread(target=active_process_sf_v2, args=(31, 3, "HILO_1_A_2_MESES")),
         #threading.Thread(target=active_process_sf_v2, args=(62, 4, "HILO_2_A_4_MESES")),
         threading.Thread(target=active_process_sf)
