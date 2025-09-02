@@ -782,15 +782,21 @@ def task_save_price_DEdge(prices, _date, cron:CronActive, _credential:Credential
             #print(changes)
             #generate_log(f"PriceData: {now()}: {changes}", BotLog.ROOMPRICE)
             response = d_edge.set_price_by_date(_date, prices)
-            generate_log(f"PriceData: {now()}: {response.text}", BotLog.ROOMPRICE)
-            generate_log(f"PriceData: {now()}: {response.status_code}", BotLog.ROOMPRICE)
-            for key, value in prices.items():
-                _p = Price.objects.filter(pk = value["obj"].pk).first()
-                _p.active_sync = False
-                _p.save()
+            generate_log(f"PriceData: {now()}: Status:{response.status_code}", BotLog.ROOMPRICE)
+            try:
+                generate_log(f"PriceData: {now()}: Status:{response.status_code} - Message: {json.loads(response.text).get('message')}", BotLog.ROOMPRICE)
+            except Exception as e:
+                generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
+            if response.status_code == 200:
+                for key, value in prices.items():
+                    _p = Price.objects.filter(pk = value["obj"].pk).first()
+                    if json.loads(response.text).get("status") == 2:
+                        _p.plataform_sync = True
+                    _p.active_sync = False
+                    _p.save()
         except Exception as e:
-            logging.info(f"Error general Fee: {e}")
-            generate_log(f"Error general Fee: {now()}: {e}", BotLog.ROOMPRICE)
+            logging.info(f"Error general Price: {e}")
+            generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
 
         cron.active = False
         cron.save()
