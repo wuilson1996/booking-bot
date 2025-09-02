@@ -23,6 +23,8 @@ from datetime import timedelta
 from .green_correction import SuitesFeria as SuFe
 from .green_correction import filtrar_habsol_unicos
 
+from .D_Edge import DEdge
+
 def reset_task():
     logging.info("[+] Check cron active...")
     for t in CronActive.objects.filter(active=True):
@@ -769,86 +771,23 @@ def save_message(request):
         }
     return Response(result)
 
-def task_save_fee_masive(cron:CronActive, _credential:CredentialPlataform, days):
-    while cron.current_date > now():
-        sleep(1)
-
-    fee = FeeTask()
-    _driver = fee._driver()
-    _check = fee.sign_in(_driver, _credential.username, _credential.password)
-    if _check:
-        prices_list = []
-        prices_list_not = []
-        prices_all = Price.objects.all().order_by("-id")
-        _prices = {}
-        for price_obj in prices_all:
-            if datetime.datetime(year=int(price_obj.date_from.split("-")[0]), month=int(price_obj.date_from.split("-")[1]), day=int(price_obj.date_from.split("-")[2])).date() >= now().date():
-                if price_obj.date_from not in list(_prices.keys()):
-                    #plataform_sync = False
-                    _prices[price_obj.date_from] = {
-                        "plataform_sync": False
-                    }
-
-                if price_obj.price != None and price_obj.price != "":
-                    if not price_obj.plataform_sync:
-                        _prices[price_obj.date_from]["plataform_sync"] = True
-
-                    _prices[price_obj.date_from][str(price_obj.occupancy)] = price_obj
-                    price_obj.active_sync = True
-                    price_obj.save()
-
-        #print(_prices)
-        #logging.info(_prices)
-        logging.info("----------------------------------------------")
-        for _key, _value in _prices.items():
-            _check = False
-            if _value["plataform_sync"]:
-                logging.info(_value)
-                del _value["plataform_sync"]
-                _check = fee.send_fee_masive(_driver, _value, _key)
-                sleep(10)
-            if _check:
-                prices_list.append(_value)
-            else:
-                prices_list_not.append(_value)
-            logging.info("----------------------------------------------")
-
-        if prices_list:
-            fee.update_with_range(_driver, "Masive instance", prices_list, False)
-
-        sleep(5)
-        fee.close(_driver)
-        for price in prices_list + prices_list_not:
-            for key, value in price.items():
-                if key != "plataform_sync":
-                    logging.info(f"{key} {value}")
-                    _p = Price.objects.filter(pk = value.pk).first()
-                    _p.active_sync = False
-                    _p.save()
-
-def task_save_fee(price, _date, cron:CronActive, _credential:CredentialPlataform):
+def task_save_price_DEdge(prices, _date, cron:CronActive, _credential:CredentialPlataform):
     try:
         while cron.current_date > now():
             sleep(1)
 
-        #cont = 0
-        #while True:
         try:
-            #for _ in range(2):
-            fee = FeeTask()
-            _driver = fee._driver()
-            _check = fee.controller(_driver, price, _date, _credential.username, _credential.password)
-            sleep(5)
-            fee.close(_driver)
-            for key, value in price.items():
-                _p = Price.objects.filter(pk = value.pk).first()
+            d_edge = DEdge()
+            #hanges = d_edge.generate_changes(prices)
+            #print(changes)
+            #generate_log(f"PriceData: {now()}: {changes}", BotLog.ROOMPRICE)
+            response = d_edge.set_price_by_date(_date, prices)
+            generate_log(f"PriceData: {now()}: {response.text}", BotLog.ROOMPRICE)
+            generate_log(f"PriceData: {now()}: {response.status_code}", BotLog.ROOMPRICE)
+            for key, value in prices.items():
+                _p = Price.objects.filter(pk = value["obj"].pk).first()
                 _p.active_sync = False
                 _p.save()
-            # if not _check:
-            #     break
-            #if _check or cont >= 3:
-            #    break
-            #cont += 1
         except Exception as e:
             logging.info(f"Error general Fee: {e}")
             generate_log(f"Error general Fee: {now()}: {e}", BotLog.ROOMPRICE)
@@ -866,57 +805,46 @@ def upgrade_fee(request):
         try:
             _prices = {}
             __time = 90
-            # if request.data["masive"] == "false":
-            #     for p in Price.objects.filter(date_from = request.data["date"]):
-            #         if p.price != None and p.price != "":
-            #             _prices[str(p.occupancy)] = p
-            #             p.active_sync = True
-            #             p.save()
+            if request.data["masive"] == "false":
+                for p in Price.objects.filter(date_from = request.data["date"]):
+                    if p.price != None and p.price != "":
+                        _prices[str(p.occupancy)] = {"next_price":p.price, "obj": p}
+                        p.active_sync = True
+                        p.save()
 
             message = "Proceso activado correctamente."
-            # _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
-            # if _credential:
-            #     cron_active = CronActive.objects.last()
-            #     #print(cron_active)
-            #     if cron_active:
-            #         if cron_active.active:
-            #             cron = CronActive.objects.create(
-            #                 active = True,
-            #                 current_date = cron_active.current_date + datetime.timedelta(minutes=1.5)
-            #             )
-            #         else:
-            #             cron = CronActive.objects.create(
-            #                 active = True,
-            #                 current_date = now()
-            #             )
-            #     else:
-            #         cron = CronActive.objects.create(
-            #             active = True,
-            #             current_date = now()
-            #         )
-            #     if request.data["masive"] == "false":
-            #         threading.Thread(
-            #             target=task_save_fee, 
-            #             args=(
-            #                 _prices,
-            #                 request.data["date"],
-            #                 cron,
-            #                 _credential
-            #             )
-            #         ).start()
-            #         __time += (cron.current_date - now()).total_seconds()
-            #     else:
-            #         threading.Thread(
-            #             target=task_save_fee_masive, 
-            #             args=(
-            #                 cron,
-            #                 _credential,
-            #                 0
-            #             )
-            #         ).start()
-            #         __time += (cron.current_date - now()).total_seconds()
-            # else:
-            #     message = "No se ha configurado credenciales"
+            _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
+            if _credential:
+                cron_active = CronActive.objects.last()
+                #print(cron_active)
+                if cron_active:
+                    if cron_active.active:
+                        cron = CronActive.objects.create(
+                            active = True,
+                            current_date = cron_active.current_date + datetime.timedelta(minutes=1.5)
+                        )
+                    else:
+                        cron = CronActive.objects.create(
+                            active = True,
+                            current_date = now()
+                        )
+                else:
+                    cron = CronActive.objects.create(
+                        active = True,
+                        current_date = now()
+                    )
+                threading.Thread(
+                    target=task_save_price_DEdge, 
+                    args=(
+                        _prices,
+                        request.data["date"],
+                        cron,
+                        _credential
+                    )
+                ).start()
+                __time += (cron.current_date - now()).total_seconds()
+            else:
+                message = "No se ha configurado credenciales"
         except Exception as e:
             logging.info(f"Error price: {e}")
             generate_log(f"Error price: {now()}: {e}", BotLog.ROOMPRICE)

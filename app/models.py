@@ -82,6 +82,7 @@ class Price(models.Model):
     )
     occupancy = models.IntegerField(choices=OCCUPANCYS, default=2)
     price = models.CharField(max_length=50)
+    prev_price = models.CharField(max_length=50, default="0")
     updated = models.CharField(null=True, blank=True, max_length=50)
     created = models.CharField(null=True, blank=True, max_length=50)
     plataform_sync = models.BooleanField(default=False)
