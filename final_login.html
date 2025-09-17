@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>D-EDGE - Client access</title>
+    <link href="https://extranet.static-files.d-edge.com/overnight-hotelier-css/6.0.0-beta.15/overnight-hotelier.css" type="text/css" rel="stylesheet" />
+    <link href="https://extranet.static-files.d-edge.com/fonts/0-latest/montserrat/index.css" rel="stylesheet">
+    <link href="https://extranet.static-files.d-edge.com/fonts/0-latest/inter/index.css" rel="stylesheet">
+    <link href="/Content/login.css" type="text/css" rel="stylesheet" />
+    <script src="https://extranet.static-files.d-edge.com/tracking/0-latest/main.js"></script>
+
+    
+
+        <link rel="SHORTCUT ICON" href="/Content/availpro.ico" />
+</head>
+
+<body class="sb-main-padded sb-show-main">
+    <div class="htl-login" style="background-image: url('Content/login-bg.jpg')">
+        <div class="htl-login__container">
+            <div class="htl-login__form">
+                <div class="htl-login__logo">
+                    <img src="/Content/D-EDGE.svg" alt="" />
+                </div>
+                
+    <form method="post" id="login-form">
+        <input name="__RequestVerificationToken" type="hidden" value="t2eA_oXdLhMyx1BViE9HRoXNjTipYgq0U2F9hmpHsU4hBEFVC4SHY4aberT8ndsBVYq9pxx1erEzJGD4PubLKULUlMEBgGX7ijE-I7BEiMo1" />
+        <h1 class="htl-u-typography-heading-2 htl-login__title">Connection</h1>
+
+
+        <div class="htl-field htl-u-margin-block-end-16">
+            <label for="text-id-login" class="htl-label">Username</label>
+            <input id="text-id-login"
+                   type="text"
+                   name="login"
+                   autocomplete="username"
+                   placeholder=" "
+                   required=""
+                     autofocus                                        class="htl-text-input htl-text-input--full-width" />
+        </div>
+        <input id="IsQueryLogin" name="IsQueryLogin" type="hidden" value="False" />
+        <div class="htl-field htl-u-margin-block-end-24">
+            <label for="input-password" class="htl-label">Password</label>
+            <input id="input-password"
+                   type="password"
+                   name="password"
+                   autocomplete="input-password"
+                   required=""
+                                                         class="htl-text-input htl-text-input--full-width" />
+        </div>
+
+        <button id="submit-button"
+                type="submit"
+                class="htl-button htl-button--solid htl-button--full-width htl-u-margin-block-end-16"
+                >
+            Login
+        </button>
+
+        <a id="forgot-password-link"
+           class="htl-button htl-button--ghost htl-button--full-width"
+           href="/en/Password"
+        >
+            Forgot password ?
+        </a>
+    </form>
+
+                    <div class="htl-u-typography-body-2-strong htl-login__copyright">© 2001 - 2025 D-EDGE</div>
+            </div>
+    <div class="htl-login__ads">
+            <a href="https://www.d-edge.com/gds-trends-insights/?utm_source=login-page&amp;utm_medium=banner&amp;utm_campaign=gds-article" target="_blank">
+                <img id="advert-image" src="/Images/gds-article-EN.png" alt="gds-article" />
+            </a>
+    </div>
+
+        </div>
+    </div>
+    <script>
+        if (!!window.Tracker && "production" !== "development") {
+            window.Tracker.initialize({
+                environment: "production",
+                applicationName: "Login",
+                userCulture: "en",
+                defaultPage: "",
+                hotelId: 0,
+                groupId: 0,
+                userId: 0,
+                sirionaUserId: null,
+                sirionaMode: false,
+                hotelCountryCode: null,
+            });
+        }
+    </script>
+</body>
+</html>

@@ -510,3 +510,35 @@ class CookieUrl(models.Model):
 
     def __str__(self):
         return f"{self.name} | {self.label}"
+    
+class CookieStore(models.Model):
+    """
+    Modelo para almacenar cookies de sesión actualizadas
+    y utilizarlas en solicitudes a servicios externos.
+    """
+    name = models.CharField(max_length=255, unique=True)  # Ej: "AVAILPRO"
+    cookies = models.JSONField()  # Guarda las cookies en formato dict
+    updated_at = models.CharField(max_length=64)
+
+    def update_cookies(self, new_cookies: dict):
+        """
+        Reemplaza las cookies actuales con las nuevas y actualiza la fecha.
+        """
+        self.cookies = new_cookies
+        self.updated_at = str(now())
+        self.save()
+
+    @classmethod
+    def get_cookies(cls, name: str) -> dict:
+        """
+        Devuelve las cookies más recientes para un nombre dado.
+        Si no existe, retorna un dict vacío.
+        """
+        try:
+            obj = cls.objects.get(name=name)
+            return obj.cookies
+        except cls.DoesNotExist:
+            return {}
+
+    def __str__(self):
+        return f"{self.name}"

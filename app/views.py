@@ -771,29 +771,79 @@ def save_message(request):
         }
     return Response(result)
 
-def task_save_price_DEdge(prices, _date, cron:CronActive, _credential:CredentialPlataform):
+def task_save_price_DEdge(request, cron:CronActive, _credential:CredentialPlataform):
     try:
+        if request.data["masive"] == "false":
+            prices = get_price_by_range(_date=request.data["date"])
+        else:
+            prices = get_price_by_range()
+
         while cron.current_date > now():
             sleep(1)
 
         try:
+            db_cookies = {}
             d_edge = DEdge()
+            try:
+                record = CookieStore.objects.get(name="dedge")
+                db_cookies = record.cookies
+            except CookieStore.DoesNotExist:
+                db_cookies = d_edge.get_cookies()
+                record = None
+            # Configura credenciales
+            username = _credential.username
+            password = _credential.password
+            #logging.info(f"{username} {password}")
+
+            # Inicializa con cookies de la DB
+            logged_in = d_edge.initialize(db_cookies, username, password)
+
+            if logged_in:
+                new_cookies = d_edge.get_new_cookies()
+                if not record:
+                    CookieStore.objects.create(
+                        name="dedge",
+                        cookies=new_cookies
+                    )
+                    generate_log(f"Cookies creadas en DB", BotLog.ROOMPRICE)
+                    logging.info("🍪 Cookies creadas en DB")
+                else:
+                    record.cookies = new_cookies
+                    record.save()
+                    generate_log(f"Cookies actualizadas en DB", BotLog.ROOMPRICE)
+                    logging.info("🍪 Cookies actualizadas en DB")
+            else:
+                if logged_in is False:
+                    generate_log(f"Se usaron cookies válidas, no fue necesario login", BotLog.ROOMPRICE)
+                    logging.info("👍 Se usaron cookies válidas, no fue necesario login")
+                else:
+                    generate_log(f"Error de credenciales, no se pudo authenticar.", BotLog.ROOMPRICE)
+                    logging.info("👍 Error de credenciales, no se pudo authenticar.")
             #hanges = d_edge.generate_changes(prices)
             #print(changes)
             #generate_log(f"PriceData: {now()}: {changes}", BotLog.ROOMPRICE)
-            response = d_edge.set_price_by_date(_date, prices)
-            generate_log(f"PriceData: {now()}: Status:{response.status_code}", BotLog.ROOMPRICE)
-            try:
-                generate_log(f"PriceData: {now()}: Status:{response.status_code} - Message: {json.loads(response.text).get('message')}", BotLog.ROOMPRICE)
-            except Exception as e:
-                generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
-            if response.status_code == 200:
-                for key, value in prices.items():
-                    _p = Price.objects.filter(pk = value["obj"].pk).first()
-                    if json.loads(response.text).get("status") == 2:
-                        _p.plataform_sync = True
-                    _p.active_sync = False
-                    _p.save()
+            for rango in prices:
+                inicio = min(rango.keys())  # ✅ fecha inicial del rango
+                logging.info(f"{now()}: Inicio de rango:{inicio} - Rango:{rango}")
+                generate_log(f"{now()}: Inicio de rango:{inicio} - Rango:{rango}", BotLog.ROOMPRICE)
+                #changes, status = d_edge.generate_changes(rango, str(inicio))
+                #logging.info(f"{now()}: Status: {status} - Changes de rango:{changes}")
+                response = d_edge.set_price_by_date(str(inicio), rango)
+                generate_log(f"PriceData: {now()}: Status:{response.status_code}", BotLog.ROOMPRICE)
+                try:
+                    generate_log(f"PriceData: {now()}: Status:{response.status_code} - Message: {json.loads(response.text).get('message')} - {inicio}", BotLog.ROOMPRICE)
+                except Exception as e:
+                    generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
+                # Solo si fue exitoso, actualizamos cada precio en el rango
+                if response.status_code == 200:
+                    for fecha, occs in rango.items():
+                        if occs:
+                            for occ_key, value in occs.items():
+                                _p = Price.objects.filter(pk=value["obj"].pk).first()
+                                #if json.loads(response.text).get("status") == 2:
+                                _p.plataform_sync = True
+                                _p.active_sync = False
+                                _p.save()
         except Exception as e:
             logging.info(f"Error general Price: {e}")
             generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
@@ -801,23 +851,94 @@ def task_save_price_DEdge(prices, _date, cron:CronActive, _credential:Credential
         cron.active = False
         cron.save()
     except Exception as e:
-        logging.info(f"Error task fee: {e}")
-        generate_log(f"Error task fee: {now()}: {e}", BotLog.ROOMPRICE)
+       logging.info(f"Error task fee: {e}")
+       generate_log(f"Error task fee: {now()}: {e}", BotLog.ROOMPRICE)
+
+
+def get_price_by_range(_date=None, days_range=14):
+    if not _date:
+        _date = now().date()
+        modo_rangos = True  # ✅ Se están pidiendo rangos
+    else:
+        _date = datetime.datetime(
+            year=int(_date.split("-")[0]),
+            month=int(_date.split("-")[1]),
+            day=int(_date.split("-")[2])
+        ).date()
+        modo_rangos = False  # ✅ Solo una fecha
+
+    prices_all = Price.objects.all().order_by("-id")
+    _prices = {}
+
+    # 🔹 Paso 1: Construcción de precios por fecha y occupancy
+    for price_obj in prices_all:
+        date_from = datetime.datetime(
+            year=int(price_obj.date_from.split("-")[0]),
+            month=int(price_obj.date_from.split("-")[1]),
+            day=int(price_obj.date_from.split("-")[2])
+        ).date()
+
+        if date_from >= _date:
+            if date_from not in _prices:
+                _prices[date_from] = {}
+
+            if not price_obj.plataform_sync:
+                if price_obj.price not in (None, ""):
+                    occ_key = str(price_obj.occupancy)
+                    if occ_key not in _prices[date_from]:
+                        _prices[date_from][occ_key] = {}
+
+                    _prices[date_from][occ_key]["plataform_sync"] = True
+                    _prices[date_from][occ_key]["next_price"] = price_obj.price
+                    _prices[date_from][occ_key]["obj"] = price_obj
+                    _prices[date_from][occ_key]["day"] = None
+                    price_obj.active_sync = True
+                    price_obj.save()
+
+    sorted_dates = sorted(_prices.keys())
+
+    # 🔹 Si no hay precios y estamos en modo fecha única, devolver esa fecha vacía
+    if not sorted_dates and not modo_rangos:
+        return [{_date: {}}]
+
+    rangos = []
+    i = 0
+
+    if modo_rangos:
+        # ✅ Generación de rangos completa
+        while i < len(sorted_dates):
+            inicio = sorted_dates[i]
+            fin = inicio + datetime.timedelta(days=days_range - 1)
+            rango_data = {d: _prices[d] for d in sorted_dates if inicio <= d <= fin}
+
+            # Ajustar el 'day'
+            for fecha in rango_data:
+                for occ, occ_data in rango_data[fecha].items():
+                    occ_data["day"] = (fecha - inicio).days
+
+            rangos.append(rango_data)
+            i = i + sum(inicio <= d <= fin for d in sorted_dates)
+
+    else:
+        # ✅ Solo una fecha -> devolver únicamente esa
+        if _date in _prices:
+            rango_data = {_date: _prices[_date]}
+            for occ, occ_data in rango_data[_date].items():
+                occ_data["day"] = 0
+        else:
+            rango_data = {_date: {}}  # Fecha sin datos
+
+        rangos.append(rango_data)
+
+    return rangos
 
 @api_view(["POST"])
 def upgrade_fee(request):
     result = {"code": 400, "status": "Fail", "message":"User not authenticated."}
     if request.user.is_authenticated:
         try:
-            _prices = {}
             __time = 90
-            if request.data["masive"] == "false":
-                for p in Price.objects.filter(date_from = request.data["date"]):
-                    if p.price != None and p.price != "":
-                        _prices[str(p.occupancy)] = {"next_price":p.price, "obj": p}
-                        p.active_sync = True
-                        p.save()
-
+            
             message = "Proceso activado correctamente."
             _credential = CredentialPlataform.objects.filter(plataform_option = "roomprice").first()
             if _credential:
@@ -839,11 +960,11 @@ def upgrade_fee(request):
                         active = True,
                         current_date = now()
                     )
+                
                 threading.Thread(
                     target=task_save_price_DEdge, 
                     args=(
-                        _prices,
-                        request.data["date"],
+                        request,
                         cron,
                         _credential
                     )
