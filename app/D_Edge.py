@@ -360,9 +360,9 @@ class DEdge:
         data = {"planningChanges": json.dumps(planning_changes)}
         logging.info(f"set_price_by_date: {str(data)}")
         generate_log(f"set_price_by_date: {str(data)}", BotLog.ROOMPRICE)
-        #response = cls.session.post(cls.URL, headers=headers, data=data)
-        response = cls.mock_response()
-        response.text = json.dumps({"message":"Mock response success"})
+        response = cls.session.post(cls.URL, headers=headers, data=data)
+        #response = cls.mock_response()
+        #response.text = json.dumps({"message":"Mock response success"})
         return response
 
     @classmethod
