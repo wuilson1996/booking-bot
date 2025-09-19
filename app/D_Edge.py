@@ -248,15 +248,19 @@ class DEdge:
 
                     cls.write_html(driver.page_source, "page_factor2_code.html")
 
-                    # Escribimos el código en el input y enviamos
-                    input_code = wait.until(EC.presence_of_element_located((By.NAME, "verificationCode")))
+                    # --- Paso 3: Escribir y enviar el código ---
+                    input_code = wait.until(EC.presence_of_element_located((By.ID, "form-code")))
                     input_code.clear()
                     input_code.send_keys(code)
+
                     try:
-                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_5_{now()}", descripcion="Validacion de codigo")
+                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_5_{now()}", descripcion="Código escrito en el input")
                     except Exception:
                         pass
-                    input_code.send_keys(Keys.RETURN)
+
+                    # Click en el botón de confirmar
+                    submit_btn = driver.find_element(By.ID, "submit-button")
+                    driver.execute_script("arguments[0].click();", submit_btn)
 
                     wait.until(lambda d: "login" not in d.current_url)
                     try:
