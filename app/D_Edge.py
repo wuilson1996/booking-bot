@@ -13,6 +13,9 @@ import os
 import platform
 from .models import *
 
+import datetime
+import time
+
 class DEdge:
     URL = "https://extranet.availpro.com/Planning/Edition/Save"
     URL_GET = "https://extranet.availpro.com/Planning/Edition/Index/DATE/Room0/Rate585370"
@@ -159,6 +162,11 @@ class DEdge:
         try:
             wait = WebDriverWait(driver, 15)
 
+            try:
+                cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_1_{now()}")
+            except Exception:
+                pass
+
             # Si ya estamos logueados, no hay login-form
             if not driver.find_elements(By.NAME, "login"):
                 generate_log(f"Ya estábamos logueados (cookies válidas)", BotLog.ROOMPRICE)
@@ -173,11 +181,26 @@ class DEdge:
                 input_user.send_keys(cls.username)
                 input_pass.clear()
                 input_pass.send_keys(cls.password)
+                try:
+                    cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_2_{now()}", descripcion="Credenciales escritas")
+                except Exception:
+                    pass
                 input_pass.send_keys(Keys.RETURN)
 
                 wait.until(lambda d: "login" not in d.current_url)
                 generate_log(f"Login completado en Selenium", BotLog.ROOMPRICE)
                 logging.info("✅ Login completado en Selenium")
+                try:
+                    cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_3_{now()}", descripcion="Login completado en Selenium")
+                except Exception:
+                    pass
+                    
+                time.sleep(10)
+
+                try:
+                    cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_4_{now()}", descripcion="Login completado en Selenium")
+                except Exception:
+                    pass
 
             # Obtener cookies finales
             selenium_cookies = driver.get_cookies()
@@ -458,6 +481,38 @@ class DEdge:
         """Guardar el contenido completo en un archivo HTML."""
         with open(filename, "w", encoding="utf-8") as file:
             file.write(content)
+        
+    @classmethod
+    def guardar_captura(cls, driver, carpeta="media/capturas", name="", descripcion=""):
+        # Crear carpeta si no existe
+        if not os.path.exists(carpeta):
+            os.makedirs(carpeta)
+
+        # Generar nombre con timestamp
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        nombre_archivo = f"{name}_{timestamp}.png" if name else f"captura_{timestamp}.png"
+        ruta_completa = os.path.join(carpeta, nombre_archivo)
+
+        # Guardar captura
+        driver.save_screenshot(ruta_completa)
+        generate_log(f"[✓] Captura guardada en: {ruta_completa}", BotLog.BOOKING)
+
+        try:
+            ScreenshotLog.objects.create(
+                descripcion = descripcion,
+                created = now(),
+                imagen = "capturas/"+nombre_archivo,
+            )
+        except Exception as e:
+            logging.info(f"[-] Error create Screen: {e}")
+            try:
+                ScreenshotLog.objects.create(
+                    descripcion = descripcion,
+                    created = now(),
+                    imagen = "capturas/"+nombre_archivo,
+                )
+            except Exception as e:
+                logging.info(f"[-] Error create Screen: {e}")
 
 if __name__ == "__main__":
     d_edge = DEdge()
