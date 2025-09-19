@@ -146,23 +146,22 @@ class DEdge:
 
     @classmethod
     def handle_new_device_prompt(cls, driver):
+        """Detecta si aparece la pantalla de 'dispositivo nuevo' y hace clic en 'Ingrese el código'."""
         try:
-            cls.write_html(driver.page_source, "page_factor2.html")
-            # Esperamos a que aparezca el contenedor de "nuevo dispositivo" (máx. 5s)
             wait = WebDriverWait(driver, 5)
-            new_device_box = wait.until(
-                EC.presence_of_element_located((By.XPATH, "//form[contains(., 'dispositivo nuevo')]"))
-            )
-            generate_log("Se detectó el aviso de 'dispositivo nuevo'", BotLog.ROOMPRICE)
+            # Detectar si aparece el título de la página
+            wait.until(EC.presence_of_element_located(
+                (By.XPATH, "//h1[contains(., '¿Se está conectando desde un dispositivo nuevo?')]")
+            ))
+            logging.warning("⚠️ Se detectó el aviso de 'dispositivo nuevo'")
 
-            # Clic en "Ingrese el código"
             try:
-                btn_ingresar = new_device_box.find_element(By.XPATH, ".//button[contains(., 'Ingrese el código')]")
-                btn_ingresar.click()
-                generate_log("Botón 'Ingrese el código' clickeado, esperando código...", BotLog.ROOMPRICE)
-                return True  # Indicamos que se requiere código
+                btn_ingresar = driver.find_element(By.ID, "authorisation-link")
+                driver.execute_script("arguments[0].click();", btn_ingresar)
+                logging.info("✅ Link 'Ingrese el código' clickeado, esperando código...")
+                return True
             except Exception:
-                generate_log("No se encontró el botón de 'Ingrese el código'", BotLog.ROOMPRICE)
+                logging.error("⚠️ No se encontró el link con ID 'authorisation-link'")
                 return False
 
         except TimeoutException:
@@ -246,6 +245,9 @@ class DEdge:
                         cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_4_{now()}", descripcion="Validacion de codigo")
                     except Exception:
                         pass
+
+                    cls.write_html(driver.page_source, "page_factor2_code.html")
+
                     # Escribimos el código en el input y enviamos
                     input_code = wait.until(EC.presence_of_element_located((By.NAME, "verificationCode")))
                     input_code.clear()
