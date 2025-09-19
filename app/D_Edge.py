@@ -274,7 +274,7 @@ class DEdge:
                     except Exception as e002:
                         generate_log(f"Error e002: {e002}", BotLog.ROOMPRICE)
                     #driver.execute_script("arguments[0].click();", submit_btn)
-
+                    last_code.delete()
                     time.sleep(10)
                     #wait.until(lambda d: "login" not in d.current_url)
                     try:
