@@ -259,8 +259,9 @@ class DEdge:
                         pass
 
                     # Click en el botón de confirmar
-                    submit_btn = driver.find_element(By.ID, "submit-button")
-                    driver.execute_script("arguments[0].click();", submit_btn)
+                    #submit_btn = driver.find_element(By.ID, "submit-button")
+                    #driver.execute_script("arguments[0].click();", submit_btn)
+                    input_code.send_keys(Keys.RETURN)
 
                     wait.until(lambda d: "login" not in d.current_url)
                     try:
