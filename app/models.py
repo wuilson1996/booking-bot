@@ -542,3 +542,14 @@ class CookieStore(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class DEdgeCode(models.Model):
+    code = models.CharField(max_length=20, help_text="Código de verificación D-EDGE")
+    created_at = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "dedge_codes"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.code} ({self.created_at})"

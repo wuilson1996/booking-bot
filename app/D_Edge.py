@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 import os
 import platform
 from .models import *
@@ -143,6 +144,29 @@ class DEdge:
         else:
             return cls._driver_firefox()
 
+    def handle_new_device_prompt(driver):
+        try:
+            # Esperamos a que aparezca el contenedor de "nuevo dispositivo" (máx. 5s)
+            wait = WebDriverWait(driver, 5)
+            new_device_box = wait.until(
+                EC.presence_of_element_located((By.XPATH, "//form[contains(., 'dispositivo nuevo')]"))
+            )
+            generate_log("Se detectó el aviso de 'dispositivo nuevo'", BotLog.ROOMPRICE)
+
+            # Clic en "Ingrese el código"
+            try:
+                btn_ingresar = new_device_box.find_element(By.XPATH, ".//button[contains(., 'Ingrese el código')]")
+                btn_ingresar.click()
+                generate_log("Botón 'Ingrese el código' clickeado, esperando código...", BotLog.ROOMPRICE)
+                return True  # Indicamos que se requiere código
+            except Exception:
+                generate_log("No se encontró el botón de 'Ingrese el código'", BotLog.ROOMPRICE)
+                return False
+
+        except TimeoutException:
+            # No hay mensaje de nuevo dispositivo
+            return False
+
     @classmethod
     def selenium_login(cls, db_cookies=None):
         generate_log(f"Iniciando navegador Selenium...", BotLog.ROOMPRICE)
@@ -195,12 +219,47 @@ class DEdge:
                 except Exception:
                     pass
                     
-                time.sleep(10)
+                # Si aparece el aviso de dispositivo nuevo
+                if cls.handle_new_device_prompt(driver):
+                    logging.info("⌛ Esperando que el usuario ingrese el código en la base de datos...")
+                    code = None
+                    max_wait = 300  # espera máxima 60s
+                    start_time = time.time()
 
-                try:
-                    cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_4_{now()}", descripcion="Login completado en Selenium")
-                except Exception:
-                    pass
+                    while time.time() - start_time < max_wait:
+                        last_code = DEdgeCode.objects.order_by("-created_at").first()
+                        if last_code:
+                            code = last_code.code
+                            generate_log(f"Código detectado en DB: {code}", BotLog.ROOMPRICE)
+                            break
+                        time.sleep(3)
+
+                    if not code:
+                        logging.error("⏳ No se recibió el código dentro del tiempo límite")
+                        generate_log(f"No se recibió el código dentro del tiempo límite", BotLog.ROOMPRICE)
+                        return None
+
+                    try:
+                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_4_{now()}", descripcion="Validacion de codigo")
+                    except Exception:
+                        pass
+                    # Escribimos el código en el input y enviamos
+                    input_code = wait.until(EC.presence_of_element_located((By.NAME, "verificationCode")))
+                    input_code.clear()
+                    input_code.send_keys(code)
+                    try:
+                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_5_{now()}", descripcion="Validacion de codigo")
+                    except Exception:
+                        pass
+                    input_code.send_keys(Keys.RETURN)
+
+                    wait.until(lambda d: "login" not in d.current_url)
+                    try:
+                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_6_{now()}", descripcion="Validacion de codigo")
+                    except Exception:
+                        pass
+                    logging.info("✅ Código verificado y login completado")
+                    generate_log(f"Código verificado y login completado", BotLog.ROOMPRICE)
 
             # Obtener cookies finales
             selenium_cookies = driver.get_cookies()
