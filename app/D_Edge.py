@@ -144,8 +144,10 @@ class DEdge:
         else:
             return cls._driver_firefox()
 
-    def handle_new_device_prompt(driver):
+    @classmethod
+    def handle_new_device_prompt(cls, driver):
         try:
+            cls.write_html(driver.page_source, "page_factor2.html")
             # Esperamos a que aparezca el contenedor de "nuevo dispositivo" (máx. 5s)
             wait = WebDriverWait(driver, 5)
             new_device_box = wait.until(
@@ -222,6 +224,7 @@ class DEdge:
                 # Si aparece el aviso de dispositivo nuevo
                 if cls.handle_new_device_prompt(driver):
                     logging.info("⌛ Esperando que el usuario ingrese el código en la base de datos...")
+                    generate_log(f"Esperando que el usuario ingrese el código en la base de datos...", BotLog.ROOMPRICE)
                     code = None
                     max_wait = 300  # espera máxima 60s
                     start_time = time.time()
