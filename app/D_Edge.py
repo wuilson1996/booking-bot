@@ -258,16 +258,27 @@ class DEdge:
                     except Exception:
                         pass
                     time.sleep(2)
-                    # Click en el botón de confirmar
-                    input_code.send_keys(Keys.RETURN)
+                    try:
+                        # Click en el botón de confirmar
+                        input_code.send_keys(Keys.RETURN)
+                    except Exception as e001:
+                        generate_log(f"Error e001: {e001}", BotLog.ROOMPRICE)
                     time.sleep(2)
-                    submit_btn = driver.find_element(By.ID, "submit-button")
-                    submit_btn.click()
+                    try:
+                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_6_{now()}", descripcion="Código escrito en el input")
+                    except Exception:
+                        pass
+                    try:
+                        submit_btn = driver.find_element(By.ID, "submit-button")
+                        submit_btn.click()
+                    except Exception as e002:
+                        generate_log(f"Error e002: {e002}", BotLog.ROOMPRICE)
                     #driver.execute_script("arguments[0].click();", submit_btn)
 
-                    wait.until(lambda d: "login" not in d.current_url)
+                    time.sleep(10)
+                    #wait.until(lambda d: "login" not in d.current_url)
                     try:
-                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_6_{now()}", descripcion="Validacion de codigo")
+                        cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_7_{now()}", descripcion="Validacion de codigo")
                     except Exception:
                         pass
                     logging.info("✅ Código verificado y login completado")
