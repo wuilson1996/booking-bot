@@ -257,11 +257,13 @@ class DEdge:
                         cls.guardar_captura(driver, name=f"cap_LOGIN_DEdge_5_{now()}", descripcion="Código escrito en el input")
                     except Exception:
                         pass
-
+                    time.sleep(2)
                     # Click en el botón de confirmar
-                    #submit_btn = driver.find_element(By.ID, "submit-button")
-                    #driver.execute_script("arguments[0].click();", submit_btn)
                     input_code.send_keys(Keys.RETURN)
+                    time.sleep(2)
+                    submit_btn = driver.find_element(By.ID, "submit-button")
+                    submit_btn.click()
+                    #driver.execute_script("arguments[0].click();", submit_btn)
 
                     wait.until(lambda d: "login" not in d.current_url)
                     try:
