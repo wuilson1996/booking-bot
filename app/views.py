@@ -892,8 +892,8 @@ def get_price_by_range(_date=None, days_range=14):
                     _prices[date_from][occ_key]["next_price"] = price_obj.price
                     _prices[date_from][occ_key]["obj"] = price_obj
                     _prices[date_from][occ_key]["day"] = None
-                    price_obj.active_sync = True
-                    price_obj.save()
+                    #price_obj.active_sync = True
+                    #price_obj.save()
 
     sorted_dates = sorted(_prices.keys())
 
@@ -915,6 +915,8 @@ def get_price_by_range(_date=None, days_range=14):
             for fecha in rango_data:
                 for occ, occ_data in rango_data[fecha].items():
                     occ_data["day"] = (fecha - inicio).days
+                    occ_data["obj"].active_sync = True
+                    price_obj.save()
 
             rangos.append(rango_data)
             i = i + sum(inicio <= d <= fin for d in sorted_dates)
@@ -925,6 +927,8 @@ def get_price_by_range(_date=None, days_range=14):
             rango_data = {_date: _prices[_date]}
             for occ, occ_data in rango_data[_date].items():
                 occ_data["day"] = 0
+                occ_data["obj"].active_sync = True
+                price_obj.save()
         else:
             rango_data = {_date: {}}  # Fecha sin datos
 
