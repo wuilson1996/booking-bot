@@ -806,24 +806,24 @@ def task_save_price_DEdge(request, cron:CronActive, _credential:CredentialPlataf
                         cookies=new_cookies
                     )
                     generate_log(f"Cookies creadas en DB", BotLog.ROOMPRICE)
-                    logging.info("🍪 Cookies creadas en DB")
+                    logging.info(" Cookies creadas en DB")
                 else:
                     record.cookies = new_cookies
                     record.save()
                     generate_log(f"Cookies actualizadas en DB", BotLog.ROOMPRICE)
-                    logging.info("🍪 Cookies actualizadas en DB")
+                    logging.info(" Cookies actualizadas en DB")
             else:
                 if logged_in is False:
                     generate_log(f"Se usaron cookies válidas, no fue necesario login", BotLog.ROOMPRICE)
-                    logging.info("👍 Se usaron cookies válidas, no fue necesario login")
+                    logging.info(" Se usaron cookies válidas, no fue necesario login")
                 else:
                     generate_log(f"Error de credenciales, no se pudo authenticar.", BotLog.ROOMPRICE)
-                    logging.info("👍 Error de credenciales, no se pudo authenticar.")
+                    logging.info(" Error de credenciales, no se pudo authenticar.")
             #hanges = d_edge.generate_changes(prices)
             #print(changes)
             #generate_log(f"PriceData: {now()}: {changes}", BotLog.ROOMPRICE)
             for rango in prices:
-                inicio = min(rango.keys())  # ✅ fecha inicial del rango
+                inicio = min(rango.keys())  #  fecha inicial del rango
                 logging.info(f"{now()}: Inicio de rango:{inicio} - Rango:{rango}")
                 generate_log(f"{now()}: Inicio de rango:{inicio} - Rango:{rango}", BotLog.ROOMPRICE)
                 #changes, status = d_edge.generate_changes(rango, str(inicio))
@@ -839,11 +839,12 @@ def task_save_price_DEdge(request, cron:CronActive, _credential:CredentialPlataf
                     for fecha, occs in rango.items():
                         if occs:
                             for occ_key, value in occs.items():
-                                _p = Price.objects.filter(pk=value["obj"].pk).first()
-                                #if json.loads(response.text).get("status") == 2:
-                                _p.plataform_sync = True
-                                _p.active_sync = False
-                                _p.save()
+                                if value["obj"].plataform_sync == True:
+                                    _p = Price.objects.filter(pk=value["obj"].pk).first()
+                                    #if json.loads(response.text).get("status") == 2:
+                                    _p.plataform_sync = True
+                                    _p.active_sync = False
+                                    _p.save()
         except Exception as e:
             logging.info(f"Error general Price: {e}")
             generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
@@ -858,19 +859,19 @@ def task_save_price_DEdge(request, cron:CronActive, _credential:CredentialPlataf
 def get_price_by_range(_date=None, days_range=14):
     if not _date:
         _date = now().date()
-        modo_rangos = True  # ✅ Se están pidiendo rangos
+        modo_rangos = True  #  Se están pidiendo rangos
     else:
         _date = datetime.datetime(
             year=int(_date.split("-")[0]),
             month=int(_date.split("-")[1]),
             day=int(_date.split("-")[2])
         ).date()
-        modo_rangos = False  # ✅ Solo una fecha
+        modo_rangos = False  #  Solo una fecha
 
     prices_all = Price.objects.all().order_by("-id")
     _prices = {}
 
-    # 🔹 Paso 1: Construcción de precios por fecha y occupancy
+    #  Paso 1: Construcción de precios por fecha y occupancy
     for price_obj in prices_all:
         date_from = datetime.datetime(
             year=int(price_obj.date_from.split("-")[0]),
@@ -897,7 +898,7 @@ def get_price_by_range(_date=None, days_range=14):
 
     sorted_dates = sorted(_prices.keys())
 
-    # 🔹 Si no hay precios y estamos en modo fecha única, devolver esa fecha vacía
+    #  Si no hay precios y estamos en modo fecha única, devolver esa fecha vacía
     if not sorted_dates and not modo_rangos:
         return [{_date: {}}]
 
@@ -905,7 +906,7 @@ def get_price_by_range(_date=None, days_range=14):
     i = 0
 
     if modo_rangos:
-        # ✅ Generación de rangos completa
+        #  Generación de rangos completa
         while i < len(sorted_dates):
             inicio = sorted_dates[i]
             fin = inicio + datetime.timedelta(days=days_range - 1)
@@ -922,7 +923,7 @@ def get_price_by_range(_date=None, days_range=14):
             i = i + sum(inicio <= d <= fin for d in sorted_dates)
 
     else:
-        # ✅ Solo una fecha -> devolver únicamente esa
+        #  Solo una fecha -> devolver únicamente esa
         if _date in _prices:
             rango_data = {_date: _prices[_date]}
             for occ, occ_data in rango_data[_date].items():

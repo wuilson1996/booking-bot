@@ -490,7 +490,7 @@ class DEdge:
     
     @classmethod
     def generate_changes(cls, prices, _date):
-        # ✅ Si no hay precios, no hacemos la consulta
+        #  Si no hay precios, no hacemos la consulta
         if not prices or all(not v for v in prices.values()):
             # Retornamos lista vacía y status 204 (sin contenido)
             return [], 204  
@@ -511,7 +511,8 @@ class DEdge:
                     room_id = cls.get_type(room_type)
                     origin_value = prev_prices.get(str(price["day"]), {}).get(room_id)
                     if origin_value is None:
-                        generate_log(f"No se encontró precio previo para día {price['day']} y room_id {room_id}, se omite cambio.", BotLog.ROOMPRICE)
+                        generate_log(f"No se encontró precio previo para día {price['day']} y room_id {room_id}, se omite cambio. {str(price)}", BotLog.ROOMPRICE)
+                        price["plataform_sync"] = False
                         continue
                     changes.append(
                         {
