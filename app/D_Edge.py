@@ -509,6 +509,10 @@ class DEdge:
             if value:
                 for room_type, price in value.items():
                     room_id = cls.get_type(room_type)
+                    origin_value = prev_prices.get(str(price["day"]), {}).get(room_id)
+                    if origin_value is None:
+                        generate_log(f"No se encontró precio previo para día {price['day']} y room_id {room_id}, se omite cambio.", BotLog.ROOMPRICE)
+                        continue
                     changes.append(
                         {
                             "Day": int(price["day"]), 
@@ -517,7 +521,7 @@ class DEdge:
                             "LineType": "RatePrice", 
                             "RateId": int(cls.RATE_ID), 
                             "PropertyId": 0, 
-                            "OriginValue": prev_prices[str(price["day"])][room_id], 
+                            "OriginValue": origin_value, 
                             "NewValue": price["next_price"], 
                             "NewOverridingValue": price["next_price"], 
                             "Target": "Price"
