@@ -840,7 +840,7 @@ def task_save_price_DEdge(request, cron:CronActive, _credential:CredentialPlataf
                         if occs:
                             for occ_key, value in occs.items():
                                 _p = Price.objects.filter(pk=value["obj"].pk).first()
-                                if value["obj"].plataform_sync == True:
+                                if value["plataform_sync"] == True:
                                     #if json.loads(response.text).get("status") == 2:
                                     _p.plataform_sync = True
                                 _p.active_sync = False
