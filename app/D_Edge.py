@@ -555,12 +555,17 @@ class DEdge:
             for td in tds:
                 day = td["day"]
                 origin_value = td["originvalue"]
-                # Filtrar solo valores numéricos válidos
-                if not origin_value.isdigit():
+                # Validar que sea número (entero o decimal)
+                try:
+                    value = float(origin_value.replace(",", "."))
+                except ValueError:
                     continue  # Ignorar Undefined, texto o vacíos
+                # Filtrar solo valores numéricos válidos
+                #if not origin_value.isdigit():
+                    #continue  # Ignorar Undefined, texto o vacíos
                 if day not in result:
                     result[day] = {}
-                result[day][room_id] = origin_value  # Guardamos como string, lo puedes convertir si necesitas número
+                result[day][room_id] = str(value)  # Guardamos como string, lo puedes convertir si necesitas número
         return result
     
     @classmethod
