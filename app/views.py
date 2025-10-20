@@ -843,8 +843,8 @@ def task_save_price_DEdge(request, cron:CronActive, _credential:CredentialPlataf
                                     _p = Price.objects.filter(pk=value["obj"].pk).first()
                                     #if json.loads(response.text).get("status") == 2:
                                     _p.plataform_sync = True
-                                    _p.active_sync = False
-                                    _p.save()
+                                _p.active_sync = False
+                                _p.save()
         except Exception as e:
             logging.info(f"Error general Price: {e}")
             generate_log(f"Error general Price: {now()}: {e}", BotLog.ROOMPRICE)
