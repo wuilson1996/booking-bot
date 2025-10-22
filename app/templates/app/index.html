@@ -2654,14 +2654,18 @@
     }
     function changeStatusPRice(_inputId, status){
       //console.log(_inputId, status)
-      let icon = document.getElementById("iconStatus"+_inputId);
-      //console.log(icon)
-      if (status == true) {
-          icon.classList.remove("fa-exclamation-triangle", "text-warning");
-          icon.classList.add("fa-check", "text-success");
-      } else {
-          icon.classList.remove("fa-check", "text-success");
-          icon.classList.add("fa-exclamation-triangle", "text-warning");
+      try{
+        let icon = document.getElementById("iconStatus"+_inputId);
+        //console.log(icon)
+        if (status == true) {
+            icon.classList.remove("fa-exclamation-triangle", "text-warning");
+            icon.classList.add("fa-check", "text-success");
+        } else {
+            icon.classList.remove("fa-check", "text-success");
+            icon.classList.add("fa-exclamation-triangle", "text-warning");
+        }
+      }catch(e){
+        console.warn("Error: ",e);
       }
     }
     let timeoutHandles = {}
